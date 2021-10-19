@@ -1,0 +1,697 @@
+\documentclass[hyperref={pdfpagelabels=false}]{beamer}
+\providecommand\thispdfpagelabel[1]{}
+% Die Hyperref Option hyperref={pdfpagelabels=false} verhindert die Warnung:
+% Package hyperref Warning: Option `pdfpagelabels' is turned off
+% (hyperref)                because \thepage is undefined. 
+% Hyperref stopped early 
+%
+
+\usepackage{lmodern}
+% Das Paket lmodern erspart die folgenden Warnungen:
+% LaTeX Font Warning: Font shape `OT1/cmss/m/n' in size <4> not available
+% (Font)              size <5> substituted on input line 22.
+% LaTeX Font Warning: Size substitutions with differences
+% (Font)              up to 1.0pt have occurred.
+%
+\usepackage{epstopdf}
+\usepackage{german}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{latexsym}
+\usepackage{newalg}
+\usepackage{ifthen}
+\usepackage{fancybox}
+\usepackage{fancyhdr}
+%\usepackage[dvips, dvipdfm]{graphicx}
+%\usepackage[pdftex]{color,graphicx}
+\usepackage{eurofont}
+\usepackage{aeguill}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage{wrapfig}
+\usepackage{mathrsfs}
+\usepackage{float}
+\usepackage{color}
+\usepackage{siunitx}
+
+\usepackage[utf8]{inputenc}
+%\usepackage{hyperref}
+
+\theoremstyle{plain}% default
+\newtheorem*{satz}{Satz} 
+\newtheorem*{hilf}{Lemma} 
+\newtheorem*{korollar}{Folgerung}
+\newtheorem*{regel}{Regel} 
+
+\theoremstyle{definition}
+%\newtheorem*{definition}{Definition} 
+\newtheorem*{aufgabe}{Aufgabe} 
+\newtheorem*{uebung}{Übung}
+\newtheorem*{sol}{Lösung:}
+
+\theoremstyle{remark}
+\newtheorem*{beispiel}{Beispiel} 
+\newtheorem*{notiz}{Bemerkung} 
+\newtheorem*{notation}{Notation}
+\newtheorem*{bez}{Bezeichnung} 
+
+\def \ii{{\relax\ifmmode \mathrm{i} \else i \fi}}
+\def \ee{{\relax\ifmmode \mathrm{e} \else e \fi}}
+\def \dd{{\relax\ifmmode \mathrm{d} \else d \fi}}
+\def \g{{\relax\ifmmode \mathrm{g} \else g \fi}}
+\def \R{\mathbb R}
+\def \C{\mathbb C}
+\def \Q{\mathbb Q}
+\def \N{\mathbb N}
+\def \Z{\mathbb Z}
+\def \F{\mathbb F}
+\def \A{\mathbb A}
+
+% tikz Anpassungen 
+
+\usepackage{lscape}
+\usepackage{gnuplot-lua-tikz}
+\usepackage{pgf,tikz}
+\usetikzlibrary{arrows,decorations.pathmorphing,backgrounds,positioning,fit,petri}
+
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\pgfplotsset{compat=newest}
+
+\usepackage{environ}
+\makeatletter
+
+\newsavebox{\measure@tikzpicture}
+\NewEnviron{scaletikzpicturetowidth}[1]{%
+  \def\tikz@width{#1}%
+  \def\tikzscale{1}\begin{lrbox}{\measure@tikzpicture}%
+  \BODY
+  \end{lrbox}%
+  \pgfmathparse{#1/\wd\measure@tikzpicture}%
+  \edef\tikzscale{\pgfmathresult}%
+  \BODY
+}
+\makeatother
+
+\setcounter{secnumdepth}{-1}
+
+
+% Wenn \titel{\ldots} \author{\ldots} erst nach \begin{document} kommen,
+% kommt folgende Warnung:
+% Package hyperref Warning: Option `pdfauthor' has already been used,
+% (hyperref) ... 
+% Daher steht es hier vor \begin{document}
+
+\title{Lineare Algebra \\ algebraische Strukturen 2}   
+\author{ Reinhold Hübl} 
+\date{Wintersemester 2020/21} 
+
+% Dadurch wird verhindert, dass die Navigationsleiste angezeigt wird.
+%\setbeamertemplate{navigation symbols}{}
+
+% zusaetzlich ist das usepackage{beamerthemeshadow} eingebunden 
+\usepackage{beamerthemeshadow}
+\usetheme{CambridgeUS}
+
+%  \beamersetuncovermixins{\opaqueness<1>{25}}{\opaqueness<2->{15}}
+%  sorgt dafuer das die Elemente die erst noch (zukuenftig) kommen 
+%  nur schwach angedeutet erscheinen 
+\beamersetuncovermixins{\opaqueness<1>{25}}{\opaqueness<2->{15}}
+% klappt auch bei Tabellen, wenn teTeX verwendet wird\ldots
+\begin{document}
+
+
+\begin{frame}
+\titlepage
+\centering 
+    \scalebox{0.40}{\includegraphics{dhbw_ma_logo.eps}}
+ 
+\end{frame} 
+
+
+
+\section{Guppen}
+
+
+\begin{frame}
+\frametitle{kommutative Gruppen}
+
+\begin{definition} Eine Gruppe $(G, \circ)$ heißt \textbf{kommutativ} oder
+\textbf{abelsch} wenn für je zwei Elemente $g, h \in G$ gilt:
+  	$$ g \circ h = h \circ g $$
+\end{definition}
+
+\pause 
+\begin{beispiel} $(\mathbb Z, +), (\mathbb R, +)$ und $(\mathbb Q, +)$ sind kommutative Gruppen.
+
+$(\mathbb R \setminus \{0\}, \cdot)$ und $(\mathbb Q  \setminus \{0\}, \cdot)$ sind kommutative Gruppen
+\end{beispiel}
+\pause 
+
+\begin{beispiel} Ist $G$ die Gruppe der bijektiven Abbildungen von $\mathbb R$ in sich, 
+so ist $G$ nicht kommutativ.
+\end{beispiel}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{kommutative Gruppen}
+
+\begin{uebung} Überprüfen Sie, ob die Gruppe $S_3$ der Permutationen der Zahlen $1, 2$ und $3$ 
+kommutativ ist. 
+\end{uebung}
+
+\bigbreak
+
+\pause \pause 
+
+\begin{sol} 
+Die Gruppe $S_3$ ist nicht kommutativ. Generell ist 
+für $n \geq 3$ die Gruppe $S_n$ der Permuationen  nicht 
+kommutativ. 
+
+\pause 
+So ist etwa 
+	$$\langle 1 \,\,\, 2 \rangle \circ \langle 1 \,\,\, 3 \rangle 
+	\neq \langle 1 \,\,\, 3 \rangle \circ \langle 1 \,\,\, 2 \rangle.$$
+\end{sol}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Gruppen}
+
+Für ein Element $g \in (G, \circ)$ mit neutralem Element $e$ setzen wir $g^0 = e$, $g^2 = g \circ g$, und 
+allgemein für $n \geq 1$:
+  	$$ \begin{array} {l c l}
+  	g^n & = & \underbrace{g \circ g \circ \cdots \circ g}_{n--\textrm{mal}} \\
+  	g^{-n} & = & \underbrace{g^{-1} \circ g^{-1} \circ \cdots \circ g^{-1}}_{n--\textrm{mal}}
+  	\end{array} $$
+(so dass also $g^n \circ g^m = g^{n+m}$ für alle $n, m \in \mathbb Z$). 
+
+\pause
+
+\begin{lemma}\label{gruppe_endl_ordnung1} Ist $G$ eine endliche Gruppe und $g \in G$, so gibt es ein $n \geq 1$ 
+mit $g^n = e$.
+\end{lemma}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Gruppen}
+
+\begin{definition} Ist $G$ eine endliche Gruppe und $g \in G$, so heißt 
+\vspace{-0.1cm}
+  	$$ \mathrm{ord}(g) := \textrm{min} \{ n \geq 1: g^n = e \} $$
+\vspace{-0.1cm}
+die \index{Gruppe!Ordnung eines Elements}\textbf{Ordnung} von $g$.
+\end{definition}
+
+\pause
+
+\begin{notiz} Für eine endliche Gruppe $G$ gilt: 
+
+\begin{enumerate}
+\item<3-> Genau dann gilt $\mathrm{ord}(g) = 1$, wenn $g = e$.
+\item<4-> Für alle $1 \leq i < j \leq \mathrm{ord}(g)$ gilt: $g^i \neq g^j$.
+\end{enumerate}
+\end{notiz} 
+
+\pause \pause \pause 
+
+\begin{lemma} Ist $G$ eine endliche Gruppe und $g \in G$, so gilt: $\quad \mathrm{ord}(g) \, \vert \, \mathrm{ord}(G)$. 
+
+\pause \medbreak
+Speziell gilt also $ g^{\mathrm{ord}(G)} = e$.
+\end{lemma}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Gruppen}
+
+\begin{notiz} Ist $G$ eine endliche Gruppe und $g \in G$ so schreiben wir
+  	$$ \langle g \rangle  = \{ g = g^1, g^2, g^3, \ldots \} $$
+für die Teilmenge von $G$, die aus den Potenzen von $g$ besteht.
+\end{notiz}
+
+\pause 
+
+\begin{definition} Eine endliche Gruppe $G$ heißt 
+\index{Gruppe!zyklisch}\textbf{zyklisch}, wenn es ein $g \in G$ gibt mit 
+  	$$ \langle g \rangle = G $$
+In diesem Fall heißt $g$ ein \textbf{Erzeuger} von $G$.
+\end{definition}
+
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Gruppen}
+
+\begin{beispiel} Die Gruppe $(\Z/n\Z, +)$ ist zyklisch mit Erzeuger $g = 1$
+\end{beispiel}
+
+\pause 
+
+\begin{beispiel}
+Die Gruppe $M = \{1,-1\}$ mit 
+	 $$ \begin{array} { c | c c  }
+  	\circ \, & \, 1 \, & \, -1 \, ,  \\ \hline
+  	1\, \, & 1 & -1  \\
+  	-1\, \, & -1 & 1 \\
+  	\end{array} $$
+ist zyklisch mit Erzeuger $-1$
+\end{beispiel} 
+
+\end{frame}
+
+\section{Ringe}
+
+\begin{frame}
+\frametitle{Ringe}
+
+\begin{definition} Ein \textbf{Ring} $(R, + , \cdot)$ ist eine nichtleere Menge $R$ mit 
+zwei Verknüpfungen $+$ (Addition) und $\cdot$ (Multiplikation), 
+die zwei Elemente $0, 1$ enthält, wobei $0 \neq 1$ ist und wobei gilt
+
+\begin{itemize}
+\item $(R, +, 0)$ ist eine kommutative Gruppe.
+\item $(R, \cdot, 1)$ ist ein Monoid.
+\item Es gelten die Distributivgesetze
+  	$$ \begin{array} {l c l c l}
+  	(r + s) \cdot t & = & r \cdot t + s \cdot t & \quad & \textrm{ für alle } r, s, t \in R \\
+   	r \cdot (s + t) & = & r \cdot s + r \cdot t & \quad & \textrm{ für alle } r, s, t \in R
+  	\end{array} $$
+\end{itemize}
+  
+Ist $(R, \cdot, 1)$ kommutativ, so nennen wir $(R, + , \cdot)$ einen kommutativen Ring.
+\end{definition}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Ringe}
+
+\begin{beispiel}
+$(\Z, +, \cdot) $ ist ein (kommutativer) Ring. 
+\end{beispiel}
+
+\pause 
+
+\begin{beispiel}
+$ (\mathbb R, +, \cdot)$ und $(\mathbb Q, +, \cdot)$ sind kommutative Ringe.
+\end{beispiel}
+
+\pause 
+
+\begin{beispiel}
+$(\N, +, \cdot) $ ist kein Ring. 
+\end{beispiel}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Ringe}
+
+\begin{beispiel}
+Für eine ganze Zahl $n > 1$ betrachtenn wir $\mathbb Z/ n \Z$, also die Menge der Äquivalenzklassen der 
+Äquivalenzrelation 
+''unterscheiden sich um ein Vielfaches von $n$'', dh. 
+	$$ a \sim b \iff n \vert (b-a) $$   \pause 
+
+ Wir definieren auf $\mathbb Z/ (n) $ Verknüpfungen $+$ und $\cdot$ durch
+  	$$ \begin{array} {l c l c l}
+  	\, [r] + [s] & := & [r + s] & \quad & \textrm{ für alle } \, [r], [s] \in \mathbb Z/ (n) \\
+  	\, [r] \cdot [s] & := & [r \cdot s ] & \quad & \textrm{ für alle } \, [r], [s] \in \mathbb Z/ (n)
+  	\end{array} $$ \pause 
+
+Dann ist $(\mathbb Z/ (n), +, \cdot )$ ein kommutativer Ring mit Nullelement $[0]$ und Einselement $[1]$. 
+\end{beispiel}
+\end{frame}
+
+\begin{frame}
+\frametitle{Ringe}
+
+\begin{beispiel}
+Wir setzen 
+	$$ \R [X] = \{ a_n X^n + a_{n-1} X^{n-1} + \cdots + a_1 X + a_0 \, \vert \, \, n \in \N, a_i \in \R \} $$
+und für $f(X) = a_n X^n + a_{n-1} X^{n-1} + \cdots + a_1 X + a_0$ und 
+$g(x) = b_m X^m + b_{m-1} X^{m-1} + \cdots + b_1 X + b_0$ definieren wir
+\begin{itemize}
+\item<2-> $(f+g)(X) = a_n X^n + \cdots + (a_{m} + b_{m}) \cdot X^{m} + \cdots + (a_1+b_1) X + a_0+b_0$ falls 
+$n \geq m$. 
+\item<3-> $(f+g)(X) = b_m X^m + \cdots + (a_{n} + b_{n}) \cdot X^{n} + \cdots + (a_1+b_1) X + a_0+b_0$ falls 
+$n <m$.
+\item<4-> $(f \cdot g)(X) = \sum\limits_{k = 0}^{n+m} \left( \sum\limits_{i=0}^k a_i \cdot b_{k-i} \right) \cdot X^k$.
+\end{itemize}
+\pause \pause \pause \pause \pause  
+Dann ist $R[X]$ ein kommutativer Ring. 
+
+\pause 
+
+Statt $\R$ hätten wir genauso gut $\Q$ oder sogar $\Z$ nehmen können. 
+\end{beispiel}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Ringe}
+
+\begin{beispiel}
+Für $f(X) = X^3+X + 1$ und $g(X) =3X^2+5X +2$ gilt 
+	$$ \begin{array} {l c l}
+	(f \cdot g)(X) & = & (X^3+X +1) \cdot (3 X^2 + 5X + 2) \\ 
+	& = & 3 X^5 + 5 X^4 + 2 X^3 + 3X^3 +5 X^2 + 2X + 3X^2 + 5 X + 2 \\
+	& = & 3 X^4 +5 X^4 + 5 X^3 + 8 X^2 + 7 X + 2 \\
+	\end{array} $$
+\end{beispiel}
+
+\pause 
+
+\begin{definition} $\R [X]$ heißt \textbf{Polynomring über } $\R $. 
+\end{definition}
+
+\pause 
+
+\begin{definition}
+Ist $f(X) = a_n X^n + a_{n-1} X^{n-1} + \cdots + a_1 X + a_0$ ein Polynom in $\R[X]$, und ist 
+$a_n \neq 0$, so heißt 
+	$$ \mathrm{deg}(f(X)) = n $$
+der \textbf{Grad} von $f(X)$. 
+\end{definition}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Ringe}
+
+\begin{uebung}
+Wir betrachten $M = \R \times \R$ mit der Addition 
+	$$ (a,b) + (c,d) = (a+c, b+d) $$
+und der Multiplikation 
+	$$ (a,b) \cdot (c,d) = (ac, ad + bc)  $$
+\pause 
+Überprüfen Sie, ob $M$ dadurch zum kommutativen Ring wird. 
+\end{uebung}
+
+\bigbreak
+
+\pause \pause 
+\begin{sol}
+$(M,+,\cdot)$ ist ein kommutativer Ring.
+\end{sol}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Ringe}
+
+\begin{definition} Es sei $(R, + , \cdot)$ ein kommutativer Ring. Ein Element $r \in R \setminus \{0\}$ heißt 
+\index{Ring!Nullteiler}\textbf{Nullteiler} von $R$ wenn es ein $s \in R \setminus \{0\}$ gibt mit $r \cdot s = 0$.
+
+\pause
+Ein kommutativer Ring, in dem es keine Nullteiler gibt, heißt \textbf{nullteilerfrei} oder \textbf{Integritätsbereich}
+\end{definition}
+
+\pause 
+\begin{beispiel} Die Ringe $\mathbb R$, $\mathbb Q$ und $\mathbb Z$ sind nullteilerfrei.
+\end{beispiel}
+
+\pause 
+\begin{beispiel} Die Ringe $\mathbb Z/2\Z$ und $\mathbb Z/ 3\Z$ sind nullteilerfrei. 
+\end{beispiel}
+
+\pause
+\begin{beispiel}
+Dre Ring $M = \R \times \R$ von oben ist nicht nullteilerfrei. 
+\end{beispiel}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Ringe}
+
+\begin{uebung}
+Überprüfen Sie, ob der Ring $\Z/6\Z$ nullteilerfrei ist. 
+\end{uebung}
+
+\bigbreak
+
+\begin{sol}
+Der Ring ist nicht nullteilerfrei, denn es gilt 
+	$$ [2] \cdot [3] = [0] $$
+und $[2] \neq [0]$, $[3] \neq [0]$.
+\end{sol}
+
+\end{frame}
+
+\section{Körper}
+
+\begin{frame}
+\frametitle{Körper}
+
+\begin{definition}  Ein \textbf{Körper} $(K, + , \cdot)$ ist eine nichtleere Menge $K$ mit 
+zwei Verknüpfungen $+$ und $\cdot$, die zwei Elemente $0, 1$ enthält, wobei $0 \neq 1$ ist und wobei gilt
+
+\begin{itemize}
+  	\item<2-> $(K, +, 0)$ ist eine kommutative Gruppe.
+  	\item<3-> $(K \setminus \{0\}, \cdot, 1)$ ist eine kommutative Gruppe.
+  	\item<4-> Es gilt das Distributivgesetz
+  		$$ \begin{array} {l c l c l}
+    		(r + s) \cdot t & = & r \cdot t + s \cdot t & \quad & \textrm{ für alle } r, s, t \in R 
+  		\end{array} $$
+\end{itemize}
+\vspace{-0.7cm}
+\end{definition}
+
+\pause  \pause \pause \pause
+
+\begin{beispiel}
+$(\R,+,\cdot)$ und $(\Q,+, \cdot)$ sind Körper.
+\end{beispiel}
+
+\pause
+\begin{beispiel} 
+$(\Z,+,\cdot) $ ist kein Körper.
+\end{beispiel}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Körper}
+
+\begin{notiz} Jeder Körper ist ein nullteilerfreier kommutativer Ring. Die Umkehrung gilt nicht.
+
+\pause 
+
+Ein nullteilerfreier kommutativer Ring $R$ ist erst dann ein Körper, wenn es zu jedem $x \in R$ ein inverses 
+Element gibt, also ein Element $y \in R$ mit $x \cdot y = 1$.
+\end{notiz}
+
+\pause 
+
+\begin{beispiel}
+Die Ringe $\Z/2 \Z$ und $Z/3\Z$ sind Körper. 
+\end{beispiel}
+
+\pause 
+
+\begin{beispiel}
+Der Ring $\Z/6 \Z$ ist kein Körper. 
+\end{beispiel}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Körper}
+\begin{uebung} Überprüfen Sie, ob der Ring $\Z/15\Z$ ein Körper ist.
+\end{uebung}
+
+\pause \pause 
+
+\bigbreak
+
+\begin{sol} Dieser Ring ist kein Körper, denn er ist nicht nullteilerfrei.
+\end{sol}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Körper}
+
+\begin{notiz} Ist $(R, +, \cdot)$ ein kommutativer Ring, so heißt ein 
+$r \in R$  \textbf{Einheit}, wenn es ein $s \in R$ gibt mit $r \cdot s = 1$. Die Einheiten von $R$ bilden 
+eine Gruppe (bezüglich $\cdot$), die \textbf{Einheitengruppe} $E(R)$ von $R$. 
+\end{notiz}
+
+\pause 
+
+\begin{regel}
+Ein kommutativer Ring $R$ ist genau dann ein Körper, wenn $E(R) = R \setminus \{0 \}$.
+\end{regel}
+
+\pause 
+
+\begin{beispiel}
+Der Polynomoring $\R[X]$ ist kein Körper.
+\end{beispiel}
+
+\end{frame}
+
+\section{die komplexen Zahlen}
+\begin{frame}
+\frametitle{komplexe Zahlen}
+
+Der Körper $\C$ der komplexen Zahlen ist ein Erweiterungskörper von $\R$, der wie folgt konstruiert wird: 
+
+\pause 
+
+Wir definieren $\C$ als die Menge alle Zahlenpaare $(x,y) \in \mathbb R^2$ und mit der folgenden Addtion 
+und Multiplikation.
+
+\begin{itemize}
+\item<3-> $(x_1, y_1) + (x_2, y_2) = (x_1+x_2, y_1+y_2)$. 
+\item<4-> $(x_1,y_1) \cdot (x_2,y_2) = (x_1 \cdot x_2 - y_1 \cdot y_2, x_1 \cdot y_2 + x_2 \cdot y_1)$. 
+\end{itemize}
+
+\pause \pause \pause 
+Wir benutzen die folgende Notation: 
+
+\begin{itemize}
+\item[] $0 = (0,0)$ (das Nullelement).
+\item[] $1 = (1,0)$ (das Einselement). 
+\item[] $\ii = (0,1)$. 
+\item[] $(x,y) = x+\ii \cdot y$. 
+\end{itemize}
+
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{komplexe Zahlen}
+
+Addition und Multiplikation der komplexen Zahlen schreiben sich damit wie folgt
+
+\begin{itemize}
+\item<2-> $(x_1 + \ii \cdot y_1) + (x_2+ \ii \cdot y_2) =(x_1+x_2 + \ii \cdot (y_1+y_2)$. 
+\item<3-> $(x_1 + \ii \cdot y_1) \cdot (x_2 + \ii \cdot y_2) 
+= x_1 \cdot x_2 - y_1 \cdot y_2 + \ii \cdot (x_1 \cdot y_2 + x_2 \cdot y_1)$. 
+\end{itemize}
+
+\pause \pause 
+
+\begin{satz}[Der Körper der komplexen Zahlen]
+Die komplexen Zahlen $\C$ zusammen mit dieser Addition und Multiplikation bilden einen Körper. 
+
+\pause 
+Das inverse Element $\frac {1}{z}$ zu einer komplexen Zahl $z = x + \ii \cdot y \neq 0$ ist gegeben durch 
+	$$ \frac {1}{z} = \frac {x - \ii \cdot y}{x^2+y^2} $$
+das Nullelement bezüglich der Addition ist $0 = 0 + \ii \cdot 0$, das Einselemnet bezüglich der Multiplikation 
+ist $1 = 1 + \ii \cdot 0$.  
+\end{satz}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{komplexe Zahlen}
+
+\begin{bez}
+Ist $z = x+\ii \cdot y$ eine komplexe Zahl, so heißt $x$ der \textbf{Realteil} von $z$ und wird mit $\mathrm{Re}(z)$ 
+bezeichnet und $y$ der \textbf{Imaginärteil} von $z$ und wird mit $\mathrm{Im}(z)$ 
+bezeichnet.
+
+\pause 
+
+Die Zahl $\overline{z} = x - \ii \cdot y$ heißt die zu $z$ komplex konjugierte Zahl, und 
+	$$ \vert z \vert = \sqrt{x^2+y^2} $$
+heißt der Betrag von $z$.  
+\end{bez}
+
+\pause 
+
+\begin{beispiel}
+\begin{itemize}
+\item<3-> $\ii \cdot \ii = -1$.
+\item<4-> $(2+3 \cdot \ii) \cdot (1- \ii) = 5 + \ii$.
+\item<5-> $\frac {1}{2+\ii} = \frac {2}{5} - \frac {1}{5} \cdot \ii$.  
+\item<6-> $\frac {1+\ii}{2+\ii} = \frac {3}{5} + \frac {1}{5} \cdot \ii$.
+\end{itemize}
+\end{beispiel}
+\end{frame}
+
+\begin{frame}
+\frametitle{komplexe Zahlen}
+\begin{uebung}
+Berechnen Sie 
+	$$ z = \frac {2+3\cdot \ii}{1 - \ii} $$
+\end{uebung}
+
+\bigbreak
+
+\pause \pause
+
+\begin{sol}
+ 	$$ z =  \frac {-1+5 \cdot \ii}{2} = - \frac {1}{2} + \frac {5}{2} \cdot \ii $$
+\end{sol}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{komplexe Zahlen}
+
+Es gilt $\ii \cdot \ii = -1$, und damit für jede positive reelle Zahl $r$: 
+	$$ (\ii \cdot \sqrt{r})^2 = \ii^2 \cdot \sqrt{r}^2 = -1 $$
+dh.in den komplexen Zahlen hat jede reelle Zahl eine Quadratwurzel. Es gilt sogar noch mehr: 
+
+\pause 
+
+\begin{satz}[Fundamentalsatz der Algebra]
+Der Körper $\C$ ist algebraisch abgeschlossen, dh. jede Gleichung 
+	$$  a_n \cdot x^n + a_{n-1} x^{n-1} + \cdots + a_1 x + a_0 = 0 $$  
+vom Grad $n \geq 1$ mit $a_l \in \C$ hat eine Lösung, dh. es gibt ein $z_0 \in \C$ mit  
+	$$  a_n \cdot z_0^n + a_{n-1} z_0^{n-1} + \cdots + a_1 z_0 + a_0 = 0 $$  
+\end{satz}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{komplexe Zahlen}
+
+\begin{beispiel}
+Es ist 
+	$$ \sqrt{-16} = 4 \cdot \ii $$ \pause 
+und daher hat die Gleichung 
+	$$ x^2 + 2x + 5 = 0 $$
+die beiden Lösungen 
+	$$ x_{1,2} = \frac {-2 \pm \sqrt{2^2 - 4 \cdot 5}}{2} = \frac {-2 \pm \sqrt{-16}}{2} = \frac {-2 \pm 4 \cdot \ii}{2} $$
+\pause 
+also 
+	$$ x_1 = -1 + 2 \cdot \ii , \qquad x_2 = -1 -2 \cdot \ii $$
+\end{beispiel}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{komplexe Zahlen}
+\begin{uebung}
+Bestimmen Sie die Lösungen der Gleichung 
+	$$ 2 x^2 - 8 x + 10 = 0 $$
+\end{uebung}
+
+\pause \pause 
+
+\bigbreak
+
+\begin{sol} 
+$x_1 = 2+\ii$, $\quad x_2 = 2 - \ii$.
+\end{sol}
+
+\end{frame}
+
+
+\end{document}

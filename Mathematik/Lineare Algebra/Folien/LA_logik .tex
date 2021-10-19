@@ -1,0 +1,829 @@
+\documentclass[hyperref={pdfpagelabels=false}]{beamer}
+\providecommand\thispdfpagelabel[1]{}
+% Die Hyperref Option hyperref={pdfpagelabels=false} verhindert die Warnung:
+% Package hyperref Warning: Option `pdfpagelabels' is turned off
+% (hyperref)                because \thepage is undefined. 
+% Hyperref stopped early 
+%
+
+\usepackage{lmodern}
+% Das Paket lmodern erspart die folgenden Warnungen:
+% LaTeX Font Warning: Font shape `OT1/cmss/m/n' in size <4> not available
+% (Font)              size <5> substituted on input line 22.
+% LaTeX Font Warning: Size substitutions with differences
+% (Font)              up to 1.0pt have occurred.
+%
+\usepackage{epstopdf}
+\usepackage{german}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{latexsym}
+\usepackage{newalg}
+\usepackage{ifthen}
+\usepackage{fancybox}
+\usepackage{fancyhdr}
+%\usepackage[dvips, dvipdfm]{graphicx}
+%\usepackage[pdftex]{color,graphicx}
+\usepackage{eurofont}
+\usepackage{aeguill}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage{wrapfig}
+\usepackage{mathrsfs}
+\usepackage{float}
+\usepackage{color}
+\usepackage{siunitx}
+
+\usepackage[utf8]{inputenc}
+%\usepackage{hyperref}
+
+\theoremstyle{plain}% default
+\newtheorem*{satz}{Satz} 
+\newtheorem*{hilf}{Lemma} 
+\newtheorem*{korollar}{Folgerung}
+\newtheorem*{regel}{Regel} 
+
+\theoremstyle{definition}
+%\newtheorem*{definition}{Definition} 
+\newtheorem*{aufgabe}{Aufgabe} 
+\newtheorem*{uebung}{Übung}
+\newtheorem*{sol}{Lösung:}
+
+\theoremstyle{remark}
+\newtheorem*{beispiel}{Beispiel} 
+\newtheorem*{notiz}{Bemerkung} 
+\newtheorem*{notation}{Notation}
+%\newtheorem*{problem}{Problem} 
+
+\def \ii{{\relax\ifmmode \mathrm{i} \else i \fi}}
+\def \ee{{\relax\ifmmode \mathrm{e} \else e \fi}}
+\def \dd{{\relax\ifmmode \mathrm{d} \else d \fi}}
+\def \g{{\relax\ifmmode \mathrm{g} \else g \fi}}
+\def \R{\mathbb R}
+\def \C{\mathbb C}
+\def \Q{\mathbb Q}
+\def \N{\mathbb N}
+\def \Z{\mathbb Z}
+\def \F{\mathbb F}
+\def \A{\mathbb A}
+
+% tikz Anpassungen 
+
+\usepackage{lscape}
+\usepackage{gnuplot-lua-tikz}
+\usepackage{pgf,tikz}
+\usetikzlibrary{arrows,decorations.pathmorphing,backgrounds,positioning,fit,petri}
+
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\pgfplotsset{compat=newest}
+
+\usepackage{environ}
+\makeatletter
+
+\newsavebox{\measure@tikzpicture}
+\NewEnviron{scaletikzpicturetowidth}[1]{%
+  \def\tikz@width{#1}%
+  \def\tikzscale{1}\begin{lrbox}{\measure@tikzpicture}%
+  \BODY
+  \end{lrbox}%
+  \pgfmathparse{#1/\wd\measure@tikzpicture}%
+  \edef\tikzscale{\pgfmathresult}%
+  \BODY
+}
+\makeatother
+
+\setcounter{secnumdepth}{-1}
+
+
+% Wenn \titel{\ldots} \author{\ldots} erst nach \begin{document} kommen,
+% kommt folgende Warnung:
+% Package hyperref Warning: Option `pdfauthor' has already been used,
+% (hyperref) ... 
+% Daher steht es hier vor \begin{document}
+
+\title{Lineare Algebra \\ Grundlagen der Logik}   
+\author{ Reinhold Hübl} 
+\date{Wintersemester 2020/21} 
+
+% Dadurch wird verhindert, dass die Navigationsleiste angezeigt wird.
+%\setbeamertemplate{navigation symbols}{}
+
+% zusaetzlich ist das usepackage{beamerthemeshadow} eingebunden 
+\usepackage{beamerthemeshadow}
+\usetheme{CambridgeUS}
+
+%  \beamersetuncovermixins{\opaqueness<1>{25}}{\opaqueness<2->{15}}
+%  sorgt dafuer das die Elemente die erst noch (zukuenftig) kommen 
+%  nur schwach angedeutet erscheinen 
+\beamersetuncovermixins{\opaqueness<1>{25}}{\opaqueness<2->{15}}
+% klappt auch bei Tabellen, wenn teTeX verwendet wird\ldots
+\begin{document}
+
+
+\begin{frame}
+\titlepage
+\centering 
+    \scalebox{0.40}{\includegraphics{dhbw_ma_logo.eps}}
+ 
+\end{frame} 
+
+%\begin{frame}
+%\frametitle{Inhaltsverzeichnis}
+%\tableofcontents
+%\end{frame} 
+
+
+
+\section{Aussagenlogik}
+
+\begin{frame}
+\frametitle{Aussagen}
+Die \textit{Logik} ist die \textit{Lehre vom Argumentieren} oder der \textit{Lehre vom Schlussfolgern} und 
+beschäftigt sich damit, Sicherheit in die Regeln das Schließens und des Argumentierens zu bringen.
+
+\pause 
+
+\begin{definition} Eine \textbf{Aussage} $A$ ist ein Satz der (in einem gegebenen Kontext) 
+eindeutig entweder wahr \textit{w} oder falsch \textit{f} ist.
+\end{definition}
+
+\pause
+
+\begin{beispiel}
+Beispiele für Aussagen sind etwa:
+\begin{itemize}
+\item $A_1:$ Berlin ist die Hauptstadt von Österreich.
+\item $A_2:$ 3 ist größer als 7
+\item $A_3:$ 5 ist eine Quadratzahl (in $\mathbb R$)
+\end{itemize}
+\end{beispiel}
+
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Negation}
+
+Aussagen können mit \textbf{Junktoren} miteinander verknüpft werden, wodurch neue Aussagen entstehen, deren 
+Wahrheitswert formal aus dem der eingehenden Aussagen ermittelt werden kann.
+
+\pause
+
+Die Negation einer Aussage $A$ ist eine Aussage, die mit $\neg A$ bezeichnet wird. Der Wahrheitswert von $\neg A$ 
+kann aus dem von $A$ durch folgende Tabelle ermittelt werden: 
+
+\pause 
+
+	$$ \begin{array}{ r | | l }
+	A &  \neg A \\
+	\hline \hline
+	w &  f \\
+	f &  w \\
+	\end{array} $$
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Konjunktion , Disjunktion und Kontravalenz}
+
+Die \textbf{Konjunktion} oder UND--Verknüpfung von zwei Aussagen $A$ und $B$ ist eine Aussage, die mit 
+$A \wedge B$ bezeichnet wird. 
+
+\pause 
+
+Die \textbf{Disjunktion} oder ODER--Verknüpfung von zwei Aussagen $A$ und $B$ ist eine Aussage, die 
+mit $A \vee B$ bezeichnet wird. 
+
+\pause
+
+Die \textbf{Kontravalenz} oder ENTWEDER--ODER--Verknüpfung  von zwei Aussagen $A$ und $B$ ist eine Aussage, 
+die  mit $A \oplus B$ bezeichnet wird. 
+
+\pause 
+
+Konjunktion, Disjunktion und Kontravalenz werden durch folgende Wahrheitstafel beschreiben:
+
+	$$ \begin{array}{ r | c || c | c | c }
+	A & B & A \wedge B & A \vee B & A \oplus B\\
+	\hline \hline
+	w & w &  w & w & f\\
+	w & f &  f & w & w \\
+	f & w &  f & w & w \\
+	f & f &  f & f & f
+	\end{array}$$
+\end{frame}
+
+\begin{frame}
+\frametitle{Konjunktion , Disjunktion und Kontravalenz}
+
+Die Konjunktion von zwei Aussagen ist also nur dann wahr, wenn beide Aussagen wahr sind, die Disjunktion von 
+zwei Aussagen ist genau dann wahr, wenn eine von beiden Aussagen wahr ist (oder auch beide), und die 
+Kontravalenz ist genau dann wahr, wenn genau eine der beiden Aussagen wahr und eine der beiden Aussagen falsch ist. 
+
+\pause 
+
+\begin{beispiel}
+Wir betrachten die beiden Aussagen 
+\begin{itemize}
+\item $A$: \textit{Berlin ist die Hauptstadt von Deutschland.} 
+\item $B$: \textit{Mannheim 
+ist die Hauptstadt von Baden---Württemberg.}
+\end{itemize} 
+Dann gilt 
+\begin{itemize}
+\item<3-> $A \wedge B$ ist falsch. 
+\item<4-> $A \vee B$ ist wahr. 
+\item<5-> $A \oplus B$ ist wahr. 
+\end{itemize}
+\end{beispiel}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Implikation und Äquivalenz}
+
+Die \textbf{Implikation} oder WENN--DANN--Beziehung von $A$ nach $B$ ist eine neue Aussage, die mit 
+$A \Longrightarrow B$ bezeichnet wird. 
+
+\pause 
+
+Die \textbf{Äquivalenz} oder GENAU--DANN--WENN--Beziehung von $A$ und $B$ ist eine neue Aussage, die mit 
+$A \iff B$ bezeichnet wird. 
+
+\pause 
+
+Implikation und Äquivalenz werden durch folgende Wahrheitstafel beschreiben:
+
+	$$ \begin{array}{ r | c || c | c}
+	A & B & A \Longrightarrow B & A \iff B \\
+	\hline \hline
+	w & w &  w & w \\
+	w & f &  f & f \\
+	f & w &  w & f \\
+	f & f &  w & w
+	\end{array} $$
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Implikation und Äquivalenz}
+
+Die Implikation von $A$ nach $B$ besagt, dass $A$ eine hinreichende Bedingung für das Auftreten von $B$ ist 
+(wenn $A$ wahr ist, dann auch $B$), die Äquivalenz von $A$ und $B$ besagt, dass $A$ hnireichend und notwendig 
+für $B$ ist ($A$ ist genau dann wahr, wenn auch $B$ wahr ist). 
+\pause 
+
+\begin{beispiel}
+Wir betrachten die beiden Aussagen 
+\begin{itemize}
+\item $A$: \textit{Berlin ist die Hauptstadt von Deutschland.} 
+\item $B$: \textit{Mannheim 
+ist die Hauptstadt von Baden---Württemberg.}
+\end{itemize} 
+Dann gilt 
+\begin{itemize}
+\item<3-> $A \Longrightarrow B$ ist falsch. 
+\item<4-> $A \iff B$ ist falsch. 
+\item<5-> $B \Longrightarrow A$ ist wahr. 
+\end{itemize}
+\end{beispiel}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Die Sprache der Aussagenlogik}
+
+Formal besteht die Sprache einer Aussagenlogik aus 
+\begin{itemize}
+\item<2-> einer (abzählbaren) Menge von elementaren Aussagevariablen $\mathscr{A}_0, \mathscr{A}_1, \ldots$.
+\item<3-> den Junktoren $\neg, \wedge, \vee, \rightarrow$ und $\leftrightarrow$.
+\item<4-> den Gliederungssysmbolen $($ und $)$.
+\end{itemize}
+\pause \pause \pause \pause
+und aus aussagenlogischen Formeln. Dabei sind alle Aussagevariablen Formeln, und alles, was mit Hilfe von Junktoren 
+und Gliederungssysmbolen in endlich vielen Schritten aus Formeln gewonnen werden kann ist wieder eine Formel. 
+
+\pause 
+
+Die Menge aller Formeln wird mit $\mathcal{A}$ bezeichnet.
+\end{frame}
+
+\begin{frame}
+\frametitle{Die Sprache der Aussagenlogik}
+
+Um mit diesen Formeln arbeiten zu können, ist es notwendig, ihnen Wahrheitswerte zuzuweisen. Dazu sei 
+$\mathbb B  = \{ \mathrm{wahr}, \mathrm{falsch} \}$ oder kurz $\mathbb B = \{w, f\}$ die Menge der 
+Wahrheitswerte. 
+
+\pause 
+
+\begin{definition} Eine Abbildung $f: V \longrightarrow \mathbb B$, die jeder Aussagenvariable einen Wert 
+zuordnet, heißt \textbf{Belegung der Aussagevariablen} 
+\end{definition}
+
+\pause 
+
+Aus jeder Belegung der Aussagenvariablen lässt sich auch eine eindeutige Belegung aller Formeln, also eine 
+Abbildung $f: \mathcal{A} \longrightarrow \mathbb B$ herleiten. Dazu verwenden wir die Wahrheitstafeln, die
+wir oben betrachtet haben. Dadurch werden die Formeln zu Aussagen, 
+die mit eindeutigen Wahrheitswerten belegt sind. 
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Die Sprache der Aussagenlogik}
+
+\begin{definition} Wir betrachten eine Formel $\alpha \in \mathcal{A}$.
+
+\begin{itemize}
+\item $\alpha$ heißt \textbf{erfüllbar}, wenn es eine Belegung $f$ mit $f(\alpha) = w$ gibt.
+\item $\alpha$ heißt \textbf{Tautologie}, wenn für jede Belegung $f$ gilt: $f(\alpha) = w$.
+\item $\alpha$ heißt \textbf{Kontradiktion} oder \textbf{widersprüchlich}, wenn für jede 
+Belegung $f$ gilt $f(\alpha) = f$.
+\end{itemize}
+\end{definition}
+
+\pause 
+
+\begin{beispiel} Die Aussage $\alpha \leftrightarrow \alpha$ ist eine Tautologie, die Aussage $\alpha \leftrightarrow 
+\neg \alpha$ dagegen ist eine Kontradiktion. Das folgt sofort aus obigen Verknüpfungstabellen.
+\end{beispiel}
+
+\pause 
+
+\begin{notiz} Die Verneinung einer Tautologie ist eine Kontradiktion, die Verneinung einer Kontradiktion ist 
+eine Tautologie.
+\end{notiz}
+
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Die Sprache der Aussagenlogik}
+
+\begin{definition} 
+Ist $\alpha \rightarrow \beta$ eine Tautologie, so 
+schreiben wir hierfür $\alpha \Longrightarrow \beta$.
+
+Ist $\alpha \leftrightarrow \beta$ eine Tautologie, so schreiben wir hierfür $\alpha \iff \beta$.
+\end{definition}
+
+\pause 
+
+\begin{regel} 
+%Einige wichtige Regeln der Aussagenlogik: 
+\begin{itemize}
+\item<3-> Es gelten die \textbf{Distributivgesetze}
+
+\begin{itemize}
+\item $(\alpha \wedge \beta) \vee \gamma \iff (\alpha \vee \gamma) \wedge (\beta \vee \gamma)$.
+\item $(\alpha \vee \beta) \wedge \gamma \iff (\alpha \wedge \gamma) \vee (\beta \wedge \gamma)$.
+\end{itemize}
+\item<4-> Es gelten die \textbf{Absorptionsgesetze}
+
+\begin{itemize}
+\item $\alpha \vee (\alpha \wedge \beta) \iff \alpha $.
+\item $\alpha \wedge (\alpha \vee \beta)  \iff \alpha $.
+\end{itemize}
+
+\item<5-> Es gelten die \textbf{Gesetze von de Morgan}
+
+\begin{itemize}
+\item $\neg(\alpha \wedge \beta)  \iff  \neg \alpha \vee \neg \beta $.
+\item $\neg(\alpha \vee \beta)  \iff \neg \alpha \wedge \neg \beta $.
+\end{itemize}
+\end{itemize}
+\end{regel}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Die Sprache der Aussagenlogik}
+
+\begin{uebung}
+Zeigen Sie die folgenden Gesetze über Negationen
+
+\begin{enumerate}
+\item $\neg ( \neg \alpha) \iff \alpha$.
+\item $\alpha \vee \neg \alpha$ ist eine Tautologie
+\item $\alpha \wedge \neg \alpha $ ist eine Kontradiktion.
+\end{enumerate}
+
+\end{uebung}
+
+\bigbreak
+
+\bigbreak
+
+\pause \pause 
+
+\begin{sol}
+Alle drei Aussagen sind wahr. 
+\end{sol}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Die Sprache der Aussagenlogik}
+
+\begin{regel}
+Es gelten die folgenden Regeln zum Schließen:
+\begin{itemize}
+\item<2-> Der \textbf{Kettenschluss}: Für Formeln $\alpha$ , $\beta$ und $\gamma$ gilt: 
+  	$$ ( \alpha \rightarrow \beta) \wedge ( \beta \rightarrow \gamma) \Longrightarrow ( \alpha \rightarrow \gamma) $$
+\item<3-> Die \textbf{Abtrennungsregel}: Für Formeln $\alpha$ und $\beta$ gilt: 
+  	$$ \alpha \wedge ( \alpha \rightarrow \beta) \Longrightarrow \beta $$
+\item<4-> Die \textbf{Aufhebungsregel}:  Für Formeln $\alpha$ und $\beta$ gilt: 
+  	$$ \neg \alpha \wedge ( \beta \longrightarrow \alpha) \Longrightarrow \neg \beta $$
+\item<5-> Der \textbf{Umkehrschluß}:  Für Formeln $\alpha$ und $\beta$ gilt: 
+  	$$ (\alpha \longrightarrow \beta) \Longrightarrow ( \neg \beta \longrightarrow \neg \alpha ) $$
+\end{itemize}
+\end{regel}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Die Sprache der Aussagenlogik}
+
+\begin{beispiel}
+Sind die beiden Aussagen: \\ \textit{Wenn Montag ist, besuche ich eine Mathematikvorlesung}  und 
+\textit{Wenn ich eine Mathematikvorlesung besuche, dann lerne ich etwas Neues} wahr, so auch 
+
+\textit{Wenn Montag ist lerne ich etwas Neues.}
+\end{beispiel}
+
+\pause 
+
+\begin{beispiel}
+Sind die beiden Aussagen: \\ \textit{Wenn Montag ist, besuche ich eine Mathematikvorlesung}  und 
+\textit{Wenn ich eine Mathematikvorlesung besuche, dann lerne ich etwas Neues} wahr, \\ so auch 
+
+\textit{Wenn ich nichts Neues lerne, dann ist nicht Montag.}
+
+\bigbreak
+
+\pause 
+Nicht korrekt ist es aber, daraus abzuleiten:
+
+\textit{ Wenn nicht Montag ist, lerne ich nichts Neues.}
+\end{beispiel}
+\end{frame}
+
+\begin{frame}
+\frametitle{Die Sprache der Aussagenlogik}
+
+\begin{uebung}
+Gegeben ist, dass die beiden Aussagen: \\ 
+\textit{Wenn Montag ist, besuche ich eine Mathematikvorlesung}  und 
+\textit{Ich besuche heute keine Mathematikvorlesung} wahr sind. 
+
+Kann man daraus ableiten, dass die Aussage 
+
+\medbreak
+
+\textit{Es ist nicht Montag.}
+
+\medbreak
+
+wahr ist? 
+\end{uebung}
+
+\bigbreak \bigbreak
+\pause \pause 
+
+\begin{sol}
+Die Aussage ist wahr nach der Aufhebungsregel. 
+\end{sol}
+\end{frame}
+
+\section{Prädikatenlogik}
+
+\begin{frame}
+\frametitle{Die Prädikatenlogik}
+
+Die Aussagenlogik befasst sich mit konkreten Aussagen wie etwa \glqq{}$\alpha: 1>0$\grqq{}, denen sich 
+eine eindeutiger Wahrheitswert zuweisen lässt. In der Mathematik  wichtig sind aber oft Formeln 
+wie 
+	$$ \text{ \glqq{} } \beta(x): x >0 \,\,\text{\grqq{}} \quad \text{ oder } \,\, 
+	\text{\glqq{}}\,\, \gamma(x,y): x^2-y^2 > 0\,\,  \text{\grqq{}}, $$ 
+in denen 
+(ein oder mehrere) Platzhalter oder Variablen auftreten. \pause Diese Formeln sind keine Aussagen, 
+denn ihnen lässt sich kein Wahrheitswert zuweisen. Das kann erst erfolgen, wenn für die Platzhalter 
+konkrete Werte eingesetzt werden. \pause So ist etwa $\beta(1)$ wahr, aber $\beta(-3)$ nicht.  \pause 
+Entsprechend ist $\gamma(4,2)$ wahr aber $\gamma(2,4)$ nicht. 
+
+\pause 
+
+\bigbreak
+
+Solche Ausdrücke mit Platzhaltern werden als \textbf{Prädikate} bezeichnet, und mit ihrer Behandlung 
+beschäftigt sich die \textbf{Prädikatenlogik}
+\end{frame}
+
+\begin{frame}
+\frametitle{Die Prädikatenlogik}
+
+Der \textbf{Prädikatenlogik} liegen zwei \textbf{Alphabete} zugrunde, 
+ein Alphabet der logischen Zeichen, bestehend aus Variablen, Konnektoren, Trennzeichen, 
+Quantoren und logischen Atomen, und ein Alphabet der Theoriezeichen, bestehend aus einer Menge 
+von Konstanten (also Objekten  aus einem vorgegebenen Individuenbereich, der 
+betrachtet wird), einer Menge von Funktionszeichen und von Relationszeichen. 
+
+\pause
+
+Funktionszeichen $f$ sind dabei mathematische Funktionszeichen, etwa 
+$f(x, y) = x \cdot y$, und Relationszeichen $r$ entsprechen mathematische Relationen wie 
+$r(x,y) : x > y$ vorstellen
+
+\pause
+
+Variablen sind Platzhalter, die zu 
+einem gegebenen Zeitpunkt genau einen Wert aus dem Individuenbereich annehmen können. 
+
+\pause
+
+Ein Term ist alles, was sich aus Konstanten, Variablen und Funktionszeichen in endlich 
+vielen Schritten bilden lässt. Mit  Konstanten $\mathbb R$ etwa können wir den Term $t_1 = f(x,2) = 
+2 \cdot x$ bilden, mit diesem Term wiederum den Term $f(x, t_1) = x \cdot t_1 = 2x^2$. Konstanten 
+und Variablen selbst sind auch Terme.
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Die Prädikatenlogik}
+
+Bei Prädikaten ist es nicht nur interessant, zu untersuchen, für welche Belegungen der Platzhalter eine wahre 
+Aussage besteht, es ist auch von Bedeutung, festzustellen, ob es überhaupt Belegungen gibt, die zu wahren 
+Aussagen führen, oder ob alle Belegungen wahre Aussagen ergeben. 
+
+\pause 
+
+Für diese Untersuchungen werden \textbf{Quantoren} verwendet, der \textbf{Allquantor} $\forall$ 
+und der \textbf{Existenzquantor} $\exists$. Dadurch wird aus einem Prädikat (mit einem Platzhalter) 
+eine Aussage
+
+\pause 
+
+\begin{itemize}
+\item $\forall x \,\, \alpha(x) \quad$ ist die Aussage \glqq{}\textit{Für alle $x$ (aus dem
+Individuenbereich) gilt $\alpha(x)$}\grqq{}. Sie ist genau dann wahr, wenn für \textbf{jede} 
+zulässige Belegung von $x$ mit einem konkreten Wert $x_0$ die Aussage $\alpha(x_0)$ wahr ist.
+\item $\exists x \,\, \alpha(x) \quad$ ist die Aussage \glqq{}\textit{Es gibt ein $x$ (aus dem
+Individuenbereich) für das $\alpha(x)$ gilt}\grqq{}. Sie ist genau dann wahr, wenn für 
+\textbf{mindestens eine} zulässige Belegung von $x$ mit einem konkreten Wert $x_0$ die 
+Aussage $\alpha(x_0)$ wahr ist.
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Die Prädikatenlogik}
+
+\begin{beispiel}
+Mit der Sprache der Prädikatenlogik lassen sich mathematische Fragenstellungen knapp und präzise fromulieren 
+und definieren. \pause Die Aussage
+
+\centerline{ \textit{Die Zahlenfolge $a_n = \frac {2n+3}{3n}$ konvergiert gegen $\frac {2}{3}$ 
+für $n \rightarrow \infty$.}}
+
+formuliert sich dann etwa so \pause
+  	$$ \forall \varepsilon > 0 \,\, \exists N \in N \,\, \forall n \geq N \, : \,  
+	\left\vert a_n - \frac {2}{3} \right\vert < \varepsilon $$
+\pause 
+Dabei handelt es sich um eine wahre Aussage.
+
+\end{beispiel}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Die Prädikatenlogik}
+
+\begin{beispiel}
+Die Aussage
+ 
+\centerline{\textit{Jede gerade Zahl, die größer als zwei ist, ist die Summe von zwei Primzahlen.}}
+
+lässt sich wie folgt formulieren: \pause 
+
+  	$$ \forall n \in \mathbb N \, \, \left( ( 2n > 2 ) \, \rightarrow \, (\exists x \in \mathbb P \, \exists y \in 
+    	\mathbb P \, : \, 2n = x + y) \right) $$
+wobei $\mathbb N$ die natürlichen Zahlen und $\mathbb P$ die Primzahlen bezeichnet. 
+
+\pause
+
+Bei dieser Aussage ist nicht bekannt, ob sie wahr oder falsch ist (\textit{Goldbach--Vermutung}). 
+\end{beispiel}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Die Prädikatenlogik}
+
+\begin{uebung}
+Formulieren Sie die Aussage 
+	\centerline{\textit{Das Quadrat einer geraden ganzen Zahl ist eine gerade Zahl.}}
+in der Sprache der  Prädikatenlogik
+\end{uebung}
+
+\pause \pause 
+
+\bigbreak
+
+\begin{sol}
+Die Aussage kann entweder wie folgt formuliiert werden 
+  	$$ \forall x \in \mathbb Z \, \left( 2 \vert x\, \Longrightarrow \, 2 \vert x^2 \right) $$
+oder als 
+  	$$ \forall x \in \mathbb Z \, \left( (\exists k \in \mathbb Z \,\, x = 2 \cdot k) \, \Longrightarrow \, 
+	(\exists l \in \mathbb Z \,\,  x^2 = 2 l) \right) $$
+\end{sol}
+
+\end{frame}
+
+\section{Beweistechniken}
+
+\begin{frame}
+\frametitle{mathematische Beweise}
+
+In der Mathematik geht es oft darum, dass eine Voraussetzung gegeben ist, und dass dann daraus eine 
+Behauptung abzuleiten ist. Das lässt sich häufig wie folgt formulieren: 
+
+\centerline{\textit{ Für alle $x$, die eine Bedingung erfüllen, gilt eine bestimmte Behauptung}} 
+
+\pause 
+
+In der Sprache der Prädikatenlogik: 
+	$$ \forall x \,\, \alpha(x) \Longrightarrow \beta(x) $$
+
+\pause
+
+Die Aussage ist genau dann bewiesen, wenn für jede (mögliche) Belegung von $x$ durch ein $x_0$ die 
+resultierende  Aussage $\alpha(x_0) \Longrightarrow \beta(x_0) $ wahr ist. 
+\end{frame}
+
+\begin{frame}
+\frametitle{direkte Beweise}
+
+Von einem direkten Beweis sprechen wir, wenn aus der Voraussetzung unmittelbar durch logische
+Umformungen die Behauptung abgeleitet werden kann. 
+
+\pause 
+
+Zum Beweis von 
+	$$ \forall x \,\, \alpha(x) \Longrightarrow \beta(x) $$
+ist dabei durch die Umformungsregeln der Logik zu zeigen, dass für alle $x$, für die $\alpha(x)$ wahr ist, 
+auch $\beta(x)$ wahr ist. 
+
+\pause 
+
+\begin{beispiel}
+Wir zeigen mit einem direkten Beweis, dass 
+  	$$ \forall x \in \mathbb Z \, \left( 2 \vert x\, \Longrightarrow \, 2 \vert x^2 \right) $$
+eine korrekte Aussage ist. 
+\end{beispiel}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{direkte Beweise}
+
+\begin{uebung}
+Zeigen Sie die folgende Aussage mit einem direkten Beweis: 
+
+Ist $x \in \mathbb Z$ eine positive ganze Zahl, für die $\sqrt{x}$ rational ist, so ist $\sqrt{x}$ schon eine 
+ganze Zahl, dh.  zeigen Sie 
+	$$ \forall x \in \mathbb Z, x > 0 \,\, \left(\sqrt{x} \in \mathbb Q \Longrightarrow \sqrt{x} \in \mathbb Z 
+	\right) $$ 
+\end{uebung}
+
+\pause \pause 
+
+\begin{sol}
+Der entscheidende Punkt ist, dass wir $\sqrt{x} = \frac {m}{n}$ (mit $m,n \in \mathbb N$) schreiben und 
+zeigen, dass $n \vert m$. Dazu nutzen wir aus, dass $x^2 = \frac {m^2}{n^2} \in \mathbb Z$.  
+\end{sol}
+\end{frame}
+
+\begin{frame}
+\frametitle{indirekte Beweise}
+Von einem indirekten Beweis sprechen wir, wenn für den Beweis der Umkehrschluss benutzt wird. 
+
+\pause 
+
+Zum Beweis von 
+	$$ \forall x \,\, \alpha(x) \Longrightarrow \beta(x) $$
+ist dabei durch die Umformungsregeln der Logik zu zeigen, dass für alle $x$, für die $\beta(x)$ falsch ist, 
+auch $\alpha(x)$ falsch ist. 
+
+\pause 
+
+\begin{beispiel}
+Wir zeigen mit einem indirekten Beweis, dass 
+  	$$ \forall x \in \mathbb Z \, \left( 2 \vert x\, \longrightarrow \, 2 \vert x^2 \right) $$
+eine korrekte Aussage ist. 
+\end{beispiel}
+
+
+\end{frame}
+
+\begin{frame}
+\frametitle{indirekte Beweise}
+
+\begin{uebung}
+Zeigen Sie die folgende Aussage mit einem indirekten Beweis: 
+
+Ist $x \in \mathbb Z$ eine positive ganze Zahl, für die $\sqrt{x}$ rational ist, so ist $\sqrt{x}$ schon eine 
+ganze Zahl, dh.  zeigen Sie 
+	$$ \forall x \in \mathbb Z, x > 0 \,\, \left( \sqrt{x} \in \mathbb Q \Longrightarrow \sqrt{x} \in \mathbb Z 
+	\right) $$ 
+\end{uebung}
+
+\pause \pause 
+
+\begin{sol}
+Hier schreiben wir wieder $\sqrt{x} = \frac {m}{n}$ (mit $m,n \in \mathbb N$) und nehmen an, dass 
+$m$ und $n$ teilerfremd sind und $n \neq 1$ (also das die Folgerung nicht stimmt). Daraus leiten wir 
+über $x = \frac {m^2}{n^2}$ ab, dass $x$ nicht ganzzahlig ist. 
+\end{sol}
+\end{frame}
+
+\begin{frame}
+\frametitle{Induktionsbeweis}
+
+In der Mathematik gibt es viele Formeln, die für alle natürlichen Zahlen formuliert werden können, z.B. 
+	$$ A(n) : \,\, \sum\limits_{k = 1}^n \frac {1}{k \cdot (k+1)}  = \frac {n}{n+1} $$
+\pause 
+Wir haben also eine Folge von Aussagen $A(n)$ über deren Wahrheitswert entschieden werden soll. 
+
+\pause 
+
+In diesen Situationen ist es oft schwierig, einen (direkten oder indirekten) Beweis zu finden, der für alle 
+$n \in \mathbb N$ gleichmäßig arbeitet. 
+
+\pause 
+
+Oft hilft hier aber das Prinzip der vollständigen Induktion.  
+\end{frame}
+
+\begin{frame}
+\frametitle{Induktionsbeweis}
+
+Wir betrachten Aussagen $A(n)$ für alle $n \in \mathbb N$. Gilt dann 
+\begin{enumerate}
+\item<2-> Induktionsanfang: $A(1)$ ist wahr.
+\item<3-> Induktionsschluß: $A(n) \Longrightarrow A(n+1)$ für alle $n \geq 1$.
+\end{enumerate}
+\pause \pause \pause 
+
+so ist $A(n)$ wahr für alle $n \geq 1$
+
+\pause
+Das Prinzip der vollständigen Induktion funktioniert auch mit einem beliebigen Startwert $n_0 \in \mathbb N$ 
+(anstelle von $1$). Dann gilt $A(n)$ für alle $n \geq n_0$
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Induktionsbeweis}
+
+\begin{beispiel}
+Wir beweisen 
+	$$ A(n) : \,\, \sum\limits_{k = 1}^n \frac {1}{k \cdot (k+1)}  = \frac {n}{n+1} $$
+für alle $n \geq 1$ mit vollständiger Induktion.
+\end{beispiel}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Induktionsbeweis}
+
+\begin{uebung}
+Zeigen Sie mit vollständiger Induktion: 
+
+Für alle $n \geq 0$ gilt 
+	$$ A(n): \,\, \sum\limits_{k=0}^n \frac {1}{2^k} =2 \cdot \left( 1 - \frac {1}{2^n} \right) $$
+\end{uebung}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Induktionsbeweis}
+
+\begin{uebung}
+Zeigen Sie mit vollständiger Induktion: 
+
+Für alle $n \geq 2$ gilt 
+	$$ A(n): \,\, \prod\limits_{k=2}^n \left(1 - \frac {1}{k} \right) =\frac {1}{n}$$
+\end{uebung}
+
+\end{frame}
+
+
+\end{document}

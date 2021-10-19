@@ -1,0 +1,680 @@
+\documentclass[hyperref={pdfpagelabels=false}]{beamer}
+\providecommand\thispdfpagelabel[1]{}
+% Die Hyperref Option hyperref={pdfpagelabels=false} verhindert die Warnung:
+% Package hyperref Warning: Option `pdfpagelabels' is turned off
+% (hyperref)                because \thepage is undefined. 
+% Hyperref stopped early 
+%
+
+\usepackage{lmodern}
+% Das Paket lmodern erspart die folgenden Warnungen:
+% LaTeX Font Warning: Font shape `OT1/cmss/m/n' in size <4> not available
+% (Font)              size <5> substituted on input line 22.
+% LaTeX Font Warning: Size substitutions with differences
+% (Font)              up to 1.0pt have occurred.
+%
+\usepackage{epstopdf}
+\usepackage{german}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{latexsym}
+\usepackage{newalg}
+\usepackage{ifthen}
+\usepackage{fancybox}
+\usepackage{fancyhdr}
+%\usepackage[dvips, dvipdfm]{graphicx}
+%\usepackage[pdftex]{color,graphicx}
+\usepackage{eurofont}
+\usepackage{aeguill}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage{wrapfig}
+\usepackage{mathrsfs}
+\usepackage{float}
+\usepackage{color}
+\usepackage{siunitx}
+
+\usepackage[utf8]{inputenc}
+%\usepackage{hyperref}
+
+\theoremstyle{plain}% default
+\newtheorem*{satz}{Satz} 
+\newtheorem*{hilf}{Lemma} 
+\newtheorem*{korollar}{Folgerung}
+\newtheorem*{regel}{Regel} 
+
+\theoremstyle{definition}
+%\newtheorem*{definition}{Definition} 
+\newtheorem*{aufgabe}{Aufgabe} 
+\newtheorem*{uebung}{Übung}
+\newtheorem*{sol}{Lösung:}
+
+\theoremstyle{remark}
+\newtheorem*{beispiel}{Beispiel} 
+\newtheorem*{notiz}{Bemerkung} 
+\newtheorem*{notation}{Notation}
+\newtheorem*{bez}{Bezeichnung} 
+
+\def \ii{{\relax\ifmmode \mathrm{i} \else i \fi}}
+\def \ee{{\relax\ifmmode \mathrm{e} \else e \fi}}
+\def \dd{{\relax\ifmmode \mathrm{d} \else d \fi}}
+\def \g{{\relax\ifmmode \mathrm{g} \else g \fi}}
+\def \R{\mathbb R}
+\def \C{\mathbb C}
+\def \Q{\mathbb Q}
+\def \N{\mathbb N}
+\def \Z{\mathbb Z}
+\def \F{\mathbb F}
+\def \A{\mathbb A}
+
+% tikz Anpassungen 
+
+\usepackage{lscape}
+\usepackage{gnuplot-lua-tikz}
+\usepackage{pgf,tikz}
+\usetikzlibrary{arrows,decorations.pathmorphing,backgrounds,positioning,fit,petri}
+
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\pgfplotsset{compat=newest}
+
+\usepackage{environ}
+\makeatletter
+
+\newsavebox{\measure@tikzpicture}
+\NewEnviron{scaletikzpicturetowidth}[1]{%
+  \def\tikz@width{#1}%
+  \def\tikzscale{1}\begin{lrbox}{\measure@tikzpicture}%
+  \BODY
+  \end{lrbox}%
+  \pgfmathparse{#1/\wd\measure@tikzpicture}%
+  \edef\tikzscale{\pgfmathresult}%
+  \BODY
+}
+\makeatother
+
+\setcounter{secnumdepth}{-1}
+
+
+% Wenn \titel{\ldots} \author{\ldots} erst nach \begin{document} kommen,
+% kommt folgende Warnung:
+% Package hyperref Warning: Option `pdfauthor' has already been used,
+% (hyperref) ... 
+% Daher steht es hier vor \begin{document}
+
+\title{Lineare Algebra \\ algebraische Strukturen 3}   
+\author{ Reinhold Hübl} 
+\date{Wintersemester 2020/21} 
+
+% Dadurch wird verhindert, dass die Navigationsleiste angezeigt wird.
+%\setbeamertemplate{navigation symbols}{}
+
+% zusaetzlich ist das usepackage{beamerthemeshadow} eingebunden 
+\usepackage{beamerthemeshadow}
+\usetheme{CambridgeUS}
+
+%  \beamersetuncovermixins{\opaqueness<1>{25}}{\opaqueness<2->{15}}
+%  sorgt dafuer das die Elemente die erst noch (zukuenftig) kommen 
+%  nur schwach angedeutet erscheinen 
+\beamersetuncovermixins{\opaqueness<1>{25}}{\opaqueness<2->{15}}
+% klappt auch bei Tabellen, wenn teTeX verwendet wird\ldots
+\begin{document}
+
+
+\begin{frame}
+\titlepage
+\centering 
+    \scalebox{0.40}{\includegraphics{dhbw_ma_logo.eps}}
+ 
+\end{frame} 
+
+
+
+\section{Ganze Zahlen und ihre Restklassen}
+
+
+\begin{frame}
+\frametitle{Teiler und Teilbarkeit}
+
+Wir betrachten positive ganze Zahlen $k$ und $n$. 
+
+\begin{definition}  $k$ heißt Teiler von $n$, wenn es eine ganze Zahl $l$ gibt mit $n = k \cdot l$. 
+\end{definition}
+
+\pause 
+\begin{beispiel} Die Zahl $2$ ist ein Teiler von $36$. \end{beispiel} 
+\pause 
+\begin{beispiel}
+Für jede positive ganze Zahl $n$ sind $1$ und $n$ Teiler von $n$. Diese Teiler heißen die \textbf{trifivialen Teiler} 
+von $n$. Alle anderen Teiler heißen \textbf{echte Teiler} von $n$. 
+\end{beispiel}
+
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Primzahlen}
+
+\begin{definition} Eine Zahl $p \in \mathbb N$, $p \geq 2$ heißt \textbf{Primzahl}, 
+wenn $p$ keine echten Teiler hat.
+\end{definition}
+
+\pause 
+
+\begin{beispiel} $2, 3, 5, 7$ und $11$ sind Primzahlen, $9$ ist keine.
+\end{beispiel}
+
+\pause 
+
+\begin{notiz} Eine Zahl $p \in \mathbb N \setminus \{0, 1\}$ ist genau dann eine Primzahl, wenn 
+für alle ganzen Zahlen $a, b \in \mathbb Z$ gilt
+  	$$ p \vert \, a \cdot b \iff p \vert a  \,\, \textrm{ oder } \, p \vert b $$
+also $p$ teilt genau dann ein Produkt von zwei Zahlen, wenn es schon eine der beiden Zahlen teilt.
+\end{notiz}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Primzahlen}
+
+\begin{notiz} Jede ganze Zahle $z \in \mathbb Z \setminus \{ 0 \}$ schreibt sich in eindeutiger Weise als
+  	$$ z = \varepsilon \cdot p_1^{n_1} \cdot p_2^{n_2} \cdots p_t^{n_t} $$
+mit $\varepsilon \in \{-1,1\}$, Primzahlen $p_1 < p_2 < \ldots < p_t$ und positiven natürlichen Zahlen 
+$n_1, \ldots , n_t$. (Dabei lassen wir den Spezialfall $t = 0$ für $z = \pm 1$ zu).
+\end{notiz}
+
+\pause 
+
+\begin{beispiel}
+Die Zahl $36$ hat die Primfaktorzerlegung
+	$$ 36 = 2^2 \cdot 3^2 $$ 
+Der Vorfaktor $\varepsilon = +1$ wird dabei in der Regel weggelassen. \pause 
+
+Die Zahl $-6615$ hat die Primfaktorzerlegung 
+	$$ -6615 = (-1) \cdot 3^3 \cdot 5 \cdot 2^7 $$
+\end{beispiel}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Teiler}
+
+\begin{definition} Sind $m,n \in \mathbb N \setminus \{0 \}$, so heißt eine Zahl $g \in \mathbb N$ der 
+\textbf{größte gemeinsame Teiler} von $m$ und $n$, wenn gilt:
+\begin{itemize}
+\item<2-> $g$ ist ein Teiler von $m$ und ein Teiler von $n$.
+\item<3-> Ist $h$ ein weiterer Teiler von $m$ und $n$, so ist $h$ auch ein Teiler von $g$.
+\end{itemize}
+
+\pause \pause \pause 
+Wir schreiben 
+	$$ \mathrm{ggT}(m,n) := g $$ 
+für den größten gemeinsame Teiler von $m$ und $n$.
+
+\pause 
+Zwei Zahlen $m,n \in \mathbb N \setminus \{0 \}$ heißen \index{teilerfremd}\textbf{teilerfremd}, wenn 
+$\textrm{ggT}(m,n) = 1$, wenn sie also keinen echten gemeinsamen Teiler besitzen.
+\end{definition}
+\end{frame}
+
+\begin{frame}
+\frametitle{Teiler}
+
+\begin{uebung}
+Bestimmen Sie den größten gemeinsamen Teiler von $n = 5040$ und $m = 15288$.
+\end{uebung}
+
+\pause \pause 
+
+\bigbreak
+
+\begin{sol}
+	$$ \mathrm{ggT}(m,n) = 2^3 \cdot 3 \cdot 7 = 168 $$
+% $n=2^4 \cdot 3^2 \cdot 5 \cdot 7, \quad m = 2^3 \cdot 3 \cdot 7^2 \cdot 13
+\end{sol}
+
+\pause 
+
+Die Bestimmung der Primfaktorzerlegung großer Zahlen ist ein sehr schwieriges Problem, 
+für das kein effizienter Algorithmus bekannt ist. Daher ist diese Methode zur Bestimmung 
+des größten gemeinsamen Teilers ineffizient.
+
+\end{frame}
+
+\section{euklidischer Algorithmus}
+
+\begin{frame}
+\frametitle{euklidischer Algorithmus}
+
+\begin{itemize} 
+\item \textbf{Vorbereitungsschritt:\,} Ordne $m$ und $n$ so, dass $m \geq n$. (Vertausche  
+$m$ und $n$, falls n\"otig, denn $\textrm{ggT}(m,n) = \textrm{ggT}(n,m)$). Setzen $i = 0$ und 
+$r_0 = m$, $r_1 = n$.
+\item<2-> \textbf{Verarbeitungsschritt:\,} Wir dividieren $r_i$ durch $r_{i+1}$ mit Rest:
+  $$ r_i = a \cdot r_{i+1} + b $$
+mit einer nat\"urlichen Zahl $a$ und einem Rest $b \in \{0, 1, \ldots, r_{i+1} - 1 \}$.
+\begin{itemize}
+\item[-] Falls $b = 0$ (d.h. die Division geht ohne Rest auf) $\, \longrightarrow \textbf{ STOPP}$.
+\item[-] Falls $b \neq 0$ setze $r_{i+2} = b$ und $i = i+1$. Wiederhole den Verarbeitungsschritt.
+\end{itemize}
+\item<3-> \textbf{Ergebnisschritt:} Nach endlich vielen Verarbeitungsschritten (h\"ochstens $m$ vielen) geht die 
+Division erstmals ohne Rest auf, d.h.$ r_i = a \cdot r_{i+1} + 0 $
+mit $r_{i+1} \neq 0$, Das STOPP--Kriterium wird also immer erreicht und $r_{i+1}$ ist der gr\"o{\ss}te gemeinsame 
+Teiler von $m$ und $n$, $r_{i+1} = \textrm{ggT}(m,n)$.
+\end{itemize}
+
+
+\end{frame}
+
+\begin{frame}
+\frametitle{euklidischer Algorithmus}
+
+\begin{beispiel}
+
+Wir betrachten die Zahlen $m = 222$ und $n = 156$. Hier gilt bereits $m \geq n$, und wir setzen
+$r_0 = 222$ und $r_1 = 156$.
+
+\begin{itemize}
+\item<2-> $i = 0$: $\quad 222 = 1 \cdot 156 + 66$. Wir setzen $r_2 = 66$.
+\item<3-> $i = 1$: $\quad 156 = 2 \cdot 66 + 24$. Wir setzen $r_3 = 24$.
+\item<4-> $i = 2$: $\quad 66 = 2 \cdot 24 + 18$. Wir setzen $r_4 = 18$.
+\item<5-> $i = 3$: $\quad 24 = 1 \cdot 18 + 6$. Wir setzen $r_5 = 6$.
+\item<6-> $i = 4$: $\quad 18 = 3 \cdot 6 + 0$. $\, \longrightarrow \textbf{ STOPP}$.
+\end{itemize}
+
+\bigbreak
+
+\pause \pause \pause \pause \pause \pause 
+\textbf{Ergebnis:} $\mathrm{ggT}(222, 156) = 6$.
+
+\end{beispiel}
+\end{frame}
+
+\begin{frame}
+\frametitle{euklidischer Algorithmus}
+
+\begin{uebung}
+Bestimmen Sie den größten gemeinsamen Teiler von $m = 239$ und $n=144$. 
+\end{uebung}
+
+\bigbreak
+\pause \pause 
+
+\begin{sol}
+$\mathrm{ggT}(239, 144) = 1$.
+\end{sol}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{euklidischer Algorithmus}
+
+\begin{satz} Sind $m,n\in \mathbb N \setminus \{0 \}$ mit 
+$\mathrm{ggT}(m,n) = g$, so gibt es ganze Zahlen $a$, $b$ mit 
+  	$$ a \cdot m + b \cdot n = g $$
+\end{satz}
+
+\bigbreak
+
+\pause
+Das erhält man durch Rückwärtsrechnen aus dem euklidischen Algorithmus.
+
+
+\end{frame}
+
+\begin{frame}
+\frametitle{euklidischer Algorithmus}
+
+\begin{beispiel}
+Wir wollen $6$ mit $156$ und $222$ darstellen.
+
+\begin{enumerate}
+\item<2-> Aus Schritt $i=3$ erhalte: $6 = 24 - 1 \cdot 18$.
+\item<3-> Aus Schritt $i=2$ erhaltet $18 = 66 - 2 \cdot 24$.
+Eingesetzt in  (1): 
+  	$$ 6 = 24 - 1 \cdot  \left(66 - 2 \cdot 24\right) =3 \cdot 24 - 1 \cdot 66 $$
+\item<4-> Aus Schritt $ i = 1$ erhalte zunächst $24 = 156 - 2 \cdot 66$.
+Eingesetzt in  (2): 
+  	$$ 6 = 3 \cdot \left( 156 - 2 \cdot 66 \right) - 1 \cdot 66 = 3 \cdot 156 - 7 \cdot 66 $$
+\item<5-> aus Schritt $i = 0$ erhalte zunächst $66 = 222 - 1 \cdot 156$.
+Eingesetzt in  (3): 
+  	$$ 6 =  3 \cdot 156 - 7 \cdot \left( 222 - 1 \cdot 156 \right) = 10 \cdot 156 - 7 \cdot 222 $$
+\end{enumerate}
+\vspace{-0.6cm}
+\pause \pause \pause \pause \pause %\pause 
+Damit haben wir eine gewünschte Darstellung $ 6 = 10 \cdot 156 + (- 7) \cdot 222$.
+\end{beispiel}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{euklidischer Algorithmus}
+
+\begin{uebung}
+Schreiben Sie $1 = \mathrm{ggT}(239, 144)$ in der Form 
+	$$ 1 = a \cdot 239 + b \cdot 144 $$
+mit ganzen Zahlen $a$ und $b$.
+\end{uebung}
+
+\bigbreak
+
+\pause \pause 
+
+\begin{sol}
+Es gilt 
+	$$ 1 = 47 \cdot 239 + (-78) \cdot 144 $$
+\end{sol} 
+
+\end{frame}
+
+\section{Restklassenringe}
+\begin{frame}
+\frametitle{Die Ringe $\Z/n\Z$}
+
+Die Ringe $\Z/n\Z$ haben wir schon kennengelernt. \pause Zur Vereinfachung der Notation identifizieren wir 
+	$$ \Z / n\Z = \{ 0, 1, \ldots, n-1\} $$
+(und schreiben also nicht mehr $[k]$ für die Äquivalenzklasse von $k$ sondern einfach $k$). 
+
+\pause 
+
+Dann gilt in $\Z/n\Z$: 
+
+\begin{itemize} 
+\item<3-> Ist $k + l = q \cdot n + r$, so gilt in $\Z/n \Z$: 
+	$$ k+l = r $$
+\item<4->  Ist $k \cdot l = q \cdot n + r$, so gilt in $\Z/n \Z$: 
+	$$ k \cdot l = r $$
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Die Ringe $\Z/n\Z$}
+
+\begin{beispiel}
+Für den $R = \Z/31439 \cdot \Z$ gilt 
+
+\begin{itemize}
+\item<2-> $11812 + 7403 = 19215 = 0 \cdot 31439 + 19215$. Also gilt in $R$: 
+	$$ 11812 + 7403 = 19215 $$
+\item<3-> $11812 + 27403 = 39215 = 1 \cdot 31439 + 7786$. Also gilt in $R$: 
+	$$ 11812 + 27403 = 7786 $$
+\item<4-> $11812 \cdot 7403 = \num{87444236} = 2781 \cdot 31439 + 12377$. Also gilt in $R$: 
+	$$ 11812 \cdot 7403 = 12377 $$
+\item<5-> $117879 \cdot 10579 = \num{198663041} = 6319 \cdot 31439 + 0$. Also gilt in $R$: 
+	$$ 11879 \cdot 10579 = 0 $$
+\end{itemize}
+
+%\pause \pause \pause \pause \pause
+%Die letzte Multiplikation zeigt insbesondere auch, dass $\Z/31439 \cdot \Z$ kein Körper ist. 
+\end{beispiel}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Die Ringe $\Z/n\Z$}
+
+\begin{uebung}
+Berechnen Sie in $\Z/9379$ die Zahl
+	$$ z = 1315 \cdot 6439 $$
+\end{uebung}
+
+\bigbreak
+
+\pause \pause 
+
+\begin{sol}
+Es ist 
+	$$  1315 \cdot 6439 = 902 \cdot 9379 + 7427 $$
+und daher 
+	$$ z = 7427 $$
+\end{sol}
+\end{frame}
+
+\begin{frame}
+\frametitle{Die Ringe $\Z/n\Z$}
+
+\begin{satz} Genau dann ist $\Z/n \Z$ ein Körper, wenn $n$ eine Primzahl ist. 
+\end{satz}
+
+\bigbreak
+\pause
+\begin{bez} Ist $p$ eine Primzahl, so bezeichnen wir $\Z/p\Z$ mit $\F_p$ und nennen 
+$\F_p$ den Körper mit $p$ Elementen
+\end{bez}
+
+\pause
+\begin{beispiel} Der Ring $\Z/17 \Z$ ist ein Körper. \end{beispiel}
+
+\pause
+\begin{beispiel} Der Ring $\Z/15 \Z$ ist kein Körper. \end{beispiel}
+\end{frame}
+
+\begin{frame}
+\frametitle{Die Körper $\F_p$}
+
+Wir betrachten nun ein Primzahl $p$. Bei der Division in $\F_p$ hilft der euklidische Algorithmus: 
+
+Ist $l \in \F_p \setminus \{0 \} = \{1, 2, \ldots, p-1\}$, so sind $l$ und $p$ teilerfremd, dh. 
+	$$ 1 = \mathrm{ggT}(l,p) $$ \pause 
+Berechnen wir nun $\mathrm{ggT}(l,p) $ mit den euklidischen Algorithmus und führen eine Rückwärtsrechnung durch, 
+so erhalten wir daraus ein Darstelleung 
+	$$ 1 = a \cdot l + b \cdot p $$ \pause 
+Betrachten wir dann die Restklassen modulo $p$, so erhalten wir 
+	$$ 1 = (a \cdot l + b \cdot p) \,\text{ mod } p = a \cdot l \, \text{ mod } p $$
+(denn $b \cdot p = 0 \, \text{ mod } p$). Also gilt 
+	$$ \frac {1}{l} = a \qquad \text{ in } \,\, \F_p $$   
+\end{frame}
+
+\begin{frame}
+\frametitle{Die Körper $\F_p$}
+
+\begin{beispiel}
+Die Zahl $p = 239$ ist eine Primzahl. Wir haben schon gesehen, dass $\mathrm{ggT}(239,144) = 1$ und dass
+	$$ 1 = 47 \cdot 239 + (-78) \cdot 144 $$ \pause 
+Damit gilt modulo $p$
+ 	$$ 1 = (-78) \cdot 144 = (239-78) \cdot 144 = 161 \cdot 144 $$ \pause 
+Also gilt in $\F_{239}$:
+	$$ \frac {1}{144} = 161 $$ \pause
+Daraus folgt
+	$$ \frac {207}{144} = 207 \cdot \frac {1}{144} = 207 \cdot 161 = 106 $$
+\end{beispiel}
+\end{frame}
+
+\begin{frame}
+\frametitle{Die Körper $\F_p$}
+
+\begin{uebung}
+Berechnen Sie $\frac {13}{74}$ im Körper $\F_{83}$. 
+\end{uebung}
+
+\bigbreak 
+
+\pause \pause 
+
+\begin{sol}
+Es ist 
+	$$ 1 = 33 \cdot 83 + (-37) \cdot 74 $$
+also ist 
+	$$ \frac {1}{74} = -37 = 46 $$
+und damit 
+	$$ \frac {13}{74} = 13 \cdot 46 = 17 $$
+\end{sol}
+\end{frame}
+
+\begin{frame}
+\frametitle{Die Körper $\F_p$}
+
+Für eine Primzahl $p$ bezeichnen wir mit $E(\F_p) = \F_p \setminus \{0 \}$ die 
+\textbf{Einheitengruppe} von $\F_p$.
+
+\pause 
+
+\begin{satz}
+Die Gruppe $E(\F_p)$ ist zyklisch von der Ordnung $p-1$, dh. es gibt ein Element $g \in \F_p \setminus \{0 \}$ mit 
+	$$ \F_p \setminus \{0 \} = \langle g \rangle =  \{g,g^2, \ldots, g^{p-2}, g^{p-1} = 1 \} $$ 
+\end{satz}
+
+\pause 
+
+\begin{notiz}
+Beachten Sie, dass $E(\F_{p-1})$ die Ordnung $p-1$ hat, dass also für alle $a \in E(\F_p)$ gilt 
+	$$ a^{p-1} = 1 $$
+Damit gilt auch 
+	$$ a^p = a $$
+\end{notiz}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Die Körper $\F_p$}
+
+\begin{beispiel}
+Im Körper $\F_{17}$ wird die Einheitengruppe von dem Element $3$ erzeugt. Das Element $5$ ist 
+ebenfalls ein Erzeuger der Einheitengruppe, nicht aber das Element $4$, denn 
+	$$ \langle 4 \rangle = \{ 4, 16, 13, 1\} $$
+\end{beispiel}
+
+\pause 
+
+\begin{notiz}
+Gilt für ein $g \in E(\F_p)$ für alle echten Teiler $n$ von $p-1$: 
+	$$ g^n \neq 1 $$
+so erzeugt $g$ die Gruppe $E(\F_p)$.
+\end{notiz}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Die Körper $\F_p$}
+
+\begin{uebung}
+Bestimmen Sie einen Erzeuger der Einheitengruppe von $\F_{19}$.
+\end{uebung}
+
+\bigbreak
+
+\pause \pause 
+
+\begin{sol}
+Das Element $2$ ist ein Erzeuger von $E(\F_{19})$. 
+\end{sol}
+\end{frame}
+
+\begin{frame}
+\frametitle{Ausblick - Verschlüsselung} 
+
+Rechnen mit ganzen Zahlen und Restklassen und der euklidische Algorithmus spielen 
+eine wichtige Rolle in vielen Verfahren der sogenannenten \textbf{asymmetrischen Verschlüsselung}. 
+
+\pause 
+
+Bei diesen asymmetrischen Verfahren kommen zwei Schlüssel zur Anwendung,  ein öffentlicher 
+Schlüssel (\textit{public key}), der zum Verschlüsseln benutzt wird, 
+und ein geheimer Schlüssel (\textit{private key}), der zum Entschlüsseln verwendet wird.
+
+\pause 
+
+Der öffentliche Schlüssel ist allgemein bekannt. Die Sicherheit dieser Verfahren beruht also darauf, dass der 
+private Schlüssel aus dem öffentlichen Schlüssel nicht berechnet werden kann.  
+
+\pause 
+
+\bigbreak
+
+Eines der bekanntesten asymmetrischen Verfahren ist das \textbf{RSA--Verfahren}.
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Das RSA--Verfahren}
+
+Der öffentliche Schlüssel des RSA--Verfahrens besteht aus einem Paar $(e,N)$ positiver ganzer Zahlen, 
+der private Schlüssel besteht ebenfalls aus einem Paar $(d,N)$ positiver ganzer Zahlen, wobei diese 
+Zahlen wie folgt zu konstruieren sind: 
+
+\pause
+
+\begin{itemize}
+\item<2-> Wähle zwei große Primzahlen $p$ und $q$ mit $p \neq q$ und setze $N = p \cdot q$. 
+\item<3-> Wähle eine zu $(p-1) \cdot (q-1)$ teilerfremde Zahl $e$. 
+\item<4-> Bestimme $d$ mit $0 < d < N$ so, dass $d \cdot e \equiv 1 \, \text{ mod } (p-1) \cdot (q-1)$. 
+\end{itemize}
+
+\pause \pause \pause 
+Dann kann $(e,N)$ als öffentlicher Schlüssel und $(d,N)$ als privater Schlüssel benutzt werden.  
+
+\end{frame} 
+
+\begin{frame}
+\frametitle{Das RSA--Verfahren}
+
+Die Wirkungsweise des RSA--Verfahrens beruht auf folgender Aussage (einer Folgerung aus der Aussage, 
+dass die Ordnung eines Elements immer die Gruppenordnung teilt): 
+
+\begin{satz} Für jede ganze Zahl $m$ mit $1 \leq m \leq N$ gilt 
+	$$ \left(m^e\right)^d \equiv m \, \text{ mod } N $$
+\end{satz}
+
+\end{frame} 
+
+\begin{frame}
+\frametitle{Das RSA--Verfahren}
+
+Damit funktioniert das RSA--Verfahren wie folgt: 
+
+Alice will Bob eine Nachricht schicken, die durch eine Zahl $m$ mit $1 < m < N$ dargestellt wird. 
+
+\begin{itemize}
+\item<2-> Alice benutzt den öffentlichen Schlüssel und berechnet $b = m^e \, \text{ mod } N$. 
+\item<3-> Alice schickt  $b$ über einen öffentlichen Kanal an Bob. 
+\item<4-> Bob benutzt seinen privaten Schlüssel und berechnet $c = b^d \, \text{ mod } N$. 
+\item<5-> Wegen $b \equiv m \, \text{ mod } N$ hat Bob die Nachricht entschlüsselt. 
+\end{itemize}
+
+\end{frame} 
+
+\begin{frame}
+\frametitle{Das RSA--Verfahren}
+
+\begin{beispiel}
+
+Wir wählen die Primzahlen $p=137$ und $q = 89$ und erhalten 
+	$$ N = p \cdot q = \num{12193}$$ 
+Ferner ist 
+	$$ (p-1) \cdot (q-1) = 136 \cdot 88 = \num{11968} $$
+Ferner wählen wir $e = 97$. Dann ist $e$ teilerfremd  zu $\num{11968}$ und für $d = 9377$ gilt 
+	$$ d \cdot e \equiv 1 \quad \text{ mod } \, \num{11968} $$
+Das Paar $(97, \num{12193})$ ist unser öffentlicher Schlüssel, das Paar $(\num{9377}, \num{12193})$ ist unser 
+privater Schlüssel.
+\end{beispiel}
+
+\end{frame} 
+
+\begin{frame}
+\frametitle{Das RSA--Verfahren}
+
+\begin{beispiel} 
+Alice will Bob eine Nachricht $m$ senden, die durch die Zahl $m = 7842$ repäsentiert wird. 
+
+\begin{itemize}
+\item<2-> Alice berechnet $b = 7842^{97} \quad \text{ mod } 12193$. 
+\item<3-> Sie erhält $b = 2853$ und schickt $b = 2853$ an Bob. 
+\item<4-> Bob berechnet $m = 2853^{9377} = 7842 \quad \text{ mod } 12193$. 
+\item<5-> Bob hat die Nachricht korrekt entschlüsselt. 
+\end{itemize}
+
+\end{beispiel}
+
+\pause \pause \pause \pause \pause
+
+\bigbreak
+
+Die Sicherheit des Verfahrens beruht darauf, dass zwar Bob die Zahl $d$ über Euklid berechnen kann (da 
+er $p$ und $q$ kennt), nicht jedoch ein Angreifer.  Es gibt nämlich kein bekanntes effizientes Verfahren, dass 
+aus einer (großen) Zahl $N$ ihre Primfaktoren ermittelt. 
+
+\end{frame}
+
+\end{document}

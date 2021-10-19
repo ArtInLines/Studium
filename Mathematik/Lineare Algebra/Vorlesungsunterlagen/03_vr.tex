@@ -1,0 +1,2108 @@
+
+
+\chapter{Allgemeine Vektorräume}
+
+\section{Vektorräume und Untervektorräume}\label{secton_vr_uvr}
+
+\setcounter{definition}{0}
+\setcounter{beispiel}{0}
+\setcounter{notiz}{0}
+
+Im letzten Kapitel haben wir gesehen, dass Mengen unerschiedliche Strukturen haben können 
+und mithilfe dieser Strukturen besser untersucht werden können. Je mehr Struktur ein Objekt 
+dabei hat, desto einfacher ist es zu untersuchen. Am meisten kann man deshalb auch über 
+Körper sagen. Es gibt aber auch viele Menge, die selbst keine Körper sind, die aber sehr gut mit 
+Hilfe von Körpern untersucht werden können. Mit diesen Objekten, den 
+\textbf{Vektorräumen}\index{Vektorraum} wollen wir uns in diesem Kapitel beschäftigen. 
+
+Dazu betrachten wir zunächst einen beliebigen Körper $K$. 
+
+%
+%Im vorangegangenen Abschnitt haben wir - weder in den Aussagen noch in den Beweisen - 
+%die spezielle Struktur von $\mathbb R$, also der Anordnung oder dem Dedekindschen 
+%Schnittgesetz, gemacht. Alle Aussagen und Beweise benutzen lediglich die Regeln  
+%für Addition, subtraktion, Multiplikation oder Division, also die allgemeinen 
+%Axiome, die für jeden Körper gelten. Genauso gut hätten wir anstelle von 
+%$\mathbb R$ also auch $\mathbb C$, $\mathbb Q$ oder gar einen der endlichen Körper  $\mathbb F_p$, die wir in Abschnitt~\ref{section_gruppe} kennengelernt haben, nehmen 
+%können. Das wollen wir in diesem Abschnitt auch tun. Dazu fixieren wir einen 
+%beliebigen Körper $K$.
+
+
+\begin{definition} Ein \index{Vektorraum}\textbf{$K$--Vektorraum} ist eine 
+nichtleere Menge $V$ zusammen mit einer Addition 
+  	$$ '+': V \times V \longrightarrow V, \quad (\vektor{v}, \vektor{w}) 
+     	\longmapsto \vektor{v} + \vektor{w} $$
+und einer Skalarmultiplikation 
+  	$$ '\cdot': K \times V \longrightarrow V, \quad (r, \vektor{v}) 
+     	\longmapsto r \cdot \vektor{v} $$
+so dass für $\vektor{u}, \vektor{v}$ und 
+$\vektor{w}$ in $V$ und Skalare $r$ und $s$ in $K$ gilt:
+
+\begin{tabular} {l l c l}
+$V1:$ & $\left(\vektor{u} + \vektor{v} \right) + \vektor{w} = 
+\vektor{u} + \left(\vektor{v} + \vektor{w} \right)$ & $\,$ &
+(1. Assoziativgesetz) \\
+$V2:$ & $\vektor{v} + \vektor{w} = \vektor{w} + 
+\vektor{v}$ & & (Kommutativgesetz) \\
+$V3:$ & Es existiert ein Element $\vektor{0} \in V$ & & \\
+& mit  $\vektor{v} + \vektor{0} = \vektor{v}$ & & (neutrales 
+Element \\
+& & & der Addition) \\
+$V4:$ & Zu jedem $\vektor{v} \in V$ existiert ein  
+& & \\
+& $-\vektor{v} \in V$ mit $\vektor{v} + (- \vektor{v}) = \vektor{0}$ & &
+(inverses Element \\
+& & & der Addition) \\
+$V5:$ & $(r \cdot s) \cdot \vektor{v} = r \cdot ( s \cdot \vektor{v})$ 
+& & (2. Assoziativgesetz) \\
+$V6:$ & $r \cdot (\vektor{v} + \vektor{w}) = r \cdot 
+\vektor{v} + r \cdot \vektor{w}$ & & (1. Distributivgesetz) \\
+$V7:$ & $(r + s) \cdot \vektor{v} = r \cdot \vektor{v} + 
+s \cdot \vektor{v}$ & & (2.Distributivgesetz) \\
+$V8:$ & $ 1 \cdot \vektor{v} = \vektor{v}$ & & (neutrales Element \\
+& & & der Multiplikation)
+\end{tabular}
+
+Die Elemente $\vektor{v} \in V$ heißen \textbf{Vektoren}\index{Vektor}.
+\end{definition}
+
+
+\begin{beispiel}\label{LA_vr_rn} 
+Das $n$--fache kartesische Produkt von $\R$, also die Menge
+  	$$ \R^n := \{ \left( \begin{smallmatrix} v_1 \\ \vdots \\ v_n 
+     	\end{smallmatrix} \right) \vert \, v_i \in \R \} $$
+zusammen mit der komponentenweisen Addition 
+  	$$ \left( \begin{smallmatrix} v_1 \\ \vdots \\ v_n 
+     	\end{smallmatrix} \right) + \left( \begin{smallmatrix} w_1 \\ \vdots \\ w_n 
+     	\end{smallmatrix} \right) = \left( \begin{smallmatrix} v_1 + w_1 \\ \vdots \\ 
+     	v_n + w_n  \end{smallmatrix} \right) $$ 
+($v_i, w_i \in \R$) und der komponentenweisen Skalarmultiplikation
+  	$$ r \cdot \left( \begin{smallmatrix} v_1 \\ \vdots \\ v_n 
+     	\end{smallmatrix} \right) = \left( \begin{smallmatrix} r \cdot v_1 \\ \vdots \\ 
+     	r \cdot v_n \end{smallmatrix} \right) $$
+($r, v_i \in \R$) ist ein $\R$--Vektorraum. 
+
+Ein Vektor 
+	$$ \vektor{v} = \begin{pmatrix} v_1 \\ \vdots \\ v_n \end{pmatrix} $$
+heißt \textbf{$n$--dimensionaler reeller Vektor}. 
+
+Der Nullvektor 
+	$$ \vektor{0} = \begin{pmatrix} 0 \\ \vdots \\ 0 \end{pmatrix} $$
+ist dabei das neutrale Element der Addition, und der negative Vektor $- \vektor{v}$ zu 
+einem $n$--dimensionalen reellen Vektor ist gegeben durch 
+	$$ - \vektor{v} = \begin{pmatrix} -v_1 \\ \vdots \\ - v_n \end{pmatrix} $$
+Die Axiome $V1$ bis $V8$ lassen sich in diesem Fall sehr einfach nachrechnen. 
+
+Der Vektrorraum $\R^n$ wird auch als 
+\textbf{$n$--dimensionaler reeller Vektorraum}\index{Vektorraum $\R^n$} bezeichnet.
+\end{beispiel} 
+
+\begin{beispiel}
+Die Ebene kann mit $\R^2$ identifiziert werden, der Raum mit $\R^3$. Daher sind Ebene und 
+Raum reelle Vektorräume. Die geometrischen Vektoren (Pfeile im Raum und in der Ebene), wie Sie 
+sie aus der Schule (oder auch aus dem Vorkurs \textit{Lineare Algebra}) kennen, sind Vektoren im 
+Sinne unserer neuen Definition.
+\end{beispiel}
+
+\begin{beispiel}\label{LA_vr_cn} Das $n$--fache kartesische Produkt von $\mathbb C$, also die Menge
+  	$$ \mathbb C^n := \{ \left( \begin{smallmatrix} z_1 \\ \vdots \\ z_n 
+     	\end{smallmatrix} \right) \vert \, z_i \in \mathbb C \} $$
+zusammen mit der komponentenweisen Addition 
+  	$$ \left( \begin{smallmatrix} y_1 \\ \vdots \\ y_n 
+     	\end{smallmatrix} \right) + \left( \begin{smallmatrix} z_1 \\ \vdots \\ z_n 
+     	\end{smallmatrix} \right) = \left( \begin{smallmatrix} y_1 + z_1 \\ \vdots \\ 
+     	y_n + z_n  \end{smallmatrix} \right) $$ 
+($y_i, z_i \in \mathbb C$) und der komponentenweisen Skalarmultiplikation
+  	$$ a \cdot \left( \begin{smallmatrix} z_1 \\ \vdots \\ z_n 
+     	\end{smallmatrix} \right) = \left( \begin{smallmatrix} a \cdot z_1 \\ \vdots \\ 
+     	a \cdot z_n \end{smallmatrix} \right) $$
+($a, z_i \in \mathbb C$) ist ein $\mathbb C$--Vektorraum. 
+\end{beispiel} 
+
+\begin{beispiel} Das $n$--fache kartesische Produkt von $\mathbb F_2$, also die Menge
+  	$$ \mathbb F_2^n := \{ \left( \begin{smallmatrix} a_1 \\ \vdots \\ a_n 
+     	\end{smallmatrix} \right) \vert \, a_i \in \mathbb C \} $$
+zusammen mit komponentenweiser Addition und Skalarmultiplikation ist ein 
+$\mathbb F_2$--Vektorraum. 
+
+Bei $\mathbb F_2^n$ handelt es sich um die $n$--Tupel binärer Zahlen, die sich 
+komplett auflisten lassen. So gilt etwa 
+  	$$ \mathbb F_2^2 := \{ \left( \begin{smallmatrix} 0 \\ 0 \end{smallmatrix} \right),
+   	\left( \begin{smallmatrix} 0 \\ 1 \end{smallmatrix} \right), 
+   	\left( \begin{smallmatrix} 1 \\ 0 \end{smallmatrix} \right),
+   	\left( \begin{smallmatrix} 1 \\ 1 \end{smallmatrix} \right) \} $$
+Insbesondere ist also $\mathbb F_2^n$ eine endliche Menge mit 
+  	$$ \vert \mathbb F_2^n \vert \, = 2^n $$
+Der Körper $\mathbb F_2$ und die Vektorräume über ihm spielen eine fundamentale 
+Rolle in der Informatik und der Computerprogrammierung.
+\end{beispiel}
+
+\begin{beispiel}\label{LA_vr_folgen1}
+Wir betrachten die Menge 
+	$$ V = \mathrm{Abb}(\N, \R) = \{ f: \N \longrightarrow \R \, \text{ Abbildung }\} $$
+aller Abbildungen von $\N$ nach $\R$. Für $f, g \in V$ definieren wir $f+g$ durch 
+	$$ (f+g)(n) = f(n) + g(n) \qquad \text{ für alle } n \in N $$
+und für $f \in V$ und $r \in \R$ definieren wir $r \cdot f$ durch
+	$$ (r \cdot f)(n) = r \cdot f(n) \qquad \text{ für alle } n \in N $$
+Dann ist $V$ ein $\R$--Vektorraum. 
+
+In dieser Situation schreibt man häufig $f_n$ für $f(n)$ und $\left(f_n\right)_{n \in \N}$ für $f$ und nennt 
+ein Element $\left(f_n\right)_{n \in \N}$ eine \textbf{reelle Zahlenfolge}. Der Raum $V$ heißt auch 
+Vektorraum der Folgen.
+\end{beispiel}
+
+\begin{beispiel}
+Die Menge $V = \{ \vektor{0}\}$ mit den Operationen 
+	$$ \vektor{0} + \vektor{0} = \vektor{0}, \quad r \cdot \vektor{0} = \vektor{0} $$
+ist ein Vektorraum (über jedem Körper), der \textbf{Nullvektorraum} bzw. der \textbf{triviale Vektorraum}. 
+\end{beispiel}
+
+Auch Teilmengen von Vektorräumen können interessante Strukturen tragen:
+
+\begin{definition} Ist $V$ ein $K$--Vektorraum und  ist $U \subseteq V$ eine 
+lTeilmenge, so heißt $U$ \index{Untervektorraum}
+\textbf{Untervektorraum} von $V$ wenn gilt:
+
+\begin{enumerate}
+\item $U \neq \emptyset$. 
+\item Sind $\vektor{v}, \vektor{w} \in U$ so ist auch 
+$\vektor{v} + \vektor{w} \in U$.
+\item Ist $\vektor{v} \in U$ und ist $\kappa \in K$ ein Skalar, so ist 
+auch $\kappa \cdot \vektor{v} \in U$.
+\end{enumerate}
+\end{definition}
+
+\begin{beispiel}\label{uvr_ebene}
+Jede Gerade durch den Koordinatenursprung ist ein Untervektorraum der Ebene (als reeller Vektorraum betrachtet). 
+
+Alle Geraden und alle Ebenen durch den Koordinatenursprung sind Untervektorräume des Raums (als reeller 
+Vektorraum betrachtet). 
+\end{beispiel}
+
+\begin{beispiel}
+Ist $V$ ein beliebiger $K$--Vektorraum, so sind $U_1 = \{\vektor{0} \}$ und $U_2 = V$ (offensichtlich) 
+Untervektorräume von $V$. Diese beiden Untervektoräume werden auch die trivialen Untervektorräume genannt. 
+\end{beispiel}
+
+\begin{beispiel} 
+Bezeichnen wir mit 
+	$$ V  = \{ f: \N \longrightarrow \R \, \text{ Abbildung }\} $$
+den Vektorraum der reellen Zahlenfolgen (aus Beispiel~\ref{LA_vr_folgen1}), und mit 
+	$$ U = \{ \left(f_n\right)_{n \in \N} \,\vert \,\, \lim\limits_{n \to \infty} f_n = 0 \} $$
+die Teilmenge der Nullfolgen, so ist $U \subseteq V$ ein Untervektorraum. 
+
+Dabei ist $ U \neq \emptyset$, denn die Nullfolge $\left( f_n \right)_{n \in \N}$ mit $f_n = 0$ ist in $U$. 
+Die weiteren Bedingungen für einen Untervektorraum werden wir in der Vorlesung \textit{Analysis in einer 
+Veränderlichen} im zweiten Semester nachrechnen.
+\end{beispiel} 
+
+\begin{notiz}
+Ein Untervektorraum $U \subseteq V$ ist selbst wieder ein Vektorraum. Offensichtlich gelten nämlich die 
+Axiome $V1$ bis $V8$ auch in $U$.
+\end{notiz}
+
+\bigbreak
+
+\begin{aufgabe}
+Zeigen Sie, dass jede Gerade durch den Koordinatenursprung tatsächlich ein Untervektorraum der 
+Ebene (aufgefasst als reeller Vektorraum) ist. 
+\end{aufgabe}
+
+\begin{aufgabe}
+Zeien Sie, dass jede Gerade bzw. jede Ebene durch den Koordinatenursprung tatsächlich ein Untervektorraum des 
+Raums (aufgefasst als reeller Vektorraum) ist. 
+\end{aufgabe} 
+
+\begin{aufgabe}
+Wir betrachten einen $K$--Vektorraum $V$ und zwei Untervektorräume $U_1, U_2 \subseteq V$ von $V$. Zeigen 
+Sie dass dann auch $U_1 \cap U_2$ wieder ein Untervektorraum von $V$ ist. Geben Sie ein Beispiel an, das zeigt, 
+dass $U_1 \cup U_2$ nicht notwendigerweise ein Untervektorraum von $V$ ist.
+\end{aufgabe}
+
+\section{Der $n$--dimensionale reelle Raum}\label{section_rn}
+
+\setcounter{definition}{0}
+\setcounter{beispiel}{0}
+\setcounter{notiz}{0}
+
+Im ersten Abschnitt haben wir als Beispiel (Beispiel~\ref{LA_vr_rn}) den reellen Vektorraum $\R^n$ 
+betrachtet. Dieser Vektorraum ist für viele Anwendungen auch der wichtigste und wird daher nun in 
+diesem Abschnitt ausführlicher behandelt werden. 
+
+Die Vektorraumoperationen können in diesem Fall sehr einfach und explizit beschrieben werden: 
+
+\begin{beispiel} Es ist
+ 	$$ \left( \begin{matrix} 1 \\ 2 \\ 3 \\ 4 \end{matrix} \right) 
+	+ \left( \begin{matrix} 2 \\ -3 \\ 4 \\ -5 \end{matrix} \right)
+	= \left( \begin{matrix} 1 + 2 \\ 2 + (-3) \\ 3 + 4 
+   	\\ 4 + (-5) \end{matrix} \right) = \left( \begin{matrix} 3 \\ -1 \\ 7 
+   	\\ -1 \end{matrix} \right) $$
+und 
+ 	$$\left( \begin{matrix} 1 \\ 2 \\ 3 \\ 4 \end{matrix} \right) 
+	+ \left( \begin{matrix} 2 \\ -3 \\ 4 \\ -5 \end{matrix} \right)
+	= \left( \begin{matrix} 1 - 2 \\ 2 - (-3) \\ 3 - 4 
+   	\\ 4 - (-5) \end{matrix} \right) = \left( \begin{matrix} -1 \\ 5 \\ -1 
+   	\\ 9 \end{matrix} \right) $$
+
+Ferner gilt 
+  	$$  - \left( \begin{matrix} 2 \\ 3 \\ -1 \\ 2 \end{matrix} \right) 
+	= \left( \begin{matrix} -2 \\ -3 \\ 1 \\ -2 \end{matrix} \right) $$
+und 
+	$$ 3 \cdot \left( \begin{matrix} 2 \\ 3 \\ -1 \\ 2 \end{matrix} \right) =
+	\left( \begin{matrix} 3 \cdot 2 \\ 3 \cdot 3 \\ 3 \cdot (-1) \\ 3 \cdot 2 \end{matrix} \right) = 
+	\left( \begin{matrix} 6 \\ 9 \\ -3 \\ 6 \end{matrix} \right) $$
+\end{beispiel}
+
+\begin{definition}
+Ein Vektor 
+	$$ \vektor{v} = \begin{pmatrix} v_1 \\ \vdots \\ v_n \end{pmatrix} \quad \in \R^n $$
+heißt \textbf{$n$--dimensionaler reeller Vektor}, die Größe
+	$$ \vert \vektor{v} \Vert = \sqrt{v_1^2 + \cdots v_n^2} $$
+heißt \textbf{Länge}\index{Vektor!Länge} des Vektors $\vektor{v}$.
+\end{definition}
+
+
+\bigbreak
+
+Wir betrachten nun Vektoren $\vektor{v_1}, \vektor{v_2}, \ldots, \vektor{v_m}$ in $\mathbb R^n$. 
+
+\begin{definition}\label{uvr_lin_unab} 
+Die $n$--Vektoren  $\vektor{v_1}, \vektor{v_2}, \ldots, \vektor{v_m}$ 
+heißen \index{linear unabhängig}\index{Vektoren!Lineare Unabhängigkeit}\textbf{linear abhängig}, wenn 
+es reelle Zahlen $r_1, r_2, \ldots, r_m$ gibt, von denen mindestens eine von Null verschieden ist, mit
+  	$$ r_1 \cdot \vektor{v_1} + r_2 \cdot  \vektor{v_2} + \cdots + r_m 
+     	\cdot \vektor{v_m} = \vektor{0} $$
+Andernfalls heißen sie \textbf{linear unabhängig}.
+\end{definition}
+
+\begin{notiz} Die Bedingung für lineare Unabhängigkeit kann auch so formuliert werden: Sind $r_1,  r_2, 
+\ldots, r_m$ reelle Zahlen mit 
+  	$$ r_1 \cdot \vektor{v_1} + r_2 \cdot  \vektor{v_2} + \cdots + r_m \cdot \vektor{v_m} = \vektor{0} $$
+so muss schon gelten: $r_1 = r_2 = \cdots = r_m = 0$.
+\end{notiz}
+
+\begin{beispiel} Die Vektoren $\vektor{v_1} = \left( \begin{smallmatrix} 1 \\ 2 \\ 3 \\ 1
+\end{smallmatrix} \right)$ und $\vektor{v_2} = \left( \begin{smallmatrix} -2 \\ -4 \\ -6 \\ -2 
+\end{smallmatrix} \right)$ sind linear abhängig: Für $r_1 = 2$ und $r_2 = 1$ gilt
+  	$$ r_1 \cdot \vektor{v_1} + r_2 \cdot  \vektor{v_2} =
+     	2 \cdot \left( \begin{smallmatrix} 1 \\ 2 \\ 3 \\ 1 \end{smallmatrix} \right) + 
+     	1 \cdot \left( \begin{smallmatrix} -2 \\ -4 \\ -6 \\ -2 \end{smallmatrix} \right) =
+     	\left( \begin{smallmatrix} 0 \\ 0 \\ 0 \\ 0 \end{smallmatrix} \right) $$
+\end{beispiel}
+
+\begin{beispiel}\label{lin_ab_drei}
+Die Vektoren  $\vektor{v_1} = \left( \begin{smallmatrix} 1 \\ 2 \\ 3 \\ 1
+\end{smallmatrix} \right)$, $\vektor{v_2} = \left( \begin{smallmatrix} 2 \\ 3 \\ 4 \\ 2 
+\end{smallmatrix} \right)$ und $\vektor{v_3} = \left( \begin{smallmatrix} 1 \\ 1 \\ 1 \\ 1 
+\end{smallmatrix} \right)$ sind linear abhängig: Für $r_1 = 1$ und $r_2 = -1$ und $r_3 = 1$ gilt:
+  	$$  r_1 \cdot \vektor{v_1} + r_2 \cdot  \vektor{v_2} + r_3 \cdot \vektor{v_3} =  \vektor{0} $$
+\end{beispiel} 
+
+\begin{beispiel} Die Vektoren $\vektor{v_1} = \left( \begin{smallmatrix} 1 \\ 2 \\ 3 \\ 4
+\end{smallmatrix} \right)$ und $\vektor{v_2} = \left( \begin{smallmatrix} 3 \\ 2 \\ 1 \\ 0 
+\end{smallmatrix} \right)$ sind linear unabhängig: Sind nämlich $r_1, r_2 \in \mathbb R$ Skalare mit 
+  	$$  r_1 \cdot \vektor{v_1} + r_2 \cdot  \vektor{v_2} =  \vektor{0} $$
+so bedeutet dies 
+  	$$ \left( \begin{matrix} r_1 \cdot 1 \\ r_1 \cdot 2 \\ r_1 \cdot 3 \\ r_1 \cdot 4 \end{matrix} 
+    	\right) + \left( \begin{matrix} r_2 \cdot  3 \\ r_2 \cdot 2 
+     	\\ r_2 \cdot 1 \\ r_2 \cdot 0 \end{matrix} \right) =
+     	\left( \begin{matrix} 0 \\ 0 \\ 0 \\ 0 \end{matrix} \right) $$
+also 
+ 	 $$ \begin{array} { l c l c l}
+    	1 \cdot r_1 & + & 3 \cdot r_2 & = & 0 \\
+    	2 \cdot r_1 & + & 2 \cdot r_2 & = & 0 \\
+    	3 \cdot r_1 & + & 1 \cdot r_2 & = & 0 \\
+    	4 \cdot r_1 & + & 0 \cdot r_2 & = & 0 \\
+    	\end{array} $$
+Aus der letzten Gleichung folgt sofort, dass $r_1 = 0$ gelten muss. Setzt man das in die vorletzte Gleichung ein, so 
+ergibt sich unmittelbar $r_2 = 0$, und damit sind $\vektor{v_1}$ und $\vektor{v_2}$ linear unabhängig.
+\end{beispiel}
+
+\begin{beispiel}\label{lin_un_standard} Die $n$ Vektoren  $\vektor{e_1} = 
+\left( \begin{smallmatrix} 1 \\ 0 \\ \vdots \\ 0
+\end{smallmatrix} \right)$, $\vektor{e_2} = \left( \begin{smallmatrix} 0 \\ 1 \\ \vdots \\ 0 
+\end{smallmatrix} \right), \ldots , \vektor{e_n} = \left( \begin{smallmatrix} 0 \\ \vdots \\ 0 \\ 1 
+\end{smallmatrix} \right)$ im $\R^n$ sind linear unabhängig. Sind nämlich $r_1, r_2, \ldots, r_n$ 
+Skalare mit 
+  	$$  r_1 \cdot \vektor{e_1} + r_2 \cdot  \vektor{e_2} + \ldots +
+      	r_n \cdot \vektor{e_n} =  \vektor{0} $$
+so bedeutet dies
+  	$$ \left( \begin{matrix} r_1 \cdot 1 + r_2 \cdot 0 + \cdots + r_n \cdot 0 \\ 
+     	r_1 \cdot 0 + r_2 \cdot 1 + \cdots + r_n \cdot 0 \\ \vdots \\ 
+     	r_1 \cdot 0 + r_2 \cdot 0 + \cdots + r_n \cdot 1 \end{matrix} \right)
+    	= \left( \begin{matrix} 0 \\ 0 \\ \vdots \\ 0 \end{matrix} \right) $$
+also 
+  	$$ \left( \begin{matrix} r_1  \\ r_2 \\ \vdots \\  r_n  \end{matrix} \right)
+    	= \left( \begin{matrix} 0 \\ 0 \\ \vdots \\ 0 \end{matrix} \right) $$
+und damit $r_1 = r_2 = \ldots = r_n = 0$.
+\end{beispiel} 
+
+\begin{notiz} Ist $\vektor{v_k} = \vektor{0}$ für ein $k$, so sind die 
+Vektoren $\vektor{v_1}, \vektor{v_2}, \ldots, \vektor{v_m}$ 
+schon linear abhängig. Hierzu können wir etwa $r_k = 1$ und $r_i = 0$ für $i \neq k$ setzen 
+und erhalten eine nicht--triviale Linearkombination
+  	$$  r_1 \cdot \vektor{v_1} + \cdots + r_n \cdot  \vektor{v_n} =  \vektor{0} $$
+\end{notiz}
+
+\begin{notiz}
+Ein einzelner Vektor $\vektor{v} \in \R^n$ ist genau dann linear abhängig, wenn $\vektor{v} = \vektor{0}$. 
+Entsprechend ist er genau dann linear unabhängig, wenn $\vektor{v} \neq \vektor{0}$.
+\end{notiz}
+
+\begin{notiz} Sind die Vektoren $\vektor{v_1}, \vektor{v_2}, \ldots, \vektor{v_m}$ 
+linear unabhängig, so auch jede Teilmenge davon, d.h. für $1 \leq i_1 < i_2 < \ldots < i_t \leq m$ 
+sind auch die Vektoren 
+$\vektor{v_{i_1}}, \vektor{v_{i_2}}, \ldots, \vektor{v_{i_t}}$ linear unabhänig.
+
+Die entsprechende Aussage für linear Abhängigkeit ist nicht richtig.
+\end{notiz}
+
+\begin{beispiel} Die Vektoren  $\vektor{e_1} = \left( \begin{smallmatrix} 1 \\ 0 \\ 0 \\ 0
+\end{smallmatrix} \right)$, $\vektor{e_4} = \left( \begin{smallmatrix} 0 \\ 0 \\ 0 \\ 1 
+\end{smallmatrix} \right)$ im $\mathbb R^4$ sind linear unabhängig. Sie sind Teil des Systems linear 
+unabhängiger Vektoren aus Beispiel ~\ref{lin_un_standard}.
+
+Natürlich kann die lineare Unabhängigkeit in diesem Fall auch direkt nachgerechnet werden.
+\end{beispiel}
+
+\begin{beispiel} Die Vektoren  $\vektor{v_1} = \left( \begin{smallmatrix} 1 \\ 2 \\ 3 \\ 1
+\end{smallmatrix} \right)$ und  $\vektor{v_2} = \left( \begin{smallmatrix} 2 \\ 3 \\ 4 \\ 2 
+\end{smallmatrix} \right)$ sind linear unabhängig, wie man leicht nachrechnet, obwohl sie eine Teilmenge der 
+linear abhängigen Vektoren $\vektor{v_1}, \vektor{v_2}, \vektor{v_3}$ aus Beispiel
+~\ref{lin_ab_drei} bilden.   
+\end{beispiel}
+
+\begin{notiz} Zwei Vektoren $\vektor{v}$ und $\vektor{w}$ sind genau dann linear abhängig, wenn 
+einer von beiden ein Vielfaches des anderen ist. Gilt nämlich 
+  	$$ r_1 \cdot \vektor{v} + r_2 \cdot \vektor{w} = \vektor{0} $$
+und ist etwa $r_1 \neq 0$, so gilt
+  	$$ \vektor{v} = - \frac {r_2}{r_1} \cdot \vektor{w} $$
+Analog ist natürlich $\vektor{w}$ ein Vielfaches von $\vektor{v}$ falls $r_2 \neq 0$.
+\end{notiz}
+
+\begin{notiz} Die lineare Unabhängigkeit von drei oder mehr Vektoren ist in der Regel schwer elementar und 
+direkt festzustellen. Mit den linearen Gleichungssystemen werden wir das richtige Werkzeug zur Behandlung 
+dieser Frage noch kennenlernen. 
+\end{notiz}
+
+Eine wichtige Rolle beim Studium linearer Gleichungssysteme werden die Untervektorräume der $\R^n$ bilden.
+
+\begin{beispiel}\label{uvr_null_uvr} 
+Ist $V = \{ \left( \begin{smallmatrix} 0 \\ 0 \\ 0 \\ 0 \end{smallmatrix} \right) \} \subseteq \mathbb R^4$, so  
+ist $V$ ein Untervektorraum von $\R^4$.
+\end{beispiel}
+
+
+\begin{beispiel}\label{uvr_y_axis} 
+Ist $V = \{ \left( \begin{smallmatrix} 0 \\ r \\ 0 \\ 0 \end{smallmatrix} \right) \vert \, 
+r \in \mathbb R\} \subseteq \mathbb R^4$, so ist $V$ ein Untervektorraum von $\R^4$.
+\end{beispiel}
+
+\begin{beispiel} Ist $V = \{ \left( \begin{smallmatrix} 0 \\ r \\ 0 \\ 0 \end{smallmatrix} \right) \vert \,  
+r \in \mathbb R\ \, \textrm{ und } r \geq 0 \} \subseteq \mathbb R^4$, so ist $V$ kein Untervektorraum. Es ist 
+nämlich $\left( \begin{smallmatrix} 0 \\ 1 \\ 0 \\ 0 \end{smallmatrix} \right) \in V$ aber nicht 
+$(-1) \cdot \left( \begin{smallmatrix} 0 \\ 1 \\ 0 \\ 0 \end{smallmatrix} \right)$
+\end{beispiel}
+
+\begin{beispiel}
+Ist $V = \{ \left( \begin{smallmatrix} 0 \\ r \\ 1 \\ 0 \end{smallmatrix} \right) \vert \, 
+r \in \mathbb R\} \subseteq \mathbb R^4$, so ist $V$ kein Untervektorraum. Es ist 
+nämlich $\left( \begin{smallmatrix} 0 \\ 2 \\ 1 \\ 0 \end{smallmatrix} \right) \in V$ aber nicht 
+$2 \cdot \left( \begin{smallmatrix} 0 \\ 2 \\ 1 \\ 0 \end{smallmatrix} \right)$ 
+\end{beispiel}
+
+
+%\begin{beispiel} Jede Gerade in der Ebene, die durch den Nullpunkt geht, ist ein Untervektorraum von 
+%$\mathbb R^2$.
+%\end{beispiel}
+
+\begin{beispiel}\label{uvr_gen_gerade} Ist $\vektor{v} \in \mathbb R^n$ ein beliebiger Vektor, so ist 
+  	$$ V := \{ r \cdot \vektor{v} \vert \, r \in \mathbb R \} $$
+ein Untervektorraum (auch, falls $\vektor{v}$ der Nullvektor ist).
+\end{beispiel}
+
+\begin{beispiel}
+Ist $V = \{ \left( \begin{smallmatrix} r \\ s \\ r+s \end{smallmatrix} \right) \vert \, 
+r,s \in \mathbb R\} \subseteq \mathbb R^3$, so ist $V$ ein Untervektorraum.
+\end{beispiel}
+
+%\begin{beispiel}\label{uvr_ebene} 
+%Jede Gerade in der Ebene, die durch den Nullpunkt geht, ist ein Untervektorraum von 
+%$\mathbb R^2$.
+%
+%Jede Ebene im Raum, die den Nullpunkt enthält, ist ein Untervektorraum von $\R^3$.
+%\end{beispiel}
+
+\medbreak
+
+Gesucht ist häufig eine effiziente und knappe Beschreibung von Untervektorräumen mit möglichst wenig Daten. 
+Dazu geben wir uns einen Untervektorraum 
+$V \subseteq \mathbb R^n $ vor und betrachten Vektoren $\vektor{v_1}, \vektor{v_2}, \ldots, 
+\vektor{v_m}$ in $V$.
+
+\begin{definition} Die Vektoren $\vektor{v_1}, \vektor{v_2}, \ldots, 
+\vektor{v_m}$ heißen \index{Untervektorraum!Erzeugendensystem} \textbf{Erzeugendensystem} von $V$, 
+wenn gilt:
+
+\begin{enumerate}
+\item $\vektor{v_1}, \vektor{v_2}, \ldots, \vektor{v_m} \in V$.
+\item Zu jedem $\vektor{w} \in V$ gibt es Skalare $r_1, r_2, \ldots,  r_m$ mit
+  	$$  \vektor{w} = r_1 \cdot \vektor{v_1} + r_2 \cdot \vektor{v_2} + \ldots + 
+      r_m \cdot \vektor{v_m} $$
+\end{enumerate}
+Wir sagen in diesem Fall auch,  $\vektor{v_1}, \vektor{v_2}, \ldots, 
+\vektor{v_m}$ erzeugen $V$.
+\end{definition}
+
+\begin{beispiel}\label{erz_standard} Die Vektoren  $\vektor{e_1} = 
+\left( \begin{smallmatrix} 1 \\ 0 \\ \vdots \\ 0
+\end{smallmatrix} \right)$, $\vektor{e_2} = \left( \begin{smallmatrix} 0 \\ 1 \\ \vdots \\ 0 
+\end{smallmatrix} \right), \ldots , \vektor{e_n} = \left( \begin{smallmatrix} 0 \\ \vdots \\ 0 \\ 1 
+\end{smallmatrix} \right)$ erzeugen $V = \mathbb R^n$ (als Untervektroraum von $\mathbb R^n$). Es gilt 
+nämlich für einen beliebigen Vektor 
+$\vektor{v} = \left( \begin{smallmatrix} v_1 \\ v_2 \\ \vdots \\ v_n \end{smallmatrix} \right)$ 
+in $\R^n$:
+  	$$ \vektor{v} = v_1 \cdot \vektor{e_1} + v_2 \cdot \vektor{e_2} + \cdots + v_n \cdot \vektor{e_n} $$
+\end{beispiel}
+
+\begin{beispiel} Ist $V = \{ \left( \begin{smallmatrix} 0 \\ r \\ 0 \\ 0 \end{smallmatrix} \right) \vert \, 
+r \in \mathbb R\} \subseteq \mathbb R^4$ der Untervektorraum aus Beispiel ~\ref{uvr_y_axis} und ist
+$\vektor{v} = \left( \begin{smallmatrix} 0 \\ 1 \\ 0 \\ 0 \end{smallmatrix} \right)$, 
+so erzeugt $\vektor{v}$ den Untervektorraum $V$. Ebenso wird $V$ erzeugt von
+$\vektor{w} = \left( \begin{smallmatrix} 0 \\ -3 \\ 0 \\ 0 \end{smallmatrix} \right)$, und auch 
+$\{ \vektor{v}, \vektor{w} \}$ bildet ein Erzeugendensystem von $V$.
+Erzeugendensysteme sind also nicht eindeutig und können unterschiedlich viele Elemente enthalten.
+\end{beispiel}
+
+\begin{beispiel}\label{uvr_null_erz} 
+Ist $V = \{ \vektor{0} \}$ der Nullvektorraum, so bildet der Nullvektor 
+$\vektor{0}$ ein Erzeugendensystem von $V$. Es ist aber auch üblich, die leere Menge als 
+Erzeugendensystem von $V$ zu betrachten. 
+\end{beispiel}
+
+%\begin{beispiel} Ist $V = \mathbb R^n$ (als Untervektorraum von $\mathbb R^n$), so erzeugen die 
+%Vektoren  $\vektor{e_1} = 
+%\left( \begin{smallmatrix} 1 \\ 0 \\ \vdots \\ 0
+%\end{smallmatrix} \right)$, $\vektor{e_2} = \left( \begin{smallmatrix} 0 \\ 1 \\ \vdots \\ 0 
+%\end{smallmatrix} \right), \ldots , \vektor{e_n} = \left( \begin{smallmatrix} 0 \\ \vdots \\ 0 \\ 1 
+%\end{smallmatrix} \right)$ aus Beispiel ~\ref{lin_un_standard} $V$.
+%\end{beispiel}
+
+\begin{beispiel}\label{uvr_ebene_bsp} 
+Ist $E$ die Ebene durch die Punkte $O = (0, 0, 0)$, $P = (1,2,3)$ und $Q = (-3,2,-1)$, so ist 
+$E$ ein Untervektorraum von $\mathbb R^3$ (siehe Beispiel~\ref{uvr_ebene}), der erzeugt wird von den Vektoren
+  	$$ \vektor{v_1} = \left( \begin{matrix} 1 \\ 2 \\ 3  \end{matrix} \right), \quad  
+  	\vektor{v_2} = \left( \begin{matrix} -3 \\ 2 \\ -1  \end{matrix} \right) $$
+also von den beiden Vektoren, die (zusammen mit $\vektor{0}$ als Stützvektor) $E$ auch als Ebene 
+erzeugen. Ebenso bildet auch jedes andere System von Vektoren, das mit $\vektor{0}$ als Stützvektor die 
+Ebene $E$ erzeugt, ein Untervektorraumerzeugendensystem von $E$, etwa
+  	$$ \vektor{w_1} = \left( \begin{matrix} 1 \\ 2 \\ 3 \end{matrix} \right), \quad  
+    	\vektor{w_2} = \left( \begin{matrix} 0 \\ 4 \\ 4  \end{matrix} \right), \quad 
+     	\vektor{w_3} = \left( \begin{matrix} 	2 \\ 0 \\ 2  \end{matrix} \right) $$
+\end{beispiel}
+
+\medbreak
+
+Wir betrachten nun Vektoren $\vektor{v_1}, \vektor{v_2}, \ldots, 
+\vektor{v_m} \in \mathbb R^n$ gegeben, und setzen
+  	$$ U = \{ \vektor{v} \in \mathbb R^n \, \vert \, \, \exists r_1, \ldots, r_m \in 
+	\mathbb R \, \textrm{ mit } \,
+   	\vektor{v} = r_1 \cdot \vektor{v_1} + \cdots + r_m \cdot \vektor{v_m} \} $$
+
+\begin{satz} $U$ ist ein Untervektorraum von $\mathbb R^n$.
+\end{satz}
+
+\beweis{ Die Unterraumeigenschaften sind sehr leicht nachzurechnen. Wir zeigen, dass $U$ 
+abgeschlossen unter Addition ist. Seien dazu $\vektor{v}$ und 
+$\vektor{w}$ in $U$. Schreibe
+  	$$ \begin{array}{l c l}
+  	\vektor{v} & = & r_1 \cdot \vektor{v_1} + \cdots + r_m \cdot \vektor{v_m} \\
+  	\vektor{w} & = & s_1 \cdot \vektor{v_1} + \cdots + s_m \cdot \vektor{v_m} 
+  	\end{array} $$
+Dann gilt
+ 	$$ \vektor{v} + \vektor{w} = 
+    	(r_1+s_1) \cdot \vektor{v_1} + \cdots + (r_m+s_m) \cdot \vektor{v_m} $$
+und da $r_i + s_i \in \mathbb R$ folgt
+ 	$$ \vektor{v} + \vektor{w} \in U $$
+Die Abgeschlossenheit unter Skalarmultiplikation zeigt man ähnlich.
+}
+
+\medbreak  
+
+\bemerkung{Bezeichnung:} $U$ heißt das \textbf{Erzeugnis} von $\vektor{v_1}, \vektor{v_2}, \ldots, \vektor{v_m}$ 
+oder der von $\vektor{v_1}, \vektor{v_2}, \ldots, \vektor{v_m}$
+\index{Vektorraum!aufgespannter Unterraum}\textbf{aufgespannte Unterraum} von $\mathbb R^n$. Wir 
+schreiben hierfür $\langle \{ \vektor{v_i} \}_{i = 1, \ldots, m} \rangle$ 
+oder auch $\textrm{Span}( \{ \vektor{v_i} \}_{i = 1, \ldots, m} )$.
+
+\medbreak
+
+\begin{beispiel} Wir betrachten die Vektoren 
+  	$$ \vektor{v_1} = \left( \begin{matrix} -1 \\ 2 \\ 0  \end{matrix} \right), \quad  
+  	\vektor{v_2} = \left( \begin{matrix} 0 \\ 4 \\ 0  \end{matrix} \right) $$
+in $\mathbb R^3$. Dann gilt hierfür
+  	$$ \langle \{ \vektor{v_1}, \vektor{v_2} \} \rangle = 
+ 	\{ \left( \begin{matrix} x_1 \\ x_2 \\ 0  \end{matrix} \right) \, \vert \, x_1, x_2 \in \mathbb R \} $$
+Klar ist dabei, dass 
+  	$$ \langle \{ \vektor{v_1}, \vektor{v_2} \} \rangle \subseteq 
+    	\{ \left( \begin{matrix} x_1 \\ x_2 \\ 0  \end{matrix} \right) \, \vert \, x_1, x_2 \in \mathbb R \} $$
+denn mit $\vektor{v_1}$ und $\vektor{v_2}$ wird auch jede 
+Linearkombination von $\vektor{v_1}$ und $\vektor{v_2}$ in der 
+letzen Komponente eine ''0'' stehen haben. Ist umgekehrt ein Vektor 
+$\vektor{v} = \left( \begin{smallmatrix} x_1 \\ x_2 \\ 0  \end{smallmatrix} 
+\right)$ gegeben, so können wir schreiben 
+  	$$ \vektor{v} = (-x_1) \cdot \vektor{v_1} + \frac {x_2-2x_1}{4} \cdot \vektor{v_2} $$
+und erhalten $\vektor{v} \in \langle \{ \vektor{v_1}, 
+\vektor{v_2} \} \rangle$, also 
+  	$$ \langle \{ \vektor{v_1}, \vektor{v_2} \} \rangle \subseteq 
+    	\{ \left( \begin{matrix} x_1 \\ x_2 \\ 0  \end{matrix} \right) \, \vert \, 
+   	x_1, x_2 \in \mathbb R \} $$
+und damit Gleichheit der beiden Mengen.
+\end{beispiel}
+
+\bigbreak
+
+\begin{definition} Die Vektoren $\vektor{v_1}, \vektor{v_2}, \ldots, 
+\vektor{v_m} \in V$ heißen \index{Untervektorraum!Basis} \textbf{Basis} von $V$, wenn 
+sie ein Erzeugendensystem von $V$ bilden, 
+und wenn sie linear unabhängig sind.
+\end{definition}
+
+\begin{beispiel}\label{uvr_standard_basis} Die Vektoren  $\vektor{e_1} = 
+\left( \begin{smallmatrix} 1 \\ 0 \\ \vdots \\ 0
+\end{smallmatrix} \right)$, $\vektor{e_2} = \left( \begin{smallmatrix} 0 \\ 1 \\ \vdots \\ 0 
+\end{smallmatrix} \right), \ldots , \vektor{e_n} = \left( \begin{smallmatrix} 0 \\ \vdots \\ 0 \\ 1 
+\end{smallmatrix} \right)$ bilden eine Basis von $\mathbb R^n$. In Beispiel ~\ref{lin_un_standard} haben wir 
+schon gesehen, dass sie linear unabhängig sind, und in Beispiel ~\ref{erz_standard} haben wir festgestellt, 
+dass sie den $\mathbb R^n$ erzeugen. 
+
+Die Vektoren $\vektor{e_1}$, $\vektor{e_2}, \ldots , \vektor{e_n}$ heißen 
+\index{Standardbasis} \textbf{Standardbasis des $\mathbb R^n$}.
+\end{beispiel}
+
+\begin{beispiel}\label{uvr_ebene_erz} 
+Ist $E$ die Ebene aus Beispiel ~\ref{uvr_ebene_bsp}, aufgefasst als Untervektorraum von $\mathbb R^n$. 
+Dann bilden die Vektoren
+  	$$ \vektor{v_1} = \left( \begin{matrix} 1 \\ 2 \\ 3  \end{matrix} \right), \quad  
+     	\vektor{v_2} = \left( \begin{matrix} -3 \\ 2 \\ -1  \end{matrix} \right) $$
+eine Basis von $E$. Wie wir in Beispiel ~\ref{uvr_ebene} gesehen haben, erzeugen sie $E$, und wie man leicht sieht, 
+sind sie linear unabhängig, da keiner der Vektoren ein Vielfaches des anderen ist. Dagegen bilden die 
+Vektoren
+  	$$ \vektor{w_1} = \left( \begin{matrix} 1 \\ 2 \\ 3 \end{matrix} \right), \quad  
+    	\vektor{w_2} = \left( \begin{matrix} 0 \\ 4 \\ 4  \end{matrix} \right), \quad 
+     	\vektor{w_3} = \left( \begin{matrix} 	2 \\ 0 \\ 2  \end{matrix} \right) $$
+keine Basis von $E$. Sie erzeugen zwar, aber es gilt
+  	$$ 2 \cdot \vektor{w_1} + (-1) \cdot \vektor{w_2} + (-1) \cdot \vektor{w_3} = \vektor{0}, $$
+sie sind also nicht linear unabhängig.
+\end{beispiel}
+
+\medbreak
+
+Im nächsten Abschnitt werden wir den folgenden hilfreichen Satz beweisen:
+
+\begin{satz}\label{uvr_existenz_basis} 
+Für einen Untervektorraume $V$ von $\mathbb R^n$ gilt:
+
+\begin{enumerate}
+\item Ist $\{\vektor{v_1}, \vektor{v_2}, \ldots, \vektor{v_m} \}$ ein Erzeugendensystem 
+von $V$, so enthält $\{ \vektor{v_1}$, $\vektor{v_2}$, $\ldots$, $\vektor{v_m} \}$ eine 
+Basis von $V$, d.h. es gibt $1 \leq i_1 < i_2 < \cdots < i_t \leq m$ so dass
+$ \vektor{v_{i_1}}, \vektor{v_{i_2}}, \ldots, \vektor{v_{i_t}}$ eine Basis von 
+$V$ ist.
+\item $V$ hat eine Basis.
+\item Je zwei Basen von $V$ sind gleich lang, d.h. sind 
+$\{\vektor{v_1}, \vektor{v_2}, \ldots, \vektor{v_m} \}$ 
+und $\{\vektor{w_1}, \vektor{w_2}, \ldots, \vektor{w_t} \}$ Basen von $V$, so gilt
+$m = t$.
+\end{enumerate}
+\end{satz}
+
+Dieser Satz rechtfertigt die folgende Festsetzung
+
+\begin{definition} Die Länge einer Basis eines Untervektorraums $V$ heißt \index{Untervektorraum!Dimension}
+die \textbf{Dimension} von $V$ und wird mit $\textrm{dim}(V)$ bezeichnet.
+\end{definition}
+
+\begin{beispiel} Der $\mathbb R^n$ hat die Dimension $n$.
+\end{beispiel}
+
+\begin{beispiel} Die Ebene $E$ aus Beispiel~\ref{uvr_ebene} hat die Dimension 2, da die Vektoren 
+$ \vektor{v_1}, \vektor{v_2}$ aus Beispiel~\ref{uvr_ebene_erz} eine Basis von $E$ bilden. 
+Es ist also $\textrm{dim}(V) = 2$. 
+
+Die Vektoren 
+$\vektor{w_1}, \vektor{w_2}$ und $\vektor{w_3}$ aus Beispiel~\ref{uvr_ebene_erz} bilden 
+eine  Erzeugendensystem von $V$ aber keine Basis. $\vektor{w_2}$ und $\vektor{w_3}$ bilden eine 
+in diesem Erzeugendensystem enthaltene Basis von $E$.
+\end{beispiel}
+
+\begin{beispiel} Sei $\vektor{v} \in \mathbb R^n$ ein beliebiger Vektor und sei
+  	$$ V := \{ r \cdot \vektor{v} \vert \, r \in \mathbb R \} $$
+der Untervektorraum aus ~\ref{uvr_gen_gerade}. Ist $\vektor{v} \neq \vektor{0}$ so ist 
+$\vektor{v}$ eine Basis von $V$ und $\textrm{dim}(V) = 1$.
+\end{beispiel}
+
+\begin{beispiel} Wie wir in Beispiel ~\ref{uvr_null_erz} festgesetzt haben, bildet die leere Menge ein 
+Erzeugendensystem des Nullvektorraums $V = \{\vektor{0} \}$. Die leere Menge ist auch ein System 
+linear unabhängiger Vektoren (da keine Bedingungen zu verifizieren sind), und daher ist die leere Menge 
+eine Basis des Nullvektorraums. Damit gilt $\textrm{dim}(V) = 0$.
+\end{beispiel}
+
+\bigbreak
+
+Eine Besonderheit der Vektorräume $\R^n$ ist die Möglichkeit, dort auch geometrische Überlegungen durchzuführen. 
+Speziell in der Ebene und im Raum sind Begriffe wie Abstand und Winkel bekannt. Teilweise übertragen sich diese 
+Konzepte auch auf höhere Dimensionen. Ein wichtiges Hilfsmittel dabei ist das Skalarprodukt:
+
+\begin{definition}
+Für zwei $n$--Vektoren $\vektor{v} = \left( \begin{smallmatrix} v_1 \\ \vdots \\  v_n \end{smallmatrix} 
+\right)$ und  $\vektor{w} = \left( \begin{smallmatrix} w_1 \\  \vdots \\ w_n \end{smallmatrix} \right)$ 
+heißt
+  	$$ \langle \vektor{v}, \vektor{w} \rangle := v_1 w_1 + \cdots + v_n w_n $$
+das \index{Skalarprodukt}\textbf{Skalarprodukt} von $\vektor{v}$ und $\vektor{w}$.
+\end{definition}
+
+\begin{beispiel}
+$ \langle  \left( \begin{smallmatrix} 1 \\ 2 \\ 3 \\ 1
+\end{smallmatrix} \right),  \left( \begin{smallmatrix} 2 \\ 3 \\ 4 \\ 2 
+\end{smallmatrix} \right) \rangle = 1 \cdot 2 + 2 \cdot 3 + 3 \cdot 4 + 1 \cdot 2 = 22$.
+\end{beispiel}
+
+\begin{notiz}
+Für einen Vektor $\vektor{v} \in \R^n$ gilt 
+	$$ \vert \vektor{v} \vert = \sqrt{ \langle \vektor{v}, \vektor{v} \rangle} $$
+Zunächst ist nämlich 
+	$$  \langle \vektor{v}, \vektor{v} \rangle = v_1 \cdot v_1 + \cdots + v_n \cdot v_n = 
+	v_1^2 + \cdots + v_n^2  \geq 0 $$
+(sodass wir die Wurzel daraus ziehen können) und damit 
+	$$ \sqrt{ \langle \vektor{v}, \vektor{v} \rangle}  = \sqrt{ v_1^2 + \cdots + v_n^2 } 
+	= \vert \vektor{v} \vert $$
+\end{notiz}
+
+\medbreak
+
+Einige elementaren Eigenschaften des Skalarprodukts folgen sofort aus 
+der Definition
+
+\begin{regel}\label{uvr_regel_scalar} Für Vektoren $\vektor{v}$, $\vektor{w}$, 
+$\vektor{w_1}$ und $\vektor{w_2}$ und einen Skalar $r \in \mathbb R$ gilt:
+\begin{enumerate}
+\item $\langle \vektor{v}, \vektor{w} \rangle = \langle \vektor{w}, 
+\vektor{v} \rangle \qquad$ (\textit{Kommutativgesetz}).
+\item $\langle \vektor{v}, \vektor{w_1} + \vektor{w_2} \rangle = 
+\langle \vektor{v}, \vektor{w_1} \rangle + \langle \vektor{v}, 
+\vektor{w_2} \rangle \qquad$ (\textit{Distributivgesetz}).
+\item $\langle r \cdot \vektor{v}, \vektor{w} \rangle = r \cdot \langle \vektor{v}, 
+\vektor{w} \rangle \qquad$ (\textit{Skalarmultiplikation}).
+\item $\langle \vektor{v}, \vektor{v} \rangle = \vert \vektor{v} \vert^2$.
+\end{enumerate}
+\end{regel}
+
+Wie im zwei-- oder dreidimensionalen Fall gilt auch hier der  
+\index{Satz!von Cauchy--Schwarz}Satz von Cauchy--Schwarz 
+
+\begin{satz}[Satz von Cauchy--Schwarz]\label{uvr_cauchy_schwarz} 
+Für zwei Vektoren $\vektor{v}$ und $\vektor{w}$ gilt:
+\begin{enumerate}
+\item $ \vert \langle \vektor{v},  \vektor{w} \rangle \vert \leq \vert \vektor{v} 
+        \vert \cdot \vert \vektor{w} \vert $.
+\item Genau dann sind $\vektor{v}$ und $\vektor{w}$ parallel, wenn $\langle \vektor{v}, 
+\vektor{w} \rangle = \vert \vektor{v} \vert \cdot  \vert \vektor{w} \vert$.
+\item Genau dann sind $\vektor{v}$ und $\vektor{w}$ anti--parallel, wenn $\langle 
+\vektor{v}, \vektor{w} \rangle = 
+- \vert \vektor{v} \vert \cdot  \vert \vektor{w} \vert$.
+\item Genau dann sind $\vektor{v}$ und $\vektor{w}$ kollinear, wenn 
+$\vert \langle \vektor{v}, \vektor{w} \rangle \vert \, 
+= \vert \vektor{v} \vert \cdot  \vert \vektor{w} \vert$.
+\end{enumerate}
+\end{satz}
+
+%Der Beweis hierfür kann wortwörtlich aus dem zweidimensionalen Fall übertragen werden.
+\beweis{ 
+Der direkte Beweis dieser Aussage ist - sogar schon im einfachen zweidimensionalen Fall - recht komplex 
+und un\"ubersichtlich. Daher benutzen wir einen kleine Trick und setzen $r = \langle \vektor{w}, 
+\vektor{w} \rangle$ und $s = - \langle \vektor{v}, \vektor{w} \rangle$. Wir k\"onnen 
+annehmen, dass $\vektor{w} \neq 0$, also $r > 0$. Dann gilt
+  	$$ \begin{array} {l c l}
+  	0 & \leq & \vert r \vektor{v} + s \vektor{w} \vert^2 \\
+    	& = & \langle r \vektor{v} + s \vektor{w}, r \vektor{v} + s \vektor{w} 
+	\rangle \\
+    	& = & r^2 \langle \vektor{v}, \vektor{v} \rangle + 2rs \langle \vektor{v}, 
+	\vektor{w} \rangle + s^2 \langle \vektor{w}, \vektor{w} \rangle \\
+    	& = & r^2 \langle \vektor{v}, \vektor{v} \rangle - 2r \langle \vektor{v}, 
+	\vektor{w} \rangle^2 + s^2 \langle \vektor{w}, \vektor{w} \rangle \\
+    	& = & r^2 \langle \vektor{v}, \vektor{v} \rangle - 2r \langle \vektor{v}, 
+	\vektor{w} \rangle^2 + \langle \vektor{v}, \vektor{w} \rangle^2 \cdot 
+   	\langle \vektor{w}, \vektor{w} \rangle \\
+    	& = & r \langle \vektor{w}, \vektor{w} \rangle \cdot \langle \vektor{v}, 
+   	\vektor{v} \rangle - 2r \langle \vektor{v}, 
+  	\vektor{w} \rangle^2 + r \langle \vektor{v},  \vektor{w} \rangle^2 \\
+    	& = & r \cdot \left( \langle \vektor{w}, \vektor{w} \rangle \cdot \langle \vektor{v}, 
+   	\vektor{v} \rangle -  \langle \vektor{v},  \vektor{w} \rangle^2 \right)
+  \end{array} $$
+Da $r > 0$, folgt
+  	$$ \langle \vektor{v},  \vektor{w} \rangle^2 \leq \langle 
+   	\vektor{w}, \vektor{w} 
+  	\rangle \cdot \langle \vektor{v}, \vektor{v} \rangle 
+   	= \vert \vektor{v} \vert^2 
+   	\cdot  \vert \vektor{w} \vert^2 $$
+und daher (durch Ziehen der Quadratwurzel)
+  	$$ \vert \langle \vektor{v},  \vektor{w} \rangle \vert \leq \vert \vektor{v} \vert 
+    	\cdot \vert \vektor{w} \vert $$
+also Aussage 1., und genau dann ist
+  	$$ \vert \langle \vektor{v},  \vektor{w} \rangle \vert = \vert \vektor{v} \vert \cdot 
+     	\vert \vektor{w} \vert $$
+wenn 
+  	$$ \vert r \vektor{v} + s \vektor{w} \vert^2 = 0 $$
+also 
+  	$$ r \vektor{v} + s \vektor{w} = 0 $$ 
+oder
+  	$$ \vektor{v} = - \frac {s}{r} \cdot  \vektor{w} $$
+d.h. $\vektor{v}$ und $\vektor{w}$ sind kollinear. 
+
+Falls $- \frac {s}{r} > 0$, so sind $\vektor{v}$ und $\vektor{w}$ parallel, und man rechnet 
+unmittelbar nach, dass in diesem Fall  
+  	$$ \langle \vektor{v},  \vektor{w} \rangle = \vert \vektor{v} \vert \cdot 
+	\vert \vektor{w} \vert $$
+w\"ahrend im Fall $- \frac {s}{r} < 0$ die Vektoren $\vektor{v}$ und $\vektor{w}$ anti--parallel 
+sind und 
+  	$$ \langle \vektor{v},  \vektor{w} \rangle = - \vert \vektor{v} \vert \cdot 
+   	\vert \vektor{w} \vert $$
+}
+\medbreak
+
+Aus den Regeln ergeben sich sofort einige interessante Konsequenzen für die Länge von Vektoren:
+
+\begin{satz}\label{uvr_dreiecks_ungleichung} 
+ Für Vektoren $\vektor{v}$, $\vektor{w}$ und einen Skalar $r \in \mathbb R$ gilt:
+
+\begin{enumerate}
+\item $\vert r \cdot \vektor{v} \vert \, = \, \vert r \vert \cdot \vert \vektor{v} \vert$.
+\item $\vert \vektor{v} + \vektor{w} \vert \, \leq \, \vert \vektor{v} \vert \, + 
+     \, \vert \vektor{w} \vert$.
+\end{enumerate}
+\end{satz}
+
+
+\beweis{ In der Tat gilt
+  	$$ \begin{array} {l c l}
+  	\vert r \cdot \vektor{v} \vert^2  
+  	& = &  \langle r \cdot \vektor{v}, r \cdot \vektor{v} \rangle \\
+  	& = &  r^2 \cdot \langle  \vektor{v},  \vektor{v} \rangle \\
+  	& = &  r^2 \cdot \vert \vektor{v} \vert^2
+  \end{array} $$	
+und durch Ziehen der Quadratwurzel folgt die erste Behauptung.
+
+Zum Nachweis der zweiten Aussage gehen wir ähnlich vor:
+  	$$ \begin{array} {l c l}
+  	\vert  \vektor{v} + \vektor{w} \vert^2 
+  	& = & \langle \vektor{v} + \vektor{w}, \vektor{v} + \vektor{w} \rangle \\
+  	& = & \langle  \vektor{v},  \vektor{v} \rangle + 
+	\langle  \vektor{v},  \vektor{w} \rangle + 
+	\langle  \vektor{w},  \vektor{v} \rangle + 
+	\langle  \vektor{w},  \vektor{w} \rangle  \\
+  	& = & \vert  \vektor{v} \vert^2 + 2 \cdot \langle  \vektor{v}, \vektor{w} \rangle 
+	+ \vert  \vektor{w} \vert^2 \\
+  	& \leq & \vert  \vektor{v} \vert^2 + 2 \cdot \vert \vektor{v} 
+ 	\vert \cdot \vert \vektor{w} \vert + \vert  \vektor{w} \vert^2 \\
+  	& = & \left( \vert  \vektor{v} \vert + \vert  \vektor{w} \vert \right)^2
+ 	\end{array} $$
+wobei wir für die Ungleichung den Satz von Cauchy--Schwarz benutzt haben. Wiederum erhalten wir 
+die Behauptung durch Ziehen der Quadratwurzel.
+}
+         
+\bigbreak
+
+\begin{notiz} Aus der ersten Bedingung des Satzes von Cauchy--Schwarz folgt wieder, dass es ein $\varphi \in 
+[0, \pi]$ gibt mit 
+  	$$ \vert \langle \vektor{v},  \vektor{w} \rangle \vert = \cos(\varphi) \vert \vektor{v} \vert 
+  	\cdot  \vert \vektor{w} \vert $$
+Dieses $\varphi$ heißt der \textbf{Winkel} zwischen $\vektor{v}$ und 
+$\vektor{w}$. In der Ebene handelt es sich dabei in der Tat um den Winkel zwischen den beiden 
+Vektoren $\vektor{v}$ und $\vektor{w}$. 
+\end{notiz}
+
+\begin{definition} Zwei $n$--dimensionale Vektoren $\vektor{v}$ und $\vektor{w}$ heißen 
+\index{Vektoren!orthogonal} \textbf{orthogonal}, wenn gilt
+  	$$ \langle \vektor{v},  \vektor{w} \rangle = 0 $$
+Wir sagen in diesem Fall auch, dass $\vektor{v}$ senkrecht auf $\vektor{w}$ steht und schreiben 
+$\vektor{v} \perp \vektor{w}$.
+\end{definition}
+
+\begin{beispiel} Die Vektoren  $\vektor{v} = \left( \begin{smallmatrix} 1 \\ 2 \\ -3 \\ 1
+\end{smallmatrix} \right)$ und  $\vektor{w} = \left( \begin{smallmatrix} 2 \\ 4 \\ 4 \\ 2 
+\end{smallmatrix} \right)$ sind orthogonal. 
+\end{beispiel}
+
+\begin{beispiel} Die Vektoren  $\vektor{e_1} = 
+\left( \begin{smallmatrix} 1 \\ 0 \\ \vdots \\ 0
+\end{smallmatrix} \right)$, $\vektor{e_2} = \left( \begin{smallmatrix} 0 \\ 1 \\ \vdots \\ 0 
+\end{smallmatrix} \right), \ldots , \vektor{e_n} = \left( \begin{smallmatrix} 0 \\ \vdots \\ 0 \\ 1 
+\end{smallmatrix} \right)$ sind paarweise orthogonal, d.h. für $i \neq j$ gilt
+  $$ \langle \vektor{e_i}, \vektor{e_j}  \rangle =  0 $$
+\end{beispiel}
+
+\medbreak
+
+\begin{definition}\label{linalg_vr_def_orth_komplement}
+Ist $V \subseteq \mathbb R^n$ ein Untervektorraum, so heißt die Menge
+  	$$ V^{\perp} = \{ \vektor{u} \in \mathbb R^n \vert \, 
+      \langle \vektor{u}, \vektor{v}  \rangle =  0 \, \textrm{ für alle } 
+      \vektor{v} \in V \} $$
+das \index{orthogonales Komplement}\textbf{orthogonale Komplement} von $V$.
+\end{definition}
+
+\begin{notiz}\label{linalg_vr_orth_komplement} Ist $V \subseteq \mathbb R^n$ ein Untervektorraum der 
+Dimension $l$, so ist $V^{\perp} \subseteq \mathbb R^n$ ein Untervektorraum der Dimension $n-l$.
+\end{notiz}
+
+\beweis Wir weisen die Untervektorraumaxiome für $V^{\perp}$ nach:
+
+\begin{enumerate}
+\item Sicherlich ist $\vektor{0} \in V^{\perp}$, und damit ist $V^{\perp}$ nicht leer.
+\item Sind $\vektor{u_1}, \vektor{u_2} \in V^{\perp}$, und ist $\vektor{v} \in V$ 
+beliebig, so gilt
+  	$$  \langle \vektor{u_1} +  \vektor{u_2}, \vektor{v}  \rangle =  
+    	\langle \vektor{u_1}, \vektor{v}  \rangle 
+    	+  \langle \vektor{u_2}, \vektor{v}  \rangle = 0 $$
+und damit ist $\vektor{u_1} +  \vektor{u_2} \in V^{\perp}$.
+\item Ist $\vektor{u} \in V^{\perp}$ und $r \in \mathbb R$, und ist $\vektor{v} \in V$ 
+beliebig, so gilt
+  	$$  \langle r \cdot \vektor{u}, \vektor{v}  \rangle =  
+     	r \cdot  \langle \vektor{u}, \vektor{v}  \rangle  = 0 $$
+und damit ist $ r \cdot \vektor{u} \in V^{\perp}$.
+\end{enumerate}
+Also ist $V^{\perp}$ ein Untervektorraum von $\mathbb R^n$. Die Dimensionsformel ergibt sich aus dem 
+Gram--Schmidt Orthonormalisierungsverfahren, dass wir in Satz~\ref{uvr_gram_schmidt} behandeln werden 
+(vergleiche auch Aufgabe~\ref{linalg_vr_orth_komplement_aufgabe}).
+\bigbreak
+
+\bigbreak
+
+Mit dem Begriff der Basis haben wir ein gutes Mittel kennengelernt, um Untervektorräume $V \subseteq 
+\mathbb R^n$ zu beschreiben. Doch auch Basen sind nicht alle gleich gut geeignet. 
+
+\begin{beispiel}\label{uvr_ortho_non_ortho} Eine Basis der $\mathbb R^3$ ist die Standardbasis 
+	$$ \vektor{e_1} = \left( \begin{matrix} 1 \\ 0 \\  0 \end{matrix} \right), \quad  
+	\vektor{e_2} = \left( \begin{matrix} 0 \\ 1 \\ 0 \end{matrix} \right), \quad 
+	\vektor{e_3} = \left( \begin{matrix} 0  \\ 0 \\ 1 \end{matrix} \right) $$
+eine weitere Basis des $\mathbb R^3$ ist 
+	$$ \vektor{v_1} =  \left( \begin{matrix} 5 \\ 4 \\  4 \end{matrix} \right)\, , \quad  
+	\vektor{v_2} = \left( \begin{matrix} 1 \\ 1 \\ 1 \end{matrix} \right)\, , \quad 
+	\vektor{v_3} = \frac {1}{10} \cdot \left( \begin{matrix} 4  \\ 4 \\ 5 \end{matrix} \right) \ $$
+wie man sich leicht überzeugt. Für viele Anwendungen ist die erste Basis besser geeignet als die zweite. 
+So sind etwa in der ersten Basis alle Vektoren normiert, haben also die Länge 1. In der zweiten Basis sind 
+die Vektoren nicht nur nicht normiert, sie sind auch noch alle unterschiedlich lang. Ein weiterer entscheidender 
+Unterschied fällt sofort ins Auge, wenn wir uns die Basen graphisch vorstellen. Für die Standardbasis 
+des $\mathbb R^3$ erhalten wir dann folgendes Bild
+
+%\begin{figure}[h!] 
+%  \centering
+%     \scalebox{0.6}{\input{geom_vector_orth.tex}}
+%\end{figure}
+
+\begin{figure}[H]
+	\vspace{-0.9cm}
+	\begin{center}
+	\begin{scaletikzpicturetowidth}{0.7\textwidth}
+     		\input{la_03_vr_2000.tex} 
+	\end{scaletikzpicturetowidth}
+	\end{center}
+	\vspace{-1.2cm}
+	\caption[]{Standardbasis}
+\end{figure}
+
+und für die zweite Basis 
+
+%\begin{figure}[h!] 
+%  \centering
+%     \scalebox{0.6}{\input{geom_vector_non_orth.tex}}
+%\end{figure}
+
+\begin{figure}[H]
+	\vspace{-0.9cm}
+	\begin{center}
+	\begin{scaletikzpicturetowidth}{0.7\textwidth}
+     		\input{la_03_vr_2010.tex} 
+	\end{scaletikzpicturetowidth}
+	\end{center}
+	\vspace{-1.2cm}
+	\caption[]{andere Basis}
+\end{figure}
+
+
+Wir sehen also, dass die Vektoren der ersten Basis jeweils senkrecht aufeinanderstehen, während die Vektoren 
+der zweiten Basis relativ eng beieinander liegen und alle in einen Quadranten des Raums zeigen. Solche Basen 
+sind vor allem für numerische Berechnungen und Näherungen sehr schlecht geeignet, da sie dazu tendieren, 
+Messfehler zu verstärken. 
+\end{beispiel}
+
+Dieses Beispiel motiviert die folgende Definition:
+
+\begin{definition} Eine Basis $\vektor{v_1}, \ldots, \vektor{v_m}$ eines Untervektorraums 
+$U \subseteq \mathbb R^n$ heißt \index{Untervektorraum!Orthonormalbasis}\textbf{Orthonormalbasis} von 
+$U$ oder kurz \textbf{ONB} von $U$, wenn gilt:
+
+\begin{itemize}
+\item $\vert \vektor{v_i} \vert = 1$ für $i = 1, \ldots, m$, d.h. alle Vektoren der Basis sind 
+normiert.
+\item $\langle \vektor{v_i}, \vektor{v_j} \rangle = 0$ für $i \neq j$, d.h. die Vektoren 
+stehen paarweise senkrecht aufeinander.
+\end{itemize}
+\end{definition}
+
+\begin{beispiel} Die Standardbasis $\vektor{e_1}, \vektor{e_2}, \vektor{e_3}$ des 
+$\mathbb R^3$ ist eine ONB von $\mathbb R^3$, die Basis $\vektor{v_1}, \vektor{v_2}, 
+\vektor{v_3}$ aus Beispiel~\ref{uvr_ortho_non_ortho} ist es nicht.
+\end{beispiel}
+
+\begin{beispiel} Die Standardbasis $\vektor{e_1}, \vektor{e_2}, \ldots,  \vektor{e_n}$ 
+des $\mathbb R^n$ ist eine ONB.
+\end{beispiel}
+
+\medbreak
+
+Ganz offensichtlich sind Orthonormlabasen anderen Basen vorzuziehen. Damit stellt sich die Frage, wann solche 
+existieren, und wie wir sie finden können. Antwort darauf liefert uns das Orthonormalisierungsverfahren von 
+Gram--Schmidt und der folgende 
+
+\begin{satz}\label{uvr_gram_schmidt} Jeder Untervektorraum $U$ des $\mathbb R^n$ besitzt eine 
+Orthonormalbasis.
+\end{satz}
+
+\beweis{ Der Beweis liefert und gleichzeitig einen Algorithmus, mit dem wir aus einer beliebigen Basis von $U$ 
+eine Orthonormalbasis von $U$ machen können.
+
+Wir betrachten dazu eine beliebige Basis $\vektor{u_1}, \vektor{u_2}, \ldots, \vektor{u_m}$ von 
+$U$ und wandeln diese Basis in zwei Schritten in eine Orthonormalbasis um. Zunächst bilden wir die Vektoren:
+  	$$ \begin{array}{l c l}
+   	\vektor{v_1} & = & \vektor{u_1} \\
+   	\vektor{v_2} & = & \vektor{u_2} - \frac {\langle \vektor{u_2}, 
+   	\vektor{v_1}\rangle}{ \langle \vektor{v_1}, \vektor{v_1}\rangle} \cdot 
+   	\vektor{v_1} \\
+   	\vektor{v_3} & = & \vektor{u_3} - \frac {\langle \vektor{u_3}, 
+   	\vektor{v_1}\rangle}{ \langle \vektor{v_1}, \vektor{v_1}\rangle} \cdot 
+   	\vektor{v_1} - \frac {\langle \vektor{u_3}, 
+   	\vektor{v_2}\rangle}{ \langle \vektor{v_2}, \vektor{v_2}\rangle} \cdot 
+   	\vektor{v_2}  \\
+   	& \vdots & \\
+  	 \vektor{v_m} & = & \vektor{u_m} - \frac {\langle \vektor{u_m}, 
+   	\vektor{v_1}\rangle}{ \langle \vektor{v_1}, \vektor{v_1}\rangle} \cdot 
+   	\vektor{v_1} - \frac {\langle \vektor{u_m}, 
+   	\vektor{v_2}\rangle}{ \langle \vektor{v_2}, \vektor{v_2}\rangle} \cdot 
+   	\vektor{v_2}  - \ldots - \frac {\langle \vektor{u_m}, 
+   	\vektor{v_{m-1}}\rangle}{ \langle \vektor{v_{m-1}}, \vektor{v_{m-1}}\rangle} \cdot 
+   	\vektor{v_{m-1}}
+   	\end{array} $$
+dh. wir übernehmen $\vektor{u_1}$ unverändert als $\vektor{v_1}$, wir ziehen von 
+$\vektor{u_2}$ seinen Anteil ''in Richtung $\vektor{v_1}$'' ab usw. Dann gilt:
+
+Die Vektoren $\vektor{v_1}, \ldots , \vektor{v_m}$ bilden eine Basis von $U$, bestehend aus Vektoren, 
+die paarweise senkrecht aufeinander stehen. 
+
+Der Nachweis, dass $\langle \vektor{v_i}, \vektor{v_j} \rangle = 0$ für $i \neq j$ ist eine 
+einfache aber sehr langwierige Rechnung, die wir dem Leser überlassen. Um zu zeigen, dass $\vektor{v_1}, 
+\ldots , \vektor{v_m}$ den Unterraum $U$ erzeugen, reicht es zu zeigen, dass sich die ursprünglichen 
+Basisvektoren $\vektor{u_1}, \vektor{u_2}, \ldots, \vektor{u_m}$ damit darstellen 
+lassen. Das ist aber klar, da sich ja jede der definerenden Gleichungen für ein $\vektor{v_i}$ direkt
+nach $\vektor{u_i}$ auflösen lässt. Die lineare Unabhängigkeit der Vektoren folgt etwa aus 
+ihrer paarweisen Orthogonalität (siehe auch Aufgabe~\ref{uvr_aufg_orthogonal_lu}). Es ist aber auch 
+nicht schwer, sie direkt nachzurechnen. 
+
+Wir haben also nun eine Basis von $U$ gefunden, die aus Vektoren besteht, die paarweise senkrecht 
+aufeinander stehen. Um eine Orthonormalbasis zu finden, reicht es also, diese Basis zu normieren:
+  	$$ \begin{array}{l c l}
+  	\vektor{w_1} & = & \frac {\vektor{v_1}}{\vert \vektor{v_1} \vert} \\
+  	\vektor{w_2} & = & \frac {\vektor{v_2}}{\vert \vektor{v_2} \vert} \\
+   	& \vdots & \\
+  	\vektor{w_m} & = & \frac {\vektor{v_m}}{\vert \vektor{v_m} \vert}
+  	\end{array} $$
+Es ist klar, dass die Vektoren $\vektor{w_1}, \ldots , \vektor{w_m}$ normiert sind. Ebenfalls 
+klar ist, dass sich durch die Normierung nichts daran ändert, dass sie paarweise orthogonal sind und dass 
+sich dadurch auch nichts an ihrer Eigenschaft, Basis von $U$ zu sein, ändert.
+}
+
+\medbreak
+
+\begin{beispiel} Wir betrachten den Untervektorraum $U \subseteq \mathbb R^3$, der von den Vektoren 
+  	$$ \vektor{u_1} = \left( \begin{matrix} 1 \\ 2 \\ 3 \end{matrix} \right), \qquad 
+   	\vektor{u_1} = \left( \begin{matrix} 2 \\ 3 \\ 4 \end{matrix} \right) $$
+erzeugt wird. Zunächst überzeugen wir uns, dass diese beiden Vektoren auch eine Basis von $U$ bilden. 
+Das ist klar, denn keiner ist ein Vielfaches des anderen. 
+
+\textbf{Orthogonalisierung:}
+  	$$ \begin{array}{l c l c l }
+   	\vektor{v_1} & = & \vektor{u_1} & = & \, \, \left( \begin{matrix} 1 \\ 2 \\ 3 \end{matrix} 
+	\right) \\
+   	\vektor{v_2} & = & \vektor{u_2} - \frac {\langle \vektor{u_2}, 
+   	\vektor{v_1}\rangle}{ \langle \vektor{v_1}, \vektor{v_1}\rangle} \cdot 
+   	\vektor{v_1} & = & \left( \begin{matrix} \frac {8}{14} \\ \frac {2}{14} \\ -\frac {4}{14} 
+	\end{matrix}  \right)  
+  	\end{array} $$
+
+\textbf{Normalisierung:}
+  	$$ \begin{array}{l c l c l}
+  	\vektor{w_1} & = & \frac {\vektor{v_1}}{\vert \vektor{v_1} \vert}
+    	& = & \, \left( \begin{matrix} \frac {1}{\sqrt{14}} \\ \frac {2}{\sqrt{14}} \\ \frac {3}{\sqrt{14}} 
+	\end{matrix}  \right) \\
+  	\vektor{w_2} & = & \frac {\vektor{v_2}}{\vert \vektor{v_2} \vert}
+    	& = & \left( \begin{matrix} \frac {8}{\sqrt{84}} \\ \frac {2}{\sqrt{84}} \\ -\frac {4}{\sqrt{84}} 
+	\end{matrix}  \right)  
+  	\end{array} $$
+und wir haben die gewünschte Orthonormalbasis gefunden.
+\end{beispiel}
+
+
+\bigbreak
+
+\begin{aufgabe} Zeigen Sie, dass die Menge  $V = \{ \vektor{v} = \left( \begin{smallmatrix} 
+v_1 \\ v_2 \\ v_3 \\ v_4  \end{smallmatrix} \right) \, \vert \, 2 v_1 + 3 v_2 - 4 v_3 + v_4 = 0 \}$ 
+ein Untervektorraum von $\mathbb R^4$ ist.
+\end{aufgabe}
+
+\begin{aufgabe} Zeigen Sie, dass die Menge  $V = \{ \vektor{v} = \left( \begin{smallmatrix} t 
+\\ t^2 \\ t^3 \\ t^4\end{smallmatrix} \right) \, \vert \, t \in \mathbb R \}$ 
+kein Untervektorraum von $\mathbb R^4$ ist.
+\end{aufgabe}
+
+\begin{aufgabe} Überprüfen Sie, ob die Menge $ V = \{ \vektor{v} = 
+\left( \begin{smallmatrix} r \\ s \\ r+s \\ r-s  \end{smallmatrix} \right) \, \vert \, 
+r, s \in \mathbb R \}$ Ein Untervektorraum von $\mathbb R^4$ ist.
+\end{aufgabe}
+
+\begin{aufgabe} Zeigen Sie, dass die Vektoren  $\vektor{v_1} = 
+\left( \begin{smallmatrix} 1 \\ 0 \\ 2 \\ 0
+\end{smallmatrix} \right)$, $\vektor{v_2} = \left( \begin{smallmatrix} 0 \\ 1 \\ 0 \\ 2 
+\end{smallmatrix} \right)$ und $\vektor{v_3} = \left( \begin{smallmatrix} 1 \\ 1 \\ 1 \\ 1 
+\end{smallmatrix} \right)$ linear unabhängig sind.
+\end{aufgabe}
+
+\begin{aufgabe} Zeigen Sie, dass die Vektoren $\vektor{v_1} = 
+\left( \begin{smallmatrix} 1 \\ 2 \\ 3 \\ 4
+\end{smallmatrix} \right)$, $\vektor{v_2} = \left( \begin{smallmatrix} 4 \\ 2 \\ 0 \\ 0 
+\end{smallmatrix} \right)$ und $\vektor{v_3} = \left( \begin{smallmatrix} 3 \\ 3 \\ 3 \\ 4 
+\end{smallmatrix} \right)$ linear abhängig sind.
+\end{aufgabe}
+
+\begin{aufgabe} Zeigen Sie, dass die Vektoren  $\vektor{v_1} = 
+\left( \begin{smallmatrix} 1 \\ 0 \\ 1 \end{smallmatrix} \right)$, 
+$\vektor{v_2} = \left( \begin{smallmatrix} 0 \\ 1 \\ 1 
+\end{smallmatrix} \right)$ und $\vektor{v_3} = \left( \begin{smallmatrix} 1 \\ 1 \\  1 
+\end{smallmatrix} \right)$ eine Basis von $\mathbb R^3$ bilden.
+\end{aufgabe}
+
+\begin{aufgabe} Gegeben seien die beiden Vektoren
+  $$ \vektor{v_1} = \left( \begin{matrix} 2 \\ -1 \\ 0  \end{matrix} \right), \quad  
+     \vektor{v_2} = \left( \begin{matrix} -3 \\ 0 \\ 1  \end{matrix} \right) $$
+Zeigen Sie 
+  $$ \langle \{ \vektor{v_1}, \vektor{v_2} \} \rangle = 
+    \{  \left( \begin{matrix} x_1 \\ x_2 \\ x_3  \end{matrix} \right) \in \mathbb R^n 
+    \, \vert \, x_1 + 2 x_2 + 3 x_3 = 0 \} $$
+Bilden $\vektor{v_1}$ und $\vektor{v_2}$ auch eine Basis dieses 
+Untervektorraums?
+\end{aufgabe}
+
+\begin{aufgabe}  Eine Basis von $\mathbb R^3$ ist 
+$$ \vektor{v_1} = 
+\left( \begin{matrix} 3 \\ 4 \\  5
+\end{matrix} \right), \quad  \vektor{v_2} = \left( \begin{matrix} 3 \\ 5 \\ 6 
+\end{matrix} \right), \quad \vektor{v_3} = \left( \begin{matrix} 1  \\ 2 \\ 2 
+\end{matrix} \right) $$
+(vergleiche Beispiel~\ref{uvr_ortho_non_ortho}). Orthonormalisieren Sie diese Basis.
+\end{aufgabe}
+
+\begin{aufgabe} Zeigen Sie, dass 
+$$ \vektor{v_1} = 
+\left( \begin{matrix} 1 \\ 2 \\  3
+\end{matrix} \right), \quad  \vektor{v_2} = \left( \begin{matrix} 3 \\ 2 \\ 1 
+\end{matrix} \right), \quad \vektor{v_3} = \left( \begin{matrix} 1  \\ 0 \\ 1 
+\end{matrix} \right) $$ eine Basis von $\mathbb R^3$ ist und orthonormalisieren Sie 
+diese Basis.
+\end{aufgabe}
+
+\begin{aufgabe}\label{uvr_aufg_orthogonal_lu} 
+Zeigen Sie: Stehen zwei vom Nullvektor verschiedene Vektoren $\vektor{v}$ und 
+$\vektor{w}$ senkrecht aufeinander, so sind sie linear unabhängig. 
+Verallgemeinern Sie diese Aussage auf $n$ Vektoren, die paarweise orthogonal sind.
+\end{aufgabe}  
+
+\begin{aufgabe}\label{linalg_vr_orth_komplement_aufgabe} Weisenn Sie die Dimensionsformel 
+aus Bemerkung~\ref{linalg_vr_orth_komplement} nach.
+\end{aufgabe}
+
+\newpage
+
+\section{Allgemeine reelle Vektorräume}\label{section_vr_reell}
+
+\setcounter{definition}{0}
+\setcounter{beispiel}{0}
+\setcounter{notiz}{0}
+
+Im vergangenen Abschnitt haben wir speziell den reellen Vektorraum $\R^n$ untersucht, da diese 
+für die Anwendungen die wichtigsten reellen Vektorräume bilden. Es gibt jedoch auch noch 
+viele andere Mengen, die sich mithilfe der Vektorraumtheorie studieren und strukturieren lassen. 
+Deshalb wollen wir uns in diesem Abschnitt mit allgemeinen reellen Vektorräumen beschäftigen. 
+
+%
+%Im vorangegangenen Abschnitt haben wir das Konzept der ebenen und räumlichen Vektoren 
+%schon stark verallgemeinert und den $\mathbb R^n$ mit einer Vektoraddition und einer 
+%Skalarmultiplikation versehen. Darüberhinaus haben wir aber auch Teilmengen $V$ des 
+%$\mathbb R^n$ betrachtet, die Untervektorräume sind. Diese Untervektorräume $V$ sind 
+%in der Regel vom $\mathbb R^n$ verschieden, trotzdem haben sie aber ähnliche 
+%Eigenschaften: Zwei Vektoren in $V$ lassen sich addieren und ergeben wieder einen Vektor 
+%in $V$, ein Vektor in $V$ kann mit einem Skalar aus $\mathbb R$ multipliziert werden und 
+%das Ergebnis ist wieder in $V$. Damit haben diese Untervektorräume ähnliche 
+%strukturielle Eigenschaften wie $\mathbb R^n$ selbst, und es liegt daher nahe, diese 
+%strukturiellen Eigenschaften zu abstrahieren. 
+%
+%\begin{definition} Ein (reeller) \index{Vektorraum}\textbf{Vektorraum} ist eine 
+%nichtleere Menge $V$ zusammen mit einer Addition 
+%  $$ '+': V \times V \longrightarrow V, \quad (\vektor{v}, \vektor{w}) 
+%     \longmapsto \vektor{v} + \vektor{w} $$
+%und einer Skalarmultiplikation 
+%  $$ '\cdot': \mathbb R \times V \longrightarrow V, \quad (r, \vektor{v}) 
+%     \longmapsto r \cdot \vektor{v} $$
+%so dass für $\vektor{u}, \vektor{v}$ und 
+%$\vektor{w}$ in $V$ und Skalare $r$ und $s$ gilt:
+%
+%\begin{tabular} {l l c l}
+%$V1:$ & $\left(\vektor{u} + \vektor{v} \right) + \vektor{w} = 
+%\vektor{u} + \left(\vektor{v} + \vektor{w} \right)$ & $\,$ &
+%(1. Assoziativgesetz) \\
+%$V2:$ & $\vektor{v} + \vektor{w} = \vektor{w} + 
+%\vektor{v}$ & & (Kommutativgesetz) \\
+%$V3:$ & Es existiert ein Element $\vektor{0} \in V$ & & \\
+%& mit  $\vektor{v} + \vektor{0} = \vektor{v}$ & & (neutrales 
+%Element \\
+%& & & der Addition) \\
+%$V4:$ & Zu jedem $\vektor{v} \in V$ existiert ein  
+%& & \\
+%& $-\vektor{v} \in V$ mit $\vektor{v} + (- \vektor{v}) = \vektor{0}$ & &
+%(inverses Element \\
+%& & & der Addition) \\
+%$V5:$ & $(r \cdot s) \cdot \vektor{v} = r \cdot ( s \cdot \vektor{v})$ 
+%& & (2. Assoziativgesetz) \\
+%$V6:$ & $r \cdot (\vektor{v} + \vektor{w}) = r \cdot 
+%\vektor{v} + r \cdot \vektor{w}$ & & (1. Distributivgesetz) \\
+%$V7:$ & $(r + s) \cdot \vektor{v} = r \cdot \vektor{v} + 
+%s \cdot \vektor{v}$ & & (2.Distributivgesetz) \\
+%$V8:$ & $ 1 \cdot \vektor{v} = \vektor{v}$ & & (neutrales Element \\
+%& & & der Multiplikation)
+%\end{tabular}
+%
+%\end{definition}
+%
+%\begin{beispiel} $\mathbb R^n$ zusammen mit den Operationen aus dem letzten Abschnitt 
+%ist ein Vektoraum.
+%\end{beispiel}
+%
+%\begin{beispiel} Jeder Untervektorraum $V \subseteq \mathbb R^n$ ist ein Vektorraum.
+%\end{beispiel}
+
+\begin{beispiel}\label{vectorraum_abbild} Wir betrachten die Menge $V$ aller Abbildungen
+  	$$ f : [0,1] \longrightarrow \mathbb R $$
+Für zwei Abbildungen $f, g \in V$ definieren wir die Abbildung $f + g$ durch
+  	$$ (f+g)(x) = f(x) + g(x) \quad \textrm{ für alle } x \in [0, 1] $$
+und für eine Abbildung $f \in V$ und ein $r \in \mathbb R$ erklären wir $r \cdot f$ 
+durch 
+  	$$ (r \cdot f)(x) = r \cdot f(x) \quad \textrm{ für alle } x \in [0, 1] $$
+Dann ist $(V, +, \cdot )$ ein reeller Vektorraum, wie man leicht nachrechnet.
+
+Für diesen Vektorraum schreibt man auch $\mathrm{Abb}([0,1], \mathbb R)$ oder 
+$[0,1]^{\mathbb R}$ und nennt ihn den Vektorraum der (reellwertigen) Abbildungen auf 
+dem Intervall $[0,1]$. 
+\end{beispiel}
+
+\begin{beispiel}\label{vectorraum_poly} Eine Abbildung 
+  	$$ f : [a,b] \longrightarrow \mathbb R $$
+auf einem Intervall $[a,b]$ heißt Polynomabbildung, wenn sich $f$ in der Form 
+  	$$ f(x) = a_n x^n + a_{n-1}x^{n-1} + \cdots + a_1 x + a_0 $$
+für ein geeignetes $n$ und mit geeigneten $a_0, a_1, \ldots, a_n \in \mathbb R$ schreiben lässt, 
+vergleiche Beispiel~\ref{funktion_polynomial}. Beispiele hierfür sind etwa $f(x) = x^2+2$ 
+oder $f(x) = 6x^3 - 3x + 4$.
+ 
+Wir betrachten die Menge $U$ der Polynomabbildungen 
+  	$$ f : [0,1] \longrightarrow \mathbb R $$
+Wie in Beispiel~\ref{vectorraum_abbild} definieren wir für
+zwei polynome Abbildungen $f, g \in U$ die Abbildung $f + g$ durch
+  	$$ (f+g)(x) = f(x) + g(x) \quad \textrm{ für alle } x \in [0, 1] $$
+und für eine polynome Abbildung $f \in U$ und ein $r \in \mathbb R$ erklären wir 
+$r \cdot f$ durch 
+  	$$ (r \cdot f)(x) = r \cdot f(x) \quad \textrm{ für alle } x \in [0, 1] $$ 
+Dann ist zunächst zu beachten, dass sowohl $f+g$ als auch $r \cdot f$ wieder 
+polynomiale Abbildungen sind. So ist etwa $(x^2+2) + (6x^3 - 3x + 4) = 6x^3 + x^2 
+- 2x + 6$ oder $3(6x^3 - 3x + 4) = 18 x^3 - 9 x + 12$. 
+
+Hierfür rechnen wir sofort nach, dass $U \subseteq \mathrm{Abb}([0,1], \mathbb R)$ ein 
+Untervektorraum ist, und damit insbesondere auch selbst ein reeller Vektorraum. 
+%Auch hier rechnet man sofort 
+%nach, dass $(U, +, \cdot)$ ein Vektorraum ist. 
+
+Für diesen Vektorraum schreiben wir $\textrm{Pol}([0,1], \mathbb R)$ und nennen ihn 
+den Vektorraum der (reellwertigen) poylnomialen Abbildungen auf 
+dem Intervall $[0,1]$. (Genauso gut hätten wir natürlich jedes andere Intervall 
+$[a,b]$ nehmen können.)
+\end{beispiel}
+
+%Der Vektorraum $U$ aus Beispiel ~\ref{vectorraum_poly} ist eine Teilmenge des 
+%Vektorraums $V$ aus Beispiel ~\ref{vectorraum_abbild}, und die Vektorraumoperationen 
+%auf $U$ sind genauso definiert wie die auf $V$. Solche Paare sind besonders interessant
+%für uns.
+%
+%\begin{definition} Sei $(V, + , \cdot)$ ein Vektorraum und sei $U \subseteq V$ eine 
+%nichtleere Teilmenge. Dann heißt $U$ \index{Untervektorraum}
+%\textbf{Untervektorraum} von $V$ wenn gilt:
+%
+%\begin{enumerate}
+%\item Sind $\vektor{v}, \vektor{w} \in U$ so ist auch 
+%$\vektor{v} + \vektor{w} \in U$.
+%\item Ist $\vektor{v} \in U$ und ist $r$ ein Skalar, so ist auch $r \cdot 
+%\vektor{v} \in U$.
+%\end{enumerate}
+%\end{definition}
+%
+%\begin{beispiel} Die Beispiele von Untervektorräumen des $\mathbb R^n$ die wir im 
+%letzten Abschnitt kennengelernt haben, sind auch Untervektorräume des $\mathbb R^n$ 
+%im Sinne dieser Definition.
+%\end{beispiel}
+%
+%\begin{beispiel} Der Vektorraum $\textrm{Pol}([0,1], \mathbb R)$ aus Beispiel 
+%~\ref{vectorraum_poly} ist ein Untervektorraum von $\textrm{Abb}([0,1], \mathbb R)$ 
+%aus Beispiel ~\ref{vectorraum_abbild}
+%\end{beispiel}
+
+Wir betrachten nun  einen Vektorraum $V$  und Vektoren $\vektor{w}, \vektor{v_1}, \ldots, 
+\vektor{v_n} \in V$.
+
+\begin{definition}\label{vectorraum_lin_comp_fin} $\vektor{w}$ heißt 
+Linearkombination von $\vektor{v_1}, \ldots , \vektor{v_n}$, wenn es 
+$r_1, \ldots , r_n \in \mathbb R$ gibt mit 
+  	$$ \vektor{w} = r_1 \cdot \vektor{v_1} + \cdots + r_n \cdot \vektor{v_n} $$
+\end{definition}
+
+\begin{beispiel} Sei $V = \mathbb R^n$ und seien $\vektor{w} = 
+\left( \begin{smallmatrix} 1 \\ 1 \\ 1 \\ 1 \end{smallmatrix}  \right)$, 
+$\vektor{v_1} = \left( \begin{smallmatrix} 1 \\ 2 \\ 3 \\ 4 \end{smallmatrix} 
+\right)$ und  $\vektor{v_2} =
+\left( \begin{smallmatrix} 8 \\ 6 \\ 4 \\ 2 \end{smallmatrix} \right)$. Dann ist 
+$\vektor{w}$ eine Linearkombination von $\vektor{v_1}$ und 
+$\vektor{v_2}$, denn es gilt:
+  	$$ \vektor{w} = \frac {1}{5} \cdot \vektor{v_1} + \frac {1}{10} \cdot \vektor{v_2} $$
+\end{beispiel}
+
+\begin{beispiel} Sei $V = \mathbb R^n$ und seien $\vektor{w} = 
+\left( \begin{smallmatrix} 1 \\ 1 \\ 2 \\ 2 \end{smallmatrix}  \right)$, 
+$\vektor{v_1} = \left( \begin{smallmatrix} 1 \\ 2 \\ 3 \\ 4 \end{smallmatrix} 
+\right)$ und  $\vektor{v_2} =
+\left( \begin{smallmatrix} 8 \\ 6 \\ 4 \\ 2 \end{smallmatrix} \right)$. Dann ist 
+$\vektor{w}$ keine Linearkombination von $\vektor{v_1}$ und 
+$\vektor{v_2}$. Das ist so unmittelbar nicht sofort einzusehen. Wir werden 
+diese Beispiel später im Zusammenhang mit linearen Gleichungssystemen noch einmal 
+untersuchen und überlassen es hier dem Leser, zu zeigen, dass es keine reellen 
+Zahlen $r, s$ gibt mit 
+  	$$ \vektor{w} = r \cdot \vektor{v_1} + s \cdot \vektor{v_2} $$
+\end{beispiel}
+
+\begin{beispiel} Sei $V = \textrm{Pol}([0,1], \mathbb R)$ der Vektorraum aus Beispiel 
+~\ref{vectorraum_poly} und seien $f(x) = 2x^2 - 4$, $f_0(x) = 1$, $f_1(x) = x$, 
+$f_2(x) = x^2$ und $f_3(x) = x^3$. Dann ist $f$ Linearkombination von $f_0, f_1, f_2, 
+f_3$, denn es gilt
+  	$$ f(x) = -4 \cdot f_0(x) + 2 \cdot f_2(x) \,  = -4 \cdot f_0(x) + 0 \cdot f_1(x) 
+   	+ 2 \cdot f_2(x) + 0 \cdot f_3(x) $$
+\end{beispiel}
+
+Das Konzept der Linearkombination lässt sich auch auf unendliche Familien von 
+Vektoren ausdehnen. Dazu sei $\Lambda$ eine Indexmenge, etwa $\Lambda = \{ 1, 
+\ldots , n \}$ oder $\Lambda = \mathbb N$ und es sei $\left\{ 
+\vektor{v_{\lambda}} \right\}_{\lambda \in \Lambda}$ eine Familie von 
+Elementen von $V$ (d.h. für jedes $\lambda \in \Lambda$ ist ein Element 
+$\vektor{v_{\lambda}} \in V$ gegeben). Für $\Lambda = \{ 1, 
+\ldots , n \}$ ist das einfach eine Menge $\{ \vektor{v_1}, \ldots , 
+\vektor{v_n} \}$ von $n$ Elementen aus $V$. Für $\Lambda = \mathbb N = 
+\{ 0, 1, 2, \ldots  \}$ ist eine Menge $\{ \vektor{v_0}, 
+\vektor{v_1}, \vektor{v_2} \ldots  \}$ von 
+unendliche vielen Elementen aus $V$. 
+
+\begin{definition}\label{vectorraum_lin_comp_infin} Ein Vektor $\vektor{w}$ 
+heißt \index{Linearkombination}\textbf{Linearkombination} von $\left\{ 
+\vektor{v_{\lambda}} \right\}_{\lambda \in \Lambda}$, wenn es \textit{endlich 
+viele} $\lambda_1, \ldots , \lambda_n \in \Lambda$  und $r_1, \ldots, r_n \in 
+\mathbb R$ gibt mit 
+  	$$ \vektor{w} = r_1 \cdot \vektor{v_{\lambda_1}} + \cdots +  r_n \cdot \vektor{v_{\lambda_n}} $$
+\end{definition}
+
+\begin{notiz} Ist $\Lambda$ endlich, $\lambda = \{ 1, \ldots, n \}$, so stimmt diese 
+Definition mit der aus Definition ~\ref{vectorraum_lin_comp_fin} überein.
+\end{notiz}
+
+\begin{beispiel}\label{vectorraum_poly_infin} Sei $V = \textrm{Pol}([0,1], \mathbb R)$ und sei 
+$\Lambda = \mathbb N = \{0, 1, 2, \ldots \}$. Definiere $f_n$ durch 
+  	$$ f_n(x) = x^n \quad \textrm{ für alle } n \in \Lambda = \mathbb N $$
+(also $f_0(x) = 1$, $f_1(x) = 1$, $f_2(x) = x^2, \ldots$). Ferner sei $f \in V$ die 
+Polynomfunktion mit $f(x) = 3x^5 -2 x^2 + 7$. Dann ist $f$ eine Linearkombination der 
+$\left( f_{\lambda} \right)_{\lambda \in \Lambda}$. 
+
+Dazu betrachte die endliche Teilmenge von $\Lambda$ mit den Elementen $\lambda_1 = 0$, $\lambda_2 = 2$ und 
+$\lambda_3 = 5$. Dann gilt hierfür
+ 	$$ f(x) = 7 \cdot f_{\lambda_1}(x) + (-2) \cdot f_{\lambda_2}(x) + 3 \cdot 
+    	f_{\lambda_3}(x) $$
+
+Allgemein ist jede beliebige Polynomfunktion $f: [0, 1] \longrightarrow \mathbb R$ eine 
+Linearkombination der $\left\{ f_{\lambda} \right\}_{\lambda \in \Lambda}$. Schreibt sich dazu $f(x)$ etwa als
+  	$$ f(x) = a_n x^n + a_{n-1} x^{n-1} + \cdots + a_1 x + a_0, $$
+so betrachte die endliche Teilmenge $\{0, 1, \ldots, n \} \subseteq \Lambda$ und erhalte mit
+  	$$ f(x) = a_n \cdot f_n(x) + a_{n-1} \cdot f_{n-1}(x)  + \cdots + a_1 \cdot f_1(x) + a_0 \cdot f_0(x) $$ 
+eine Darstellung wie gewünscht.
+
+Die Exponentialfunktion $e^x$, eingeschränkt auf das Intervall $[0,1]$ hat eine 
+Beschreibung durch die sogenannte Exponentialreihe
+  	$$ e^x = \sum_{n = 0}^{\infty} \frac {x^n}{n!} = 1 + x + \frac {x^2}{2} + 
+	\frac {x^3}{6} + \frac {x^4}{24} + \ldots $$
+hat also auch eine Summendarstellung mit den $f_{\lambda}$. Trotzdem ist das keine 
+Darstellung der Exponentialfunktion als Linearkombination der $f_{\lambda}$, da 
+unendlich viele der $f_{\lambda}$ benötigt werden. 
+
+Man benötigt etwas Analysis um zu zeigen, dass es auch keine andere Darstellung der 
+Exponentialfunktion als Linearkombination der $f_{\lambda}$ gibt, die 
+Exponentialfunktion ist also keine Polynomfunktion.
+\end{beispiel}
+
+\begin{definition} Eine Familie  $\left\{ \vektor{v_{\lambda}} \right\}_{\lambda \in \Lambda}$ von 
+Vektoren in $V$ heißt ein \index{Vektorraum!Erzeugendensystem}\textbf{Erzeugendensystem} 
+von $V$, wenn sich jedes Element $\vektor{v} \in V$ als 
+Linearkombination von $\left\{ \vektor{v_{\lambda}} \right\}_{\lambda \in \Lambda}$ schreiben lässt.
+\end{definition}
+
+\begin{beispiel} sei $V = \{ \left( \begin{smallmatrix} x \\ y \\ 0 \end{smallmatrix} \right) \vert \, x, y 
+\in \mathbb R \}$. Dann ist $V$ ein Vektorraum (als untervektorraum von $\mathbb R^3$) und 
+  	$$ \vektor{v_1} = \left( \begin{matrix} 1 \\ 0 \\ 0 \end{matrix} \right), \quad
+   	\vektor{v_2} = \left( \begin{matrix} 0 \\ 1 \\ 0 \end{matrix} \right) $$
+ist ein Erzeugendensystem von $V$. Ebenso ist 
+  	$$ \vektor{w_1} = \left( \begin{matrix} 1 \\ 1 \\ 0 \end{matrix} \right), \quad
+	\vektor{w_2} = \left( \begin{matrix} 1 \\ -1 \\ 0 \end{matrix} \right), \quad
+  	\vektor{w_3} = \left( \begin{matrix} 3 \\ 2 \\ 0 \end{matrix} \right) $$
+ein Erzeugendensystem von $V$. 
+\end{beispiel}
+
+\begin{beispiel}\label{vectorraum_poly_erz} Ist $U = \textrm{Pol}([0,1], \mathbb R)$ der Vektorraum der 
+polynomialen Funktionen aus Beispiel ~\ref{vectorraum_poly} und isti $\left( f_{n} \right)_{n \in \mathbb N}$
+die Familie polynomialer Funktionen aus Beispiel~\ref{vectorraum_poly_infin}, so ist 
+$\left( f_{n} \right)_{n \in \mathbb N}$ ein Erzeugendensystem von $U$, wie wir in Beispiel 
+~\ref{vectorraum_poly_infin} nachgerechnet haben.
+\end{beispiel}
+
+\begin{beispiel} Ist $V = \textrm{Abb}([0,1], \mathbb R)$ der Vektorraum aus Beispiel~\ref{vectorraum_abbild} 
+und ist $\left( f_{n} \right)_{n \in \mathbb N}$
+die Familie (polynomialer) Abbildungen aus Beispiel~\ref{vectorraum_poly_infin}, so ist 
+$\left( f_{n} \right)_{n \in \mathbb N}$ kein Erzeugendensystem von $V$, da die Exponentialfunktion in $V$ liegt, 
+aber keine Linearkombination der $\left( f_{n} \right)_{n \in \mathbb N}$ ist.
+\end{beispiel}
+
+\begin{definition}  Eine Familie  $\left\{ \vektor{v_{\lambda}} \right\}_{\lambda \in \Lambda}$ von 
+Vektoren in $V$ heißt \index{Vektoren!linear unabhängig}\index{lineare Unabhängigkeit}\textbf{linear 
+unabhänigig}, wenn gilt:
+
+Ist $\Lambda_0 = \{\lambda_1, \ldots , \lambda_n \} \subseteq \Lambda$ eine beliebige endliche Teilmenge von 
+$\Lambda$ und sind $r_1, \ldots, r_n$ reelle Zahlen mit 
+  	$$ r_1 \cdot \vektor{v_{\lambda_1}} + r_2 \cdot \vektor{v_{\lambda_2}} + \cdots 
+  	+ r_n \cdot \vektor{v_{\lambda_n}} = \vektor{0} $$
+so muss schon gelten:
+  	$$ r_1 = r_2 = \ldots = r_n = 0 $$
+Andernfalls heißt die Familie $\left\{ \vektor{v_{\lambda}} \right\}_{\lambda \in \Lambda}$ linear 
+abhängig.
+\end{definition}
+
+\begin{notiz} Ist $\Lambda$ insgesamt schon eine endlich Menge, so reicht es,d ie Bedingung aus der Definition 
+nur für $\Lambda_0 = \Lambda$ zu prüfen. Wir erhalten dann wieder die Definition ~\ref{uvr_lin_unab}, die 
+wir im letzten Abschnitt für Vektoren im $\mathbb R^n$ gemacht haben.
+\end{notiz}
+
+\begin{notiz}\label{lin_un_teil} Ist $\left\{ \vektor{v_{\lambda}} \right\}_{\lambda \in \Lambda}$ eine 
+Familie linear unabhängiger Vektoren und ist $\Gamma \subseteq \Lambda$ eine Teilmenge von $\Lambda$, so ist 
+auch $\left\{ \vektor{v_{\lambda}} \right\}_{\lambda \in \Gamma}$ linear unabhängig. 
+\end{notiz}
+
+\begin{beispiel} Die Vektoren $\vektor{v_1} = \left( \begin{smallmatrix} 1 \\ 0 \\ 0 \\ 0 
+\end{smallmatrix} \right)$ und $\vektor{v_2} = \left( \begin{smallmatrix} 0 \\ 1 \\ 0 \\ 0 
+\end{smallmatrix} \right)$ sind linear unabhängig, wie man sofort sieht.
+\end{beispiel}
+
+\begin{beispiel} Die Vektoren $\vektor{v_1} = \left( \begin{smallmatrix} 1 \\ 1 \\ 1 \\ 1 
+\end{smallmatrix} \right)$ und $\vektor{v_2} = \left( \begin{smallmatrix} 1 \\ -1 \\ -1 \\ 1 
+\end{smallmatrix} \right)$ und $\vektor{v_3} = \left( \begin{smallmatrix} 4 \\ 3 \\ 3 \\ 4 
+\end{smallmatrix} \right)$ sind linear abhängig, denn 
+  	$$ 7 \cdot \vektor{v_1} + \vektor{v_1} + (-2) \cdot \vektor{v_1} = \vektor{0} $$
+\end{beispiel}
+
+\begin{beispiel} Alle Beispiele linear unabhängiger Vektoren aus dem letzten Abschnitt sind auch linear 
+unabhängig in der neuen Definition; alle Beispiele linear abhängiger Vektoren aus dem letzten Abschnitt sind 
+auch linear abhängig im Sinne der neuen Definition.
+\end{beispiel}
+
+\begin{beispiel}\label{vectorraum_poly_lin_un} ist $U = \textrm{Pol}([0,1], \mathbb R)$ der Vektorraum der 
+polynomialen Funktionen aus Beispiel~\ref{vectorraum_poly} und ist $\left( f_{n} \right)_{n \in \mathbb N}$
+die Familie polynomialer Funktionen aus Beispiel~\ref{vectorraum_poly_infin}, so ist 
+$\left( f_{n} \right)_{n \in \mathbb N}$ eine Familie linear unabhängiger Vektoren. Dies nachzurechnen 
+erfordert ein wenig Analysis: 
+Sei $\{ i_1, \ldots , i_n \} \subseteq \mathbb N$ eine endliche Teilmenge, wobei wir annehmen können, dass $i_1 
+< i_2 < \cdots < i_n$, und seien $r_1, \ldots , r_n \in \mathbb R$ mit 
+  	$$ 0 = r_1 \cdot f_{i_1}(x) + \cdots r_n \cdot f_{i_n}(x) $$
+Wir differenzieren nun beide Seiten wiederholt und beachten dabei, dass $f_{i_l}^{(i_n)}(x) = 0$ für $l < n$, 
+da $i_l < i_n$, und dass $f_{i_n}^{(i_n)}(x) = i_n! \, (= i_n(i_n-1) \cdots 1)$. Damit erhalten wir also durch 
+$i_n$--faches Differenzieren
+  	$$ 0 = r_n i_n! $$
+woraus folgt, dass $r_n = 0$ gelten muss. Damit haben wir schon eine Linearkombination
+  	$$ 0 = r_1 \cdot f_{i_1}(x) + \cdots r_{n-1} \cdot f_{i_{n-1}}(x) $$ 
+mit der wir genauso vorgehen und durch $i_{n-1}$--faches Ableiten zeigen, dass auch $r_{n-1} = 0$. Nach $n$ 
+Schritten haben wir gezeigt, dass $r_1 = r_2 = \ldots = r_n = 0$.
+\end{beispiel}
+
+\begin{beispiel} Isti wieder $U = \textrm{Pol}([0,1], \mathbb R)$ der Vektorraum der 
+polynomialen Funktionen aus Beispiel~\ref{vectorraum_poly} und ist $\left( g_{n} \right)_{n \in \mathbb N}$
+die Familie polynomialer Funktionen mit 
+  	$$ \begin{array} {l c l l }
+  	g_0(x) & = & 2 x^2 + 3 x^4 &  \\
+  	g_n(x) & = & x^{2n} & \, \textrm{ für } n \geq 1 
+  	\end{array} $$
+so sind die $\left( g_{n} \right)_{n \in \mathbb N}$ linear abhängig, denn $g_0(x) - 2g_1(x) - 3 g_2(x) = 0$.
+
+Definieren wir stattdessen 
+  	$$ g_0(x) = 1 + 2 x^2 + 3 x^4 $$
+so ist die Familie $\left( g_{n} \right)_{n \in \mathbb N}$ linear unabhängig. Das nachzurechnen überlassen 
+bleibt Ihnen als Übung überlassen.
+\end{beispiel}
+
+\begin{definition} Eine Familie  $\left\{ \vektor{v_{\lambda}} \right\}_{\lambda \in \Lambda}$ von 
+Vektoren in $V$ heißt \index{Vektorraum!Basis}\index{Basis} \textbf{Basis} von $V$, wenn die Vektoren
+$\left\{ \vektor{v_{\lambda}} \right\}_{\lambda \in \Lambda}$ sowohl linear unabhängig als auch ein 
+Erzeugendensystem von $V$ ist.
+\end{definition}
+
+\begin{beispiel}\label{vectorraum_standard_basis} Die Vektoren  $\vektor{e_1} = 
+\left( \begin{smallmatrix} 1 \\ 0 \\ \vdots \\ 0
+\end{smallmatrix} \right)$, $\vektor{e_2} = \left( \begin{smallmatrix} 0 \\ 1 \\ \vdots \\ 0 
+\end{smallmatrix} \right), \ldots , \vektor{e_n} = \left( \begin{smallmatrix} 0 \\ \vdots \\ 0 \\ 1 
+\end{smallmatrix} \right)$ bilden eine Basis von $\mathbb R^n$ wie wir schon im Beispiel ~\ref{uvr_standard_basis} 
+aus dem letzten Abschnitt gesehen haben. 
+\end{beispiel}
+
+\begin{beispiel} Die Vektoren  $\vektor{v_1} = 
+\left( \begin{smallmatrix} 1 \\ 2 \\ 3 \\ 4
+\end{smallmatrix} \right)$, $\vektor{v_2} = \left( \begin{smallmatrix} 0 \\ 1 \\ 2 \\ 3 
+\end{smallmatrix} \right)$, $\vektor{v_3} = \left( \begin{smallmatrix} 0 \\ 0 \\ 1 \\ 2 
+\end{smallmatrix} \right)$ und  $\vektor{v_4} = \left( \begin{smallmatrix} 0 \\ 0 \\ 0 \\ 1 
+\end{smallmatrix} \right)$ bilden eine Basis von $\mathbb R^4$, wie man leicht nachrechnet.
+\end{beispiel}
+
+\begin{beispiel} Die Vektoren  $\vektor{w_1} = 
+\left( \begin{smallmatrix} 1 \\ 2 \\ 3 \\ 4
+\end{smallmatrix} \right)$, $\vektor{w_2} = \left( \begin{smallmatrix} 1 \\ 0 \\ 1 \\ 0 
+\end{smallmatrix} \right)$, $\vektor{w_3} = \left( \begin{smallmatrix} 0 \\ 1 \\ 0 \\ 1 
+\end{smallmatrix} \right)$ $\vektor{w_4} = \left( \begin{smallmatrix} 2 \\ 0 \\ 1 \\ 0 
+\end{smallmatrix} \right)$ und  $\vektor{w_5} = \left( \begin{smallmatrix} 0 \\ 1 \\ 0 \\ 2 
+\end{smallmatrix} \right)$ bilden keine eine Basis von $\mathbb R^4$. Diese Vektoren erzeugen zwar 
+den $\mathbb R^4$, aber sie sind nicht linear unabhängig, da etwa
+  	$$ \vektor{w_1} - 5 \cdot \vektor{w_2} + 2  \cdot \vektor{w_3} - 2  \cdot\vektor{w_4} = \vektor{0} $$
+\end{beispiel}
+
+\begin{beispiel} Die Vektoren  $\vektor{u_1} = 
+\left( \begin{smallmatrix} 1 \\ 2 \\ 3 \\ 4
+\end{smallmatrix} \right)$, $\vektor{u_2} = \left( \begin{smallmatrix} 1 \\ 0 \\ 1 \\ 0 
+\end{smallmatrix} \right)$ und $\vektor{u_3} = \left( \begin{smallmatrix} 0 \\ 1 \\ 0 \\ 1 
+\end{smallmatrix} \right)$ sind keine Basis von $\mathbb R^4$. Sie sind zwar linear unabhängig, erzuegen aber 
+$\mathbb R^4$ nicht. So ist etwa $\vektor{v} = 
+\left( \begin{smallmatrix} 1 \\ 2 \\ 3 \\ 5 \end{smallmatrix} \right)$ keine Linearkombination von 
+$\vektor{u_1}, \vektor{u_2}, \vektor{u_3}$. 
+\end{beispiel}
+
+\begin{beispiel}\label{vectorraum_poly_basis} Sei $U = \textrm{Pol}([0,1], \mathbb R)$ der Vektorraum der 
+polynomialen Funktionen aus Beispiel ~\ref{vectorraum_poly} und sei $\left( f_{n} \right)_{n \in \mathbb N}$
+die Familie polynomialer Funktionen aus Beispiel ~\ref{vectorraum_poly_infin}. Dann ist 
+$\left( f_{n} \right)_{n \in \mathbb N}$ eine Basis von $U$, wie aus den Beispielen ~\ref{vectorraum_poly_erz} 
+und ~\ref{vectorraum_poly_lin_un} folgt.
+\end{beispiel}
+
+\bigbreak
+
+Ein wichtiges allgemeines Ergebnis über Basen liefert der folgende Satz (das im Fall unendlicher Indexfamilien 
+auf dem sogenannten Auswahlaxiom beruht):
+
+\begin{satz}\label{vectorraum_basis_allgemein} 
+Für eine Familie $\left\{ \vektor{v_{\lambda}} \right\}_{\lambda \in \Lambda}$ von 
+Vektoren in $V$ sind äquivalent:
+\begin{enumerate}
+\item $\left\{ \vektor{v_{\lambda}} \right\}_{\lambda \in \Lambda}$ ist eine Basis von $V$.
+\item $\left\{ \vektor{v_{\lambda}} \right\}_{\lambda \in \Lambda}$ ist ein unverkürzbares 
+Erzeugendensystem von $V$, d.h. $\left\{ \vektor{v_{\lambda}} \right\}_{\lambda \in \Lambda}$ erzeugt $V$ 
+und für jede echte Teilmenge $\Lambda_0 \subset \Lambda$ gilt:
+$\left\{ \vektor{v_{\lambda}} \right\}_{\lambda \in \Lambda_0}$ erzeugt $V$ nicht mehr.
+\item $\left\{ \vektor{v_{\lambda}} \right\}_{\lambda \in \Lambda}$ ist eine maximale linear unabhängige 
+Familie von Vektoren on $V$, d.h. nimmt man noch einen Vektor $\vektor{w}$ hinzu, so ist die 
+resultierende Familie niemals mehr linear unabhängig.
+\item $\left\{ \vektor{v_{\lambda}} \right\}_{\lambda \in \Lambda}$ ist ein Erzeugendensystem von $V$ mit 
+dem sich jedes Element von $V$ auf genau eine Weise darstellen lässt.
+\end{enumerate}
+\end{satz}
+
+\beweis{ Wir zeigen $1. \Longrightarrow 2. \Longrightarrow 4. \Longrightarrow 3. \Longrightarrow 1.$ Damit sind 
+alle Äquivalenzen gezeigt.
+
+$1. \Longrightarrow 2.$: Angenommen wir könnten ein $\vektor{v_{\lambda_0}}$ weglassen und erhielten 
+immer noch ein Erzeugendensystem $\left\{ \vektor{v_{\lambda}} \right\}_{\lambda \in \Lambda \setminus 
+\{ \lambda_0 \}}$ von $V$. Dann könnten wir insbesondere $\vektor{v_{\lambda_0}}$ als Linearkombination 
+dieses Erzeugendensystems schreiben: 
+  	$$ \vektor{v_{\lambda_0}} = r_1 \vektor{v_{\lambda_1}} + r_2 \vektor{v_{\lambda_2}} 
+    	+ \cdots + r_n \vektor{v_{\lambda_n}} $$
+mit $\lambda_1, \ldots , \lambda_n \in \Lambda \setminus \{ \lambda_0 \}$. Dann ist aber 
+  	$$ \vektor{v_{\lambda_0}} - r_1 \vektor{v_{\lambda_1}} - r_2 \vektor{v_{\lambda_2}} 
+    	- \cdots - r_n \vektor{v_{\lambda_n}} = \vektor{0} $$
+im Widerspruch zur linearen Unabhäniggkeit von $\left\{ \vektor{v_{\lambda}} \right\}_{\lambda \in 
+\Lambda}$.
+
+$2. \Longrightarrow 4.$:  Angenommen, ein $\vektor{v}$ hat zwei Darstellungen, 
+  	$$ \begin{array} {l c l c l }
+  	\vektor{v} & = & r_1 \vektor{v_{\lambda_1}} & + \ldots + & r_n \vektor{v_{\lambda_n}} \\
+  	\vektor{v} & = & s_1 \vektor{v_{\mu_1}} & + \ldots + & s_n \vektor{v_{\mu_n}}
+  	\end{array} $$ 
+Dann erhalten wir durch Differenzbilden
+  	$$ \vektor{0} = \left( r_1 \vektor{v_{\lambda_1}}  + \ldots +  r_n 
+     	\vektor{v_{\lambda_n}} \right) - 
+     	\left(s_1 \vektor{v_{\mu_1}}  + \ldots +  s_n \vektor{v_{\mu_n}}\right) $$
+also (nach eventueller Umbenennung und Umsortierung) eine Linearkombination
+  	$$  \vektor{0} =  t_1 \vektor{v_{\nu_1}}  + \ldots +  t_l
+     	\vektor{v_{\nu_l}} $$
+in der nach Voraussetzung mindestens einer der Koeffizienten $t_i$ von Null verschieden ist. Wir können 
+annehmen, dass das $t_1$ ist. Dann gilt aber
+  	$$ \vektor{v_{\nu_1}} = - \frac {1}{t_1} \left( t_2  \vektor{v_{\nu_2}} + \ldots + 
+	t_l  \vektor{v_{\nu_l}} \right) $$
+und damit könnte $ \vektor{v_{\nu_1}}$ aus dem Erzeugendensystem entfernt werden und die verbleibenden 
+vektoren wären immer noch erzeugend. Ein Widerspruch zur Annahme.
+
+$4. \Longrightarrow 3.$: Wenn sich jedes Element in $V$ eindeutig mit $\left\{ \vektor{v_{\lambda}} 
+\right\}_{\lambda \in \Lambda}$ darstellen lässt, dann gilt das insbesondere für den Nullvektor. 
+  	$$  \vektor{0} =  r_1 \vektor{v_{\lambda_1}}  + \ldots +  r_n \vektor{v_{\lambda_n}} $$
+Da sich der Nullvektor aber in trivialer Weise 
+  	$$  \vektor{0} =  0 \cdot  \vektor{v_{\lambda_1}}  + \ldots +  0 \cdot \vektor{v_{\lambda_n}} $$
+darstellen lässt, folgt aus der Eindeutigkeit schon, dass $r_1 = \ldots = r_n = 0$. Damit ist die Familie 
+$\left\{ \vektor{v_{\lambda}} \right\}_{\lambda \in \Lambda}$ linear unabhängig. Da sie aber schon 
+erzeugt, kann man kein weiteres Element aus $V$ mehr dazu nehmen, ohne die lineare Unabhängigkeit zu 
+zerstören. Ist $\vektor{w}$ ein beliebiger weiterer Vektor, so schreibt sich $\vektor{w}$ als
+  	$$ \vektor{w} = r_1 \vektor{v_{\lambda_1}} + \ldots + r_n \vektor{v_{\lambda_n}} $$
+was zu einer nicht-trivialen Linearkombination
+  	$$ \vektor{w} = \vektor{w} - r_1 \vektor{v_{\lambda_1}} - \ldots - r_n \vektor{v_{\lambda_n}} $$
+so dass die Familie $\left\{ \vektor{v_{\lambda}} \right\}_{\lambda \in \Lambda} \cup 
+\{\vektor{w} \}$ nicht mehr linear unabhängig ist.
+
+$3. \Longrightarrow 1.$: Es bleibt noch zu zeigen, dass $\left\{ \vektor{v_{\lambda}} \right\}_{\lambda 
+\in \Lambda}$ den Vektorraum $V$ erzeugt. Nehmen wir dazu an, dass es ein $\vektor{v}$ gibt, dass keine  
+Linearkombination von $\left\{ \vektor{v_{\lambda}} \right\}_{\lambda \in \Lambda}$ ist, so wäre auch 
+die Familie $\left\{ \vektor{v_{\lambda}} \right\}_{\lambda \in \Lambda} \cup \{\vektor{v} \}$ 
+linear unabhängig:
+
+Klar ist, das es keine Beziehung der Form
+  	$$ \vektor{0} =  r_1 \cdot  \vektor{v_{\lambda_1}}  + \ldots +  r_n \cdot
+	\vektor{v_{\lambda_n}} $$
+mit $\lambda_1, \ldots , \lambda_n \in \Lambda$ geben kann, da ja $\left\{ \vektor{v_{\lambda}} 
+\right\}_{\lambda \in \Lambda}$ eine Familie linear unabhängiger Vektoren ist. Es kann also höchstens 
+eine Beziehung der Form
+  	$$ \vektor{0} =  r_1 \cdot  \vektor{v_{\lambda_1}}  + \ldots +  r_n \cdot
+	\vektor{v_{\lambda_n}} + s \cdot \vektor{v} $$
+mit $s \neq 0$ geben. Aber dann lässt sich diese Beziehung auflösen zu 
+  	$$ \vektor{v} = - \frac {r_1}{s} \cdot  \vektor{v_{\lambda_1}}  - \ldots -  
+	\frac {r_n}{s} \cdot \vektor{v_{\lambda_n}} $$
+und $\vektor{v}$ wäre eine Linearkombination der $\left\{ 
+\vektor{v_{\lambda}} \right\}_{\lambda \in \Lambda}$, im Widerspruch zur Wahl von $\vektor{v}$.
+ 
+Das wiederum ist ein Widerspruch dazu, dass $\left\{ \vektor{v_{\lambda}} \right\}_{\lambda \in 
+\Lambda}$ ein nicht--verlängerbares System linear unabhängiger Vektoren ist.
+}
+
+\begin{korollar} Ist $\{ \vektor{v_1}, \vektor{v_2}, \ldots , \vektor{v_m} \}$ ein 
+Erzeugendensystem eines Vektorraums $V$, so enthält es eine Basis, d.h. es gibt $i_1, i_2, \ldots, i_n \in 
+\{1, \ldots , m \}$, so dass $\{ \vektor{v_{i_1}}, \vektor{v_{i_2}}, \ldots , 
+\vektor{v_{i_n}} \}$ eine Basis von $V$ ist.
+\end{korollar}
+
+\beweis{ Das folgt sofort aus Satz ~\ref{vectorraum_basis_allgemein}, indem man aus dem Erzeugendensystem so lange 
+Vektoren weglässt, bis es nicht mehr verkürzt werden kann.
+}
+
+\begin{korollar}\label{lin_un_basiserg} Ist $\left\{ \vektor{v_{\lambda}} \right\}_{\lambda \in \Lambda}$ 
+eine Familie linear unabhängiger Vektoren in $V$, so kann $\left\{ \vektor{v_{\lambda}} 
+\right\}_{\lambda \in \Lambda}$ zu einer Basis von $V$ ergänzt werden.
+\end{korollar}
+
+\beweis{ Das folgt sofort aus Satz ~\ref{vectorraum_basis_allgemein}, indem man das System linear unabhängiger 
+Vektoren so lange verlängert, bis es nicht maximal ist.
+}
+
+Hieraus erhält man nun unmittelbar
+
+\begin{korollar} Jeder Vektorraum hat eine Basis.
+\end{korollar}
+
+Zur Erinnerung: Für eine Menge $M$ bezeichnet $\vert \, M \ \vert$ die Mächtigkeit dieser Menge. Das kann eine 
+endliche Zahl sein oder auch $\infty$.
+
+
+\begin{definition} Ist $\left\{ \vektor{v_{\lambda}} \right\}_{\lambda \in \Lambda}$ eine Basis von $V$, 
+so heißt $\vert \, \Lambda \, \vert$ die Länge der Basis.
+\end{definition}
+
+\begin{beispiel} Die Standardbasis $\{ \vektor{e_1}, \vektor{e_2}, \ldots , \vektor{e_n}\}$ 
+des $\mathbb R^n$ hat die Länge $n$.
+\end{beispiel}
+
+\begin{beispiel} Die Basis $\{ f_n \}_{n \in \mathbb N}$ des Vektorraums $U = \textrm{Pol}([0,1], \mathbb R)$ der 
+polynomialen Funktionen aus Beispiel ~\ref{vectorraum_poly_basis} hat die Länge $\infty$.
+\end{beispiel}
+
+\begin{satz}\label{vektorraum_basis_lange} Je zwei Basen $\left\{ \vektor{v_{\lambda}} \right\}_{\lambda 
+\in \Lambda}$ und 
+$\left\{ \vektor{w_{\gamma}} \right\}_{\gamma \in \Gamma}$ sind gleich lang, d.h. sie sind entweder 
+beide unendlich oder beide endlich mit der selben Anzahl von Elementen.
+\end{satz}
+
+\begin{definition} Die Länge einer Basis von $V$ heißt die \index{Vektorraum!Dimension} 
+\textbf{Dimension} des Vektorraums $V$ und wird mit $\textrm{dim}(V)$ bezeichnet.
+\end{definition} 
+
+\begin{notiz} $\textrm{dim}(V)$ ist eine endliche Zahl oder $\infty$.
+\end{notiz}
+
+Der entscheidende Punkt im Beweis von Satz ~\ref{vektorraum_basis_lange} ist der \index{Satz!Austauschsatz von 
+Steinitz}\textit{Basisaustauschsatz von Steinitz}, den wir nur im endlichdimensionalen Fall formulieren:
+
+\begin{satz}[Basisaustauschsatz von Steinitz] \label{steinitz} Ist $\{ \vektor{v_1}, \ldots , \vektor{v_n} \}$ eine 
+Basis von $V$ und sind $\{ \vektor{w_1}, \ldots , \vektor{w_m} \}$ linear unabhängige Vektoren, so gibt es 
+$i_1, \ldots, i_m \in \{1, \ldots, n \}$ derart, dass die $\vektor{v_{i_l}}$ durch die 
+$\vektor{w_l}$ ersetzt werden können und wieder eine Basis entsteht. In anderen Worten: Die Vektoren 
+$\vektor{u_1}, \ldots, \vektor{u_n}$ mit 
+  	$$ \vektor{u_j} = \left\{ \begin{array} {l l} 
+	\vektor{w_t} & \textrm{ falls } j = i_t \textrm{ für ein } t \\ 
+	\vektor{v_j} & \textrm{ sonst}
+	\end{array} \right. $$
+bilden wieder eine Basis von $V$.
+
+Speziell gilt also $m \leq n$.
+\end{satz}
+
+\beweisvon{~\ref{steinitz}} Zunächst zeigen wir: Ist $\vektor{w} \in V$ ein beliebiger, vom Nullvektor 
+verschiedener Vektor, und gilt
+  	\begin{equation}\label{eq: for w}
+  	\vektor{w} = r_1 \vektor{v_1} + \cdots + r_n \vektor{v_n}  
+  	\end{equation} 
+uznd gilt $r_i \neq 0$ für ein $i$, so ist $\{ \vektor{v_1}, \ldots , \vektor{v_{i-1}}, 
+\vektor{w}, \vektor{v_{i+1}}, \ldots, \vektor{v_n} \}$ wieder eine Basis von V.
+
+Dazu nehmen wir an, dass $i = 1$. Das können wir erreichen, indem wir die $\vektor{v_i}$ anders 
+durchnummerieren. Dann gilt also 
+$ \vektor{w} = r_1 \vektor{v_1} + \cdots + r_n \vektor{v_n} $
+mit $r_1 \neq 0$ und daher 
+   	$$ \vektor{v_1} = \frac {1}{r_1} \cdot \left( \vektor{w} - r_2 \vektor{v_1} - \cdots - 
+  	r_n \vektor{v_n} \right) $$   
+und es folgt leicht, dass $\{ \vektor{w}, \vektor{v_2}, \ldots, \vektor{v_n} \}$ den 
+Vektorraum $V$ erzeugen. Es bleibt zu zeigen, dass sie auch linear unabhängig sind. Dazu sei eine Gleichung
+  	$$ \vektor{0} = s_1\vektor{w} + s_2 \vektor{v_2} + \cdots + s_n \vektor{v_n} $$
+gegeben. Für $\vektor{w}$ setzen wir nun (~\ref{eq: for w}) ein und erhalten
+  	$$ \vektor{0} = s_1 r_1 \vektor{v_1} + 
+   	\left(s_2 + s_1 r_2 \right) \vektor{v_2} + \cdots + 
+   	\left(s_n + s_1 r_n \right) \vektor{v_n} $$
+Aus der linearen Unabhängigkeit von $\vektor{v_1}, \ldots , \vektor{v_n}$ folgt
+  	$$ r_1 s_1 = 0, \quad s_i + s_1 r_i = 0 \, \textrm{ für } \, i \geq 2 $$
+Da $r_1 \neq 0$ erhalten wir hieraus zunächst $s_1 = 0$, und damit durch Einsetzen in die anderen Gleichungen 
+auch sofort $s_i = 0$ für $i = 2, \ldots, n$. 
+
+Wir benutzen vollständige Induktion über die Anzahl $m$ der linear 
+unabhängigen Vektoren.
+
+Für $m = 0$ ist nichts zu zeigen.
+
+Sei also $m \geq 1$ und die Behauptung für $m-1$ linear unabhängige Vektoren schon bewiesen. Durch geschicktes 
+Umnummerieren und Anwendung der Induktionsvoraussetzung können wir erreichen, dass $\{ \vektor{w_1}, 
+\ldots , \vektor{w_{m-1}}, \vektor{v_m}, \ldots, \vektor{v_n} \}$ eine Basis von $V$ ist. 
+Mit dieser Basis können wir auch $\vektor{w_m}$ darstellen und schreiben
+  	$$\vektor{w_m} = r_1 \vektor{w_1} + \cdots + r_{m-1} \vektor{w_{m-1}} + 
+  	r_m \vektor{v_m} + \cdots + r_n \vektor{v_n} $$
+Dabei muss mindestens einer der Koeffizienten $r_m, \ldots, r_n$ von Null verschieden sein, den andernfalls 
+bekämen wir eine nichttriviale Relation zwischen $\vektor{w_1}, \ldots,  \vektor{w_m}$, 
+  	$$ \vektor{w_m} - r_1 \vektor{w_1} - \cdots - r_{m-1} \vektor{w_{m-1}} = 
+   	\vektor{0} $$
+im Widerspruch zu deren linearer Unabhängigkeit. Nach dem ersten Teil des Beweises können wir das 
+entsprechende $\vektor{v_i}$ durch $\vektor{w_m}$ ersetzen und erhalten wieder eine Basis. 
+Damit ist der Basisaustauschsatz von Steinitz beweisen.
+
+\beweisvon{~\ref{vektorraum_basis_lange}} Sei zunächst 
+$\{ \vektor{v_1}, \ldots , \vektor{v_n} \}$ eine endliche Basis von $V$ und sei 
+$\{ \vektor{w_{\lambda}} \}_{\lambda \in \Lambda}$ eine beliebige weitere Basis von  
+$V$. Dann muss nach dem Satz von Steinitz schon gelten, dass $\vert \, \lambda \, \vert \leq n$ ist. (Falls 
+$\Lambda$ endlich ist, folgt das sofort aus ~\ref{steinitz}. Wäre $\Lambda$ unendlich, so könnten wir darin 
+eine $n+1$--elementige Teilmenge $\Lambda_0$ auswählen, und nach ~\ref{lin_un_teil} wäre dann auch 
+$\{ \vektor{w_{\lambda}} \}_{\lambda \in \Lambda_0}$ linear unabhängig, im Widerspruch zu 
+~\ref{steinitz}). Damit können wir also $\{ \vektor{w_{\lambda}} \}_{\lambda \in \Lambda}$ schreiben 
+als $\{ \vektor{w_1}, \ldots , \vektor{w_m} \}$ mit $m \leq n$. Wenn wir nun die Rollen von
+$\{ \vektor{w_1}, \ldots , \vektor{w_m} \}$ und 
+$\{ \vektor{v_1}, \ldots , \vektor{v_n} \}$ vertauschen und wieder den Satz von Steinitz 
+anwenden, so erhalten wir auch $n \leq m$, also insgesamt $n = m$.
+
+Damit haben wir also gezeigt: Hat $V$ eine endliche Basis, so sind alle anderen Basen von $V$ ebenfalls endlich 
+und haben die gleiche Länge wie die vorgegebene Basis. Hieraus folgt aber auch: Hat $V$ eine Basis unendlicher 
+Länge, so sind auch alle anderen Basen unendlich lang.
+
+\bigbreak
+
+\begin{korollar} Ist $U \subseteq V$ eine Untervektorraum, so gilt:
+  	$$ \textrm{dim}(U) \leq \textrm{dim}(V) $$
+\end{korollar}
+
+\beweis Eine Basis von $U$ ist eine Familie linear unabhängiger Vektoren in $V$, lässt sich also nach 
+Korollar~\ref{lin_un_basiserg} zu einer Basis von $V$ ergänzen. Daraus folgt die Behauptung.
+
+\bigbreak
+
+\begin{aufgabe}\label{aufgabe_vr_1} Sei $V = \textrm{Abb}(I, \mathbb R)$ die Menge der Abbbildungen
+  	$$ f: I \longrightarrow \mathbb R $$
+wobei $I$ ein beliebiges Intervall ist (geschlossen, offen oder halboffen). Zeigen Sie, dass $V$ ein 
+Vektorraum wird, wenn man die Vektorraumoperationen wie im Beispiel ~\ref{vectorraum_abbild} für 
+$\textrm{Abb}([0,1], \mathbb R)$ definiert.
+\end{aufgabe}
+
+\begin{aufgabe}\label{aufgabe_vr_2}  Sei $V = \textrm{Abb}(\mathbb R, \mathbb R)$ der Vektorraum der Abbildungen
+  	$$ f : \mathbb R \longrightarrow \mathbb R $$
+(vergleiche Aufgabe ~\ref{aufgabe_vr_1}). Zeigen Sie, dass die Elemente $f, g \in V$ mit 
+  	$$ f(x) = \cos(x), \quad g(x) = \sin(x) \, \textrm{ für alle } x \in \mathbb R $$
+linear unabhängig sind.
+\end{aufgabe} 
+
+\begin{aufgabe}\label{aufgabe_vr_3}  Sei $V = \textrm{Abb}((0, \infty), \mathbb R)$ der Vektorraum der Abbildungen
+  	$$ f : (0, \infty) \longrightarrow \mathbb R $$
+(vergleiche Aufgabe ~\ref{aufgabe_vr_1}). Zeigen Sie, dass die Elemente $f, g \in V$ mit 
+  	$$ f(x) = \exp(x), \quad g(x) = \ln(x) \, \textrm{ für alle } x \in (0, \infty) $$
+linear unabhängig sind.
+\end{aufgabe} 
+
+\begin{aufgabe}\label{aufgabe_vr_4} Sei $V = \textrm{Abb}((1, \infty), \mathbb R)$ der Vektorraum der Abbildungen
+  	$$ f : (1, \infty) \longrightarrow \mathbb R $$
+(vergleiche Aufgabe ~\ref{aufgabe_vr_1}). Zeigen Sie, dass die Elemente $f, g, h \in V$ mit 
+  	$$ f(x) = \frac {1}{x+1}, \quad g(x) = \frac {1}{x-1}, \quad h(x) = \frac {x}{x^2-1} 
+	\, \textrm{ für alle } x \in (1, \infty) $$
+linear abhängig sind.
+\end{aufgabe}
+
+\begin{aufgabe} Benutzen Sie den Satz von Steinitz ~\ref{steinitz} um folgende Aussage zu beweisen:
+Ist $E_1$ parallel zu $E_2$, so ist auch $E_2$ parallel zu $E_1$.
+\end{aufgabe}
+
+\bigbreak
+
+\newpage
+
+
+\section{Vektorräume über beliebigen Körpern}\label{sect_vr_beliebig}
+
+\setcounter{definition}{0}
+\setcounter{beispiel}{0}
+\setcounter{notiz}{0}
+
+Im vorangegangenen Abschnitt haben wir - weder in den Aussagen noch in den Beweisen - 
+die spezielle Struktur von $\mathbb R$, also der Anordnung oder dem Dedekindschen 
+Schnittgesetz, gemacht. Alle Aussagen und Beweise benutzen lediglich die Regeln  
+für Addition, subtraktion, Multiplikation oder Division, also die allgemeinen 
+Axiome, die für jeden Körper gelten. Genauso gut hätten wir anstelle von 
+$\mathbb R$ also auch $\mathbb C$, $\mathbb Q$ oder gar einen der endlichen Körper  
+$\mathbb F_p$, die wir in Abschnitt~\ref{section_gruppe} kennengelernt haben, nehmen 
+können. Das wollen wir in diesem Abschnitt auch tun. Dazu fixieren wir einen 
+beliebigen Körper $K$.
+
+
+
+\begin{beispiel} Wir haben im Beispiel~\ref{vectorraum_poly} in Abschnitt\ref{section_vr_reell} 
+schon allgemeine polynomiale Abbildungen 
+  	$$ f : [0, 1] \longrightarrow \mathbb R $$
+betrachtet. In der Praxis treten dabei meistens Polynome mit rationalen Koeffizienten 
+auf, also Abbildungen $f(x)$, die sich als 
+  	$$ f(x) = a_n x^n + a_{n-1} x^{n-1} + \cdots + a_1 x + a_0 $$
+mit $a_i \in \mathbb Q$ schreiben lassen. Die Menge dieser Polynome mit rationalen 
+Koeffizienten wollen wir mit $\textrm{Pol}_{\mathbb Q}([0,1], \mathbb R)$ bezeichnen. 
+Dann ist $\textrm{Pol}_{\mathbb Q}([0,1], \mathbb R)$ mit der Addition wie wir sie in 
+Beispiel~\ref{vectorraum_poly} definiert haben und der Skalarmultiplikation
+  	$$ (q \cdot f)(x) = q \cdot f(x) \qquad \textrm{ für alle } x \in [0,1] $$
+für $q \in \mathbb Q$ ein $\mathbb Q$--Vektorraum. 
+
+Beachten Sie dabei, dass $\textrm{Pol}_{\mathbb Q}([0,1], \mathbb R)$ kein reeller 
+Vektorraum ist, denn die Abbildung $f$ mit  $f(x) = x$ ist sicherlich ein Element von 
+$\textrm{Pol}_{\mathbb Q}([0,1], \mathbb R)$, aber $\sqrt{2} \cdot f$ ist es nicht.
+\end{beispiel}
+
+\begin{beispiel} Die Menge $\mathbb R$ der reellen Zahlen, zusammen mit der üblichen 
+Addition reeller Zahlen und der (üblichen) Multiplikation mit rationalen Zahlen ist 
+ein $\mathbb Q$--Vektorraum.
+\end{beispiel}
+
+
+Nun betrachten wir in einem beleibigen $K$--Vektorraum noch ein Familie $\left\{ 
+\vektor{v_{\lambda}} \right\}_{\lambda \in \Lambda}$ von 
+Elementen von $V$.
+
+\begin{definition}\leavevmode\newline
+\vspace{-0.8cm} 
+
+\begin{itemize}
+\item Ein Vektor $\vektor{w}$ 
+heißt \index{Linearkombination}\textbf{Linearkombination} von $\left\{ 
+\vektor{v_{\lambda}} \right\}_{\lambda \in \Lambda}$, wenn es \textit{endlich 
+viele} $\lambda_1, \ldots , \lambda_n \in \Lambda$  und $\kappa_1, \ldots, 
+\kappa_n \in K$ gibt mit 
+  	$$ \vektor{w} = \kappa_1 \cdot \vektor{v_{\lambda_1}} + \cdots 
+	+ \kappa_n \cdot \vektor{v_{\lambda_n}} $$
+\item Eine Familie  $\left\{ \vektor{v_{\lambda}} \right\}_{\lambda \in 
+\Lambda}$ von Vektoren in $V$ heißt ein \index{Vektorraum!Erzeugendensystem}\textbf{Erzeugendensystem} 
+von $V$, wenn sich jedes Element $\vektor{v} \in V$ als 
+Linearkombination von $\left\{ \vektor{v_{\lambda}} \right\}_{\lambda 
+\in \Lambda}$ schreiben lässt.
+\item Eine Familie  $\left\{ \vektor{v_{\lambda}} \right\}_{\lambda \in \Lambda}$ von 
+Vektoren in $V$ heißt \index{Vektoren!linear unabhängig}\index{lineare Unabhängigkeit}\textbf{linear 
+unabhänigig}, wenn gilt:
+
+Ist $\Lambda_0 = \{\lambda_1, \ldots , \lambda_n \} \subseteq \Lambda$ eine beliebige endliche Teilmenge von 
+$\Lambda$ und sind $\kappa_1, \kappa_2 \ldots, \kappa_n \in K$ Skalare mit 
+  	$$ \kappa_1 \cdot \vektor{v_{\lambda_1}} + \kappa_2 \cdot 
+    	\vektor{v_{\lambda_2}} + \cdots 
+ 	+ \kappa_n \cdot \vektor{v_{\lambda_n}} = \vektor{0} $$
+so muss schon gelten:
+  	$$ \kappa_1 = \kappa_2 = \ldots = \kappa_n = 0 $$
+Andernfalls heißt die Familie $\left\{ \vektor{v_{\lambda}} \right\}_{\lambda \in \Lambda}$ linear 
+abhängig.
+\item Eine Familie  $\left\{ \vektor{v_{\lambda}} \right\}_{\lambda \in 
+\Lambda}$ von Vektoren in $V$ heißt \index{Vektorraum!Basis}\index{Basis} 
+\textbf{Basis} von $V$, wenn die Vektoren $\left\{ \vektor{v_{\lambda}} 
+\right\}_{\lambda \in \Lambda}$ sowohl linear unabhängig als auch ein 
+Erzeugendensystem von $V$ ist.
+\end{itemize}
+\end{definition}
+
+\begin{beispiel} Über jeden Körper $K$ hat das $n$--dimensionale kartesische Produkt 
+$K^n$ die Basis
+  	$$ \vektor{e_1} = 
+ 	\left( \begin{smallmatrix} 1 \\ 0 \\ \vdots \\ 0 \end{smallmatrix} \right), \quad 
+  	\vektor{e_2} = \left( \begin{smallmatrix} 0 \\ 1 \\ \vdots \\ 0 
+  	\end{smallmatrix} \right), \ldots , \vektor{e_n} = \left( \begin{smallmatrix} 
+   	0 \\ \vdots \\ 0 \\ 1 \end{smallmatrix} \right) $$
+\end{beispiel}
+
+\begin{beispiel} Der $\mathbb Q$--Vektorraum $\textrm{Pol}_{\mathbb Q}([0,1], 
+\mathbb R)$ hat die Basis $1, x, x^2, x^3, \ldots $.
+\end{beispiel}
+
+\begin{aufgabe} Der Begriff der linearen Unabhängigkeit hängt ab von den Skalaren, 
+die wir betrachten. Zeigen Sie dazu:
+
+Betrachten wir $\mathbb R$ als $\mathbb Q$--Vektorraum, so sind die Elemente $1, 
+\sqrt{2} \in \mathbb R$ linear unabhängig. Betrachten wir $\mathbb R = \mathbb R^1$ 
+als $\mathbb R$--Vektorraum, so sind sie lineare abhängig.
+\end{aufgabe}
+
+\bigbreak
+
+Alle Aussagen, die wir über allgemeine reelle Vektorräume getroffen haben, gelten 
+vollkommen analog auch für Vektorräume über beliebigen Körpern. Speziell gilt 
+das für Satz~\ref{vectorraum_basis_allgemein}, der sich  - inklusive Beweis - 
+wortwörtlich auf unsere Situation überträgt. Wir wollen hier seine für uns 
+wichtigsten Folgerungen auflisten:
+
+\begin{satz}\label{basis_allg_vr_allg_koerper} Für einen beliebigen $K$--Vektorraum 
+$V$ gilt:
+
+\begin{enumerate}
+\item Ist $\{ \vektor{v_1}, \vektor{v_2}, \ldots , \vektor{v_m} \}$ ein 
+Erzeugendensystem eines Vektorraums $V$, so enthält es eine Basis, d.h. es gibt $i_1, i_2, \ldots, i_n \in 
+\{1, \ldots , m \}$, so dass $\{ \vektor{v_{i_1}}, \vektor{v_{i_2}}, \ldots , 
+\vektor{v_{i_n}} \}$ eine Basis von $V$ ist.
+\item Ist $\left\{ \vektor{v_{\lambda}} \right\}_{\lambda \in \Lambda}$ 
+eine Familie linear unabhängiger Vektoren in $V$, so kann $\left\{ \vektor{v_{\lambda}} 
+\right\}_{\lambda \in \Lambda}$ zu einer Basis von $V$ ergänzt werden.
+\item  Jeder Vektorraum hat eine Basis.
+\end{enumerate}
+\end{satz}
+
+Wie auch für reelle Vektorräume zeigt man im allgemeinen Fall
+
+\begin{satz} Je zwei $K$--Basen $\left\{ \vektor{v_{\lambda}} \right\}_{\lambda \in \Lambda}$ und $\left\{ 
+\vektor{w_{\gamma}} \right\}_{\gamma \in \Gamma}$ eines $K$--Vektorraums 
+$V$ sind gleich lang, d.h. sie sind entweder 
+beide unendlich oder beide endlich mit der selben Anzahl von Elementen.
+\end{satz}
+
+\begin{definition} Die Länge einer $K$--Basis von $V$ heißt die \index{Vektorraum!Dimension}\textbf{Dimension} 
+des $K$--Vektorraums $V$ und wird mit $\textrm{dim}_K(V)$ bezeichnet.
+\end{definition} 
+
+\begin{notiz} $\textrm{dim}_K(V)$ ist eine endliche Zahl oder $\infty$.
+\end{notiz}
+
+\begin{beispiel} $\textrm{dim}_K(K^n) = n$.
+\end{beispiel}
+
+\bigbreak
+
+Allgemeine reelle Vektorräume unterscheiden sich von den speziellen reellen 
+Vektorräumen $\mathbb R^n$ in ihrer geometrischen Interpretation. Auf $\mathbb R^n$ 
+konnten wir ein Skalarprodukt definieren und damit Begriffe wie \textit{Abstand}, 
+\textit{Winkel} oder \textit{Orthogonalität} einführen. Wir können uns jetzt 
+natürlich ebenso fragen, ob eine geometrische Interpretation auch für die 
+Körper $\mathbb K^n$ möglich ist. 
+
+Zunächst scheint zumindest die formale Definition eines Skalarproduktes auf $K^n$ 
+möglich zu sein, indem wir einfach die Definition aus dem $\mathbb R^n$ übertragen 
+und setzen
+  	$$ \langle \left( \begin{matrix} a_1 \\ \vdots \\ a_n \end{matrix} \right), 
+     	\left( \begin{matrix} b_1 \\ \vdots \\ b_n \end{matrix} \right) \rangle^{\prime}
+    	= a_1 b_1 + \cdots + a_n b_n$$
+wir sehen aber sofort einen fundamentalen Unterschied zur reellen Situation:
+
+\begin{beispiel} Im $\mathbb F_2$--Vektorraum $\mathbb F_2^2$ gilt:
+  	$$ \langle \left( \begin{matrix} 1 \\ 1 \end{matrix} \right), 
+    	\left( \begin{matrix} 1 \\ 1 \end{matrix} \right) \rangle^{\prime} = 1 + 1 = 0 $$
+
+Im $\mathbb C$--Vektorraum $\mathbb C^2$ gilt:
+  	$$ \langle \left( \begin{matrix} 1 \\ \ii \end{matrix} \right), 
+     \left( \begin{matrix} 1 \\ \ii \end{matrix} \right) \rangle^{\prime} = 1 + \ii^2 
+     = 1 - 1 = 0 $$
+\end{beispiel}
+
+Die von uns betrachtete Paarung $\langle \phantom{a}, \phantom{b} \rangle^{\prime}$ hat 
+also nicht mehr die Eigenschaft $\langle \vektor{v}, \vektor{v} 
+\rangle^{\prime} \neq 0$ (sogar $\langle \vektor{v}, \vektor{v} 
+\rangle^{\prime} > 0$) für $\vektor{v} \neq \vektor{0}$. Und sogar 
+in $\mathbb Q^n$ (wo diese Nichtverschwindungsaussage noch gilt) hat diese Paarung 
+einen entscheidenden Nachteil:
+
+\begin{beispiel} Wir betrachten den $\mathbb Q$--Vektorraum $\mathbb Q^2$ und den Vektor 
+$\vektor{v} = \left( \begin{smallmatrix} 1 \\ 1 \end{smallmatrix} \right) $
+Dann gibt es keine rationale Zahl $q$ mit 
+  	$$ \langle q \cdot \vektor{v}, q \cdot \vektor{v} \rangle^{\prime} 
+     	= 1 $$
+\end{beispiel}
+
+Im $\mathbb R^n$ konnten wir diese Normierung von $\vektor{v}$ immer erreichen, 
+indem wir $\vektor{v}$ mit dem (reellen) Skalar
+$r = \frac {1}{\vert \vektor{v} \vert }$ 
+multiplizierten. Diese Eigenschaft war sehr wichtig für uns, etwa beim 
+Gram--Schmidt--Orthonormalisierungsver\-fah\-ren.
+
+Die Definition des Skalarprodukts überträgt sich also nicht unmittelbar auf 
+beliebige $K$--Vektorräume $K^n$. Aber lässt sich die Definition dann vielleicht 
+so abändern, dass wir eine  dem Skalarprodukt ähnliche Paarung erhalten? Zumindest 
+im Fall der komplexen Vektorräume $C^n$ ist das möglich:
+
+\begin{definition} Für zwei Vektoren $\vektor{v} = \left( \begin{smallmatrix} 
+v_1 \\ \vdots \\ v_n \end{smallmatrix} \right), \vektor{w} = \left( 
+\begin{smallmatrix} w_1 \\ \vdots \\ w_n \end{smallmatrix} \right) \in \mathbb C^n$ 
+setzen  wir
+  	$$ \langle \vektor{v}, \vektor{w} \rangle = v_1 \cdot \overline{w_1} + 
+  	\cdots + v_n \cdot \overline{w_n} $$
+(wobei $\overline{z}$ die zu einer komplexen Zahle $z = x + \ii \cdot  y$ konjugierte Zahl 
+$x - \ii \cdot y$ bezeichnet)
+und nennen es das \index{Skalarprodukt}\textbf{Skalarprodukt} von $\vektor{v}$ 
+und $\vektor{w}$.
+\end{definition}
+ 
+Eine ganz wesentliche Eigenschaft dieses Skalarprodukts ist
+ 
+\begin{satz}\label{vect_complex_norm} Für $\vektor{v} \neq \vektor{0}$ ist 
+$\langle \vektor{v}, \vektor{v} \rangle$ eine reelle Zahl mit
+  	$$ \langle \vektor{v}, \vektor{v} \rangle > 0 $$
+\end{satz}
+
+\beweis{ 
+Wir haben 
+  	$$ \langle \vektor{v}, \vektor{v} \rangle = v_1 \cdot \overline{v_1} 
+   	+ \cdots + v_n \cdot \overline{v_n} = \vert v_1 \vert^2 + \cdots + \vert v_n 
+   	\vert^2 $$
+wobei $\vert z \vert \, = \sqrt{x^2 + y^2}$ den Betrag einer komplexen Zahl 
+$z = x + \ii \cdot y$ bezeichnet. Hieraus folgt die Aussage.
+}
+\bigbreak
+
+\begin{definition} Für ein $\vektor{v} \in \mathbb C^n$ heißt 
+  	$$ \vert \vektor{v} \vert \, := \sqrt{\langle \vektor{v}, 
+	\vektor{v} \rangle} $$ 
+die \textbf{Länge} oder die \textbf{Norm} von $\vektor{v}$.
+\end{definition}
+
+Für das komplexe Skalarprodukt gelten die folgenden Regeln:
+
+\begin{regel}\label{regel_skalar_produkt_komplex} 
+Für Vektoren $\vektor{v}$, $\vektor{w}$, 
+$\vektor{w_1}$ und $\vektor{w_2}$ und einen Skalar $z \in \mathbb C$ gilt:
+\begin{enumerate}
+\item $\langle \vektor{v}, \vektor{w} \rangle = \overline{\langle \vektor{w}, 
+\vektor{v} \rangle}$.
+\item $\langle \vektor{v}, \vektor{w_1} + \vektor{w_2} \rangle = 
+\langle \vektor{v}, \vektor{w_1} \rangle + \langle \vektor{v}, 
+\vektor{w_2} \rangle \quad$ (\textit{Distributivgesetz}).
+\item $\langle z \cdot \vektor{v}, \vektor{w} \rangle = z \cdot \langle \vektor{v}, 
+\vektor{w} \rangle \quad$ (\textit{Skalarmultiplikation im ersten Faktor}).
+\item $\langle \vektor{v}, z \cdot \vektor{w} \rangle = 
+\overline{z} \cdot \langle \vektor{v}, 
+\vektor{w} \rangle \quad$ (\textit{Skalarmultiplikation im zweiten Faktor}).
+\end{enumerate}
+\end{regel}
+
+Auch die Dreieicksungleichung und der \index{Satz!von Cauchy--Schwarz}Satz 
+von Cauchy--Schwarz überträgen sich auf diese Situation:
+
+\begin{satz}\label{cauchy_schwarz_komplex}
+Für Vektoren $\vektor{v}$, $\vektor{w}$ und einen Skalar $z \in \mathbb C$ gilt:
+
+\begin{enumerate}
+\item $\vert z \cdot \vektor{v} \vert \, = \, \vert z \vert \cdot \vert \vektor{v} \vert$.
+\item $\vert \vektor{v} + \vektor{w} \vert \, \leq \, \vert \vektor{v} \vert \, + 
+     \, \vert \vektor{w} \vert$.
+\item $ \vert \langle \vektor{v},  \vektor{w} \rangle \vert \leq \vert \vektor{v} 
+        \vert \cdot \vert \vektor{w} \vert $.
+\item Genau dann sind $\vektor{v}$ und $\vektor{w}$ kollinear, wenn 
+$\vert \langle \vektor{v}, \vektor{w} \rangle \vert \, 
+= \vert \vektor{v} \vert \cdot  \vert \vektor{w} \vert$.
+\end{enumerate}
+\end{satz}
+
+\begin{definition} Zwei Vektoren $\vektor{v}$ und $\vektor{w}$ in  $\mathbb C^n$ heißen 
+\index{Vektoren!orthogonal} \textbf{orthogonal}, wenn gilt
+  	$$ \langle \vektor{v},  \vektor{w} \rangle = 0 $$
+Wir sagen in diesem Fall auch, dass $\vektor{v}$ senkrecht auf $\vektor{w}$ steht und schreiben 
+$\vektor{v} \perp \vektor{w}$.
+\end{definition}
+
+\begin{definition} Eine Basis $\vektor{v_1}, \ldots, \vektor{v_m}$ eines Untervektorraums $U \subseteq \mathbb C^n$ heißt \index{Untervektorraum!Orthonormalbasis}\textbf{Orthonormalbasis} von 
+$U$ oder kurz \textbf{ONB} von $U$, wenn gilt:
+
+\begin{itemize}
+\item $\vert \vektor{v_i} \vert = 1$ für $i = 1, \ldots, m$, d.h. alle 
+Vektoren der Basis sind normiert.
+\item $\langle \vektor{v_i}, \vektor{v_j} \rangle = 0$ für 
+$i \neq j$, d.h. die Vektoren stehen paarweise senkrecht aufeinander.
+\end{itemize}
+\end{definition}
+
+
+\bigbreak
+
+
+\begin{aufgabe} Wieviele Basen hat der $\mathbb F_3$--Vektorraum 
+$\mathbb F_3^2$?
+\end{aufgabe} 
+
+\begin{aufgabe} Zeigen Sie $\textrm{dim}_{\mathbb Q}(\mathbb R) = \infty$.
+\end{aufgabe}
+
+\begin{aufgabe} Beweisen Sie die Regeln~\ref{regel_skalar_produkt_komplex}.
+\end{aufgabe}
+
+\begin{aufgabe} Übertagen Sie das Gram--Schmidt--Orthonormalsierungs\-ver\-fah\-ren auf 
+den komplexen Vektorraum $\mathbb C^n$ und benutzen Sie es, um aus den Vektoren 
+  $$ \vektor{v_1} = \left( \begin{matrix} 1 \\ i \\ i \end{matrix} \right), 
+  \quad \vektor{v_1} = \left( \begin{matrix} 0 \\ i \\ -i \end{matrix} \right),
+  \quad \vektor{v_1} = \left( \begin{matrix} 1 \\ 1 \\ 1 \end{matrix} \right) $$
+eine Orthonormalbasis des $\mathbb C^n$ zu machen.
+\end{aufgabe}

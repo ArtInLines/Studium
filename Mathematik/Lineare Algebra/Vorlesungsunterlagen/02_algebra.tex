@@ -1,0 +1,2038 @@
+\chapter{Algebraische Strukturen}
+
+\section{Mengen und Relationen}\label{section_mengen}
+
+\setcounter{definition}{0}
+\setcounter{beispiel}{0}
+\setcounter{notiz}{0}
+
+Mengen spielen eine zentrale Rolle in der Mathematik (und nicht nur dort). Wir folgen hier dem Zugang Georg 
+Cantors (1845 - 1918) und verzichten auf eine axiomatische Einführung.
+
+\begin{definition} Eine \textbf{Menge}\index{Menge} ist eine Zusammenfassung $M$ von bestimmten wohlunterschiedenen 
+Objektem $m$, genannt die Elemente von $M$, unseres Anschauungsraums oder unseres Denkens zu einem Ganzen.
+\end{definition}
+
+Ist $m$ ein Element\index{Element} von $M$, so schreiben wir $m \in M$, andernfalls schreiben wir $m \notin M$. 
+Für jedes Objekt $m$ unserer Anschauung und jede Menge $M$ gilt also genau entweder $m \in M$  oder 
+$m \notin M$, nicht aber beides. 
+
+\begin{beispiel}
+
+\begin{itemize}
+\item Die Menge, die keine Elemente enthält, bezeichnet man als \textbf{leere Menge}. Hierfür schreiben wir
+$\emptyset$ oder $\{ \, \}$.
+\item Eine Menge $M$, die nur endlich viele Elemente hat, lässt sich durch vollständige Auflistung aller 
+ihrer Elemente zwischen Mengenklammern beschreiben, z.B. $M = \{ 1, 3, 5, 7, 9 \}$ ist die Menge, die als Elemente 
+die Zahlen $1, 3, 5, 7, 9$ enthält, und $M = \{ \textrm{rot}, \textrm{blau}, \textrm{grün} \}$ ist die Menge, 
+die als Elemente die Farben \textit{rot}, \textit{blau} und \textit{grün} enthält.
+\item Auch unendliche Menge lassen sich oft in aufzählender Form darstellen. So wird die Menge $\mathbb N$ 
+der natürlichen Zahlen oft in der Form 
+  	$$ \mathbb N = \{ 0, 1, 2, 3, 4, \ldots \} $$
+dargestellt, und die Menge $\mathbb Z$ der ganzen Zahlen als
+  	$$ \mathbb Z = \{ \ldots -4, -3, -2, -1, 0, 1, 2, 3, 4, \ldots \} $$
+\item Manche Menge lassen sich nicht oder nur schwer aufzählend darstellen. Häufig ist hierfür jedoch eine 
+beschreibende Darstellung möglich. Die Menge $\mathbb P = \{ x \in \mathbb N \vert \, x 
+\textrm{ ist eine Primzahl }\}$ 
+etwa enthält als Elemente alle natürlichen Zahlen $x$, die Primzahlen sind, d.h. alle natürlichen Zahlen
+$x \neq 1$, die nur durch 1 und sich selbst teilbar sind.  
+\item Eine wichtige Rolle in diesem Skript spielt die Menge $\mathbb Q$ der rationalen Zahlen, 
+  	$$ \mathbb Q = \left\{ \frac {m}{n} \, \big\vert \, m, n \in \mathbb Z \textrm{ und } n \neq 0 \right\}. $$ 
+\end{itemize}
+\end{beispiel}
+
+\begin{definition} Eine Menge $N$ heißt \textbf{Teilmenge}\index{Teilmenge} eine Menge $M$, geschrieben 
+$N \subseteq M$, wenn jedes Element von $N$ auch Element von $M$ ist, d.h. wenn die Implikation 
+$x \in N \Longrightarrow x \in M$ gilt. In diesem Fall heißt $M$ auch \textbf{Obermenge}\index{Obermenge} 
+von $N$.
+\end{definition}
+
+\begin{definition} Zwei Mengen $N$ und $M$ heißen gleich, geschrieben $M = N$, wenn ein Objekt $x$ genau 
+dann Element von $N$ ist, wenn es Element von $M$ ist, d.h. wenn die Äquivalenz $x \in N \iff x \in M$ 
+gilt.
+\end{definition}
+
+\begin{notiz} Eine Menge $N$ heißt echte \index{Teilmenge!echte}Teilmenge von $M$, geschrieben $N \subset 
+N$, wenn $N$ Teilmenge von $M$ mit $N \neq M$ ist.
+\end{notiz}
+
+Die Gleichheit von Mengen lässt sich duch die Teilmengenbeziehung beschreiben.
+
+\begin{satz} Für zwei Mengen $M$ und $N$ gilt genau dann $M = N$, wenn $M \subseteq N$ und $N \subseteq M$. 
+\end{satz}
+
+Für Teilmengen $A$ und $B$ einer gegebenen Menge $M$ lassen sich verschiedene Beziehungen definieren:
+
+\begin{definition} Die \textbf{Schnittmenge}\index{Schnittmenge} von $A$ und $B$, geschrieben $A \cap B$ 
+besteht aus den Elementen von $M$, die sowohl in $A$ als auch in $B$ sind:
+  $$ A \cap B = \{ x \in M \vert x \in A \textrm{ und } x \in B \} $$
+Falls $A \cap B = \emptyset$, so nennen wir $A$ und $B$ \index{Menge!disjunkt}\textbf{disjunkt}.
+\end{definition}
+
+	\begin{figure}[H]
+	\vspace{-0.4cm}
+		\begin{center}
+		\begin{scaletikzpicturetowidth}{0.55\textwidth}
+     			\input{12_mws_1000.tex} 
+		\end{scaletikzpicturetowidth}
+		\end{center}
+	\vspace{-0.8cm}
+	\end{figure}
+
+\begin{definition} Die \textbf{Vereinigungsmenge}\index{Vereinigungsmenge} von $A$ und $B$, geschrieben $A \cup B$ 
+besteht aus den Elementen von $M$, die entweder in $A$ oder in $B$ sind:
+  $$ A \cup B = \{ x \in M \vert \, x \in A \textrm{ oder } x \in B \} $$
+\end{definition}
+
+	\begin{figure}[H]
+	\vspace{-0.4cm}
+		\begin{center}
+		\begin{scaletikzpicturetowidth}{0.55\textwidth}
+     			\input{12_mws_1100.tex} 
+		\end{scaletikzpicturetowidth}
+		\end{center}
+	\vspace{-0.8cm}
+	\end{figure}
+
+
+Für die Bildung von Vereinigungs-- und Druchschnittsmengen gelten folgende wichtige Regeln
+
+\begin{satz}\label{mengen_satz_teil_verein} Für Teilmengen $A, B, C \subseteq M$ gilt
+
+  	\begin{tabular} {l l }
+ 	 Kommutativgesetz & $A \cup B = B \cup A$ \\
+  	& $A \cap B = B \cap A$ \\
+  	Assoziativgesetz & $( A \cup B) \cup C = A \cup ( B \cup C)$ \\
+  	& $(A \cap B) \cap C = A  \cap (B \cap C)$ \\
+  	Distributivgesetz & $(A \cup B) \cap C = (A \cap C) \cup (B \cap C)$ \\
+  	& $(A \cap B) \cup C = (A \cup C) \cap (B \cup C)$ \\
+  	Verschmelzungsgesetz & $A \cap (A \cup B) = A$ \\
+  	& $A \cup (A \cap B) = A$   
+  	\end{tabular}
+\end{satz}
+
+\beweis {Kommutativ-- und Assoziativgesetze sind klar. 
+
+Wir zeigen zunächst das erste Distributivgesetz unter Ausnutzung des ersten Distributivgesetzes der Logik 
+aus Satz~\ref{logik_regeln_kombi}:
+  $$ \begin{array} {l c l}
+  x \in (A \cup B) \cap C & \iff & \left(x \in (A \cup B)\right) \wedge \left(x \in C\right) \\
+  & \iff & \left(\left(x \in A\right) \vee \left(x \in B\right) \right) \wedge \left(x \in C \right) \\
+  & \iff & \left((x \in A) \wedge (x \in C)\right) \vee \left( (x \in B ) \wedge (x \in C)\right) \\
+  & \iff & \left ( x \in A \cap C\right) \vee \left(x \in B \cap C\right) \\
+  & \iff & x \in (A \cap C) \cup (B \cap C)
+  \end{array} $$
+Wir haben also gezeigt:
+  $$ x \in (A \cup B) \cap C \, \iff \, x \in (A \cap C) \cup (B \cap C) $$
+und damit
+  $$ (A \cup B) \cap C = (A \cap C) \cup (B \cap C), $$
+wie gewünscht. 
+
+Das zweite Distributivgesetz zeigt man analog mit dem entsprechenden Distributivgesetz der Logik, siehe 
+auch Aufgabe~\ref{mengen_aufg_distr}.
+
+Den Beweis der Verschmelzungsgesetze überlassen wir dem Leser als \"Ubungsaufgabe, siehe 
+Aufgabe~\ref{mengen_aufg_verschm}. 
+}
+
+\medbreak
+
+\begin{definition} Die \textbf{Differenzmenge}\index{Differenzmenge} von $A$ und $B$, geschrieben $A \setminus B$ 
+besteht aus den Elementen von $M$, die in $A$ aber nicht in $B$ sind:
+  $$ A \setminus B = \{ x \in M \vert \, x \in A \textrm{ und } x \notin B \} $$
+Falls $B \subseteq A$ nennen wir $A \setminus B$ auch das \textbf{Komplement}\index{Komplement} von $B$ in $A$ 
+und schreiben 
+hierfür $\overline{B}^A$. Falls $A = M$, schreiben wir hierfür auch kurz $\overline{B}$ 
+und nennen es das Komplement von $B$. 
+\end{definition}
+
+	\begin{figure}[H]
+	\vspace{-0.4cm}
+		\begin{center}
+		\begin{scaletikzpicturetowidth}{0.55\textwidth}
+     			\input{12_mws_1200.tex} 
+		\end{scaletikzpicturetowidth}
+		\end{center}
+	\vspace{-0.8cm}
+	\end{figure}
+
+Auch für die Komplementbildung gelten einige einfache Regeln:
+
+\begin{regel}\label{mengen_regel_komplement} Für eine Teilmenge $A \subseteq M$ gilt:
+\begin{enumerate}
+\item $\overline{\overline{A}} = A$.
+\item $\overline{A} \cup A = M$.
+\item $\overline{A} \cap A = \emptyset$.
+\item $\overline{\emptyset} = M$
+\item $\overline{M} = \emptyset$.
+\end{enumerate}
+\end{regel}
+
+\bigbreak
+
+Auch zwei beliebige Mengen können miteinander verknüpft werden:
+
+\begin{definition} Das \textbf{kartesische Produkt}\index{kartesisches Produkt} zweier Mengen $M$ und $N$ ist 
+die Menge $M \times N$, deren Elemente die geordneten Paare $(m, n)$ sind, wobei $m \in M$ und $n \in N$, also
+  	$$ M \times N = \{ (m, n) \vert \, m \in M \textrm{ und } n \in  N \} $$
+\end{definition}
+
+	\begin{figure}[H]
+	\vspace{-0.4cm}
+		\begin{center}
+		\begin{scaletikzpicturetowidth}{0.55\textwidth}
+     			\input{12_mws_1300.tex} 
+		\end{scaletikzpicturetowidth}
+		\end{center}
+	\vspace{-0.8cm}
+	\end{figure}
+
+\begin{beispiel} Es seien $M = \{ 1, 2, 3, 4\}$ und $N = \{ 3, 5 \}$. Dann gilt:
+ 	 $$ M \times N = \{ (1, 3),  (1, 5), (2, 3),  (2, 5), (3, 3),  (3, 5), (4, 3), (4,5) \} $$
+Beachten Sie, dass es dabei keine Rolle spielt, dass manche Elemente (hier etwa die 3) in beiden Mengen 
+vorkommen.
+\end{beispiel}
+
+\begin{beispiel} Ist $N = \emptyset$, so gilt $M \times N = \emptyset$ (unabhängig von $M$).
+\end{beispiel}
+
+\bigbreak
+
+\begin{definition} Eine \index{Relation}\textbf{Relation} $R$ zwischen zwei Mengen $M$ und $N$ ist eine Beziehung
+zwischen Elementen von $M$ und $N$, dargestellt durch geordnete Paare $(m,n)$ mit $m \in M$ und $n \in N$. Wir 
+schreiben hierfür $m \sim_R n$ oder $mRn$ und sagen \textit{$m$ steht in Relation mit $n$ (bezüglich $R$)}.
+
+Ist $M = N$, so heißt $R$ auch Relation auf $M$. In diesem Fall nennen wir $R$ auch 
+\index{Relation!homogen}\textbf{homogen}
+
+\end{definition}
+
+\begin{notiz} Eine Relation $R$ zwischen $M$ und $N$ ist ein Teilmenge $R \subseteq M \times N$ des kartesischen 
+Produktes.
+\end{notiz}
+
+\begin{notiz}
+Eine Funktion $f: D \longrightarrow \mathbb R$ (mit $D \subseteq \mathbb R$) ist eine Relation $R$ zwischen $D$ und 
+$\mathbb R$ mit folgender besonderen Eigenschaft: 
+
+$\qquad$ Für jedes $x \in D$ gibt es genau ein $y \in \mathbb R$ mit $(x,y) \in R$. 
+
+Entsprechend ist auch jede Abbildung $f: M \longrightarrow N$ eine Relation $R$ zwischen $M$ und $N$ mit der 
+Eigenschaft: 
+
+$\qquad$ Für jedes $x \in M$ gibt es genau ein $y \in N$ mit $(x,y) \in R$. 
+
+Umgekehrt definiert jede Relation $R$ zwischen $M$ und $N$ mit dieser Eigenschaft auch eine Abbildung 
+$f: M \longrightarrow N$, und zwar wie folgt: 
+
+Ist $x \in M$, so gibt es genau ein Tupel $(x,y) \in M \times N$ mit $(x,y) \in R$. Setzen wir 
+	$$ f(x) = y $$ 
+so wird dadurch eine (eindeutig bestimmte) Abbildung $f: M \longrightarrow N$ definiert. 
+\end{notiz}
+
+\begin{beispiel}
+Die Funktion $f: \mathbb R \longrightarrow \mathbb R$ mit $f(x) = x^2 + x^3$ entspricht der Relation 
+	$$ R = \{ (x, x^2+x^3) \, \vert \, x \in \mathbb R \} \subseteq \R \times \R $$ 
+\end{beispiel}
+
+\begin{beispiel}
+Die Relation
+	$$ R = \{ (x,x^3) \, \vert \, x \in \mathbb R \} \subseteq \R \times \R$$ 
+beschreibt eine Funktion $f: \R \longrightarrow \R$, die explizit durch $f(x) = x^3$ beschrieben wird. 
+Diese Relation (bzw. diese Funktion) kann auch dargestellt werden als 
+	$$ R = \{ (\sqrt[3]{x},x) \, \vert \, x \in \mathbb R \} \subseteq \R \times \R $$ 
+\end{beispiel}
+
+\begin{beispiel}
+Die Relation
+	$$ R = \{ (x^2,x^3) \, \vert \, x \in \mathbb R \} \subseteq \R \times \R $$ 
+beschreibt keine Funktion $f: \R \longrightarrow \R$, denn zu $-1$ gibt es kein $y$ mit 
+$(-1,y) \in R$. Allerdings definiert die Einschränkung 
+	$$ R = \{ (x^2,x^3) \, \vert \, x \in \mathbb R_+ \} \subseteq \R_+ \times \R_+ $$ 
+eine Funktion $f: \R _+\longrightarrow \R_+$, die explizit durch $f(x) = \sqrt{x^3}$ beschrieben wird.
+\end{beispiel}
+
+\begin{beispiel}\label{relation_kind} ist $M$ die Menge aller Menschen, so definiert die Beziehung $R$: 
+\textit{ist Kind von} eine Relation auf $M$.
+\end{beispiel}
+
+\begin{beispiel}\label{relation_geq} Ist $M = \mathbb Z$ die Menge der ganzen Zahlen, so definiert die Beziehung $R$: 
+\textit{ist größer oder gleich} eine Relation auf $M$, die mit $\geq$ bezeichnet wird. Ein Zahlenpaar 
+$(a,b)$ ist also genau dann in $R \subseteq \mathbb Z \times \mathbb Z$, wenn $a \geq b$.
+\end{beispiel}
+
+\begin{beispiel}\label{relation_eq} Ist $M$ die beliebige Menge, so defniert die Beziehung $R$: 
+\textit{ist  gleich} eine Relation auf $M$, die mit $=$ bezeichnet wird. Ein Paar 
+$(a,b) \in M \times M$ ist also genau dann in $R$, wenn $a = b$.
+\end{beispiel}
+
+
+\begin{beispiel}\label{relation_modn} Ist wieder $M = \mathbb Z$ die Menge der ganzen Zahlen und ist $n \in 
+\mathbb Z$ eine vorgegebene Zahl, so definiert die Beziehung $R$: \textit{unterscheiden sich um ein 
+Vielfaches von $n$} eine Relation of $\mathbb Z$. Ein Zahlenpaar $(a,b)$ ist also genau dann in $R$ wenn $a - b$ 
+durch $n$ teilbar ist.
+\end{beispiel}
+
+Wir interessieren uns vor allem für Relation auf einer Menge $M$.
+
+\begin{definition} Betrachte eine Relation $R$ auf einer Menge $M$.
+
+\begin{itemize} 
+\item $R$ heißt \index{Relation!reflexiv}\textbf{reflexiv}, wenn für alle $m$ aus $M$ gilt: $m \sim_R m$.
+\item $R$ heißt \index{Relation!transitiv}\textbf{transitiv}, wenn gilt: 
+   	$$ m_1 \sim_R m_2 \, \textrm{ und } m_2 \sim_R m_3 \, \Longrightarrow \, m_1 \sim_R m_3 $$
+\item $R$ heißt \index{Relation!symmetrisch}\textbf{symmetrisch}, wenn gilt:
+   	$$ m_1 \sim_R m_2 \, \Longrightarrow \, m_2 \sim_R m_1 $$
+\item $R$ heißt \index{Relation!Äquivalenzrelation}\textbf{Äquivalenzrelation}, wenn $R$ reflexiv, 
+transitiv und symmetrisch ist.
+\item $R$ heißt \index{Relation!antisymmetrisch}\textbf{antisymmetrisch}, wenn gilt:
+   	$$ m_1 \sim_R m_2 \, \textrm{ und } m_2 \sim_R m_1 \, \Longrightarrow \, m_1 = m_2 $$
+\item $R$ heißt \index{Relation!asymmetrisch}\textbf{asymmetrisch}, wenn gilt:
+   	$$ m_1 \sim_R m_2 \, \Longrightarrow \, \neg \left( m_2 \sim_R m_1 \right) $$
+\end{itemize}
+\end{definition}
+
+\begin{beispiel} Die Relation $R$: \textit{ist Kind von} aus Beispiel~\ref{relation_kind} ist weder transitiv noch 
+reflexiv noch symmetrisch. Betrachten wir stattdessen die Relation $R'$: \textit{ist Nachkomme von}, so ist $R'$ 
+transitiv, aber nicht reflexiv (wenn wir eine Person nicht als ihren eigenen Nachkommen auffassen wollen) 
+und nicht symmetrisch. Betrachten wir $R''$: \textit{ist verwandt mit}, so ist $R''$ reflexiv, transitiv und 
+symmetrisch, also eine Äquivalenzrelation.
+
+Die Relation $\geq$ aus Beispiel~\ref{relation_geq} ist reflexiv, transitiv und antisymmetrisch. Sie ist nicht 
+symmetrisch.
+
+Die Relation $=$ aus Beispiel~\ref{relation_eq} ist reflexiv, transitiv, symmetrisch und antisymmetrisch. 
+
+Die Relation $R$: \textit{unterscheiden sich um ein Vielfaches von $n$} aus Beispiel~\ref{relation_modn} ist 
+eine Äquivalenzrelation. Sie ist nicht antisymmetrisch
+\end{beispiel}
+
+Jede Äquivalenzrelation $\sim$ auf $M$ liefert uns eine natürliche Zerlegung von $M$ in disjunkte Teilmengen:
+
+\begin{definition} Wir betrachten eine Äquivalenzrelation $\sim_R$ auf $M$.
+
+Zwei Elemente $m, n \in M$ hei{ss}en \textbf{äquivalent} (bezüglich $\sim_R$), wenn $m \sim_R n$.
+
+Eine Teilmenge $A \subseteq M$ heißt \index{Äquivalenzklasse}\textbf{Äquivalenzklasse}, wenn gilt
+
+\begin{itemize}
+\item Sind $m, n \in A$, so ist $m \sim_R n$.
+\item Ist $m \in A$ und $n \in M$ mit $n \sim_R m$, so ist $n \in A$.
+\end{itemize}
+
+Ist $m \in M$, so heißt $[m]_R := \{ n \in M: n \sim_R m \}$ die \textbf{Äquivalenzklasse von $m$}.
+\end{definition}
+
+\begin{notiz} Ist $\sim_R$ eine Äuqivalenzrelation auf $M$ und sind $m, n \in M$, so gilt entweder  
+$[m]_R = [n]_R$ oder $[m]_R$ und $[n]_R$ sind disjunkt. Das folgt sofort aus den Definitionen.
+
+Eine Äquivalenzrelation $\sim_R$ auf $M$ zerlegt also $M$ in disjunkte Teilmengen, die Äquivalenzklassen. 
+Wir schreiben $M/\sim_R$ für die Menge der Äquivalenzklassen, also 
+  	$$ M/\sim_R = \{ [m]_R\, \vert \, m \in M \} $$
+\end{notiz}
+
+\begin{definition} Ist $R$ eine Äquivalenzrealtion auf $M$ und $A$ ein Äquivalenzklasse (bezüglich $R$), 
+so heißt ein beliebiges Element $a \in A$ ein 
+\index{Äquivalenzklasse!Repräsentant}\textbf{Repräsentant} der Äquivalenzklasse $A$.
+
+Ein \index{Äquivalenzklasse!Repräsentantensystem}\textbf{Repräsentantensystem} der Äquivalenzrelation 
+$R$ ist eine Teilmenge $N \subseteq M$ die genau einen Repräsentanten jeder Äquivlenzklasse enthält.
+\end{definition}
+
+\begin{beispiel}\label{rela_z_mod_n} 
+Für die Äquivalenzrelation $\sim_R:$ \textit{unterscheiden sich um ein Vielfaches von $n$} aus 
+Beispiel~\ref{relation_modn} gilt:
+
+\begin{itemize}
+\item Falls $n = 0$:
+  	$$ \mathbb Z/\sim_R = \mathbb Z$$
+\item Falls $n > 0$: 
+  	$$ \mathbb Z/\sim_R = \{ [0]_R, [1]_R, \ldots , [n-1]_R \} $$
+\item Falls $n < 0$:
+  	$$ \mathbb Z/\sim_R = \{ [0]_R, [1]_R, \ldots , [-n-1]_R \} $$
+\end{itemize}
+Für $n \neq 0$ sind die angegebenen Äquivalenzklassen paarweise disjunkt. Wir schreiben in diesem Fall 
+auch $\mathbb Z_n$, $\mathbb Z/(n)$ oder $\mathbb Z / n \mathbb Z$ für $\mathbb Z/\sim_R$.
+
+Die Menge $\{0, 1, \, \ldots , n-1\}$ bildet also ein Repräsentantensystem der Relation $R$. Es gibt aber 
+noch viele weitere Repräsentantensysteme, etwa $\{1, 2, \ldots, n \}$ oder $\{n, n+1, \ldots, 2n-1\}$ oder
+$\{0, n+ 1, 2n+2, 3n+3 \ldots, n^2-1 \}$.
+\end{beispiel}
+
+\bigbreak
+
+Neben Äquvalenzrelation eine besondere Rolle spielen Vergleichsrelationen, wie etwa die Relationen $\geq$ 
+oder $>$ auf den reellen Zahlen. 
+
+\begin{definition} Es sei $R$ eine Relation auf eine Menge $M$.
+
+$R$ heißt \index{Relation!Ordnung}\textbf{Ordnungsrelation} oder \textbf{Ordnung} auf $M$, wenn sie 
+reflexiv, transitiv und antisymmetrisch ist.
+
+$R$ heißt \index{Relation!strikte Ordnung}\textbf{strikte Ordnungsrelation} oder \textbf{strikte Ordnung} 
+auf $M$, wenn sie asymmetrisch und  transitiv ist.
+\end{definition}
+
+\begin{beispiel} Die Relation $\geq$ aus Beispiel~\ref{relation_geq} ist eine Ordnungsrelation aber keine 
+strikte Ordnungsrelation.
+\end{beispiel}
+
+\begin{beispiel} Die Relation $>$ auf den ganzen Zahlen ist eine strikte Ordnungsrelation.
+\end{beispiel}
+
+
+\begin{beispiel} Wir betrachten eine Menge $M = \{m_1, m_2, \ldots , m_t\}$ von Menschen. Auf $M$ definieren wir die 
+Relation $R$ durch $m_1Rm_2$ genau dann, wenn $m_1$ älter ist als $m_2$. Dann ist $R$ eine strikte Ordnung 
+auf $M$. Die Relation $R'$ definiert durch $m_1 R' m_2$ genau dann, wenn $m_1$ mindestens so alt ist wie 
+$m_2$ ist eine Ordnung auf $M$.
+\end{beispiel}
+
+\bigbreak
+
+\begin{aufgabe} Bestimmen Sie jeweils die Mengen $A \cup B$, $A \cap B$, 
+$A \setminus B$ und $(A \cup B) \setminus (A \cap B)$ möglichst explizit:
+\begin{itemize}
+\item[a)] $A = \{ x \in \mathbb Z: -5 \leq x \leq 10 \}, \quad  B = \{ x \in [-2,8]:
+2x \in \mathbb N \}$.
+\item[b)] $A = \{x \in \mathbb R: x^2 \leq 1 \}, \quad B = \{ x \in \mathbb R: (x - 1)^2 
+\leq 1 \}$.
+\end{itemize}
+\end{aufgabe}
+
+\begin{aufgabe}\label{mengen_aufg_distr} Zeigen Sie das zweite Distributivgesetz der Mengenlehre:
+ $$(A \cap B) \cup C = (A \cup C) \cap (B \cup C)$$
+\end{aufgabe}
+
+\begin{aufgabe}\label{mengen_aufg_verschm} Zeigen Sie die Verschmelzungsgesetze der Mengenlehre:
+
+Für Teilmengen $A, B \subseteq M$ gilt:
+ 	$$ \begin{array} {l c l}
+  	A \cap (A \cup B) & = & A  \\
+  	A \cup (A \cap B) & = & A 
+ 	\end{array} $$
+\end{aufgabe}
+
+\begin{aufgabe}\label{mengen_de_morgan} Zeigen Sie die \textbf{de Morganschen Regeln} der Mengenlehre:
+
+Für Teilmengen $A, B \subseteq M$ gilt:
+  	$$ \begin{array} {l c l}
+   	\overline{A \cap B} & = & \overline{A} \cup \overline{B} \\
+   	\overline{A \cup B} & = & \overline{A} \cap \overline{B}
+  	\end{array} $$
+\end{aufgabe}
+
+\begin{aufgabe}\label{mengen_diff_komp} Zeigen Sie, dass für zwei Teilmengen $A, B \subseteq M$ gilt:
+  	$$ A \setminus B = \overline{ \overline{A} \cup B} $$
+\end{aufgabe}
+
+\begin{aufgabe} Auf der Menge $\mathbb Z \times \mathbb Z$ definieren wir ein Relation $R$ durch 
+$(a,b)R(c,d)$ genau dann, wenn $a+b = c+d$ ist. Zeigen sie, dass $R$ eine Äquivalenzrelation  
+auf $\mathbb Z \times \mathbb Z$ ist und bestimmen Sie ein Repräsentantensystem von $R$. 
+\end{aufgabe}
+
+\begin{aufgabe}\label{relation_rat_zahlen} Auf der Menge $M := \{ (a,b) \vert \, a \in \mathbb Z 
+\wedge b \in \mathbb Z \setminus \{ 0 \}$ definieren wir ein Relation $R$ durch 
+$(a,b)R(c,d)$ genau dann, wenn $a \cdot d = c \cdot b$ ist. Zeigen sie, dass $R$ eine Äquivalenzrelation  
+auf $M$ ist. 
+\end{aufgabe}
+
+\begin{notiz} Die Menge $M / \sim_R$ der Äquivalenzklassen der Relation $R$ aus Aufgabe~\ref{relation_rat_zahlen} 
+ist die Menge der rationalen Zahlen.
+\end{notiz}
+
+\begin{aufgabe} Heute ist ein Donnerstag. Welcher Wochentag ist in 1000 Tagen? Welcher in 3572? Welcher 
+Wochentag war vor 8000 Tagen?
+\end{aufgabe}
+
+\begin{aufgabe} Auf der Menge $\mathbb Z \times \mathbb Z$ definieren wir ein Relation $R$ durch 
+$(a,b)R(c,d)$ genau dann, wenn $a < c$ oder $a = c$ und $b \leq d$ ist. Zeigen sie, dass $R$ 
+eine Ordnungsrelation auf $\mathbb Z \times \mathbb Z$ ist.
+\end{aufgabe}
+
+\begin{aufgabe} Es sei $M$ eine Menge und $\mathfrak{P}(M)$ ihre Potenzmenge. Zeigen Sie, dass die 
+Relation $R$ auf $\mathfrak{P}(M)$, gegeben durch $N_1 R N_2$ genau dann, wenn $N_1 \subseteq N_2$ eine 
+Ordnung auf $\mathfrak{P}(M)$ definiert, und dass die Relation $R'$ auf $\mathfrak{P}(M)$, gegeben durch 
+$N_1 R' N_2$ genau dann, wenn $N_1 \subset N_2$ eine strikte Ordnung auf $\mathfrak{P}(M)$ definiert.
+\end{aufgabe}
+  
+
+\section{Gruppen}\label{section_gruppe}
+
+\setcounter{definition}{0}
+\setcounter{beispiel}{0}
+\setcounter{notiz}{0}
+
+Wir haben in den vorangegangenen Abschnitten verschiedene Mengen mit unterschiedlichen Strukturen kennengelernt. 
+So haben wir etwa gesehen, dass wir auf den reellen Zahlen $\mathbb R$ eine Addition und eine Multiplikation 
+haben , für die einige Gesetze erfüllt sind, nämlich die Gesetze $A1$ -- $A4$, $M1$ -- $M4$ und $D$. 
+Ähnliches gilt für die rationalen Zahlen $\mathbb Q$. Wenn wir dagegen die ganzen Zahlen $\mathbb Z$ 
+betrachten, so sehen wir, dass hier nicht mehr alle Gesetze gelten, denn nicht zu jeder ganzen Zahl $m \in 
+\mathbb Z$ gibt es eine ganze Zahl $n \in \mathbb Z$ mit $m \cdot n = 1$. Also gilt $M4$ in $\mathbb Z$ 
+nicht. Wenn wir uns noch weiter einschränken und nur noch die natürlichen Zahlen $\mathbb N$ betrachten, 
+dann sehen wir, dass hier auch $A4$ nicht mehr gilt. Wir werden noch viele weitere Beispiele kennenlernen, 
+in denen einige dieser Gesetze gelten, aber nicht alle. Daher wollen wir diese Gesetze und Gruppen dieser 
+Gesetze in diesem Abschnitt isoliert voneinander betrachten.
+
+\medbreak.
+
+\begin{definition} Es sei $M$ eine Menge. Eine Abbildung 
+  	$$ \circ : M \times M \longrightarrow M $$
+also eine Abbildung mit Definitonsbereich $M \times M$ und Bildbereich $M$ heißt 
+\index{Verknüpfung}\textbf{(innere) Verknüpfung} von $M$. 
+
+Wir schreiben in diesem Fall $m \circ n$ für $\circ(m,n)$.
+\end{definition}
+
+\begin{beispiel} Es sei $M = \mathbb Z$ und 
+  	$$ \circ = '+': \mathbb Z \times \mathbb Z \longrightarrow \mathbb Z, \quad (a,b) \longmapsto a + b $$
+die Addition ganzer Zahlen. Dann ist $'+'$ eine innere Verknüpfung auf $\mathbb Z$.
+\end{beispiel}
+
+\begin{beispiel}\label{gruppe_monoid_abbild} 
+Es sei $M = \{f: \mathbb R \longrightarrow \mathbb R \}$ die Menge aller Abbildungen 
+$f: \mathbb R \longrightarrow \mathbb R$ und es sei  
+  	$$ \circ : M \times M \longrightarrow M, \quad (f, g) \longmapsto g \circ f $$
+die Komposition von zwei Abbildungen. Dann ist $\circ$ eine innere Verknüpfung von $M$.
+\end{beispiel}
+
+\begin{beispiel}\label{gruppe_operation_max} Es sei $M = \mathbb R$ und es sei
+  	$$ \circ : M \times M \longrightarrow M, \quad (a,b) \longmapsto \textrm{max}\{a,b\} $$
+die Zuordnung, die jedem Paar reeller Zahlen die größere von beiden zuordnet. Dann ist
+$\circ$ eine innere Verknüpfung von $M$. (Analoges gilt für das Minimum).
+\end{beispiel}
+
+\begin{beispiel}\label{gruppe_operation_potenzm} Es sei $M$ eine beliebige Menge und es sei 
+$\mathfrak{P}(M)$ ihre Potenzmenge. Dann wird durch
+  	$$ \circ : \mathfrak{P}(M) \times \mathfrak{P}(M) \longrightarrow \mathfrak{P}(M), \quad
+    	(A,B) \longmapsto A \cup B $$
+also das Bilden der Vereinigungsmenge, eine innere Verknüpfung auf $\mathfrak{P}(M)$ definiert.
+(Analoges gilt für die Durchschnittsbildung).
+\end{beispiel}
+
+\begin{beispiel}\label{gruppe_operation_non_ass} Auf der Menge $M = \mathbb R$ definieren wir
+  	$$ \circ : M \times M \longrightarrow M $$
+durch 
+  	$$ \circ(a,b) = \left\{ \begin{array}{l c l} 1 & \quad & \textrm{ falls } a \geq b \\
+	0 & & \textrm{ falls } a < b \end{array} \right. $$
+Dann ist $\circ$ eine innere Operation auf $M$.
+\end{beispiel}
+
+\begin{beispiel}\label{gruppe_z_null} Es sei $M = \mathbb Z$ und 
+  	$$ \circ = '0': \mathbb Z \times \mathbb Z \longrightarrow \mathbb Z, \quad (a,b) \longmapsto 0 $$
+die die Nullabbildung. Dann ist $'0'$ eine innere Verknüpfung auf $\mathbb Z$.
+\end{beispiel}
+
+Für eine Menge $M$ mit einer Verknüpfung $\circ$ schreiben wir kurz $(M, \circ)$.
+
+\begin{definition} Eine nichtleere Menge $(M, \circ)$ mit einer Verknüpfung $ \circ$ heißt 
+\index{Halbgruppe}\textbf{Halbgruppe}, 
+wenn $\circ$ das Assoziativgesetz erfüllt, also wenn gilt:
+  	$$ (n \circ m) \circ l = n \circ (m \circ l) \qquad \textrm{ für alle } \, l, m, n \in M $$ 
+\end{definition}
+
+\begin{beispiel} $(\mathbb N, +)$ ist eine Halbgruppe. \end{beispiel}
+
+\begin{beispiel} $(\mathbb N \setminus \{ 0 \}, +)$ ist eine Halbgruppe. \end{beispiel}
+
+\begin{beispiel} $(\mathbb N \setminus \{ 0 \}, \cdot)$ ist eine Halbgruppe. \end{beispiel}
+
+\begin{beispiel} $(\mathbb Z, \cdot)$ ist eine Halbgruppe \end{beispiel}
+
+\begin{beispiel} Ist $M = \{f: \mathbb R \longrightarrow \mathbb R \}$ die Menge aller Abbildungen aus 
+Beispiel~\ref{gruppe_monoid_abbild} mit Verknüpfung $\circ$, so ist $(M \circ)$ eine Halbgruppe.
+\end{beispiel}
+
+\begin{beispiel} $(\mathbb Z, '0')$ aus Beispiel~\ref{gruppe_z_null} ist eine Halbgruppe \end{beispiel}
+
+\begin{beispiel} $(\mathbb R, \circ)$ aus Beispiel~\ref{gruppe_operation_max} ist eine Halbgruppe.
+\end{beispiel}
+
+\begin{beispiel} $(\mathfrak{P}(M), \circ)$ aus Beispiel~\ref{gruppe_operation_potenzm} ist eine 
+Halbgruppe.
+\end{beispiel}
+
+\begin{beispiel} $(\mathbb R, \circ)$ aus Beispiel~\ref{gruppe_operation_non_ass} ist keine Halbgruppe. 
+Hierfür gilt nämlich
+  	$$ ((-1) \circ (-2)) \circ(-3) = 1 \neq 0 = (-1) \circ ((-2) \circ (-3)) $$
+\end{beispiel}
+
+\begin{definition} Ein Element $e$ einer Halbgruppe $(M, \circ)$ heißt 
+\index{neutrales Element}\textbf{neutrales Element} der Halbgruppe, wenn gilt 
+  	$$ m \circ e = m, \quad e \circ m = m \qquad \textrm{ für alle }\, m \in M $$
+Eine Halbgruppe $(M, \circ)$ mt neutralem Element $e$ heiß \index{Monoid}\textbf{Monoid}. Wir 
+schreiben hierfür auch $(M, \circ, e)$
+\end{definition}
+
+\begin{notiz} Das neutrale Element eines Monoids $(M,\circ)$ ist eindeutig. Sind nämlich $e$ und $e'$ zwei 
+Elemente aus $M$ mit de Eigenschaft des neutralen Elements, so folgt aus ebendieser Eigenschaft
+  	$$ e' = e \circ e' = e $$
+\end{notiz}
+
+\begin{beispiel} $(\mathbb N, +, 0)$ ist ein Monoid mit neutralem Element 0. \end{beispiel}
+
+\begin{beispiel} $(\mathbb N \setminus \{ 0 \}, +)$ ist kein Monoid. \end{beispiel}
+
+\begin{beispiel} $(\mathbb N \setminus \{ 0 \}, \cdot)$ ist ein Monoid mit neutralem Element 1.
+\end{beispiel}
+
+\begin{beispiel} $(\mathbb Z, +, 0)$ ist ein Monoid mit neutralem Element 0. 
+$(\mathbb Z, \cdot)$ ist ein Monoid mit neutralem Element 1. \end{beispiel}
+
+\begin{beispiel} Ist $M = \{f: \mathbb R \longrightarrow \mathbb R \}$ die Menge aller Abbildungen aus 
+Beispiel~\ref{gruppe_monoid_abbild} mit Verknüpfung $\circ$, so ist $(M \circ)$ ein Monoid mit 
+neutralem Element 
+ 	$$ e: \mathbb R \longrightarrow \mathbb R, \quad x \longmapsto x \, . $$
+\end{beispiel}
+
+\begin{beispiel} $(\mathbb Z, '0')$ aus Beispiel~\ref{gruppe_z_null} ist kein Monoid. \end{beispiel}
+
+\begin{definition} Ist $(M, \circ)$ ein Monoid mit neutralem Element $e$ und ist $m \in M$, so heißt 
+ein Element $n \in M$ \index{inverses Element}\textbf{inverses Element} zu $m$ wenn gilt
+  	$$ m \circ n  = e, \qquad n \circ m = e $$
+In diesem Fall schreiben wir $m^{-1}$ für $n$.
+Ein Monoid $(G, \circ)$ heißt \index{Gruppe}\textbf{Gruppe}, wenn es zu jedem Element $m \in G$ eine 
+inverses Element in $G$ gibt.
+\end{definition}
+
+\begin{beispiel} $(\mathbb N, +)$ ist keine Gruppe. So gibt es etwa keine natürliche Zahl $n$ mit
+$1 + n = 0$. \end{beispiel}
+
+\begin{beispiel} $(\mathbb Z, +)$ ist eine Gruppe. Für jede Zahl $z$ gilt nämlich 
+  	$$ z + (-z) = 0 $$
+und mit $z$ ist auch $-z$ in $\mathbb Z$. 
+ $(\mathbb Z, \cdot)$ ist keine Gruppe. So gibt es etwa zu $0$ keine ganze Zahl $z$ mit $0 \cdot z = 1$.
+\end{beispiel}
+
+\begin{beispiel} $(\mathbb R, +), (\mathbb Q, +)$ sind Gruppen, aber $(\mathbb R, \cdot), 
+(\mathbb Q, \cdot)$ sind keine Gruppen, da es bezüglich $\cdot$ kein inverses Element zu $0$ gibt.
+
+$(\mathbb R \setminus \{0\}, \cdot), (\mathbb Q  \setminus \{0\}, \cdot)$ sind Gruppen, da es zu 
+jeder von Null verschiedenen reellen oder rationalen Zahl ein multiplikatives Inverses in $\mathbb R$ 
+oder $\mathbb Q$ gibt, aber $(\mathbb Z \setminus \{0\}, \cdot)$ ist keine Gruppe, denn $2$ hat kein 
+multiplikatives Inverses in $\mathbb Z$.
+\end{beispiel}
+
+\begin{beispiel} 
+Ist $M = \{f: \mathbb R \longrightarrow \mathbb R \}$ die Menge aller Abbildungen aus 
+Beispiel~\ref{gruppe_monoid_abbild} mit Verknüpfung $\circ$, so ist $(M \circ)$ keine Gruppe. Ist 
+nämlich $f \in M$ die Nullabbildung, $f(x) = 0$, so gibt es kein inverses Element zu $f$.
+
+Ist aber $M' = \{f: \mathbb R \longrightarrow \mathbb R \}$ die Menge aller bijektiven Abbildungen aus 
+$M$ mit Verknüpfung $\circ$, so ist $(M \circ)$ eine Gruppe. Ist 
+nämlich $f \in M'$, so existiert eine inverse Abbildung $f^{-1} \in M'$ mit $f \circ f^{-1} = e$ und 
+$f^{-1} \circ f = e$, wie wir im Abschnitt über Funktionen gesehen haben.
+
+Ganz allgemein gilt: 
+
+Ist $A$ eine beliebige Menge, so ist 
+	$$ \mathrm{Aut}(A) = \{ f: A \longrightarrow A \, \vert \,\, f \text{ ist bijektiv} \} $$
+zusammen mit der Komposition von Abbildungen eine Gruppe. 
+\end{beispiel}
+
+\begin{beispiel}\label{gruppe_permutation} 
+Ist $M_n = \{1, 2, \, \ldots , n \}$ die Menge der Zahlen $1, 2, \ldots, n$, und ist $S_n$ die Menge der 
+bijektiven Abbildungen auf $M_n$, so heißt 
+$S_n$ \index{Permutationsgruppe}\textbf{Permutationsgruppe} der Zahlen $1,  
+\ldots, n$ und ihre Elemente heißen Permutationen von $1, \ldots, n$. 
+
+Ein Element $\sigma \in S_n$ lässt sich am besten tabellarisch darstellen
+
+\medbreak
+
+	$$ \begin{array}{ | c | c | c | c | }
+	\hline
+	1 & 2 & \quad \ldots \quad & n  \\
+	\hline
+	\sigma(1) & \sigma(2) & \quad \ldots  \quad & \sigma(n)  \\
+	\hline
+	\end{array} $$
+
+%\begin{tabular}{ | c | c | c | c | }
+%\hline
+%1 & 2 & $\quad \ldots \quad$ & $n$  \\
+%\hline
+%$\sigma(1)$ & $\sigma(2)$ & $\quad \ldots  \quad$ & $\sigma(n)$  \\
+%\hline
+%\end{tabular}
+
+\medbreak
+
+Hierfür schreiben wir auch 
+  	$$ \sigma = \left( \begin{matrix} 1 & 2 & \ldots & n \\ \sigma(1) & \sigma(2) & \ldots & \sigma(n) 
+   	\end{matrix} \right) $$
+In der zweiten Zeile dieser Darstellung tauchen wieder alle Zahlen $1, \ldots, n$ auf, allerdings in 
+geänderter, also permutierter Reihenfolge. Darum nennen wir die Elemente $\sigma \in S_n$ auch 
+\textbf{Permutationen} der Zahlen $1, \ldots, n$.
+
+So ist etwa 
+  	$$ \sigma = \left(\begin{matrix} 1 & 2 & 3 & 4 \\ 4 & 2 & 3 & 1 \end{matrix} \right) $$
+die Permutation der Zahlen $1, 2, 3, 4$, die die Zahlen 1 und 4 vertauscht (und alle anderen festlässt. 
+Hierfür schreiben wir auch kurz $\langle 1 \, 4 \rangle$. Ganz allgemein schreiben wir für eine 
+Permutation $\sigma \in S_n$. die nur die Zahlen $i$ und $j$ ($i \neq j$) vertauscht kurz
+$\langle i \, j \rangle$ und nennen sie die \index{Permutationsgruppe!Transposition}\textbf{Transposition} 
+der Zahlen 
+$i$ und $j$. Wegen $\langle i \, j \rangle =  \langle j \, i \rangle$ können wir dabei stets annehmen, 
+dass $i < j$.
+
+Jede Permuation lässt sich (in nicht--eindeutiger Weise) aus Transpositionen zusammensetzen, d.h. ist 
+$\sigma \in S_n$ so gibt es Zahlenpaare $(i_1, j_1), (i_2, j_2), \ldots$, $(i_t, j_t)$ mit $1 \leq i_{\tau}
+< j_{\tau} \leq n$, so dass
+  	$$ \sigma = \langle i_1 \, j_1 \rangle \circ \langle i_2 \, j_2 \rangle \circ \cdots \circ 
+	\langle i_t \, j_t \rangle $$
+
+Mit $\mathrm{id} = \mathrm{id}_n$ bezeichnen wir das Element von $S_n$, das die Reihenfolge der Zahlen nicht 
+verändert, also 
+  	$$ \textrm{id} = \left( \begin{matrix} 1 & 2 & \ldots & n \\  1 & 2 & \ldots & n \end{matrix} \right) $$
+
+%Ferner definieren wir eine Verknüpfung $\circ$ auf $S_n$ durch die Komposition von Abbildungen, also 
+%  	$$ \sigma \circ \tau = \left( \begin{matrix} 1 & 2 & \ldots & n \\ \sigma(\tau(1)) & \sigma(\tau(2)) & 
+%	\ldots & \sigma(\tau(n))  \end{matrix} \right) $$
+%Dann ist $(S_n, \circ)$ eine Gruppe mit neutralem Element $\mathrm{id}$, die 
+%\index{Gruppe!Permutationsgruppe}\index{Permutation}\textbf{Permutationsgruppe} von $\{1, \ldots , n \}$.
+
+\medbreak
+
+Eine Permutation entspricht einer Anordnung der Zahlen $1, \ldots, n$, also einem geordnete $n$--Tupel 
+$(a_1, \ldots, a_n)$ mit $a_i  \in \{1, \ldots, n \}$ und $a_i \neq a_j$ für $i \neq j$. 
+Eine einfache kombinatorische Übung zeigt, dass 
+  	$$ \vert S_n \vert \, = n ! $$
+\medbreak
+
+Permuationen werden uns noch öfter begegnen, etwa bei den Determinanten. Daher 
+wollen wir sie noch etwas genauer untersuchen.
+
+Ist $\tau = \langle i, j \rangle$ die Transposition der Zahlen $i,j$, so gilt hierfür
+  	$$ \tau \circ \tau = \textrm{id} $$
+und damit gilt allgemein für eine beliebige Permutation $\sigma$ mit Darstellung
+  	$$ \sigma  = \langle i_1 \, j_1 \rangle \circ \langle i_2 \, j_2 \rangle \circ \cdots \circ 
+	\langle i_t \, j_t \rangle $$
+die Beziehung
+  	$$ \sigma \circ \langle i_t \, j_t \rangle \circ \cdots \circ \langle i_1 \, j_1 \rangle = \mathrm{id} $$
+so dass wir also auch für $\sigma^{-1}$ eine Darstellung mit Transpositionen gefunden haben:
+  	$$ \sigma^{-1} = \langle i_t \, j_t \rangle \circ \cdots \circ \langle i_1 \, j_1 \rangle  $$
+
+Eine wichtige Größe bei der Betrachtung von Permutationen ist die Anzahl der Fehlstände. Dabei 
+heißt ein Paar $i, j \in \{ 1, \ldots , n\}$ eine Fehlstand von $\sigma$, wenn $i < j$ aber
+$\sigma(i) > \sigma(j)$. Wir definieren die \index{Permutationsgruppe!Signatur}\textbf{Signatur} 
+$\mathrm{sign}(\sigma)$ von $\sigma$ durch
+  	$$ \mathrm{sign}(\sigma) = \left\{ \begin{array} {l c l}
+		+1 & \quad &\textrm{ falls die Anzahl der Fehlstände gerade ist} \\
+		-1 & \quad &\textrm{ falls die Anzahl der Fehlstände ungerade ist} 
+	\end{array} \right. $$
+Wir nennen eine Permuation $\sigma$ \textbf{gerade}, wenn $\mathrm{sign}(\sigma) = +1$ und \textbf{ungerade}, 
+wenn $\mathrm{sign}(\sigma) = -1$.
+
+Die Signatur hat auch folgende Beschreibung
+  	$$ \mathrm{sign}(\sigma) = \prod_{i<j} \frac {\sigma(j) - \sigma(i)}{j - i} $$
+wie man sehr leicht nachrechnet (siehe auch Aufgabe~\ref{gruppe_aufg_permut_1}). Dabei steht 
+$\prod$ für das Produktzeichen, also
+  	$$ \prod_{i=1}^n a_i = a_1 \cdot a_2 \cdots a_n $$
+
+Wir notieren die folgenden Eigenschaften der Signatur:
+
+\begin{itemize}
+\item Ist $\tau = \langle i \, j \rangle$ eine Transposition, so gilt $\textrm{sign}(\tau) = -1$
+\item Sind $\sigma, \tau$ zwei Permuationen, so gilt $\textrm{sign}(\sigma \circ \tau) = 
+\textrm{sign}(\sigma) \cdot \textrm{sign}(\tau)$ (vergleiche Aufgabe~\ref{gruppe_aufg_permut_2}).
+\item $\textrm{sign}(\textrm{id}) = 1$ und $\textrm{sign}(\sigma^{-1}) = \textrm{sign}(\sigma)$.
+\item Ist $\sigma = \langle i_1 \, j_1 \rangle \circ \langle i_2 \, j_2 \rangle \circ \cdots \circ 
+           \langle i_t \, j_t \rangle$, so ist $\textrm{sign}(\sigma) = (-1)^t$.
+\item Für $n \geq 2$ gibt es genauso viele gerade Permutionen wie ungerade Permuationen.
+\end{itemize}
+\end{beispiel} 
+
+\bigbreak
+
+\begin{beispiel}\label{gruppe_pm} 
+Sei $\mathcal{PM} = \{1, -1\}$ mit der Komposition $a \circ b = a \cdot b$. 
+Dann ist $\mathcal{PM}$ eine Gruppe.
+\end{beispiel}
+
+
+\begin{definition} Eine Gruppe $(G, \circ)$ heißt \index{Gruppe!kommutative}\textbf{kommutativ} oder
+\textbf{abelsch} wenn für je zwei Elemente $g, h \in G$ gilt:
+  $$ g \circ h = h \circ g $$
+\end{definition}
+
+\begin{beispiel} $(\mathbb Z, +), (\mathbb R, +)$ und $(\mathbb Q, +)$ sind kommutative Gruppen.
+
+$(\mathbb R \setminus \{0\}, \cdot)$ und $(\mathbb Q  \setminus \{0\}, \cdot)$ sind kommutative Gruppen
+\end{beispiel}
+
+\begin{beispiel} Ist $G$ die Gruppe der bijektiven Abbildungen von $\mathbb R$ in sich, 
+so ist $G$ nicht kommutativ, wie wir schon im Beispiel~\ref{function_komp_non_komm} 
+in Abschnitt~\ref{section_function} gesehen haben.
+\end{beispiel}
+
+\begin{beispiel} Für $n \geq 3$ ist die Gruppe $S_n$ der Permuationen 
+aus Beispiel~\ref{gruppe_permutation} nicht 
+kommutativ. So ist etwa $\langle 1 \, 2 \rangle \circ \langle 1 \, 3 \rangle 
+\neq \langle 1 \, 3 \rangle \circ \langle 1 \, 2 \rangle$.
+\end{beispiel}
+
+\bigbreak
+
+\begin{definition} Eine Gruppe $(G, \circ)$ heißt 
+\index{Gruppe!endliche Gruppe}\textbf{endlich}, wenn $\vert G \vert < \infty$, also 
+wenn $G$ nur endlich viele Elemente hat. 
+
+In diesem Fall heißt $\textrm{ord}(G) = \vert G \vert$ die 
+\index{Gruppe!Ordnung einer Gruppe}\textbf{Ordnung} der Gruppe $G$.
+\end{definition}
+
+\begin{notiz} Eine endliche Gruppe $G$ kann durch ihre Verknüpfungstafel beschrieben werden. Dazu 
+schreiben wir $G = \{ g_1, g_2, \ldots , g_n \}$ und erstellen eine Tabelle der Form
+  $$ \begin{array} { c | c c c c }
+  \circ \, & \, g_1 \, & \, g_2 \,  & \, \ldots \, & \, g_n \, \\ \hline
+  g_1\, \, & g_{1,1} & g_{1,2} & \ldots & g_{1,n} \\
+  g_2\, \, & g_{2,1} & g_{2,2} & \ldots & g_{2,n} \\
+  \vdots\, \, & \vdots & \vdots & \ddots & \vdots \\
+  g_n\, \, & g_{n,1} & g_{n,2} & \ldots & g_{n,n} 
+  \end{array} $$
+wobei $g_{i,j}$ kurz für das Element $g_i \circ g_j$ steht. Genau dann ist die Gruppe kommutativ, wenn 
+die Verknüpfungstafel symmetrisch (bezüglich der Diagonale) ist.
+\end{notiz}
+
+\begin{beispiel} Die Gruppe $\mathcal{PM}$ aus Beispiel~\ref{gruppe_pm} hat genau zwei Elemente, ist also 
+endlich. Ihre Verknüpfungstafel ist
+  $$ \begin{array} { c | c c }
+  \circ \, & \, -1 \, & \, 1 \,  \\ \hline
+  -1\, \, & 1 & -1  \\
+  1\, \, & -1 & 1  \\
+  \end{array} $$
+\end{beispiel}
+
+\begin{beispiel} Wir betrachten die Menge $G = \{0, 1\}$ mit der durch die folgende Tafel gegebenen 
+Verknüpfung
+  $$ \begin{array} { c | c c }
+  \circ \, & \, 0 \, & \, 1 \,   \\ \hline
+  0\, \, & 0 & 1  \\
+  1\, \, & 1 & 0  \\
+  \end{array} $$
+Hierdurch wird eine kommutative Gruppe definiert (die Gruppe $\mathbb Z/ 2 \mathbb Z$).
+\end{beispiel}
+
+\begin{beispiel} Wir betrachten die Menge $G = \{0, 1, 2\}$ mit der durch die folgende Tafel gegebenen 
+Verknüpfung
+  $$ \begin{array} { c | c c c c }
+  \circ \, & \, 0 \, & \, 1 \,  & \, 3 \,  \\ \hline
+  0\, \, & 0 & 1 & 2  \\
+  1\, \, & 1 & 2 & 0  \\
+  2\, \, & 2 & 0 & 1 \\
+  \end{array} $$
+Hierdurch wird eine kommutative Gruppe definiert (die Gruppe $\mathbb Z/ 3 \mathbb Z$).
+\end{beispiel}
+
+\begin{beispiel}\label{gruppe_z_mod_n_plus} Für $n \geq 1$ betrachten wir $\mathbb Z/n \mathbb Z$, 
+die Menge der Äquivalenzklassen der Relation 
+''unterscheiden sich um ein Vielfaches von $n$'' aus Beispiel~\ref{rela_z_mod_n}. Hierauf definieren wir 
+eine Verknüpfung ''+'' durch 
+  $$ [a] + [b] = [a+b] $$
+Mit dieser Verknüpfung wird $\mathbb Z/n \mathbb Z$ eine kommutative Gruppe (siehe auch 
+Aufgabe~\ref{gruppe_aufg_z_mod_n_plus}).
+\end{beispiel}
+
+\begin{beispiel} Die Permuationsgruppe $S_n$ aus Beispiel~\ref{gruppe_permutation} ist endlich. 
+\end{beispiel}
+
+\medbreak
+
+Für ein Element $g \in (G, \circ)$ mit neutralem Element $e$ setzen wir $g^0 = e$, $g^2 = g \circ g$, und 
+allgemein für $n \geq 1$:
+  $$ \begin{array} {l c l}
+  g^n & = & \underbrace{g \circ g \circ \cdots \circ g}_{n--\textrm{mal}} \\
+  g^{-n} & = & \underbrace{g^{-1} \circ g^{-1} \circ \cdots \circ g^{-1}}_{n--\textrm{mal}}
+  \end{array} $$
+(so dass also $g^n \circ g^m = g^{n+m}$ für alle $n, m \in \mathbb Z$). 
+
+\begin{lemma}\label{gruppe_endl_ordnung1} Ist $G$ eine endliche Gruppe und $g \in G$, so gibt es ein $n \geq 1$ 
+mit $g^n = e$.
+\end{lemma}
+
+\beweis{ Wir betrachten die Menge $B(g) := \{ g = g^1, g^2, \ldots, g^n, \ldots \} \subseteq G$. Da $G$ selbst 
+endlich ist, ist es sicherlich auch $B(g)$, und daher gibt es $l, k \geq 1$, $l < k$, mit $g^l = g^k$. Dann gilt
+  $$e = g^{l} \circ g^{-l} = g^{k} \circ g^{-l} = g^{k-l}$$
+wir können also $n = k-l$ setzen.
+}
+
+\medbreak
+
+\begin{definition} Ist $G$ eine endliche Gruppe und $g \in G$, so heißt 
+  $$ \textrm{ord}(g) := \textrm{min} \{ n \geq 1: g^n = e \} $$
+die \index{Gruppe!Ordnung eines Elements}\textbf{Ordnung} von $g$.
+\end{definition}
+
+\begin{notiz}\label{gruppe_ordnung_distinkt} Wir betrachten eine endliche Gruppe $G$. 
+
+\begin{enumerate}
+\item Genau dann gilt $\textrm{ord}(g) = 1$, wenn $g = e$.
+\item Für alle $1 \leq i < j \leq \textrm{ord}(g)$ gilt: $g^i \neq g^j$.
+\end{enumerate}
+\end{notiz} 
+
+Um den Ordnungsbegriff besser studieren zu können, benötigen wir eine Eigenschaft, die in den ganzen Zahlen 
+bzw\. im Monoid $(\mathbb N \setminus \{0 \}, \cdot )$ definiert ist:
+
+\begin{definition} Sind $m,n \in \mathbb N \setminus \{0 \}$, so heißt $m$ \index{Teiler}\textbf{Teiler} 
+von $n$, wenn 
+es ein $a \in \mathbb N$ gibt mit $a \cdot m = n$, und $m$ heißt \textbf{echter Teiler} von $n$, wenn 
+es ein $a \in \mathbb N \setminus \{1, n\}$ gibt mit $a \cdot m = n$.
+
+Ist $m$ ein Teiler von $n$ so schreiben wir hierfür $m \vert n$. Entsprechend schreiben wir $m \not\vert n$, 
+falls $m$ kein Teiler von $n$ ist. 
+\end{definition}
+
+\begin{beispiel} Ist $n = 6$, so sind $m = 1, 2, 3, 6$ die Teiler von $n$ und $m = 2,3$ die echten Teiler 
+von $n$. 
+\end{beispiel} 
+
+
+\begin{lemma}\label{gruppe_endl_ordnung2} Ist $G$ eine endliche Gruppe und $g \in G$, so gilt
+  $$ \textrm{ord}(g) \, \vert \, \textrm{ord}(G) $$ 
+also die Ordnung des Elements $g$ teilt die Ordnung der Gruppe $G$. Speziell gilt also 
+  $$ g^{\textrm{ord}(G)} = e $$
+\end{lemma}
+
+\bemerkung{Beweisidee.} 
+Es sei $n = \textrm{ord}(g)$. Wie wir schon im Beweis von Lemma~\ref{gruppe_endl_ordnung1} gesehen haben, 
+ist die Menge $B(g) = \{ g = g^1, g^2, \ldots \}$ endlich, und zwar gilt genauer
+  $$ B(g) = \{ g, g^2, \ldots , g^{n-1}, g^n = e \} $$
+und $B(g)$ hat genau $n  = \textrm{ord}(g)$ verschiedene Elemente. 
+(Wären nämlich zwei Elemente von in dieser Auflistung gleich, so könnten 
+wir den Beweis von Lemma~\ref{gruppe_endl_ordnung1} imitieren und fänden ein $l < n$ 
+mit $g^l = e$, im Widerspruch zur Definition der Ordnung des Elements). 
+
+Wir überdecken nun $G$ mit den \textbf{Bahnen} von $g$, dh. wir definieren für $h \in G$ beliebig
+  	$$ B_{h}(g) = \{h \circ g, h \circ g^2 , \ldots , h \circ g^{n-1}, h \circ e = h\} $$
+Hierfür rechnet man leicht nach
+
+\begin{itemize}
+\item $B_h(g)$ hat genau $n$ Elemente.
+\item Für $h, h' \in G$ gilt entweder $B_h(g) = B_{h'}(g)$ oder $B_h(g) \cap B_{h'}(g) = \emptyset$.
+\end{itemize}
+
+Da $G$ endlich ist, gibt es auch nur endlich viele verschiedene Bahnen, d.h. wir finden $h_1 = e, h_2, \ldots, 
+h_t$ mit $B_{h_i} (g) \cap B_{h_j}(g ) = \emptyset$ für $i \neq j$ und $G = B_{h_1}(g) \cup \cdots \cup 
+B_{h_t}(g)$. 
+
+Damit gilt aber 
+  $$ \begin{array} {l c l}
+     \textrm{ord}(G) & = & \vert B_{h_1}(g) \cup \cdots \cup B_{h_t}(g) \vert \\
+   & = & \vert B_{h_1}(g) \vert +  \cdots + \vert B_{h_t}(g) \vert \\
+   & = & t \cdot n 
+  \end{array} $$
+ und es folgt $n \vert \textrm{ord}(G)$ und 
+  $$ g^{\textrm{ord}(G)} = g^{nt} = \left(g^n\right)^t = e^t = e,$$ 
+also die Behauptung.
+
+\medbreak
+
+\bemerkung{Bezeichung.} Ist $G$ eine endliche Gruppe und $g \in G$ so schreiben wir
+  	$$ \langle g \rangle := B(g) = \{ g = g^1, g^2, g^3, \ldots \} $$
+für die Teilmenge von $G$, bestehend aus allen Potenzen von $g$.
+
+\medbreak
+
+\begin{notiz} Die Menge $\langle g \rangle$ ist selbst wieder eine (endliche) Gruppe der Ordnung
+$\textrm{ord}(g)$.
+\end{notiz}
+
+\begin{notiz}\label{gruppe_endl_ordn_ele_pot} Ist $g$ ein Element einer endlichen Gruppe $G$ und ist $n \geq 1$, 
+so gilt
+  $$ \textrm{ord}(g^n) \vert  \textrm{ord}(g) $$
+\end{notiz}
+
+\beweis{ Das Element $g^n$ ist Element der endlichen Gruppe $\langle g \rangle$, und damit folgt die Behauptung 
+aus Lemma~\ref{gruppe_endl_ordnung2}.
+}
+
+\bigbreak
+
+\begin{definition} Eine endliche Gruppe $G$ heißt 
+\index{Gruppe!zyklisch}\textbf{zyklisch}, wenn es ein $g \in G$ gibt mit 
+  	$$ \langle g \rangle = G $$
+In diesem Fall heißt $g$ ein \textbf{Erzeuger} von $G$.
+\end{definition}
+
+\begin{beispiel} Die Gruppe $\mathbb Z/(n) \mathbb Z$ ist eine zyklische Gruppe mit Erzeuger $[1]$.
+\end{beispiel}
+
+\begin{notiz} Ist $G$ eine endliche Gruppe mit $\textrm{ord}(G) = p$, wobei $p$ eine Primzahl ist, 
+so ist $G$ zyklisch. Dazu wählen wir ein beliebige $g \neq e$ in $G$. Da es nur ein neutrales 
+Element $e$ in $G$ gibt, existiert ein solches $g$. Gemäß Lemma~\ref{gruppe_endl_ordnung2} gilt 
+dann $\textrm{ord}(g) \vert \, p$, also, da $p$ eine Primzahl ist, $\textrm{ord}(g) = 1$ oder 
+$\textrm{ord}(g) = p$. Da aber $g \neq e$ muss gelten $\textrm{ord}(g) \neq 1$, und damit $\textrm{ord}(g) 
+= p$, also $\langle g \rangle = G$.
+\end{notiz}
+
+\section{Ringe}\label{section_gruppe}
+
+Besonders interessant für uns sind Strukturen wie $\mathbb Z$ oder $\mathbb R$, die zwei Verknüpfungen 
+tragen. 
+
+\begin{definition} Ein \index{Ring}\textbf{Ring} $(R, + , \cdot)$ ist eine nichtleere Menge $R$ mit 
+zwei Verknüpfungen $+$ und 
+$\cdot$, die zwei Elemente $0, 1$ enthält, wobei $0 \neq 1$ ist und wobei gilt
+
+  \begin{itemize}
+  \item $(R, +, 0)$ ist eine kommutative Gruppe.
+  \item $(R, \cdot, 1)$ ist ein Monoid.
+  \item Es gelten die Distributivgesetze
+  $$ \begin{array} {l c l c l}
+    (r + s) \cdot t & = & r \cdot t + s \cdot t & \quad & \textrm{ für alle } r, s, t \in R \\
+    r \cdot (s + t) & = & r \cdot s + r \cdot t & \quad & \textrm{ für alle } r, s, t \in R
+  \end{array} $$
+ \end{itemize}
+  
+Ist $(R, \cdot, 1)$ ein kommutatives Monoid, so nennen wir $(R, + , \cdot)$ einen kommutativen Ring.
+\end{definition}
+
+\begin{notiz} Wenn die Operationen klar sind, werden wir kurz $R$ für $(R, + , \cdot)$ schreiben.
+\end{notiz}
+
+\begin{notiz} Wir setzen nicht voraus, dass $(R, \cdot, 1)$ kommutativ ist, da wir mit den Matrizen 
+auch nicht--kommutative Ringe kennenlernen werden.
+\end{notiz}
+
+\begin{beispiel} $(\mathbb Z, +, \cdot), (\mathbb R, +, \cdot)$ und $(\mathbb Q, +, \cdot)$ sind kommutative 
+Ringe.
+\end{beispiel}
+
+\begin{beispiel}\label{gruppe_z_mod_n} 
+Es sei $n > 1$ eine ganze Zahl $\mathbb Z/ (n)$ die Menge der Äquivalenzklassen der Relation 
+''unterscheiden sich um ein Vielfaches von $n$'' aus Beispiel~\ref{rela_z_mod_n} in 
+Abschnitt ~\ref{section_mengen}, also 
+  	$$ \mathbb Z/ (n) = \{ [0], [1], \ldots, [n-1] \}. $$
+Wir definieren auf $\mathbb Z/ (n) $ Verknüpfungen $+$ und $\cdot$ durch
+  	$$ \begin{array} {l c l c l}
+  	\, [r] + [s] & := & [r \cdot s] & \quad & \textrm{ für alle } \, [r], [s] \in \mathbb Z/ (n) \\
+  	\, [r] \cdot [s] & := & [r \cdot s ] & \quad & \textrm{ für alle } \, [r], [s] \in \mathbb Z/ (n)
+  	\end{array} $$
+Die Operation ''+'' haben wir ja schon in Beispiel~\ref{gruppe_z_mod_n_plus} betrachtet.
+
+Zunächst müssen wir uns überzeugen, dass diese Operationen sinnvoll und wohldefiniert sind. Wir haben 
+also zu zeigen: 
+
+Sind $r' \sim_R r$ und $s' \sim_R s$ so gilt
+  	$$ [r' + s'] = [r + s], \qquad [r' \cdot s'] = [r \cdot s] $$
+Das ist aber leicht einzusehen. Ist etwa $r' = r + an$ und $s' = s + bn$, so gilt
+  	$$ r' \cdot s' = r \cdot s + (as + rb + abn) \cdot n $$
+also unterscheidet sich $ r' \cdot s'$ nur um ein Vielfaches von $n$ von $r \cdot s$. Der Nachweis für 
+die Summation ist noch einfacher. 
+
+Mit diesen Operationen gilt:
+
+$(\mathbb Z/ (n), +, \cdot )$ ist ein kommutativer Ring mit Nullelement $[0]$ und Einselement $[1]$. Die 
+Ringeigenschaften ergeben sich dabei leicht aus den entsprechenden Eigenschaften von $(\mathbb Z, +, \cdot )$, 
+siehe etwa Aufgabe~\ref{gruppe_aufg_z_mod_n_ring}.
+\end{beispiel}
+
+\begin{notiz} Die Ringoperationen in $\mathbb Z/ (n)$ können auch direkt mir Hilfe des Repräsentantensystems 
+$0, 1, \ldots, n-1$ erklärt werden: Sind $r, s \in \{0, 1, \ldots , n-1 \}$, so können wir 
+Divison durch $n$ mit Rest anwenden und erhalten
+  	$$ \begin{array} {l c l}
+  	r + s & = & a \cdot n + d \\
+  	r \cdot s & = & \alpha \cdot n + \delta 
+  	\end{array} $$
+für geeignete $a, \alpha \in \mathbb Z$ und $d , \delta \in \{0, 1, \ldots, n-1 \}$, und es gilt
+  	$$ \begin{array} {l c l}
+  	\, [r] + [s] & = &  [d] \\
+  	\, [r] \cdot [s] & = & [delta]
+  	\end{array} $$
+Das ist unmittelbar klar nach Definition, da ja $[a \cdot n] = [\alpha \cdot n] = [0]$. 
+\end{notiz}
+
+\begin{beispiel} Es sei jetzt speziell $n = 4$. Dann gilt in $\mathbb Z/ (4)$:
+  	$$ [2] \cdot [2] = [4] = [0] $$
+Wir haben also zwei von Null verschiedene Elemente in $\mathbb Z/ (4)$ deren Produkt $[0]$ ergibt. Diese 
+Situation tritt in $\mathbb Z$ oder $\mathbb R$ nicht auf.
+\end{beispiel}
+
+\begin{beispiel}  Ist $R$ ein kmmutativer Ring, so betrachten wir die Menge
+  	$$ R[X] := \{ r_n X^n + r_{n-1} X^{n-1} + \cdots + r_1 X + r_0 \vert \, n \in \mathbb N, r_0, \ldots, r_n \in R \} $$
+aller formalen Linearkombinationen von $1, X, X^2, \ldots$ über $R$. Sind
+  	$$ f(X) =  r_n X^n + r_{n-1} X^{n-1} + \cdots + r_1 X + r_0, \quad 
+	g(X) =  s_m X^m + s_{m-1} X^{m-1} + \cdots + s_1 X + s_0 $$
+So definieren wir Summe und Produkt von $f(X)$ und $g(X)$ wie folgt:
+
+Falls $n \geq m$, so setzen wir 
+  	$$ f(X) + g(X) = t_n X^n + t_{n-1} X^{n-1} + \cdots + t_1 X + t_0 $$
+wobei 
+  	$$ t_i = \left\{ \begin{array}{l c l} r_i & \quad & \textrm{ für } i > m \\ r_i + s_i & & 
+	\textrm{ für } i \leq m \end{array} \right. $$
+und falls $n < m$, so setzen wir 
+  	$$ f(X) + g(X) = t_m X^m + t_{m-1} X^{m-1} + \cdots + t_1 X + t_0 $$
+wobei 
+  	$$ t_i = \left\{ \begin{array}{l c l} s_i & \quad & \textrm{ für } i > n \\ r_i + s_i & & 
+	\textrm{ für } i \leq n \end{array} \right. $$
+
+Mit $l = n \cdot m$ definieren wir 
+  	$$ f(X) \cdot g(X) =  t_l X^l + t_{l-1} X^{l-1} + \cdots + t_1 X + t_0 $$
+wobei
+  	$$ t_i = \sum\limits_{k = 0}^{i} r_k \cdot s_{i-k} $$
+(mit $r_k = 0$ für $k > n$ und $s_k = 0$ für $k > m$).
+
+Dann ist $R[X]$, zusammen mit dieser Addition und Multiplikation ein kommutativer Ring. Das Einselement ist 
+das Element $1(X) = 1$ und das Nullelement ist das Element $0(X) = 0$. Wir nennen $R[X]$ den 
+\index{Polynom!Polynomring}\textbf{Polynomring} (in der Variable $X$) über $R$ und seine Elemente $f(X)$ 
+\index{Polynom}\textbf{Polynome} mit Koeffizienten aus $R$. 
+
+Ist $ f(X) =  r_n X^n + r_{n-1} X^{n-1} + \cdots + r_1 X + r_0$ ein Polynom mit $r_n \neq 0$, so nennen wir 
+$n$ den \index{Polynom!Grad}\textbf{Grad} des Polynoms $f(X)$ und wir nennen $f(X)$ ein Polynom vom 
+Grad $n$. Wir schreiben auch $\textrm{deg}(f(X))$ für den Grad des Polynoms $f(X)$.
+
+Jedes vom Nullpolynom verschiedene Polynom hat also einen eindeutigen Grad. Das Nullpolynom bildet eine 
+Ausnahme, denn ihm kann kein Grad in vernünftiger Weise zugeordnet werden. Daher lässt man für das 
+Nullpolynom jeden Grad zu, und damit ist es das einzige Polynom, das mehr als einen Grad hat.
+\end{beispiel}
+
+\begin{aufgabe} Zeigen Sie, dass $R[X]$ ein Ring ist. \end{aufgabe}
+
+\begin{aufgabe} Die Polynome $f(X) \in R[X]$ vom Grad 0 entsprechen genau den Elemente von $R$.
+\end{aufgabe}
+
+\begin{definition} Es sei $(R, + , \cdot)$ ein kommutativer Ring. Ein Element $r \in R \setminus \{0\}$ heißt 
+\index{Ring!Nullteiler}\textbf{Nullteiler} von $R$ wenn es ein $s \in R \setminus \{0\}$ gibt mit $r \cdot s = 0$.
+
+Ein kommutativer Ring, in dem es keine Nullteiler gibt, heißt \textbf{nullteilerfrei} oder \textbf{Integritätsbereich}
+\end{definition}
+
+\begin{beispiel} Die Ringe $\mathbb R$, $\mathbb Q$ und $\mathbb Z$ sind nullteilerfrei.
+\end{beispiel}
+
+\begin{beispiel} Die Ringe $\mathbb Z/ (2)$ und $\mathbb Z/ (3)$ sind nullteilerfrei. Das sieht man sofort indem 
+man die wenigen Elemente dieser Ringe einzeln durchgeht. 
+\end{beispiel}
+
+\begin{beispiel} Die Ringe $\mathbb Z/ (4)$, $\mathbb Z/ (6)$ und $\mathbb Z/ (15)$ sind nicht nullteilerfrei.
+\end{beispiel}
+
+\begin{aufgabe}\label{aufgabe_polynom_nzd} Wir betrachten einen nullteilerfreien Ring $R$. Zeigen Sie
+\begin{itemize}
+\item[a)] Der Polynomring $R[X]$ ist nullteilerfrei.
+\item[b)] Sind $f(X), g(X) \in R[X]$ Polynome, die verschieden vom Nullpolynom sind, so gilt 
+$\textrm{deg}(f(X) \cdot g(X)) = \textrm{deg}(f(X)) + \textrm{deg}(g(X))$.
+\end{itemize} 
+\end{aufgabe}
+
+\medbreak
+
+Nullteilerfrei Ringe haben eine für uns interessante Kürzungseigenschaft:
+
+\begin{satz}\label{gruppe_kurzungsregel} 
+Ist $R$ ein nullteilerfreier Ring und $a \in R \setminus \{0\}$, so gilt für alle $x, y \in R$.
+  	$$ ax = ay \Longrightarrow x = y $$
+\end{satz}
+
+\beweis{ Wir haben die Beziehungskette
+  	$$ ax = ay \Longrightarrow ax - ay = 0 \Longrightarrow a \cdot (x-y) = 0 \longrightarrow x-y = 0 $$
+wobei wir für die  letzte Implikation die Nullteilerfreiheit von $R$ ausgenutzt haben (und die Tatsache, dass
+$a \neq 0$) . Aber $x-y = 0$ ist äquivalent zu $x = y$ und es folgt die Behauptung.
+}
+\medbreak
+
+\begin{beispiel} In $\mathbb Z/ (8)$ gilt
+  	$$ [2] \cdot [7] = [2] \cdot [3] $$
+aber es gilt 
+  	$$ [7] \neq [3] $$
+Die Nullteilerfreiheit ist also wichtig für die Kürzungsregel.
+\end{beispiel}
+
+\section{Körper}\label{section_fields}
+
+Die Ringe $\mathbb Z$ und  $\mathbb Z/ (n)$ spielen eine wichtige Rolle in der Informatik, und die 
+Frage nach ihrer Nullteilerfreiheit bzw. ihren Nullteilern ist dabei von entscheidender Bedeutung.
+
+Wir haben also jetzt unter den kommutativen Ringen eine Klasse mit einer besonderen Eigenschaft, nämlich der
+Nullteilerfreiheit, isoliert und gesehen, dass nicht alle Ringe diese Eigenschaft haben. Einige Beispiele 
+nullteilerfreier Ringe sind $\mathbb F_p$ für Primzahlen $p$, $\mathbb Z$, $\mathbb Q$ und $\mathbb R$. 
+Trotzdem gibt es noch einen entscheidenden Unterschied zwischen $\mathbb Z$ und $\mathbb Q$ oder $\mathbb R$, 
+nämlich die Tatsache, dass wir in $\mathbb Q$ oder $\mathbb R$ multiplikative Inverse bilden können. Das 
+Führt uns zur letzten Definition in diesem Abschnitt
+
+\begin{definition}  Ein \index{Körper}\textbf{Körper} $(K, + , \cdot)$ ist eine nichtleere Menge $K$ mit 
+zwei Verknüpfungen $+$ und 
+$\cdot$, die zwei Elemente $0, 1$ enthält, wobei $0 \neq 1$ ist und wobei gilt
+
+\begin{itemize}
+  	\item $(K, +, 0)$ ist eine kommutative Gruppe.
+  	\item $(K \setminus \{0\}, \cdot, 1)$ ist eine kommutative Gruppe.
+  	\item Es gilt das Distributivgesetz
+  		$$ \begin{array} {l c l c l}
+    		(r + s) \cdot t & = & r \cdot t + s \cdot t & \quad & \textrm{ für alle } r, s, t \in R 
+  		\end{array} $$
+ \end{itemize}
+\end{definition}
+
+\begin{notiz} Da wir voraussetzen, dass $(R \setminus \{0\}, \cdot, 1)$ kommutativ ist, brauchen wir nur 
+ein Distributivgesetz zu fordern. Das zweite Distributivgesetz ($t \cdot (r+s) = tr + ts$) folgt sofort 
+aus der Kommutativität.
+\end{notiz}
+
+\begin{notiz} Jeder Körper ist ein nullteilerfreier kommutativer Ring. Die Umkehrung gilt nicht.
+\end{notiz}
+
+\begin{notiz} Schreiben wir alle Bedingungen aus, so sehen wir, dass $(K, +, \cdot)$ genau dann ein Körper 
+ist, wenn die Gesetze $A1$ - $A4$, $M1$ - $M4$ und $D$, die wir bei der Einführung der reellen Zahlen 
+notiert haben, für $K$  gelten.
+\end{notiz} 
+
+\begin{beispiel} $\mathbb Q$ und $\mathbb R$ sind Körper. \end{beispiel}
+
+\begin{beispiel} $\mathbb Z$ ist kein Körper. \end{beispiel}
+
+\medbreak
+
+\begin{notiz}\label{gruppe_einheitengruppe} Ist $(R, +, \cdot)$ ein kommutativer Ring, so heißt ein 
+$r \in R$  \textbf{Einheit}, wenn es ein $s \in R$ gibt mit $r \cdot s = 1$. Die Einheiten von $R$ bilden 
+eine Gruppe (bezüglich $\cdot$), die \textbf{Einheitengruppe} $E(R)$ von $R$. 
+\end{notiz}
+
+
+\bigbreak
+
+Die Unterscheidung zwischen Körpern und nullteilerfreien Ringen wird durch den folgenden Satz gegeben, 
+der trivialerweise aus der Definition folgt:
+
+\begin{satz}\label{gruppe_ring_korper} 
+Genau dann ist eine nullteilerfreier Ring $R$ ein Körper wenn jedes Element $x \in R \setminus 
+\{0\}$ ein multiplikatives Inverses hat, wenn also $E(R) = R \setminus \{ 0 \}$.
+\end{satz}
+
+Ist $K$ ein Körper, so ist der Polynomring $K[X]$ kein Körper, da das Element $X \in K[X]$ kein Inverses besitzt. 
+Trotzdem ist der Polynomring von großem Interesse für das Studium von Körpern. Eine wichtige Eigenschaft 
+von Polynomen ist nämlich, dass wir Elemente aus $K$ einsetzen können: Ist 
+  	$$ f(X) = r_n X^n + r_{n-1} X^{n-1} + \ldots + r_1 X + r_0 \, \in K[X] $$
+ein Polynom, und ist $a \in K$, so ist 
+  	$$ f(a) := r_n a^n + r_{n-1} a^{n-1} + \ldots + r_1 a + r_0  $$
+eine wohldefiniertes Element von $K$, so dass also $f(X)$ eine Abbildung
+  	$$ f: K \longrightarrow K, \quad a \mapsto f(a) $$
+definiert. 
+
+\begin{definition} Ein $a \in K$ heißt Nullstelle eines Polynoms $f(X) \in K[X]$, wenn $f(a) = 0$
+\end{definition}
+
+Eine wichtige Eigenschaft von Polynomringen über Körpern ist
+
+\begin{satz}\label{polynom_koerper_nullstellen} Ist $K$ ein Körper und $f(X)$ ein vom Nullpolynom verschiedenes 
+Polynom vom Grad $n$, so hat $f(X)$ höchstens $n$ Nullstellen.
+\end{satz}
+
+\beweis{ Wir beweisen die Aussage durch Induktion nach $n$.
+
+Die Aussage ist klar für ein Polynom vom Grad 0. Da das Polynom $f(X)$ nach Voraussetzung nicht das 
+Nullpolynom ist, ist $f(X) = r$ mit einem Element $r \in K \setminus \{ 0 \} $. Hierfür gilt offensichtlich
+  	$$ f(a) = r \neq 0 $$
+für jedes $a \in K$, so dass also $f(X)$ hier 0 Nullstellen hat.
+
+Der Induktionsschritt beruht darauf, dass wir Polynomdivision über beliebigen Körpern durchführen können. Sind 
+also $f(X)$, $g(X)$ zwei Polynome mit Koeffizienten aus $K$, und hat $g(X)$ den Grad $n$, so können wir immer
+schreiben
+  	$$ f(X) = q(X) \cdot g(X) +  r(X) $$
+mit einem Polynom $r(X)$ mit $\textrm{deg}(r(X)) < n$ (also $f(X) = g(X) = q(X)$ Rest $r(X)$). Das kann man genauso 
+einsehen wie die Polynomdivision über $\mathbb Q$ oder $\mathbb R$.
+
+Ist also jetzt $f(X)$ ein vom Nullpolynom verschiedenes Polynom vom Grad $n$ und $a$ eine Nullstelle von $f(X)$, so 
+können wir schreiben
+  	$$ f(X) = q(X) \cdot (X-a) + r(X) $$
+wobei $r(X) = r$ ein Polynom vom Grad $0$, also eine Element aus $K$ ist.  Setzen wir $a$ auf beiden Seiten 
+ein, so erhalten wir $f(a) = 0$ (da ja $a$ eine Nullstelle von $f(X)$ und $q(a) \cdot (a-a) +  r = r$, und damit
+  	$$ 0 = r $$
+Das bedeutet $f(X) = g(X) \cdot (X-a) $. Notwendigerweise ist $g(X)$ nicht das Nullpolynom, und aus 
+Aufgabe~\ref{aufgabe_polynom_nzd} folgt, dass $\textrm{deg}(q(X)) = n-1$. Daher wissen wir 
+gemäß Induktionsvoraussetzung bereits, dass $q(X)$ höchstens $n-1$ Nullstellen hat, und hieraus folgt 
+leicht, dass $f(X)$ höchstens $n$ Nullstellen hat.  
+}
+
+\bigbreak
+
+Die Körper $\R$ und $\Q$ sind aus der Schule bekannt, im Abschnitt~\ref{section_ganze_zahl} werden wir auch noch 
+einige Körper mit nur endliche vielen Elementen kennenlernen. 
+
+Ein weiterer wichtiger Körper ist der Körper $\C$ der komplexen Zahlen\index{komplexe Zahlen}. 
+Wie die reellen Zahlen als Erweiterung der 
+rationalen Zahlen konstruiert werden, um Wurzeln aus (positiven) Zahlen zu ziehen und besondere Zahlen wie $\ee$ 
+oder $\pi$ definieren zu können, werden die komplexen Zahlen als Erweiterung der reellen Zahlen betrachtet um einen 
+Mangel der reellen Zahlen zu beheben, nämlich die Tatsache, dass in $\R$ nicht aus allen Zahlen eine Quadratwurzel 
+gezogen werden kann. Die Konstruktion dieses Körpers ist sehr explizit: 
+
+Wir definieren $\C$ als die Menge alle Zahlenpaare $(x,y) \\in \mathbb R^2$ und mit der folgenden Addtion 
+und Multiplikation.
+
+\begin{itemize}
+\item $(x_1, y_1) + (x_2, y_2) = (x_1+x_2, y_1+y_2)$. 
+\item $(x_1,y_1) \cdot (x_2,y_2) = (x_1 \cdot x_2 - y_1 \cdot y_2, x_1 \cdot y_2 + x_2 \cdot y_1)$. 
+\end{itemize}
+
+Zur Vereinfachung der Schreibweise führen wir die folgenden Notationen ein: 
+
+\begin{itemize}
+\item[] $0 = (0,0)$ (das Nullelement).
+\item[] $1 = (1,0)$ (das Einselement). 
+\item[] $\ii = (0,1)$. 
+\item[] $(x,y) = x+\ii \cdot y$. 
+\end{itemize}
+
+Für eine komplexe Zahl $z = x+\ii \cdot y$ heißt dann $x$ der \textbf{Realteil}\index{Realteil} und $y$ der 
+\textbf{Imaginärteil}\index{Imaginärteil} von $z$. 
+
+Addition und Multiplikation der komplexen Zahlen schreiben sich damit wie folgt
+
+\begin{itemize}
+\item $(x_1 + \ii \cdot y_1) + (x_2+ \ii \cdot y_2) =(x_1+x_2 + \ii \cdot (y_1+y_2)$. 
+\item $(x_1 + \ii \cdot y_1) \cdot (x_2 + \ii \cdot y_2) 
+= x_1 \cdot x_2 - y_1 \cdot y_2 + \ii \cdot (x_1 \cdot y_2 + x_2 \cdot y_1)$. 
+\end{itemize}
+
+\medbreak
+
+\begin{satz}[Der Körper der komplexen Zahlen]
+Die komplexen Zahlen $\C$ zusammen mit dieser Addition und Multiplikation bilden einen Körper. 
+
+Das inverse Element $\frac {1}{z}$ zu einer komplexen Zahl $z = x + \ii \cdot y \neq 0$ ist gegeben durch 
+	$$ \frac {1}{z} = \frac {x - \ii \cdot y}{x^2+y^2} $$
+das Nullelement bezüglich der Addition ist $0 = 0 + \ii \cdot 0$, das Einselemnet bezüglich der Multiplikation 
+ist $1 = 1 + \ii \cdot 0$.  
+\end{satz}
+
+\beweis{ 
+Die Körperaxiome können direkt nachgerechnet werden.
+}
+
+\begin{notiz}
+Sofort aus der Definition der Multiplikation erhalten wir 
+	$$ \ii^2 = (0 + \ii \cdot 1( \cdot (0 + \ii \cdot 1) = 0 \cdot 0 - 1 \cdot 1 + \ii \cdot (0 \cdot 1 + 1 \cdot 0) = - 1 $$
+also ist $\ii$ eine Quadratwurzel aus $-1$. 
+
+Allgemeiner gilt für jede positive Zahl $ r \in \R$ mit (positiver) Quadratwurzel $\sqrt{r}$: 
+	$$ \left(\ii \cdot \sqrt{r} \right)^2 = \ii^2 \cdot \sqrt{r}^2 = (-1) \cdot r = - r $$
+dh. $\ii \cdot \sqrt{r}$ ist eine Quadratwurzel von $-r$, und damit haben in $\C$ auch alle negativen Zahlen 
+eine Quadratwurzel  
+\end{notiz}
+
+Es gilt sogar allgemeiner
+
+\begin{satz}[Fundamentalsatz der Algebra] 
+Der Körper $\C$ ist algebraisch abgeschlossen, dh. jedes Polynom 
+	$$ f(x) = a_0 + a_1\cdot x + \cdots + a_n \cdot x^n \quad \in \C[X] $$
+vom Grad $\geq 1$ hat eine Wurzel, d.h. es gibt ein $z_0 \in \C$ mit $f(z_0) = 0$.
+\end{satz}
+
+\bigbreak 
+
+\bigbreak
+
+\begin{aufgabe}\label{gruppe_aufg_z_mod_n_plus}
+Zeigen Sie, dass $(\mathbb Z/ (n), +)$ mit den in Beispiel~\ref{gruppe_z_mod_n} definierten Operationen 
+tatsächlich eine kommutative Gruppe ist.
+\end{aufgabe}
+
+\begin{aufgabe}\label{gruppe_aufg_z_mod_n_ring}
+Zeigen Sie, dass $(\mathbb Z/ (n), +, \cdot )$ mit den in Beispiel~\ref{gruppe_z_mod_n} definierten Operationen 
+tatsächlich ein Ring ist.
+\end{aufgabe}
+
+\begin{aufgabe} In einem Spiel für zwei Spieler werden zu Begin $n$ Spielsteine auf einem Spielplan 
+aufgestellt. Jeder Spieler kann in seinem Zug 1 - 4 Steine vom Spielplan entfernen. Gewonnen hat der 
+Spieler, der den letzten Stein vom Brett nimmt. Zeigen Sie: Ist $n$ durch 5 teilbar, so kann der nachziehende 
+Spieler den Sieg erzwingen. In allen anderen Situationen gibt es für den anziehenden Spieler einen 
+Gewinnweg.
+\end{aufgabe}
+
+\begin{aufgabe} Wir betrachten die Menge $G = \{ a, b ,c , d \} $ mit der Verknüpfung
+  	$$ \begin{array} { c | c c c c }
+  	\circ \, & \, a \, & \, b \,  & \, c \, & \, d \, \\ \hline
+  	a\, \, & a & b & c & d \\
+  	b\, \, & b & a & d & c \\
+  	c\, \, & c & d & a & b \\
+  	d\, \, & d & c & b & a 
+  	\end{array} $$
+Zeigen Sie, dass $G$ eine kommutative Gruppe der Ordnung 4 ist. Was ist das neutrale Element von $G$? 
+Was ist der wesentliche Unterschied zwischen dieser 
+Gruppe und der Gruppe $\mathbb Z / 4 \mathbb Z$?
+\end{aufgabe}
+
+\begin{aufgabe} Zeigen Sie: Ist $G$ eine endliche zyklische Gruppe, so ist $G$ kommutativ.
+\end{aufgabe}
+
+\begin{aufgabe} Schreiben Sie die Permutation
+  	$$ \sigma = \left( \begin{matrix} 1 & 2 & 3 & 4 & 5 \\ 2 & 3 & 5 & 1 & 4 \end{matrix} \right) $$
+als Komposition von Vertauschungen $\langle i \, j \rangle$.
+\end{aufgabe}
+
+
+\begin{aufgabe}\label{gruppe_aufg_permut_1} 
+Es sei $G$ die Permuationsgruppe $S_n$. Definiert man $\textrm{sign}(\sigma)$ als 
+  	$$ \textrm{sign}(\sigma) = \left\{ \begin{array} {l c l}
+	+1 & \quad &\textrm{ falls die Anzahl der Fehlstände gerade ist} \\
+	-1 & \quad &\textrm{ falls die Anzahl der Fehlstände ungerade ist} 
+ 	\end{array} \right. $$
+so gilt: 
+  	$$ \textrm{sign}(\sigma) = \prod_{i<j} \frac {\sigma(j) - \sigma(i)}{j - i} $$
+\end{aufgabe}
+
+\begin{aufgabe}\label{gruppe_aufg_permut_2} 
+Es sei $G$ die Permuationsgruppe $S_n$. Dann gilt:
+  	$$ \textrm{sign}(\sigma \circ \tau) = \textrm{sign}(\sigma) \circ \textrm{sign}(\tau) $$
+\end{aufgabe}
+
+\begin{aufgabe} Bestimmen Sei alle Nullteiler des Rings $\mathbb Z/ (24)$. \end{aufgabe}
+
+\begin{aufgabe} Zeigen Sie, dass $\mathbb Z/ 5 \mathbb Z$ ein Körper ist.
+\end{aufgabe}
+
+
+\newpage
+
+\section{Ganze Zahlen und ihre Restklassen}\label{section_ganze_zahl}
+
+\setcounter{definition}{0}
+\setcounter{beispiel}{0}
+\setcounter{notiz}{0}
+
+
+Die ganzen Zahlen und ihre Restklassenringe sind von fundamentaler Bedeutung für die Mathematik, aber 
+auch weit darüberhinaus, etwa in der Informatik. Daher wollen wir diesen Ringen einen eigenen Abschnitt 
+widmen. Ein fundamentaler Begriff in diesem Zusammenhang ist der Begriff der Teilbarkeit, und wesentlich 
+dabei wiederum ist der Begriff der Primzahl:
+
+\begin{definition} Eine Zahl $p \in \mathbb N \setminus \{0, 1\}$ heißt \index{Primzahl}\textbf{Primzahl}, 
+wenn $p$ keine echten Teiler hat.
+\end{definition}
+
+\begin{beispiel} $2, 3, 5, 7$ und $11$ sind Primzahlen, $9$ ist keine.
+\end{beispiel}
+
+Wir notieren hier zwei wichtige Eigenschaften von Primzahlen und ganzen Zahlen, deren Nachweis sich 
+in jedem Buch zur Algebra oder zur elmentaren Zahlentheorie findet (etwa in \textit{Gerhard Frey}: 
+Elementare Zahlentheorie; Vieweg Verlag 1984, und dort speziell die Aussagen 2.2,  3.1, 3.2 und 3.4)).
+
+\begin{notiz} Eine Zahl $p \in \mathbb N \setminus \{0, 1\}$ ist genau dann eine Primzahl, wenn 
+für alle ganzen Zahlen $a, b \in \mathbb Z$ gilt
+  	$$ p \vert \, a \cdot b \iff p \vert a \textrm{ oder } p \vert b $$
+also $p$ teilt genau dann ein Produkt von zwei Zahlen, wenn es schon eine der beiden Zahlen teilt.
+\end{notiz}
+
+\begin{notiz}\label{gruppe_primfaktorzerlegung_eindeutig} Jede ganze Zahle $z \in \mathbb Z 
+\setminus \{ 0 \}$ schreibt sich in eindeutiger Weise als
+  	$$ z = \varepsilon \cdot p_1^{n_1} \cdot p_2^{n_2} \cdots p_t^{n_t} $$
+mit $\varepsilon \in \{-1,1\}$, Primzahlen $p_1 < p_2 < \ldots < p_t$ und positiven natürlichen Zahlen 
+$n_1, \ldots , n_t$. (Dabei lassen wir den Spezialfall $t = 0$ für $z = \pm 1$ zu).
+\end{notiz}
+
+\begin{definition} Sind $m,n \in \mathbb N \setminus \{0 \}$, so heißt eine Zahl $g \in \mathbb N$ der 
+\textbf{größte gemeinsame Teiler} von $m$ und $n$, wenn gilt:
+\begin{itemize}
+\item $g$ ist ein Teiler von $m$ und ein Teiler von $n$.
+\item Ist $h$ ein weiterer Teiler von $m$ und $n$, so ist $h$ auch ein Teiler von $g$.
+\end{itemize}
+Wir schreiben 
+	$$ \mathrm{ggT}(m,n) := g $$ 
+für den größten gemeinsame Teiler von $m$ und $n$.
+
+Zwei Zahlen $m,n \in \mathbb N \setminus \{0 \}$ heißen \index{teilerfremd}\textbf{teilerfremd}, wenn 
+$\textrm{ggT}(m,n) = 1$, wenn sie also keinen echten gemeinsamen Teiler besitzen.
+\end{definition}
+
+\begin{notiz}
+Ist die Primfaktorzerlegung von $m$ und $n$ bekannt, so lässt sich daraus der größte gemeinsame Teiler von 
+$m$ und $n$ sofort ablesen. Sind nämlich $p_1, \ldots, p_t$ die Primzahlen, die entweder $m$ oder $n$ teilen, und 
+schreiben wir 
+	$$ m = p_1^{a_1} \cdots p_t^{a_t}, \qquad n = p_1^{b_1} \cdots p_t^{a_t} $$
+mit $b_i, a_i \geq 0$, so gilt 
+	$$ \mathrm{ggT}(m,n) = p_1^{\mathrm{min}\{ a_1, b_1\}} \cdots p_t^{\mathrm{min}\{ a_t, b_t\}} $$
+dh. im größten gemeinsamen Teiler von $m$ und $n$ kommen alle Primzahlen vor, die sowohl $m$ als auch $n$ 
+teilen, und zwar so oft, wie sie mindestens beide teilen. 
+\end{notiz}
+
+Eine unmittelbare Konsequenz der Definition ist
+
+\begin{satz}\label{gruppe_prim_teilerfremd} 
+Ist $p$ eine Primzahl und $m \in \mathbb N \setminus \{0 \}$ kein Vielfaches von $p$, so 
+sind $m$ und $p$ schon teilerfremd.
+\end{satz}
+
+
+\medbreak
+
+\begin{notiz} Wir hätten die Begriffe \textit{Teiler} und \textit{Primzahlen} auch für ganze Zahlen 
+definieren können. In diesem Fall wäre etwa $m$ ein echter Teiler von $n$ wenn es ein $a \in \mathbb Z 
+\setminus \{\pm 1, \pm n\}$ gibt mit $a \cdot m = n$. 
+Das ändert wenig an den grundsätzlichen Eigenschaften, es sind lediglich Vorzeichen 
+zu berücksichtigen. So ist etwa mit $p$ auch $-p$ eine Primzahl, und mit $m$ ist auch $-m$ ein Teiler von 
+$n$. Wir erhalten aber weder grundsätzlich neue Teiler noch einen grundsätzlich anderen Begriff von 
+Primzahlen. So ist etwa $p$ genau dann eine Primzahl in $\mathbb Z$ wenn entweder $p$ oder $-p$ eine Primzahl 
+im Sinne unserer Definition ist. Für uns sollen aber etwa $2$ und $-2$ - lax gesprochen - die gleiche Primzahl 
+darstellen, während $2$ und $3$ für uns grundsätzlich verschiedene Primzahlen sind. 
+
+Um daher lästige Vorzeichenbetrachtungen zu vermeiden, verzichten wir auf diesen 
+augenscheinlich allgemeineren Begriff. 
+\end{notiz}
+
+\medbreak
+
+Der größte gemeinsame Teiler zweier natürlicher Zahlen $m,n\in \mathbb N \setminus \{0 \}$ 
+lässt sich mit Hilfe des \index{euklidischer Algorithmus}\textbf{euklidischen Algorithmus} 
+schnell berechnen. 
+
+\bemerkung{\textbf{\, \, Der euklidische Algorithmus}}
+
+\vspace{-0.4cm}
+\begin{itemize} 
+\item \textbf{Vorbereitungsschritt:\,} Wir ordnen $m$ und $n$ so an, dass $m \geq n$. Gegebenenfalls vertauschen 
+wir dazu die Rollen von $m$ und $n$, denn $\textrm{ggT}(m,n) = \textrm{ggT}(n,m)$. Wir setzen $i = 0$ und 
+$r_0 = m$, $r_1 = n$.
+\item \textbf{Verarbeitungsschritt:\,} Wir dividieren $r_i$ durch $r_{i+1}$ mit Rest:
+  	$$ r_i = q \cdot r_{i+1} + b $$
+mit einer natürlichen Zahl $q$ und einem Rest $b \in \{0, 1, \ldots, r_{i+1} - 1 \}$.
+\begin{itemize}
+\item[-] Falls $b = 0$ (dh. die Division geht ohne Rest auf) $\, \longrightarrow \textbf{ STOPP}$.
+\item[-] Falls $b \neq 0$ setze $r_{i+2} = b$ und $i = i+1$. Wiederhole den Verarbeitungsschritt.
+\end{itemize}
+\item \textbf{Ergebnisschritt:} Nach endlich vielen Verarbeitungsschritten (höchstens $m$ vielen) geht die 
+Division erstmals ohne Rest auf, d.h.
+  	$$ r_i = q \cdot r_{i+1} + 0 $$
+mit $r_{i+1} \neq 0$, Das STOPP--Kriterium wird also immer erreicht. 
+Dann ist $r_{i+1}$ der größte gemeinsame Teiler von $m$ und $n$, $r_{i+1} = \textrm{ggT}(m,n)$.
+\end{itemize}
+
+Der Nachweis, dass dieser Algorithmus tatsächlich zum größten gemeinsame Teiler führt, kann etwa mit 
+Aufgabe~\ref{gruppe_aufg_euklid} geführt werden.
+
+\bigbreak
+
+\begin{beispiel}\label{LA_alg_bsp_euklid1} Wir betrachten die Zahlen $m = 222$ und $n = 156$. Hier gilt bereits 
+$m \geq n$, und wir setzen $r_0 = 234$ und $r_1 = 156$.
+
+\begin{itemize}
+\item[ ]$i = 0$: $\quad 222 = 1 \cdot 156 + 66$. Wir setzen $r_2 = 66$.
+\item[ ]$i = 1$: $\quad 156 = 2 \cdot 66 + 24$. Wir setzen $r_3 = 24$.
+\item[ ]$i = 2$: $\quad 66 = 2 \cdot 24 + 18$. Wir setzen $r_4 = 18$.
+\item[ ]$i = 3$: $\quad 24 = 1 \cdot 18 + 6$. Wir setzen $r_5 = 6$.
+\item[ ]$i = 4$: $\quad 18 = 3 \cdot 6 + 0$. $\, \longrightarrow \textbf{ STOPP}$.
+\end{itemize}
+
+\textbf{Ergebnis:} $\textrm{ggT}(222, 156) = 6$.
+\end{beispiel}
+
+\begin{beispiel}\label{gruppe_bsp_teilerfremd_1} 
+Wir betrachten die Zahlen $m = 19$ und $n = 234$. Hier müssen wir zuerst die Rollen 
+von $m$ und $n$ vertauschen, setzen also $r_0 = 234$ und $r_1 = 19$. 
+
+\begin{itemize}
+\item[ ]$i = 0$: $\quad 234 = 12 \cdot 19 + 6$. Wir setzen $r_2 = 6$.
+\item[ ]$i = 1$: $\quad 19 = 3 \cdot 6 + 1$. Wir setzen $r_3 = 1$.
+\item[ ]$i = 2$: $\quad 6 = 6 \cdot 1 + 0$.  $\, \longrightarrow \textbf{ STOPP}$.
+\end{itemize}
+
+\textbf{Ergebnis:} $\textrm{ggT}(234, 19) = 1$. Die Zahlen 234 und 19 sind also teilerfremd.
+\end{beispiel}
+
+\begin{notiz}
+Der euklidische Algorithmus liefert ein effizientes Verfahren zur Berechnung des grlßten gemeinsamen Teilers, 
+das für große Zahlen sehr viel schneller ist als der Weg über die Primfaktorzerlegung und die gemeinsamen 
+Primfaktoren. 
+
+Zunächst scheint es ja ein Problem zu sein, dass wir nicht wissen, wie viele Schritte der Algorithmus braucht, 
+dh. wie viele $r_i$ berechnet werden müssen (und damit auch, wie viel Speicher bereitgestellt werden soll). 
+Allerdings sieht man sofort, dass in jedem Verarbeitungsschritt aus dem vorherigen Teil der Verarbeitung 
+nur die beiden Zahlen, die mit Rest durcheinander dividiert werden müssen, benötigt werden, daher brauchen 
+wir immer nur diese beiden Zahlen (und den neuen Rest). Damit kann die Bestimmung des größten gemeinsamen 
+Teilers effizient umgesetzt werden: 
+
+\makebox[\textwidth]{\hrulefill}  
+\lstinputlisting{la_euklid01.m}
+\makebox[\textwidth]{\hrulefill} 
+
+\end{notiz}
+
+\medbreak
+
+Eine interessante  und wichtige Folgerung aus dem euklidischen Algorithmus ist
+
+\begin{satz}\label{gruppe_erw_euklid} Sind $m,n\in \mathbb N \setminus \{0 \}$ mit 
+$\textrm{ggT}(m,n) = g$, so gibt es ganze Zahlen $a,b$ mit 
+  	$$ a \cdot m + b \cdot n = g $$
+\end{satz}
+
+Der Beweis des Satzes besteht darin, dass wir aus dem vorletzten Schritt des euklidischen Algorithmus 
+rückwärtsrechnen, also die Beziehung $r_{i-1} = q \cdot r_i + r_{i+1}$, in der $r_{i+1}$ der größte 
+gemeinsame Teiler von $m$ und $n$ ist, nach $r_{i+1}$ auflösen, $r_{i+1} = r_{i-1} - q \cdot r_i$ und dann 
+sukkzessive die verschiedenen Schritte des Algorithmus zurückgehen. Für die Details siehe 
+Aufgabe~\ref{gruppe_aufg_erw_euklid}
+
+\begin{beispiel}
+In Beispiel~\ref{LA_alg_bsp_euklid1} haben wir gesehen, dass $\mathrm{ggT}(234,156) = 6$. Um $6$ mit 
+$234$ und $156$ zu beschreiben, gehen wir vor wie folgt: 
+
+Aus dem Schritt $i = 3$ erhalten wir 
+	$$ 6 = 24 - 1 \cdot 18 $$
+Aus $i =2$ folgt $18 = 66 - 2 \cdot 24$. Setzen wir das ein, so ergibt sich 
+	$$ 6 = 24 - 1 \cdot 18 = 24 - 1 \cdot (66 - 2 \cdot 24) = 3 \cdot 24 - 1 \cdot 66 $$
+  Aus $i =1$ erhalten wir $24 = 156 - 2 \cdot 66$. Setzen wir das ein, so ergibt sich 
+	$$ 6 = 3 \cdot 24 - 1 \cdot 66 = 3 \cdot (156 - 2 \cdot 66) - 1 \cdot 66 = 3 \cdot 156 - 7 \cdot 66 $$
+Aus $i =0$ folgt schließlich  $66 = 222 - 1 \cdot 156$. Setzen wir das ein, so ergibt sich 
+	$$ 6 = 3 \cdot 156 - 7 \cdot 66 = 3 \cdot 156 - 7 \cdot (222 - 156) = 10 \cdot 156 - 7 \cdot 222 $$
+Damit haben wir eine Darstellung 
+	$$ 6 = 10 \cdot 156 - 7 \cdot 222 $$
+ wie gewünscht gefunden. 
+\end{beispiel}
+
+\begin{beispiel} In Beispiel~\ref{gruppe_bsp_teilerfremd_1} haben wir gesehen, dass $\textrm{ggT}(234, 19) = 1$. 
+Wir wollen nun $1$ mit $19$ und $234$ darstellen.
+
+\begin{enumerate}
+\item Aus Schritt $i=1$ erhalte: $1 = 19 - 3 \cdot 6$.
+\item Aus Schritt $i=0$ erhalte: 
+  	$$1 = 19 - 3 \cdot 6 = 19 - 3 \cdot \left(234 - 12 \cdot 19\right) =
+      37 \cdot 19 - 3 \cdot 234$$
+\end{enumerate}
+\end{beispiel}
+
+\begin{notiz}
+Die Bestimmung der beiden Zahlen $a$ und $b$, für die gilt 
+	$$ a \cdot m + b \cdot n = \mathrm{ggT}(m,n) $$
+ist sehr wichtig für Anwendungen in der Kryptographie oder der Codierungstheorie. Einer effizienten 
+Umsetzung des oben beschreibenen Vorgehens scheint die Rückwärtsrechnung, die dabei durchgeführt 
+wurde, entgegenzustehen, denn diese kann offensichtlich nicht effizient umgesetzt werden. Bei genauerer 
+Betrachtung sehen wir, dass dieser Rückwärtsrechenschritt allerdings vermieden werden kann und alle 
+notwendige Information beim Vorwärtsrechnen ihm Rahmen des eigentlichen euklidischen Algorithmus 
+mit übergeben werden kann. Das soll nun am Beispiel~\ref{LA_alg_bsp_euklid1} gezeigt werden. 
+\end{notiz}
+
+\begin{beispiel}
+Wir greifen noch einmal Beispiel~\ref{LA_alg_bsp_euklid1} mit $m = 222$ und $n = 156$ auf. 
+
+\textbf{Vorbereitungsschritt:} Es gilt $m \geq n$, also setzen wir 
+	$$ r_0 = 234 \quad \text{ und } \, \, r_1 = 156 $$
+
+Außerdem setzen wir $a_0 = 1$, $b_0 = 0$ und $a_1 = 0$, $b_1 = 1$. Dann gilt hierfür 
+	$$ \begin{array} {l c r c r}
+	r_0 & = & a_0 \cdot m & + & b_0 \cdot n \\
+	r_1 & = & a_1 \cdot m & + & b_1 \cdot n 
+	\end{array} $$
+
+\textbf{Verarbeitung:}
+
+\begin{itemize}
+\item[ ]$i = 0$: $\quad 222 = 1 \cdot 156 + 66$, also $q = 1$, $ r = 66$. Wir setzen $r_2 = 66$ und wir beachten, 
+dass
+	$$ r_2 = r_0 - q \cdot r_1 = (a_0 \cdot m + b_0 \cdot n) - q \cdot (a_1 \cdot m + b_1 \cdot n) 
+	= (a_0 - q \cdot a_1) \cdot m + (b_0 - q \cdot b_1) \cdot n $$
+Setzen wir also 
+	$$ a_2 = a_0 - q \cdot a_1 = 1, \quad b_2 = b_0 - q \cdot b_1 = - 1 $$ 
+so erhalten wir 
+	$$ r_2 = a_2 \cdot m + b_2 \cdot n = 1 \cdot 222 + (-1) \cdot 156 $$
+\item[ ]$i = 1$: $\quad 156 = 2 \cdot 66 + 24$, also $q = 2$, $r = 24$. Wir setzen $r_3 = 24$ und wir beachten, 
+dass
+	$$ r_3 = r_1 - q \cdot r_2 = (a_1 \cdot m + b_1 \cdot n) - q \cdot (a_2 \cdot m + b_2 \cdot n) 
+	= (a_1 - q \cdot a_2) \cdot m + (b_1 - q \cdot b_2) \cdot n $$
+Setzen wir also 
+	$$ a_3 = a_1 - q \cdot a_2 = -2, \quad b_3 = b_1 - q \cdot b_2 = 3 $$ 
+so erhalten wir 
+	$$ r_3 = a_3 \cdot m + b_3 \cdot n = (-2) \cdot 222 + 3 \cdot 156 $$
+\item[ ]$i = 2$: $\quad 66 = 2 \cdot 24 + 18$, also $q = 2$, $r = 18$. Wir setzen $r_4 = 18$ und (wie oben) 
+	$$ a_4 = a_2 - q \cdot a_3 = 5, \quad b_4 = b_2 - q \cdot b_3 = -7 $$ 
+Damit erhalten wir 
+	$$ r_4 = a_4 \cdot m + b_4 \cdot n = 5 \cdot 222 + (-7) \cdot 156 $$
+\item[ ]$i = 3$: $\quad 24 = 1 \cdot 18 + 6$, also $q = 1$, $r = 6$. Wir setzen $r_5 = 6$ und (wie oben) 
+	$$ a_5 = a_3 - q \cdot a_4 = -7, \quad b_5 = b_3 - q \cdot b_4 = 10 $$ 
+Damit erhalten wir 
+	$$ r_5 = a_5 \cdot m + b_5 \cdot n = (-7) \cdot 222 + 10 \cdot 156 $$
+\item[ ]$i = 4$: $\quad 18 = 3 \cdot 6 + 0$. $\, \longrightarrow \textbf{ STOPP}$.
+\end{itemize}
+
+\textbf{Ergebnis:} $\textrm{ggT}(222, 156) = r_5 = 6$. und 
+	$$ 6 = (-7) \cdot 222 + 10 \cdot 156 $$
+\end{beispiel}
+
+\begin{notiz} Wie bei der Umsetzung des euklidischen Algorithmus kann auch hier die Abhängigkeit von 
+dem Schrittzähler $i$  noch eliminiert werden, so dass jeder Schritt für seine Verarbeitung nur die beiden 
+Zahlen, die mit Rest durcheinander dividiert werden, und die Darstellung dieser beiden Zahlen mithilfe 
+von $m$ und $n$ enthält. Daraus ergibt sich dann insgesamt der folgende Algorithmus
+
+\makebox[\textwidth]{\hrulefill}  
+\lstinputlisting{la_euklid02.m}
+\makebox[\textwidth]{\hrulefill} 
+
+\end{notiz}
+
+\bigbreak
+
+Nach diesen Überlegungen können wir wieder zur Betrachtung der Ringe $\mathbb Z/(n)$ zurückkehren:
+
+\begin{satz}\label{gruppe_nullteiler_mod_n} 
+Für Zahlen $m,n\in \mathbb N \setminus \{0 \}$, für die $m$ kein 
+Vielfaches von $n$ ist, sind die folgenden Aussagen äquivalent:
+\begin{itemize}
+\item[i)] $[m]$ ist eine Nullteiler in $\mathbb Z/(n)$.
+\item[ii)] $\textrm{ggT}(m,n) \neq 1$.
+\end{itemize}
+\end{satz}
+
+\beweis{ Ist $[m]$ ein Nullteiler von $\mathbb Z/(n)$, so gibt es ein $a \in \{1, \ldots, n-1\}$ mit
+  	$$ [m] \cdot [a] = [0] $$
+Das bedeutet aber, $m \cdot a$ ist ein Vielfaches von $n$, also $m \cdot a = l \cdot n$. Nehmen wir an, 
+dass ii) nicht gilt, dass also $m$ und $n$ teilerfremd sind, so finden wir nach Satz~\ref{gruppe_erw_euklid}
+Zahlen $r$ und $s$ mit $r \cdot m + s \cdot n = 1$. Damit gilt aber
+  	$$ r \cdot l \cdot n = a \cdot r \cdot m = a \cdot \left( 1 - s \cdot n \right) = a - a \cdot s \cdot n $$
+also $a = n \cdot \left(r \cdot l + a \cdot s\right)$ ist ein Vielfaches von $n$, im Widerspruch zur Wahl von 
+$a$.
+
+Ist umgekehrt $g = \textrm{ggT}(m,n)$, so können wir $n = g \cdot n_1$ und $m = g \cdot m_1$ schreiben, wobei 
+notwendig $n_1 \in \{2, \ldots, n-1\}$. Dann gilt aber
+  	$$ m \cdot n_1 = g \cdot m_1 \cdot n_1 = g \cdot n_1 \cdot m_1 = n \cdot m_1 $$
+ist ein Vielfaches von $n$, also $[m] \cdot [n_1] = [0]$. Da $[n_1] \neq [0]$ ist $[m]$ ein Nullteiler. 
+} 
+
+\medbreak
+
+\begin{korollar}\label{gruppe_fp_nullt} Genau dann ist $\mathbb Z/(n)$ nullteilerfrei, wenn $n$ eine 
+Primzahl ist. 
+\end{korollar}
+
+\beweis{ Dazu reicht es nach Satz~\ref{gruppe_nullteiler_mod_n} zu zeigen, dass genau dann jede Zahl $m \in 
+\{1, \ldots , n-1\}$ teilerfremd zu $n$ ist, wenn $n$ eine Primzahl ist. 
+
+Ist dazu zunächst $n$ eine Primzahl, so folgt aus Satz~\ref{gruppe_prim_teilerfremd}, dass $m$ und $n$ 
+teilerfremd sind. Ist umgekehrt jedes $m \in \{1, \ldots , n-1\}$ teilerfremd zu $n$, so kann $n$ insbesondere 
+keine echten Teiler haben und ist also ein Primzahl.
+}
+\medbreak
+
+\begin{notiz}
+Um die Notation zu vereinfachen, schreiben wir häufig für die Restklasse eine Zahl $m \in \Z$ in $\Z/(n)$ ebenfalls 
+$m$ anstelle von $[m]$. Aus dem Kontext wird immer klar sein, um was es sich handelt. 
+
+Ferner haben sich für $\Z/(n)$ auch die Notationen $\Z/n\Z$ und $\Z_n$ eingebürgert. Auch diese werden häufig verwendet. 
+\end{notiz}
+
+\medbreak
+
+\bemerkung{Bezeichnung:} Ist $p$ eine Primzahl, so schreiben wir auch $\mathbb F_p$ für $\mathbb Z/(p)$.
+
+In Abschnitt~\ref{section_gruppe} haben wir neben dem Begriff des Rings auch den des Körpers 
+studiert. Neben den bekannten Beispielen $\mathbb Q$ und $\mathbb R$ haben wir nun einen weiteren 
+Körper kennengelernt ohne das bis jetzt zu wissen:
+
+\begin{satz} Für jede Primzahl $p$ ist $\mathbb F_p$ ein Körper.
+\end{satz}
+
+\beweis{ Nach Korollar~\ref{gruppe_fp_nullt} ist $\mathbb F_p$ nullteilerfrei, und
+wegen Satz~\ref{gruppe_ring_korper} brauchen wir daher nur noch zu zeigen, dass jedes $x \neq 0$ in  
+$\mathbb F_p$ ein multiplikatives Inverses hat. Sei dazu $x = [m]$ mit $m \in \mathbb Z$. Da $[m] \neq [0]$ 
+sind $m$ und $p$ teilerfremd. Deshalb finden wir Zahlen $r, s$ mit $r \cdot m + s \cdot p = 1$, und daraus 
+folgt
+  	$$ [r][m] = [1 - s \cdot p] = [1] - [s]\cdot [p] = [1] $$
+also das Gewünschte.
+}
+\medbreak
+
+\begin{beispiel}
+Die Ermittlung des inversen Elements zu einem Element $m \in \F_p$ (mit Repräsentanten $m \in \Z$) erfolgt 
+am besten mithilfe des erweiterten euklicdischen Algorithmus: 
+
+Wir betrachten den endlichen Körper $k = \mathbb F_{71}$ mit $71$  
+Elementen und wollen die folgenden Elemente
+	$$ a = \frac {1}{24} \, , \quad b = \frac {17}{30} $$
+von $k$ mit den Repräsentanten $0, \, 1, \, \ldots , 70$ darstellen.
+
+Zur Bestimmung von $\frac {1}{24}$ in $\mathbb F_{71}$ gehen wir vor wie folgt:
+ 	$$ \begin{array} {l c l}
+	71 &=& 2 \cdot 24 + 23 \\
+	24 &=& 1 \cdot 23 + 1 \\
+	23 &=& 23 \cdot 1 + 0 \\
+	\end{array} $$
+Damit ergibt Rückwärtsrechnen
+	$$ \begin{array} {l c l}
+	1 &=& 24 - 1 \cdot 23 \\
+	&=& 24 - 1 \cdot (71 - 2 \cdot 24) \\
+	&=& 3 \cdot 24 - 1 \cdot 79 \\
+	\end{array} $$
+und damit gilt in $\mathbb F_{59}$: 
+	$$ 1 = 3 \cdot 24  $$
+also 
+	$$ \frac {1}{24} = 3 $$
+Zur Bestimmung von $b = \frac {17}{30}$. Berechnen wir zunächst $\frac {1}{30}$.  Hier ist 
+(wieder nach dem erweiterten euklidischen Algorithmus)
+	$$ (-26) \cdot 30 + 11 \cdot 71 = 1 $$
+also in $\mathbb F_{71}$:
+	$$ \frac {1}{30} = -26 = 45 $$
+ und damit 
+	$$ \frac {17}{30} = 17 \cdot \frac {1}{30} = 17 \cdot 45 = 55 $$
+\end{beispiel}
+
+Diese Körper $\mathbb F_p$ haben eine für die Anwendungen sehr interessante Eigenschaft.
+
+\begin{satz} \index{Satz!kleiner Fermatscher Satz}\textbf{(Kleiner Satz von Fermat)} Für jedes $a \in 
+\mathbb F_p \setminus \{ [0] \}$ gilt
+  	$$ a^{p-1} = 1 \qquad \textrm{ in } \mathbb F_p $$
+und für jedes $a \in \mathbb F_p$ gilt
+  	$$ a^{p} = a \qquad \textrm{ in } \mathbb F_p $$
+\end{satz}
+
+\beweis{ Wir wissen, dass $(\mathbb F_p \setminus \{[0] \}, \cdot)$ eine Gruppe ist, und zwar eine Gruppe der 
+Ordnung $p-1$. Damit folgt aus Lemma~\ref{gruppe_endl_ordnung2} schon $a^{p-1} = 1$.
+
+Damit gilt auch $a^p = a^{p-1} \cdot a = a$. Da sicherlich $[0]^p = [0]$, folgt auch der Zusatz.
+}
+\medbreak
+
+Die additive Gruppe des Körpers $\mathbb F_p$ ist $(\mathbb Z/p \mathbb Z, +)$, also eine sehr einfache 
+zyklsiche Gruppe. Die Einheitengruppe $E(\mathbb F_p)$ hat ebenfalls eine sehr einfache Struktur
+
+\begin{satz}\label{fp_mult_zyklisch}
+Für jede Primzahl $p$ ist die Einheitengruppe $E(\mathbb F_p)$ von  $\mathbb F_p$ eine zyklische Gruppe.
+\end{satz} 
+
+\beweis{ Im Abschnitt~\ref{section_gruppe} haben wir schon den Begriff der Ordnung eines Elementes $g$ 
+eine endlichen Gruppe $G$ kennengelernt
+  	$$ \textrm{ord}(g) = \textrm{min}\{ n \geq 1 \vert \, g^n = e \} $$ 
+und aus Lemma~\ref{gruppe_endl_ordnung2} wissen wir schon, dass 
+  	$$ \textrm{ord}(g) \, \vert \, \textrm{ord}(G) $$
+Wenden wir das jetzt speziell auf die Einheitengruppe $E(\mathbb F_p)$ von  $\mathbb F_p$ an, so erhalten wir, 
+dass für jedes $x \in E(\mathbb F_p)$ gilt
+  	$$  \textrm{ord}(x) \, \vert \, p-1 $$
+Wenn wir nun ein $x \in E(\mathbb F_p)$ finden mit $\textrm{ord}(x) =  p-1$, so muss dieses $x$ notwendigerweise 
+ein Erzeuger der gesamten Einheitengruppe sein (und diese damit zyklisch), denn in 
+Bemerkung~\ref{gruppe_ordnung_distinkt} haben wir gesehen, dass $x^l \neq x^k$ für alle $1 \leq l < k 
+\leq  \textrm{ord}(x)$ und daher sind die Elemente der Menge
+  	$$ <x> = \{ x, x^2, x^3, \ldots x^{p-1} \} $$
+alle paarweise verschieden, wenn $\textrm{ord}(x) =  p-1$, müssen also schon die ganze Gruppe 
+$E(\mathbb F_p)$ sein.
+
+Um eine solches Element zu finden, setzen wir 
+  	$$ M := \textrm{max} \{ n \in \mathbb N \, \vert \, \textrm{ es gibt ein } a \in E(\mathbb F_p) \textrm{ mit }
+	\textrm{ord}(a) = n \} $$
+und wir wählen ein $x \in E(\mathbb F_p)$ mit $ \textrm{ord}(x) = M$. 
+
+Zunächst behaupten wir: Ist $y \in E(\mathbb F_p)$ beliebig, und ist $\textrm{ord}(y) = m$, so gilt $m \vert M$.
+Dabei gilt sicherlich $m \leq M$. 
+
+Nehmen wir an, dass $m \not\vert M$, so gilt 
+  	$$ g := \textrm{ggT}(m,M) < m $$
+also $m = m' \cdot g$ mit $m' > 1$ und $m'$ teilerfremd zu $M$. Setzen wir $y' = y^g$, so hat $y'$ die Ordnung 
+$m'$, denn 
+  	$$\left(y'\right)^{m'} = y^{gm'} = y^m = 1 $$
+und für $n\geq 1$, $n<m'$ gilt
+  	$$ \left(y'\right)^{n'} = y^{gn} \neq 1 $$
+da $gn < m$. Setzen wir nun $a = \frac {x}{y'}$ und $n =  \textrm{ord}(a)$, so gilt $a^n = 1$, also 
+  	$$ x^n = \left(y'\right)^n $$
+und damit insbesondere $ \textrm{ord}(x^n) =  \textrm{ord}(\left(y'\right)^n)$. Nun gilt aber
+  	$$  \textrm{ord}(\left(y'\right)^n) \, \vert \,  m', \quad \textrm{ord}(x^n) \, \vert \, M $$
+Da $m'$ und $M$ teilerfremd sind, muss notwendig
+   	$$  \textrm{ord}(x^n) =  \textrm{ord}(\left(y'\right)^n) = 1 $$
+gelten, also $x^n = \left(y'\right)^n = 1$. 
+Da  $\textrm{ord}(x) = M$, muss also gelten $n \geq M$, und da  $\textrm{ord}(y') = m'$  teilerfremd zu $M$ ist, 
+muss sogar gelten $n > M$, im Widerspruch zur Wahl von $M$. 
+
+Wir haben also jetzt gezeigt, dass $\textrm{ord}(y) \, \vert M$ für alle $y \in  E(\mathbb F_p)$, also insbesondere, 
+dass $y^M = 1$ für alle $y \in  E(\mathbb F_p)$. Damit ist jedes $y \in E(\mathbb F_p)$ eine Nullstelle von 
+$X^M-1$. In Satz~\ref{polynom_koerper_nullstellen} haben wir gesehen, dass $X^M-1$ höchstens $M$ Nullstellen 
+hat. Da jedes Element $y \in  E(\mathbb F_p)$ aber Nullstelle von $X^M-1$ ist, muss also $M \geq p-1$ gelten. 
+Da aber andererseits $M \, \vert \, (p-1)$, folgt hieraus $M = p-1$, und damit ist unser Satz gezeigt.
+}
+\bigbreak
+
+\begin{aufgabe} Unter $n+1$ ganzen Zahlen $\{ a_1, \ldots, a_{n+1}\}$ gibt es mindestens zwei, deren 
+Differenz durch $n$ teilbar ist.
+\end{aufgabe}
+
+\begin{aufgabe}\label{gruppe_aufg_euklid} Sind $m,n,l \in  \mathbb N \setminus \{0 \}$, so gilt
+  	$$ \textrm{ggT}(m,n) = \textrm{ggT}(m,n+km) $$    
+\end{aufgabe}
+
+\begin{aufgabe} Bestimmen Sie mit Hilfe des euklidischen Algorithmus den größten gemeinsamen Teiler von 
+  	$$  a) \,\, 1008 \textrm{ und } 840, \qquad b) \,\, 481 \textrm{ und } 1755, \qquad c) \,\, 
+     	2940 \textrm{ und } 1617   $$
+\end{aufgabe}
+
+\begin{aufgabe}\label{gruppe_aufg_erw_euklid} 
+Benutzen Sie den euklidischen Algorithmus, um folgende Aussage zu zeigen: 
+
+Sind $m,n\in \mathbb N \setminus \{0 \}$ mit $\textrm{ggT}(m,n) = g$, so gibt es ganze Zahlen $a,b$ mit 
+  	$$ a \cdot m + b \cdot n = g $$
+\end{aufgabe}
+
+\begin{aufgabe} Berechnen Sie den größten gemeinsamen Teiler $g$ der Zahlen $318$ und $99$ 
+und stellen Sie diesen in der Form
+  	$$ g = a \cdot 318 + b \cdot  99 $$
+mit ganzen Zahlen $a$, $b$ dar. 
+\end{aufgabe}
+
+
+\begin{aufgabe} Für welche natürlichen Zahlen $n$ ist $n^2 + n + 1$ durch 3 teilbar?
+\end{aufgabe}
+
+\begin{aufgabe} 
+\begin{itemize}
+\item[a)] Zeigen Sie: Ist die natürliche Zahl $m \geq 1$ ein Teiler von $a$ und von $a+b$, so teilt $m$ auch $b$.
+\item[b)]Für welche natürlichen Zahlen $ n \geq 1$ teilt $n+1$ die Zahl $n^2 +1$?
+\end{itemize}
+\end{aufgabe}
+
+\begin{aufgabe} Bestimmen Sie (in Abhängigkeit von $n$) 
+  	$$ a) \,\, \textrm{ggT}(2^n+1, 3), \qquad b) \,\, \textrm{ggT}(2^n+1, 9) $$
+\end{aufgabe}
+
+\begin{aufgabe} Ist $p \geq 3$ eine Primzahl und $n \geq 2$ eine beliebige natürliche Zahl, so ist $2 \cdot p$ 
+ein Teiler von $n^p-n$.
+\end{aufgabe}
+
+\begin{aufgabe} Ist $R = \mathbb Z/(n)$ mit $n = p \cdot q$ wobei $p \neq q$ zwei Primzahlen sind, so hat die 
+Einheitengruppe von $R$ die Ordnung $(p-1) \cdot (q-1)$. Speziell gilt also für jede Zahl $a \in \mathbb Z$, 
+die teilerfremd zu $n$ ist: 
+  	$$ [a^{(p-1)(q-1)}] = [1] $$
+und 
+  	$$ [a^{(p-1)(q-1)+1}] = [a] $$
+\end{aufgabe}
+
+
+
+\bigbreak
+
+Für die Anwendung in der Kryptographie, speziell die sogenannten \textit{public key Kryptosysteme} wichtiger 
+als die Körper $\mathbb F_p$ sind die Ringe $\mathbb Z/(n)$ wobei $n = p \cdot q$ mit zwei Primzahlen 
+$p \neq q$. Die Mathematik, die dem sogenannten RSA--Algorithmus zugrunde liegt, wird in den folgenden
+Aufgaben beschrieben:
+
+\begin{aufgabe} Ist $R = \mathbb Z/(n)$, so ist ein $[a]$ genau dann eine Einheit in $R$, wenn $a$ und $n$ 
+teilerfremd sind.
+\end{aufgabe}
+
+\begin{aufgabe} Ist $R = \mathbb Z/(n)$ mit $n = p \cdot q$ wobei $p \neq q$ zwei Primzahlen sind, so hat die 
+Einheitengruppe von $R$ die Ordnung $(p-1) \cdot (q-1)$. Speziell gilt also für jede Zahl $a \in \mathbb Z$, 
+die teilerfremd zu $n$ ist: 
+  	$$ [a^{(p-1)(q-1)}] = [1] $$
+und 
+  	$$ [a^{(p-1)(q-1)+1}] = [a] $$
+\end{aufgabe}
+
+Damit sind wir in der Lage, den RSA--Algorithmus zu beschreiben und zu erklären:
+
+Es seien $p$ und $q$ zwei voneinander verschiedene Primzahlen, und es sei $N = p \cdot q$. 
+wir wählen eine zu $(p-1) \cdot (q-1)$ teilerfremde ganze Zahl $e \in \mathbb Z$. Mit Hilfe des 
+euklidischen Algorithmus ermitteln wir   $d, t \in \mathbb Z$ mit 
+ 	$$ d \cdot e + t \cdot (p-1) \cdot (q-1) = 1. $$
+
+\begin{aufgabe}\label{gruppe_rsa_dekrypt} Für jedes $a \in \mathbb Z$ gilt in $\mathbb Z/(N)$:
+  	$$ [a^{e \cdot d}] = [a] $$
+\end{aufgabe}
+
+\index{RSA--Kryptosystem}Damit nennt man $(N, e)$ den \textbf{öffentlichen Schlüssel} und $(N,d)$ den 
+\textbf{privaten Schlüssel} 
+des Verfahrens. Wir veröffentlichen unseren öffentlichen Schlüssel $(N, e)$ und halten die Zahl $d$ 
+geheim. Will uns eine andere Partei eine Nachricht zukommen lassen, die sich durch eine Zahl $m$ aus 
+$\mathbb Z/(N)$ bzw. eine Zahl aus $\{0, 1, \ldots, N-1\}$ darstellen lässt (z.B. eine Kontonummer), 
+so kann diese Partei wie folgt vorgehen:
+
+\begin{itemize}
+\item Sie benutzt unseren öffentlichen Schlüssel $(N,e)$ und berechnet 
+    	$$ [a] = [m^e] \, \textrm{ in } \mathbb Z/(N).$$
+\item Sie schickt uns die Zahl $a$ auf einem öffentlichen Kanal, etwa per Post.
+\end{itemize}
+
+Wir gehen dann wie folgt vor
+
+\begin{itemize} 
+\item Wir benutzen unseren privaten Schlüssel $d$ und berechnen $[b] = [a^d]$ in  $\mathbb Z/(N)$.
+\item Wir benutzen Aufgabe~\ref{gruppe_rsa_dekrypt} und schließen, dass 
+   	$$[b] = [\left(m^e\right)^d] = [m^{e \cdot d}] = [m] $$
+erhalten also das gewünschte $m$.
+\end{itemize}
+
+Die Sicherheit des RSA--Kryptosystems besteht darin, dass es im allgemeinen sehr schwierig ist, alle 
+Primteiler einer sehr großen Zahl zu ermitteln. Sind etwa $p$ und $q$ Primzahlen mit mindestens 100 Stellen, so ist 
+gegenwärtig kein effizientes Verfahren bekannt, dass aus der Kenntnis von $N = p \cdot q$ die Zahlen 
+$p$ und $q$ ermittelt. Damit kann aber auch $(p-1) \cdot (q-1)$ nicht effizient berechnet werde, und ohne Kenntnis 
+dieser Zahl wiederum lässt sich $d$ nicht ermitteln. Wichtig ist also, dass wir nur $N$ veröffentlichen 
+und nicht seine Teiler $p$ und $q$. 
+
+\begin{beispiel} Wir wählen die Primzahlen $p = 7$ und $q = 13$, also $N = 91$. Dann ist $(p-1) \cdot (q-1) 
+= 72$, und wir können $e = 5$ wählen. Hierfür gilt
+  	$$ 5 \cdot 29 + (-2) \cdot 72 = 1 $$
+so dass also $d = 29$ unser privater Schlüssel ist.
+
+Wir veröffentlichen also das Zahlenpaar $(91, 5)$.
+
+Ein Freund will uns eine Nachricht zukommen lassen, die durch die Zahl $m = 20$ dargestellt wird. 
+Er berechnet
+  	$$ [a] = [20^5] = [76] $$
+und schickt uns die Zahl 76 auf dem Postweg. Wir ermitteln 
+  	$$ [76^{29}] = [20] $$
+und haben also tatsächlich die Nachricht entschlüsselt.
+\end{beispiel}
+
+\begin{notiz} die Zahl $N = 91$, die wir in unserem Beispiel gewählt haben, bietet natürlich keinerlei 
+Sicherheit, da jeder aus ihr die Primfaktoren $p = 7$ und $q = 13$ ablesen kann. Trotzdem ist die direkte 
+Berechnung hier schon kompliziert und kein Taschenrechner ist in der Lage, $76^{29}$ korrekt anzugeben. Selbst 
+Computer kommen beim Potenzieren schnell an die Grenzen ihrer Rechengenauigkeit. Daher behilft man sich hier 
+mit der \textbf{Methode des iterierten Quadrierens}. In unserem Beispiel etwa schreiben wir 
+  	$$ 29 = 16 + 8 + 4 + 1 = 2^4 + 2^3 + 2^2 + 1 $$
+und erhalten damit 
+  	$$ 76^{29} = \left(\left(\left( 76^2 \right)^2\right)^2\right)^2 \cdot \left(\left( 76^2 \right)^2\right)^2
+	\cdot \left( 76^2 \right)^2 \cdot 76 $$
+Wir berechnen nun jedes Quadrat einzeln und reduzieren nach dem Quadrieren wieder modulo 91. Dadurch bleiben 
+die Zahlen überschaubar. In unserem Beispiel etwa erhalten wir dadurch (immer modulo $91$): 
+  	$$ \begin{array} {l c l c l}
+	76^2 & & & = & 43, \\ 
+	\left( 76^2 \right)^2 & = & 43^2 & = &  29, \\ 
+	\left(\left( 76^2 \right)^2\right)^2 & = & 29^2 & = & 22, \\ 
+  	\left(\left(\left( 76^2 \right)^2\right)^2\right)^2 & = & 22^2 & = & 29 
+	\end{array} $$
+Damit ergibt sich
+	$$ \begin{array} {l c l c l c l c l }
+	& & 76^{16} & = & \left(\left(\left( 76^2 \right)^2\right)^2\right)^2 & & & = & 29 \\
+	& & 76^{16} \cdot 76^{8} & = & 29 \cdot \left(\left( 76^2 \right)^2\right)^2 & = & 29 \cdot 22 & = & 1 \\
+	& & 76^{16} \cdot 76^{8} \cdot 76^{4} &=& 1 \cdot 76^4 & = & 1 \cdot 29 & = & 29 \\
+	76^{29} & = &  76^{16} \cdot 76^{8} \cdot 76^{4} \cdot 76 & = & 29 \cdot 76^1 & = & 29 \cdot 76 &  = & 20 \\
+	\end{array} $$ 
+Mit diesen Techniken bleiben die Zahlen, seobst bei sehr hohen Potenzen, immer in einem Bereich, den die 
+Prozessorarithmetik verarbeiten kann. Genauere Analysen führen noch zu einer weiteren Verbesserung dieser 
+Methode, die in den Übungen behandelt wird. 
+\end{notiz}
+
+\bigbreak
+\bigbreak
+
+Wir wollen hier noch eine weitere kryptographische Anwendung der elementaren Zahlentheorie untersuchen, nämlich 
+das sogenannte \textit{Diffie--Hellman--Protokoll}, das auf Satz~\ref{fp_mult_zyklisch} beruht. Dieses Verfahren wird 
+in erster Linie zum Austausch von Schlüsseln verwendet. Dabei werden also nicht die Nachrichten selbst ausgetauscht. 
+Dei beiden Kommunikationspartner einigen sich vielmehr vorab auf eine Liste von (klassischen) 
+Verschlüsselungsverfahren (z.B. Verfahren die von Parametern abhängen). In einer gegebenen Situation müssen 
+sich die beiden dann nur noch auf ein Verfahren einigen. Dadurch kann das Verfahren bei jeder Kommunikation 
+geänder werden, was einen Angriff sehr viel schwieriger macht als bei einem immer wieder verwendeten Verfahren.
+
+Wir geben uns dazu eine Primzahl $p$ vor (die in der praktischen Anwendung mindestens 100 Stellen haben sollte), 
+und wir nehmen an, dass die Liste unserer Schlüssel durch die Elemente der 
+Einheitengruppe $E(\mathbb F_p)$ von $\mathbb F_p$gegeben ist.
+Die Einheitengruppe $E(\mathbb F_p)$ ist gemäß Satz~\ref{fp_mult_zyklisch} zyklisch, wird also von einem 
+Element erzeugt, und wir wählen einen Erzeuger $g$ dieser Gruppe. Diese Daten (also $p$ und $g$) sind 
+öffentlich und bekannt. Wollen nun zwei Kommunikationspartner $A$ und $B$ einen Schlüssel austauschen, 
+so wählen $A$ und $B$ jeweils eine beliebige Zahl $a, b \in \{2, \ldots , p-2\}$. Dann berechnet $A$ die Zahl
+$\alpha = g^a \textrm{ mod } p$ und $B$ die Zahl $\beta = g^b \textrm{ mod } p$. Diese beiden Zahlen 
+$\alpha$ und $\beta$ werden nun ausgetauscht. Die Zahlen $a$ und $b$ halten die beiden geheim. Nun berechnet 
+$B$ die Zahle $S_1 = \alpha^{b}  \textrm{ mod } p$ und $A$ die Zahl $S_2 = \beta^{a}  \textrm{ mod } p$. 
+Da (in $\mathbb F_p$) gilt
+  	$$ S_1 = \alpha^b = \left(g^a\right)^b =  g^{ab} = \left(g^b\right)^a = \beta^a = S_2 $$
+haben also die beiden auf diese Art und Weise denselben Schlüssel $S$ berechnet, den sie jetzt für 
+ihre weitere Kommunikation benutzen. 
+
+Die Sicherheit des Verfahrens beruht darauf, dass es kein effizientes Verfahren gibt, aus der Kenntnis von 
+$p$, $g$ und $\alpha = g^a$ die Zahl $a$ zu berechnen (\textit{Problem des diskreten Logarithmus}). Die Kenntnis 
+von $g^a$ und $g^b$ reicht aber nicht aus, um $g^{ab}$ zu berechnen.  Bei hinreichend 
+großen Primzahlen kann also der Schlüssel nicht in akzeptabler Zeit berechnet werden und die Kommunikation 
+von $A$ und $B$ kann daher ungestört erfolgen.
+
+\begin{beispiel} Wir erläutern hier das Diffie--Hellman--Protokoll mit Hilfe der Zahlen $p = 13$ und $g = 2$.
+
+\begin{enumerate}
+\item $A$ wählt $a = 5$ und $B$ wählt $b = 7$.
+\item $A$ berechnet $\alpha = 2^5 \textrm{ mod } 13 = 32 \textrm{ mod } 13  = 6 \textrm{ mod } 13 $ und $B$ 
+berechnet $\beta = 2^7 \textrm{ mod } 13 = 128 \textrm{ mod } 13 = 11 \textrm{ mod } 13$.
+\item $A$ und $B$ tauschen die Zahlen $6$ und $11$ aus.
+\item $A$ berechnt $S = 11^5 \textrm{ mod } 13 = 7 \textrm{ mod } 13$ und $B$ berechnet 
+$S = 6^7 \textrm{ mod } 13 = 7 \textrm{ mod } 13$.
+\item $A$ und $B$ benutzen den Schlüssel $7$ für ihre weitere Kommunikation.
+\end{enumerate}
+\end{beispiel}

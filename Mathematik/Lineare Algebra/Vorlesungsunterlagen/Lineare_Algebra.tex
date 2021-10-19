@@ -1,0 +1,123 @@
+%\documentclass[a4paper,12pt]{scrartcl}
+\documentclass[a4paper,12pt]{book}
+
+\input{header}
+
+\newcommand{\nuronline}[1]{
+% 		\begingroup
+%                     {\color{magenta}
+%                    #1
+%                     }
+%		\endgroup
+	}
+
+\newcommand{\neues}[1]{
+% 		\begingroup
+%                     {\color{green}
+                    #1
+%                     }
+%		\endgroup
+          }
+
+\newcommand{\changes}[1]{
+% 		\begingroup
+%                     {\color{red}
+%                    #1
+%                     }
+%		\endgroup
+          }
+
+\newcommand{\nurtext}[1]{
+% 		\begingroup
+%                     {\color{blue}
+                    #1
+%                     }
+%		\endgroup
+          }
+
+% für Aufgabenname NÄCHSTE ZEILE AUSKOMMENTIEREN
+\renewcommand{\aufgabenname}[1]{}
+
+% für Lösung NÄCHSTE ZEILE AUSKOMMENTIEREN
+ \renewcommand{\loesung}[1]{}
+
+% für Lösungsweg NÄCHSTE ZEILE AUSKOMMENTIEREN
+\renewcommand{\loesungsweg}[1]{}
+
+% für online-Testlösung NÄCHSTE ZEILE AUSKOMMENTIEREN
+%\renewcommand{\testloesung}[1]{}
+
+% für Hinweise NÄCHSTE ZEILE AUSKOMMENTIEREN
+%\renewcommand{\hinweis}[1]{}
+
+% für Fehlerfeedback zu online-Fragen NÄCHSTE ZEILE AUSKOMMENTIEREN
+%\renewcommand{\fehlerfeedback}[1]{}
+
+\def \bez{\vskip0.0cm\relax\noindent {\sl Bezeichnung:\ \ }}
+\def \beweisvon#1{\medskip\noindent {\sl Begr\"undung von #1:\ }}
+\def \herleitvon#1{\medskip\noindent {\sl Herleitung #1:\ }}
+
+\makeindex
+
+\begin{document}
+
+%\parindent = \noindent 
+
+%\setcounter{section}{11}
+\numberwithin{equation}{section}
+
+\input{00_la_titel}
+
+\newpage
+
+
+
+
+
+
+\pagestyle{headings}
+
+%\cleardoublepage 
+\newpage
+
+\phantom{Leerseite}
+
+\thispagestyle{empty}
+
+\newpage
+
+\setcounter{page}{1}
+\tableofcontents
+
+%\chapter*{Einf\"uhrung}
+
+%Diese Manuskript ist als Lehr-- und Arbeitsmaterial für das mathematische Grundstudium im 
+%technisch--naturwissenschaftlichen Bereich gedacht. 
+
+%Ziel dieser Unterlagen ist es, einerseits einen leicht zug\"anglichen \"Uberblick \"uber die 
+%Grundlagen der Mathematik zu bieten, die f\"ur Ingenieure oder Informatiker relevant sind, der 
+%den Stoff anhand vieler Beispiele erl\"autert, andererseits aber auch eine regorose und vollst\"andige 
+%Behandlung aller Themen zu liefern, was insbesondere auch Beweise und Begr\"undungen einschlie{\ss}t. 
+
+%Nicht behandelt werden weiterf\"uhrende Themen wie etwa Variationsrechnung, Kryptographie oder 
+%Codierungstheorie. 
+
+
+\input{01_logik}
+
+\input{02_algebra}
+
+\input{03_vr}
+
+\input{04_LinGLS}
+
+\input{05_det}
+
+\input{06_eigen}
+
+
+\newpage
+
+\printindex
+
+\end{document}

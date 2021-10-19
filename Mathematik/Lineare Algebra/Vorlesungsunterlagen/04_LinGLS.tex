@@ -1,0 +1,1996 @@
+
+\chapter{Lineare Gleichungssysteme}
+
+\section{Matrizen und Gleichungssysteme}\label{linalg_mat_gls}
+
+Ein entscheidender Grund für die Beschäftigung mit Vektoren und Vektorräume sind lineare Gleichungssysteme 
+und damit zusammenhängende Fragen. In vielen praktischen Anwendungen hängen unterschiedliche Größen
+etwa eines physikalischen Systems in linearer Weise voneinander ab. In diesem Abschnitt wollen wir wir das 
+Studium solcher Zusammenhänge formalisieren und vorantreiben. 
+
+Der Einfachheit hable beschäftigen wir uns hier nur mit reellen Gleichungssysteme und reellen Matrizen, 
+wir notieren jedoch, dass Matrizen und Gleichungssystemen, genauso wie die Vektorräume, über beliebigen 
+Körpern betrachtet werden können. Dadurch ändern sich jedoch die Methoden, Techniken und Beweise in 
+diesem Abschnitt nicht, und daher überlassen wir die nötigen Anpassungen dem interessierten Leser.  
+
+\subsection{Lineare Gleichungssysteme}\label{section_lin_equ}
+
+\setcounter{definition}{0}
+\setcounter{beispiel}{0}
+\setcounter{notiz}{0}
+
+
+Bereits in den letzten Abschnitten haben wir gesehen, dass oft Beziehungen zwischen Vektoren zu betrachten sind.
+Bei der Untersuchung auf lineare Unabhängigkeit der Vektoren $\vektor{v_1}, \ldots ,\vektor{v_m}$  
+etwa stehen wir vor dem Problem, alle Werte $r_1, \ldots ,   r_m$ zu finden, für die 
+  $$ r_1 \vektor{v_1} + \cdots + r_m \vektor{v_m} = \vektor{0} $$
+gilt. Handelt es sich dabei um Vektoren aus dem $\mathbb R^n$ und schreiben wir sie in Komponentenschreibweise, so 
+erhalten wir daraus eine Gleichung für jede Komponente, und damit insgesamt $n$ Gleichungen
+  $$ \begin{array}{l c c c l c l}
+  r_1 v_{1,1} & + & \ldots & + & r_m v_{m,1} & = & 0 \\
+  r_1 v_{1,2} & + & \ldots & + & r_m v_{m,2} & = & 0 \\  
+  \vdots & & \ddots & & & & \vdots \\
+  r_1 v_{1,n} & + & \ldots & + & r_m v_{m,n} & = & 0 
+  \end{array} $$
+Die Frage nach der linearen Unabhängigkeit der Vektoren $\vektor{v_1}, 
+\ldots ,\vektor{v_m}$ ist 
+also äquivalent zur Frage ob dieses Gleichungssystem ausser der trivialen Lösung 
+$r_1 = \cdots = r_m = 0$ noch andere Lösungen hat. 
+
+\"Ahnliche Problemstellungen treten in vielen anderen Bereichen auf:
+
+\begin{beispiel}\label{gls_chemie} Alpaka (Neusilber) ist eine Legierung aus Kupfer, Nickel und Zink. 
+Im Lager liegen vier Legierungen I - IV mit den durch folgende Tabelle angegebenen Zusammensetzungen
+  $$ \begin{array} {l | c c c c }
+  & I & II & III & IV \\
+  \hline
+  \textrm{Kupfer} & 40\% & 50\% & 60\% & 70\% \\
+\textrm{Nickel} & 26\% & 22\% & 25\% & 18\% \\
+\textrm{Zink} & 34\% & 28\% & 15\% & 12 \% 
+\end{array} $$
+Wie lässt sich aus diesen Legierungen Alpaka mit einem Gehalt von $55\%$ Kupfer, $23\%$ Nickel und $22\%$ Zink 
+herstellen?
+Schreiben wir hier zunächst die Komponenten der vorhandenen Legierungen jeweils als Vektoren, also 
+  $$ \vektor{v_1} = \left(\begin{matrix} 40 \\ 26 \\ 34 \end{matrix} \right), \, 
+     \vektor{v_2} = \left(\begin{matrix} 50 \\ 22 \\ 28 \end{matrix} \right), \,
+     \vektor{v_3} = \left(\begin{matrix} 60 \\ 25 \\ 15 \end{matrix} \right), \,
+     \vektor{v_4} = \left(\begin{matrix} 70 \\ 18 \\ 12 \end{matrix} \right)  $$
+und ebenso für die Ziellegierung
+  $$ \vektor{b} = \left(\begin{matrix} 55 \\ 23 \\22 \end{matrix} \right) $$
+so suchen wir Zahlen $a,b,c$ und $d$, die die Gleichung 
+  $$ a \vektor{v_1} + b \vektor{v_2} + c \vektor{v_3} + d \vektor{v_4} = 
+     100 \vektor{b} $$
+erfüllen. Auch das führt zu einer Gleichung für jede einzelne Komponente, und damit zu einem 
+Gleichungssystem
+  $$ \begin{array} {l c l c l c l c l}
+   40 a & + & 50 b & + & 60 c & + & 70 d & = & 5500 \\
+   26 a & + & 22 b & + & 25 c & + & 18 d & = & 2300 \\
+   34 a & + & 28 b & + & 15 c & + & 12 d & = & 2200 \\
+   \end{array} $$
+Man sieht dieser Gleichung sicher nicht unmittelbar an, welche Lösungen sie hat, oder ob sie überhaupt 
+Lösungen hat.
+\end{beispiel}
+
+Bei der Betrachtung linearer Gleichungssysteme ist es naheliegend, aus einer Gleichung Information über eine 
+der Unbekannten zu ziehen und damit die anderen Gleichungen zu vereinfachen. 
+
+\begin{beispiel}\label{gls_elem}  Wir betrachten das lineare Gleichungssystem
+  $$ \begin{array} {l c l c l}
+     1 x & + & 4 y & = & 8 \\
+     3 x & + & 2 y & = & 4 
+     \end{array} $$
+Durch Betrachtung der ersten Gleichung erhalten wir 
+  $$ x = 8  - 4 y $$
+Setzen wir das in die zweite Gleichung ein, so erhalten wir
+  $$ 3 ( 8 - 4 y) + 2 y = 20 $$
+also 
+  $$ 24 - 10 y =  4 $$
+Das ist eine lineare Gleichung, mit einer Unbekannten, die wir leicht lösen können. Durch Zusammenfassen  der 
+Terme wird sie zu  
+  $$ 10 y = 20 $$
+hat also die Lösung $y = 2$. Setzen wir das nun wiederum in das ursprüngliche Gleichungssystem ein, so erhalten 
+wir 
+  $$ \begin{array} {l c l c l}
+     1 x & + & 8 & = & 8 \\
+     3 x & + & 4 & = & 4 
+     \end{array} $$
+also $x = 0$, und wir haben gezeigt, dass $x = 0$, $y = 4$ die eindeutige Lösung unseres Gleichungssystems ist.
+
+Anstatt die erste Gleichung nach $x$ aufzulösen und das Resultat in die zweite Gleichung einzusetzen, hätten 
+wir auch hingehen können und ein geeignetes Vielfaches der ersten Gleichung (nämlich das Dreifache) von der 
+zweiten Gleichung abzuziehen. Das ergibt
+  $$ ( 3 x + 4 y) - 3 \cdot (1 x + 4 y ) = 4 - 3 \cdot 8 $$
+also
+  $$ - 10 y = - 20 $$
+und liefert uns wieder $y = 2$, $x = 0$.  Diese beiden Ansätze sind äquivalent.
+\end{beispiel}
+
+\begin{beispiel}\label{gls_chem_lsg} Wir wollen nun das Gleichungssystem aus Beispiel~\ref{gls_chemie} mit 
+der zweiten Methode aus 
+Beispiel ~\ref{gls_elem} behandeln. Zunächst subtrahieren wir das $\frac {26}{40}$--fache der ersten Zeile von 
+der zweiten, und das $\frac {34}{40}$--fache der ersten Zeile von der dritten und erhalten 
+  $$ \begin{array} {l c l c l c l c l}
+   40 a & + & 50 b & + & 60 c & + & 70 d & = & 5500 \\
+     &   & -\frac {21}{2} b & - & 14 c & - & \frac {55}{2} d & = & -1275 \\
+     &   & - \frac {29}{2} b & - & 36 c & - & \frac {95}{2} d & = & -2475 
+   \end{array} $$
+Dadurch haben wir die zweite und die dritte Zeile dahingehend vereinfacht, das wir in diesen Gleichungen nur noch 
+drei Variablen zu betrachten haben. Wir gehen weiter, indem wir den selben Ansatz auf das Gleichungssystem, das nur 
+noch aus der zweiten und dritten Gleichung besteht, anwenden. Dazu ziehen wir das $\frac {29}{21}$--fache der 
+zweiten Gleichung von der dritten Gleichung ab und erhalten
+  $$ \begin{array} {l c l c l c l c l}
+   40 a & + & 50 b & + & 60 c & + & 70 d & = & 5500 \\
+     &   & -\frac {21}{2} b & - & 14 c & - & \frac {55}{2} d & = & -1275 \\
+     &   &   &   & - \frac {50}{3} c & - & \frac {250}{21} d & = & -\frac {5000}{7}  
+   \end{array} $$
+Wir haben also die letzte Gleichung auf zwei Unbekannte reduziert und das ganze Gleichungssystem auf eine 
+Dreiecksform gebracht. Da wir keine weiteren Gleichungen mehr zur 
+Verfügung haben, lässt sich auch keine weitere Elimination mehr durchführen. Wir können nun so vorgehen, 
+dass wir für $d$ einen beliebigen Wert $x$ einsetzen. Wir erhalten dann aus der letzten Gleichung
+  $$ c = \frac {300}{7} - \frac {5}{7} x $$
+Diesen Wert können wir (zusammen mit $x$ für $d$) für $c$ in die zweite Gleichung einsetzen und erhalten
+  $$ b = \frac {2}{21} \cdot \left( 1275 - 14 \left( \frac {300}{7} -\frac {5}{7} \right) - \frac {55}{2} x \right)
+       = \frac {450}{7} - \frac {5}{3} x $$
+Setzen wir nun alles in die erste Gleichung ein, so ergibt sich
+  $$ a = \frac {1}{40} \left( 5500 - 60 \left( \frac {450}{7} - \frac {5}{3} x \right) - 70 \left( 
+         \frac {300}{7} - \frac {5}{7} x \right) - 70 x \right) 
+       = - \frac {9500}{7} + 80 x$$
+Und damit haben wir erhalten: Alle Lösungen unseres Gleichungssystems sind von der Form
+  $$ a = - \frac {9500}{7} + 80 x, \, b = \frac {450}{7} - \frac {5}{3} x, \, 
+     c = \frac {300}{7} - \frac {5}{7} x, \, d = x $$
+mit einem beliebigen $x$. Es gibt also viele Lösungen. Um unser ursprüngliches Problem zu behandeln ist es 
+natürlich erforderlich, $x$ so zu wählen, dass $a \geq 0, b \geq 0, c \geq 0$ und $d \geq 0$. Aber auch das 
+ist möglich, etwa durch die Wahl von $x = 30$.
+\end{beispiel}
+
+Die in den Beispielen ~\ref{gls_elem} und ~\ref{gls_chem_lsg} skizzierten Ansätze lassen sich zu einem 
+allgemeinen Algorithmus zur Lösung linearer Gleichungssysteme ausbauen. Allerdings ist dazu noch ein 
+zusätzlicher Fall zu betrachten. 
+
+\begin{beispiel}\label{gls_vertausch}  Gegeben sei das Gleichungssystem
+  $$ \begin{array} {l c l c l c l}
+      &  &  & & 2 z & = & 8 \\
+     2 x & + & 2 y & + & 4 z & = & 4 
+     \end{array} $$
+Dieses System ist zwar einfach zu lösen, fügt sich aber insofern nicht in unser Schema aus 
+Beispiel~\ref{gls_chem_lsg} oder ~\ref{gls_elem} ein, als es nicht möglich ist, durch Addition 
+eines geeigneten Vielfachen der ersten Gleichung die erste Unbekannte aus der zweiten Gleichung zu 
+eliminieren. Um eine allgemeingültigen und computertauglichen Algorithmus zu erhalten, ist das 
+aber erforderlich. Deshalb schieben wir einen Zwischenschritt ein und vertauschen zunächst mal 
+die beiden Zeilen
+  	$$ \begin{array} {l c l c l c l}
+   	2 x & + & 2 y & + & 4z & = & 4 \\
+   	&  &  & & 2z & = & 8 \\
+  	\end{array} $$
+Nun haben wir schon fast was wir wünschen. Für eine perfekte Dreiecksform ist allerdings auch noch 
+dafür Sorge zu tragen, dass in der zweiten Gleichung die zweite Unbekannte (und nicht nur die dritte) 
+vorkommt. Das können wir am einfachsten dadurch erreichen, dass wir die die Rollen von $y$ und $z$ vertauschen, 
+als schreiben
+  	$$ \begin{array} {l c l c l c l}
+     	2 x & + & 4 z & + & 2y & = & 4 \\
+   	&  & 2 z  & & & = & 8 \\
+  	\end{array} $$
+Schließlich nehmen wir noch eine Umbenennung vor und schreiben $y$ für $z$ und $z$ für $y$ und   
+erhalten
+  	$$ \begin{array} {l c l c l c l}
+     	2 x & + & 4 y & + & 2 z & = & 4 \\
+      	&  & 2 y & & & = & 8 \\
+     	\end{array} $$
+also ein Gleichungssystem, das genau in unser Schema passt. Um uns das Leben noch einfacher zu machen, normieren 
+wir die Gleichungen dahingehend, dass wir jede Gleichung durch den Koeffizienten der ersten auftretenden Variable 
+teilen und bekommen ds Gleichungssystem
+  	$$ \begin{array} {l c l c l c l}
+    	x & + & 2y & + & z & = & 2 \\
+    	&  & y & & & = & 4 \\
+   	\end{array} $$
+aus dem wir sofort ablesen, das seine allgemeine Lösung von der Form 
+  	$$ x = -2 - \lambda, \, y = 4, \, z = \lambda $$
+mit einem freien Parameter $\lambda$ ist. Zu beachten ist dabei, dass die Vertauschungen rückgängig gemacht 
+werden müssen, wenn wir unser ursprüngliches Gleichungssystem betrachten. In diesem Fall bedeutet das, dass
+das Gleichungssystem 
+  	$$ \begin{array} {l c l c l c l}
+    	&  &  & & 2 z & = & 8 \\
+   	2 x & + & 2 y & + & 4 z & = & 4 
+   	\end{array} $$
+die allgemeine Lösung
+ 	$$ x = -2 - \lambda, \, y = \lambda,  \, z = 4 $$
+mit einem freien Parameter $\lambda$ hat.
+\end{beispiel}
+
+\begin{notiz}\label{gls_equ_operation}
+Wir haben also vier Operationen kennengelernt, die wir an Gleichungssystemen durchführen können
+
+\begin{itemize}
+\item[(i)] Subtrahiere das Vielfache einer Gleichung von einer anderen Gleichung
+\item[(ii)] Vertausche zwei Gleichungen 
+\item[(iii)] Vertausche zwei Variablen
+\item[(iv)] Multipliziere eine Gleichung mit einer Zahl $r \neq 0$.
+\end{itemize}
+
+Diese Operationen führen zu einem äquivalenten Gleichungssystem, also zu einem Gleichungssystem das die 
+selben Lösungen hat wie das ursprüngliche (wobei im Fall der Variablenvertauschung diese rückgängig 
+zu machen ist. Diese Operationen reichen auch aus, um jedes Gleichungssystem auf eine Form zu bringen in der 
+
+\begin{itemize}
+\item[a)] sofort entschieden werden kann, ob das Gleichungssystem lösbar ist.
+\item[b)] im Fall der Lösbarkeit alle Lösungen sofort angegeben werden können.
+\end{itemize}
+\end{notiz}
+
+\bigbreak
+
+Dazu betrachten wir jetzt ein allgemeines System linearer Gleichungen, bestehend aus $m$ Gleichungen mit $n$ 
+\index{lineares Gleichungssystem} Unbekannten. Dafür benutzen wir folgende Notation:
+  	\begin{equation}\label{equ_lgs_gen} 
+  	\begin{array} {l c l c c c l c l }
+  	a_{1,1} x_1 & + & a_{1,2} x_2 & + & \cdots & + a_{1,n} x_n & = & b_1 \\
+  	a_{2,1} x_1 & + & a_{2,2} x_2 & + & \cdots & + a_{2,n} x_n & = & b_2 \\
+  	\vdots & & & & \ddots & & & \vdots \\
+  	a_{m,1} x_1 & + & a_{m,2} x_2 & + & \cdots & + a_{m,n} x_n & = & b_m 
+  	\end{array} 
+  	\end{equation}  
+Dabei stehen $x_1, \ldots, x_n$ für die zu bestimmenden Unbekannten, $a_{1,1}, \ldots , a_{m,n}$ für die 
+Koeffizienten des Gleichungssystems und $b_1, \ldots, b_m$ für die Ergebnisse. In Beispiel~\ref{gls_elem} 
+etwa war $x_1 = x, x_2 = y$, $a_{1,1} = 1, a_{1,2} = 4$, $a_{2,1} = 3$ und $a_{2,2} = 2$ sowie $b_1 = 8$ und 
+$b_2 = 4$. 
+
+\begin{definition} Eine Gleichungssystem (\ref{equ_lgs_gen}) heißt 
+\index{lineares Gleichungssystem!homogen}\textbf{homogen}, wenn $b_i = 0$ für alle $i$.
+\end{definition}
+
+
+\begin{notiz} Jedes homogene Gleichungssystem mit $n$ Unbekannten hat mindestens eine Lösung, nämlich
+   	$$ x_1 = 0, \, x_2 = 0, \, \ldots , x_n = 0 $$
+Diese Lösung heißt auch \textbf{triviale Lösung} des homogenen Gleichungssystems.
+\end{notiz}
+
+\begin{definition} Wir sagen, ein Gleichungssystem (\ref{equ_lgs_gen}) liegt in 
+\index{lineares Gleichungssystem!Gauß--Normalform}\textbf{(Gaußscher) Normalform} vor, 
+wenn es ein $t \in \{1, \ldots, m \}$ gibt mit
+\begin{itemize}
+\item $a_{i,j} = 0$ für alle $i > t$ und alle $j$.
+\item $a_{i,j} = 0$ für $i \in \{2, \ldots, t\}$ und $j < i$.
+\item $a_{i,i} = 1$ für $i = 1, \ldots, t$.
+\end{itemize}
+In diesem Fall heißt $t$ der \index{lineares Gleichungssystem!Rang} \textbf{Rang} des linearen 
+Gleichungssystems.
+\end{definition}
+
+\begin{notiz} Ein lineares Gleichungssystem in Normalform hat also die Gestalt
+  	\begin{equation}\label{equ_lgs_normal} 
+  	\begin{array} {l c l c l c c c l c l }
+  	x_1 & + & a_{1,2} x_2 & + & a_{1,3} x_3 & + & \cdots & + & a_{1,n} x_n & = & b_1 \\
+  	0 & + &  x_2 &  + & a_{2,3} x_3 & + & \cdots & + & a_{2,n} x_n & = & b_2 \\
+ 	\vdots & & &  & & & \ddots & & & \vdots \\
+  	0 & + & 0 & + & 0 &  \cdots &  + \, x_t \, +  \, \cdots & + & a_{t,n} x_n & = & b_t \\  
+  	0 & + & 0 & + & 0 & + & \cdots & + & 0 & = & b_{t+1} \\
+  	\vdots & &  & & & & \ddots  & & & \vdots \\
+  	0 & + & 0 & + & 0 & + & \cdots & + & 0 & = & b_m 
+  	\end{array} 
+  	\end{equation} 
+\end{notiz}
+
+In dieser allgemeinen Form sieht die Normalform sehr unübersichtlich aus. Die Situation wird aber einfacher, 
+wenn wir einige Beispielen betrachten.
+
+\begin{beispiel} Das Gleichungssystem aus Beispiel~\ref{gls_elem} hat die Normalform
+  	$$ \begin{array} {l c l c l}
+     	x_1 & + & 4 x_2 & = & 8 \\
+     	&   & x_2 & = & 2 
+   	\end{array} $$
+\end{beispiel}
+
+\begin{beispiel} Das Gleichungssystem aus Beispiel~\ref{gls_chemie} hat Normalform
+  	$$ \begin{array} {l c l c l c l c l}
+   	x_1 & + & \frac {5}{4} x_2 & + & \frac {3}{2} x_3 & + & \frac {7}{4} x_4 & = & \frac {550}{4} \\
+   	&   & x_2 & + & \frac {4}{3} x_3 & + & \frac {55}{21} x_4 & = & \frac {2550}{21} \\
+  	&   &  &  & x_3 & + & \frac {5}{7} x_4 & = & \frac {300}{7} 
+  	\end{array} $$
+\end{beispiel}
+
+Gleichungssysteme in Normalform lassen sich sehr einfach weiterverarbeiten:
+
+\begin{satz} Liegt ein Gleichungssystem (~\ref{equ_lgs_gen}) in Normalfrom (~\ref{equ_lgs_normal}) vor, so gilt
+\begin{itemize}
+\item Genau dann ist das Gleichungssystem lösbar, wenn $b_i = 0$ für $i > t$.
+\item Genau dann hat das Gleichungssystem eine eindeutige Lösung, wenn $b_i = 0$ für $i> t$ und $t = n$.
+\item Genau dann hat das Gleichungssystem unendlich viele Lösungen, wenn $b_i = 0$ für $i> t$ und $t < n$.
+\end{itemize}
+\end{satz}
+
+\beweis{ Es ist klar, dass wir keine Lösung haben können, wenn $b_i \neq 0$ für ein $i > t$, etwa $b_{t+1} 
+\neq 0$. Dann haben wir nämlich eine Gleichung 
+  	$$ 0 = b_{t+1} $$
+in unserem Gleichungssystem, die durch keine Wahl der $x_i$ erfüllt werden kann.
+
+Ist $b_i = 0$ für alle $i > t$, so können wir für unser Gleichungssystem wie in den Beispielen einfach 
+Lösungen angeben indem wir mit der letzten Gleichung starten. Falls auch noch $t = n$, so ergibt sich aus der 
+letzten Gleichung $x_n = b_n$ für $x_n$ der eindeutige Lösungswert $x_n = b_n$, und durch sukkzessives 
+Einsetzen in die vorangehenden Gleichungen ergeben sich eindeutige Belegungen für $x_1, \ldots, x_n$. 
+
+Falls dagegen $t < n$, so hat die letzte Gleichung die Gestalt
+  	$$ x_t + a_{t, t+1} x_{t+1} + \ldots + a_{t,n} x_n = b_t, $$
+mit $t \neq n$. Wir nennen in diesem Fall die Variablen $x_{t+1}, \ldots, x_n$ die \textbf{freien Variablen} des 
+Gleichungssystems und können für $x_{t+1}, \ldots, x_n$ beliebige Werte einsetzen. Darus erhalten wir eine 
+eindeutige Lösung für $x_t$. Durch sukkzessives 
+Einsetzen in die vorangehenden Gleichungen ergeben sich eindeutige Belegungen für $x_1, \ldots, x_{t-1}$. 
+Deshalb werden $x_1, \ldots, x_t$ ind diesem Fall auch als \textbf{gebundene Variablen} bezeichnet. Damit 
+haben wir in dieser Situation $n-t+1$ Freiheitsgrade, also unendlich viele Lösungen. Dieser Beweis hat uns also 
+auch gleichzeitig einen Algorithmus geliefert, um Gleichungssysteme in Normalform zu lösen (falls sie lösbar 
+sind).
+
+Beachten Sie dabei, dass der Fall $t > n$ nach Definition der Normalform nicht auftreten kann!
+}
+
+\bigbreak
+
+Um allgemeine Gleichungssysteme zu lösen, reicht es daher, einen Weg zu finden, sie in äquivalente 
+Gleichungssysteme in Normalform zu überführen. 
+
+\begin{satz}\label{sol_gls_nf} Jedes Gleichungssystem kann durch die Operationen (i) - (iv) aus 
+Bemerkung~\ref{gls_equ_operation} in ein Gleichungssystem in Normalform überführt werden.
+\end{satz}
+
+\beweis{ Wir geben einen Algorithmus an, der ein beliebiges Gleichungssystem in die gewünschte Form bringt.
+
+Gegeben sei ein allgemeines lineares Gleichungssystem (~\ref{equ_lgs_gen}). 
+
+\textbf{Startschritt:} Setze $\rho = 0$.
+
+\textbf{Verarbeitungsschritt:} Setzte $\rho = \rho+1$. 
+
+Gibt es ein $i = \{\rho, \ldots, m \}, j \in \{\rho, \ldots, n\}$ mit $a_{i,j} \neq 0$?
+
+\begin{itemize}
+\item Nein: STOPP, das Gleichungssystem ist in Normalform, und sein Rang ist $\rho-1$.
+\item Ja: Führe folgende Schritte durch
+
+\begin{enumerate}
+\item Falls $i > \rho$, wende Operation (ii) auf Gleichungen $\rho$ und $i$ an, dh. vertausche Zeile $\rho$ 
+und Zeile $i$ des Gleichungssystems; 
+falls $j > \rho$ wende Operation (iii) auf die Variablen $x_{\rho}$ und $x_j$ an, d.h. 
+vertausche Spalte $\rho$ und Spalte $j$ des 
+Gleichungssystems. Nach diesem Verarbeitungsschritt erhalten wir ein äquivalentes Gleichungssystem mit 
+$a_{\rho,\rho} \neq 0$. 
+\item Wende Operation (iv) mit $r = \frac {1}{a_{\rho,\rho}}$ auf Zeile $\rho$ an, dh. multipliziere dieses
+Gleichung mit $\frac {1}{a_{\rho,\rho}}$. Nach diesem Verarbeitungsschrit erhalten wir ein äquivalentes 
+Gleichungssystem mit $a_{\rho,\rho} = 1$.
+\item Für $i = \rho+1, \ldots, m$ wende Operation (i) auf Gleichung $\rho$ und Gleichung $i$ mit Faktor 
+$a_{i,\rho}$ an, dh. subtrahiere das $a_{i,\rho}$-fache der $\rho$---ten Zeile von der $i$-ten Zeile. 
+Nach diesem Verarbeitungsschrit erhalten wir ein äquivalentes Gleichungssystem mit $a_{i,\rho} = 0$ 
+für alle $i \in \{ \rho+1, \ldots, m\}$. 
+\end{enumerate}
+\end{itemize}
+Der Algorithmus endet also nach höchstens $\textrm{min} \{n, m\}$ Verarbeitungsschritten.
+}
+
+\begin{korollar} Ist ein Gleichungssystem homogen, so auch seine Normalform.
+\end{korollar}
+
+\medbreak
+
+Um den Algorithmus wirklich zu verstehen ist es am besten, ein Beispiel durchzuführen:
+
+\begin{beispiel} Wir betrachten das lineare Gleichungssystem
+  	$$ \begin{array} {l c l c l c  l}
+  	& & 2 x_2 & + & 4 x_3 & = & 4 \\
+  	x_1 & + & x_2 & + & x_3 & = & 6 \\
+  	2 x_1 & + & x_2 &   &   & = & 10
+  	\end{array} $$
+
+Wir starten mit $\rho = 0$.
+
+\textbf{1. Schritt:} $\rho = 1$: Es gibt $i \in \{1, 2, 3\}$ und $j \in \{1, 2, 3 \}$ mit $a_{i, j} \neq 0$, etwa 
+$i = 2, j= 1$. 
+
+\begin{enumerate} 
+\item Spaltenvertauschungen sind nicht durchzuführen, da $j = 1 = \rho$. 
+Vertausche die ersten beiden Zeilen des Gleichungssystem und erhalte
+  	$$ \begin{array} {l c l c l c  l}
+  	x_1 & + & x_2 & + & x_3 & = & 6 \\
+  	& & 2 x_2 & + & 4 x_3 & = & 4 \\
+  	2 x_1 & + & x_2 &   &   & = & 10
+  	\end{array} $$
+\item Teile Gleichung 1 durch $a_{1,1} = 1$; das ändert das Gleichungssystem nicht.
+\item Subtrahiere das $0$--fache der ersten Gleichung von der zweiten Gleichung und das $2$--fache der 
+ersten Gleichung von der dritten Gleichung und erhalte
+  	$$ \begin{array} {l c l c l c  l}
+  	x_1 & + & x_2 & + & x_3 & = & 6 \\
+  	& & 2 x_2 & + & 4 x_3 & = & 4 \\
+  	&  & - x_2 & + & - 2 x_3 & = & -2
+  	\end{array} $$
+\end{enumerate}
+
+\textbf{2. Schritt:} $\rho = 2$: Es gibt $i \in \{2, 3\}$ und $j \in \{ 2, 3 \}$ mit $a_{i, j} \neq 0$, etwa 
+$i = 2, j= 2$. 
+
+\begin{enumerate}
+\item Vertauschungsoperationen sind nicht durchzuführen, da $i = \rho$, $j = \rho$.
+\item Teile Gleichung 2 durch $2$ und erhalte
+  	$$ \begin{array} {l c l c l c  l}
+  	x_1 & + & x_2 & + & x_3 & = & 6 \\
+  	& & x_2 & + & 2 x_3 & = & 2 \\
+  	&  & - x_2 & + & - 2 x_3 & = & -2
+  	\end{array} $$
+\item Subtrahiere das $(-1)$--fache der zweiten Zeile von der dritten Zeile und erhalte
+  	$$ \begin{array} {l c l c l c  l}
+  	x_1 & + & x_2 & + & x_3 & = & 6 \\
+  	& & x_2 & + & 2 x_3 & = & 2 \\
+  	&  &   &   & 0 & =&  0
+ 	\end{array} $$
+\end{enumerate}
+
+\textbf{3. Schritt:} $\rho = 3$: Es gibt kein $i \in \{3\}$ und $j \in \{ 3 \}$ mit $a_{i, j} \neq 0$. 
+
+Der Algorithmus ist also beendet, und das Gleichungssystem ist in der Tat in Normalform. Sein Rang ist 
+$2$ und $x_3$ ist die freie Variable des Gleichungssystems.  Seine allgemeine Lösung ist $x_3 = \lambda, 
+x_2 = 2 - 2 \lambda$ und $x_1 = 4 + \lambda$ mit einem freien Parameter $\lambda$.
+\end{beispiel}
+
+\begin{notiz} Die Normalform, die man am Ende das Algorithmus erhält, ist abhängig von Auswahl des 
+\index{Pivotelement}\textbf{Pivotelements}, 
+d.h. von der Auswahl von $i, j$ mit $a_{i,j} \neq 0$, die in jedem Schritt getroffen wird. 
+
+Wir hätten in unserem Beispiel im ersten Schritt auch $i = 1, j = 2$ nehmen können und hätten dann als
+Normalform 
+  	$$ \begin{array} {l c l c l c  l}
+  	x_1 &   &   & + & 2 x_3 & = & 2 \\
+  	& & x_2 & - &  x_3 & = & 4 \\
+  	&  &   &   & 0 & = & 0
+  	\end{array} $$
+erhalten. Das allgemeine Ergebnis für dieses Gleichungssystem ist $x_3 = \lambda, x_2 = 4 + \lambda$ und 
+$x_1 = 2 - 2 \lambda$ mit einem freien Parameter $\lambda$. Bei Betrachtung des Originalgleichungssystems ist 
+wiederum zu beachten, dass wir die erste und die zweite Variable im Laufe des Algorithmus vertauscht haben. Machen 
+wir diese Vertauschung rückgängig, so erhalten wir als Lösung des Originalsystems $x_3 = \lambda, x_2 = 
+2 - 2 \lambda$ und $x_1 = 4 + \lambda$ mit einem freien Parameter $\lambda$, genau wie oben.   
+
+Um einen Algorithmus mit reproduzierbarem Ergebnis zu bekommen, ist es also noch erforderlich, eine 
+Strategie zum Auffinden eines Pivotelements anzugeben. 
+\end{notiz} 
+
+\begin{notiz}
+Der Eliminationsalgorithmus ist anfällig für Rundungsfehler. Diese Anfälligkeit kann durch eine geschickte 
+Wahl des Pivotelements in jedem Verarbeitungsschritt eliminiert werden. 
+
+Bei manueller (und exakter) Lösung des Gleichungssystems ist es hilfreich, wenn das Pivotelement den 
+Wert $1$ hat, für numerische Zwecke ist es aber günstiger, immer den betragsmäßig größten Wert zu wählen.  
+
+Das kann im Verarbeitungsschritt etwa wie folgt implementiert werden (mit $r = \rho$): 
+
+\makebox[\textwidth]{\hrulefill}  
+\lstinputlisting{la_gausspivot1.m}
+\makebox[\textwidth]{\hrulefill} 
+
+\begin{itemize}
+\item Falls $a = 0$: STOPP, das Gleichungssystem ist in Normalform, und sein Rang ist $\rho-1$.
+\item Falls $a \neq 0$: 
+\begin{enumerate}
+\item Vertausche die Zeilen $i$ und $\rho$ und die Spalten $j$ und $\rho$. 
+\item Subtrahiere das $\frac {a_{i,\rho}}{a_{\rho, \rho}}$--fache der $rho$--ten Zeile von der $i$--ten Zeile. 
+\end{enumerate}
+\end{itemize}
+In dieser Normalform sind die Diagonalelemente nicht notwendig normiert, sie erweist sich aber in der Praxis als 
+deutlich weniger anfällig für Rundungsfehler wie das klassische Gaußverfahren. 
+
+Die hier angegebene Suche eines Pivotelements ist sehr aufwendig. Daher beschränken sich die meisten Verfahren 
+in der Regel darauf, nur in der aktuellen Spalte ein passendes Element zu finden: 
+
+\makebox[\textwidth]{\hrulefill}  
+\lstinputlisting{la_gausspivot2.m}
+\makebox[\textwidth]{\hrulefill} 
+
+Dann werden die Zeilen $i$ und $\rho$ vertauscht. Nur wenn $a = 0$, kommt es noch zu Spaltenvertauschungen. 
+\end{notiz}
+
+\medbreak
+
+\begin{satz}\label{gls_voller_rang_n} Hat ein Gleichungssystem mit $n$ Unbekannten den Rang $n$, so kann es 
+nur mit den Operationen (i), (ii) und (iv) aus Bemerkung~\ref{gls_equ_operation} auf Normalform gebracht werden. 
+Es ist in diesem Fall also nicht nötig, Variablen zu vertauschen. 
+\end{satz}
+
+\beweis{ Das Vertauschen von zwei Variablen $x_i$ und $x_j$ oder von zwei Gleichungen wird benötigt, wenn 
+im Schritt $\rho$ der Eintrag $a_{\rho, \rho} = 0$ auftritt. Gibt es in diesem Fall ein $i \in\{\rho, \ldots, m\}$ 
+mit $a_{i, \rho} \neq 0$, so können wir die Zeilen $i$ und $\rho$ vertauschen und den Algorithmus 
+ohne Operation (iii) fortsetzen. Gibt es kein solches $i$, so taucht in den Gleichungen $\rho , \ldots, m$ die 
+Variable $x_i$ nicht mehr auf. Da wir aber mit keiner der Operationen (i) - (iv) eine neue Variable generieren 
+können, wird nach jedem Schritt eine der verbleibenden Variablen in den verbleibenden Gleichungen fehlen. Damit 
+können wir aber in keine Normalform vom Rang $n$ erreichen, denn in ihr müssteauch die fehlende Variable als 
+führende Variable in einer Zeile auftauchen. 
+}
+
+\bigbreak
+
+\begin{notiz}\label{lin_alg_gls_komplex} 
+Für die Behandlung von Gleichungssystemen ist es nicht erforderlich, dass die Koeffizienten 
+reelle Zahlen sind. Der Eliminationsalgorithmus lässt sich genauso über jedem anderen Körper durchführen. 
+Für uns relevant sind dabei die komplexen Zahlen. Betrachten wir etwa die Beziehung
+  	$$ \begin{array} {r c r c l}
+  	x_1 & + & \ii \cdot x_2 & = & 1 + i \\
+  	(1+\ii) \cdot  x_1 & - & 2 \cdot x_2 & = & 1 + 3 \cdot  \ii
+  	\end{array} $$
+so Können wir hier die zum reellen Fall analogen Operationen durchführen: Durch Subtraktion des $(\ii+1)$--fachen 
+der ersten Zeile von der zweiten erhalten wir
+  	$$ \begin{array} {r c r c l}
+  	x_1 & + & \ii \cdot x_2 & = & 1 + \ii \\
+  	& - & (1+\ii) \cdot  x_2 & = & 1 + \ii
+  	\end{array} $$
+Division der zweiten Zeile durch $-(1+\ii)$ ergibt
+  	$$ \begin{array} {r c r c l}
+  	x_1 & + & \ii \cdot x_2 & = & 1 + \ii \\
+  	&  & x_2 & = & -1
+  	\end{array} $$
+und durch Rückwärtsrechnen erhalten wir 
+  	$$ x_2 = -1, \quad x_1 = 1 + 2 \cdot \ii $$
+Die Aussagen über die Lösbarkeit eines Gleichungssystems und die Anzahl der Lösungen gelten auch für 
+Gleichungssysteme mit komplexen Koeffizienten.
+\end{notiz}
+
+\bigbreak
+
+\begin{notiz}
+Das Gauß--Eliminiationsverfahren ist (bei richtiger Pivotwahl) relativ stabil und und von allen allgemeinen Verfahren das 
+schnellste und effizienteste. Trotzdem ist es für viele Anwendungsprobleme zu langsam. Bei technischen Problemen, 
+etwa Anwendungen linearer Näherungsverfahren im Maschinen- und Fahrzeugbau, kommt es schnell zu 
+Gleichungssystemen mit $10^6$ Gleichungen und Unbekannten. Im solche Gleichungssysteme mit dem 
+Gaußalgorithmus zu lösen braucht selbst eine Rechner mit einer Rechenleistung von hundert GFlops mehrere Jahre. 
+Obwohl die Gleichungssysteme, die dabei benutzt werden, aufgrund der speziellen Struktur in jeder Gleichung nur 
+sehr wenige von $0$ verschiedene Einträge stehen (oft weniger als hundert), führt das Eliminiationsverfahren dann 
+häufig zu relativ stark besetzten Dreiecksmatrizen und damit auch zu einem Speicherbedarf von mehreren tausend 
+Gigabytes.   
+
+Aus diesem Grund werden in solchen Situationen häufig Näherungsverfahren verwendet, die speziell auf diese Situation 
+zugeschnitten und darauf optimiert sind. Eines dieser Verfahren ist das \textbf{Jacobi--Verfahren}. Erste Voraussetzung 
+hierfür ist, dass $n = m$, dass es also genau so viele Gleichungen wie Unbekannte gibt. Es beruht auf der 
+folgenden Beobachtung: 
+
+Ist $x_1, \ldots, x_n$ eine Lösung eines allgemeinen Gleichungssystems~\eqref{equ_lgs_gen}, so gilt für jedes $i$: 
+	$$ \sum\limits_{j=1}^n a_{i,j} x_j = b_i $$
+also 
+	$$ a_{i,i} \cdot x_i = b_i - \sum\limits_{j \neq i} a_{i,j} \cdot x_j $$
+und damit, falls $a_{i,i} \neq 0$, 
+	\begin{equation}\label{la_gls_jacobi1}
+	x_i = \frac {1}{a_{i,i}} \cdot \left( b_i -  \sum\limits_{j \neq i} a_{i,j} \cdot x_j \right) 
+	\end{equation}
+Die Überlegung des Mathematikers Carl Gustav Jacob Jacobi war nun, mit diesem Ansatz~\eqref{la_gls_jacobi1} aus 
+einer ersten Schätzung 
+der Lösung sukkzessive Werte $x_i$ zu bekommen, die immer näher an einer Lösung sind. Als Startwert wird dabei 
+häufig $x_i^{(0)} = b_i$ gewählt. Für $k > 0$ setzen wir dann iterativ
+	\begin{equation}\label{la_gls_jacobi2} 
+	x^{(k)}_i =  \frac {1}{a_{i,i}} \cdot \left( b_i -  \sum\limits_{j \neq i} a_{i,j} \cdot x^{(k-1)}_j \right) 
+	\end{equation}
+Dieses Verfahren führt nicht immer zu einer Lösung, funktioniert jedoch in einer Vielzahl von Fällen, die im Rahmen der 
+sogenannten \textit{finite--Elemente--Methode} auftreten.  
+\end{notiz}
+
+\begin{regel}\label{la_gls_jacobi_dd} 
+Erfüllt das Gleichungssystem~\eqref{equ_lgs_gen} die Bedingung $n = m$ und 
+	$$ \sum\limits_{j \neq i} \vert a_{i,j} \vert < \vert a_{i,i} \vert \qquad \text{ für alle } \,\, i = 1, \ldots, n $$
+(ein solches Gleichungssystem heißt \textbf{diagonaldominant}), so konvergiert das Jacobi--Verfahren  (unabhängig 
+von den gewählten Startwerten $x_1^{(0)}, \ldots, x_n^{0)}$), dh. die in~\eqref{la_gls_jacobi2} 
+bestimmten $x_1^{(k)}, \ldots, x_n^{(k)}$ nähern sich mit zunehmendem $k$ einer Lösung des 
+Gleichungssystem~\eqref{equ_lgs_gen} an. 
+\end{regel}
+
+\begin{notiz}\leavevmode\newline
+\vspace{-0.6cm}
+
+\begin{enumerate}
+\item Die Bedingung der Diagonaldominanz stellt nicht nur sicher, dass wir immer durch $a_{i,i}$ teilen können, sie 
+stellt auch sicher, dass das Gleichungssystem eine eindeutige Lösung hat. 
+\item In vielen Anwendungen konzentrieren sich die Koeffizienten des Gleichungssystems auf ein sehr enges Band um 
+die Diagonale, dh. es gibt ein $k$, das sehr viel kleiner als $n$ ist, mit 
+	$$ a_{i,j} = 0 \qquad \text{ falls }\,\, \vert j-i \vert > k $$
+In diesem Fall müssen von dem Gleichungssystem nur die Koeffizienten $a_{i,j}$ mit $\vert j - i  \vert \leq k$ gespreichert 
+werden, was auch das Speichplatzproblem addressiert.
+\item Das Jacobi--Verfahren kann sehr gut parallelisiert werden, da in jedem Verarbeitungsschritt die $x_i^{(k)}$ 
+unabhängig voneinander berechnet werden (sie hängen nur ab den dem Werten $x_i^{(k-1)}$ des Vorgängerschrittes). 
+\item Die Voraussetzungen von Regel~\ref{la_gls_jacobi_dd} stellen sicher, dass für 
+	$$ \delta := \mathrm{max} \left\{ \frac {\sum\limits_{j \neq i} \vert a_{i,j} \vert }{\vert a_{i,i} \vert  }  
+	\quad \big\vert \,\, i = 1, \ldots, n \right\} $$
+gilt: $\delta < 1$. Wie schnell das Verfahren einen guten Näherungswert für die Lösung liefert, hängt stark von 
+diesem $\delta$ ab. Je näher $\delta$ an $1$ liegt, desto langsamer verbessert sich die Lösung, je näher $\delta$ an 
+der $0$ ist, desto schneller nähern sich die Werte der tatsächlichen Lösung an. 
+\end{enumerate}  
+\end{notiz}
+
+\bigbreak
+
+\begin{aufgabe} Bestimmen Sie alle Lösungen des linearen Gleichungssystems
+  	$$ \begin{array} {l c l c l c l c l}
+   	x_1 & + & 2 x_2 & + & 3 x_3 & + & x_4 & = & 0 \\
+   	2 x_1 & +  & x_2 & + & 3 x_3 & - &  x_4 & = & 0 \\
+   	3 x_1 &   &  & + & x_3 & + & x_4 & = & 0 
+   	\end{array} $$
+\end{aufgabe}
+
+\begin{aufgabe} Bestimmen Sie alle Lösungen des linearen Gleichungssystems
+  	$$ \begin{array} {l c l c l c l c l}
+   	3 x_1 & + & 2 x_2 & + &  x_3 & - & x_4 & = & 0 \\
+   	2 x_1 & +  & 2 x_2 & + & 3 x_3 & - & 2 x_4 & = & 0 \\
+   	x_1 & + & 3 x_2 & - & x_3 & + & x_4 & = & 0 
+   	\end{array} $$
+\end{aufgabe}
+
+\begin{aufgabe} \"Uberprüfen Sie, ob das lineare Gleichungssystems
+  	$$ \begin{array} {l c l c l c l c l}
+   	x_1 & + & 2 x_2 & - &  x_3 & + & x_4 & = & 1 \\
+   	2 x_1 &   &   & + & 3 x_3 & - & 2 x_4 & = & 3 \\
+   	x_1 & + & 3 x_2 &  &   & + & x_4 & = & 2 
+   	\end{array} $$
+Lösungen hat und bestimmen Sie diese gegebenenfalls.
+\end{aufgabe}
+
+\begin{aufgabe} \"Uberprüfen Sie, ob das lineare Gleichungssystems
+  	$$ \begin{array} {l c l c l  c l}
+   	x_1 & + & 2 x_2 & - &  x_3  & = & 2 \\
+   	2 x_1 &   &   & + & 3 x_3  & = & 0 \\
+   	x_1 & + & 2 x_2 & + &  x_3  & = & 1 
+   \end{array} $$
+Lösungen hat und bestimmen Sie diese gegebenenfalls.
+\end{aufgabe}
+
+\bigbreak
+
+\subsection{Matrizen}\label{gls_matrix}
+
+\setcounter{definition}{0}
+\setcounter{beispiel}{0}
+\setcounter{notiz}{0}
+
+Die Vorgehensweise beim Gauß--Algorithmus ist in der Notation ein wenig kompliziert und umständlich, da 
+wir immer die Variablen mitführen, obwohl diese für den Algorithmus keine Rolle spielen. Mit der 
+Matrizenschreibweise werden wir nun einen Formalismus kennenlernen, der es erlaubt, lineare Gleichungssysteme und 
+damit zusammenhängende Probleme effizienter zu behandeln.
+
+\begin{definition} Eine \index{Matrix}\textbf{Matrix} $A$ vom Typ $(m,n)$ oder eine Matrix vom Typ $m \times n$ 
+ist ein Schema der Form 
+ 	$$ A = \left( \begin{array}{c c c c c c }
+  	a_{1,1} & a_{1,2} & \ldots & a_{1, j} & \ldots & a_{1,n} \\
+   	a_{2,1} & a_{2,2} & \ldots & a_{2, j} & \ldots & a_{2,n} \\ 
+   	\vdots  &         &        & \ddots   &        & \vdots \\
+   	a_{i,1} & a_{i,2} & \ldots & a_{i, j} & \ldots & a_{i,n} \\
+    	\vdots  &         &        & \ddots   &        & \vdots \\
+    	a_{m,1} & a_{m,2} & \ldots & a_{m, j} & \ldots & a_{m,n} 
+    	\end{array} \right) $$
+bestehend aus $m$ Zeilen und $n$ Spalten von reelle Zahlen $a_{i,j}$. 
+
+$a_{i,j}$ heißt dabei  das 
+\textbf{Matrixelement} an der Stelle $(i,j)$, $i$ heißt \textbf{Zeilenindex} von $a_{i,j}$ und $j$ 
+heißt \textbf{Spaltenindex} von $a_{i,j}$.
+
+Wir schreiben kurz $A = \left( a_{i,j} \right)_{(m,n)}$ oder - falls $m$ und $n$ klar sind - 
+$A = \left( a_{i,j} \right)$.
+
+Zwei $m \times n$ Matrizen $A = \left(a_{i,j}\right)$ und $B = \left( b_{i,j} \right)$ heißen gleich, wenn 
+  	$$ a_{i,j} = b_{i,j} \quad \textrm{ für alle } \, i = 1, \ldots, m;\, j = 1, \ldots, n $$
+\end{definition}
+
+
+\begin{beispiel}
+
+	$$ A = \left( \begin{array} {c c c c}
+      1 & 2 & 3 & 4 \\
+      7 & 6 & 5 & 4
+      \end{array} \right) $$
+ist eine $2 \times 4$--Matrix mit Einträgen
+  	$$ \begin{array} {c c c c}
+      a_{1,1} = 1 & a_{1,2} = 2 & a_{1,3} = 3 & a_{1,4} = 4 \\
+      a_{2,1} = 7 & a_{2,2} = 6 & a_{2,3} = 5 & a_{2,4} = 4
+      \end{array} $$
+\end{beispiel}
+
+\begin{beispiel} Die $m \times n$--Matrix $A = \left(a_{i,j}\right)$ mit $a_{i,j} = 0$ für alle $i, j$ 
+heißt \textbf{Nullmatrix}. Hierfür schreiben wir auch $0_{(m,n)}$ oder kurz $0$.
+\end{beispiel}
+
+
+\begin{beispiel} Eine $m \times 1$--Matrix $A$ ist ein Schema der Gestalt
+  	$$ A = \left( \begin{array} {c} 
+	a_{1,1} \\ \vdots \\ a_{m,1} \end{array} \right) $$
+entspricht also einem Spaltenvektor der Länge $m$.
+
+Ein $1 \times n$--Matrix $B$ ist ein Schema der Gestalt
+  	$$ B = \left( \begin{array} {c c c} 
+	b_{1,1} & \ldots & b_{1,n} \end{array} \right) $$
+entspricht also einem Zeilenvektor der Länge $n$.
+
+Damit sind Vektoren Spezialfälle von Matrizen.
+\end{beispiel}
+
+
+\begin{definition} Ist $A = \left(a_{i,j} \right)$ eine $m  \times n$--Matrix, so heißt
+  	$$ A_{i, \bullet} = \left( \begin{array}{l  l c l }
+	a_{i,1} & a_{i,2} & \ldots & a_{i,n} \end{array} \right) $$
+die \textbf{$i$--te Zeile} oder der \textbf{$i$--te Zeilenvektor} \index{Matrix!Zeile} von $A$ und 
+  	$$ A_{\bullet, j} = \left( \begin{array} {c}
+	a_{1,j} \\ a_{2, j} \\ \vdots \\ a_{m,j} \end{array} \right) $$
+die \textbf{$j$--te Spalte} oder der \textbf{$j$--te Spaltenvektor} von $A$.
+\end{definition}
+
+\bemerkung{Bezeichnung.} Eine $n \times n$--Matrix $A$ heißt \index{Matrix!quadratisch} 
+\textbf{quadratische Matrix} (der Größe $n$).
+
+\begin{beispiel} Die Matrix 
+  	$$ A = \left( \begin{array}{ l  l }
+	1 & 2 \\ 4 & 3 \end{array} \right) $$
+ist eine quadratische Matrix.
+\end{beispiel}
+
+
+\begin{beispiel}\label{einheitsmatrix} Die quadratische $n \times n$--Matrix $A = \left(a_{i,j}\right)$ mit
+   	$$ a_{i,j} = \left\{ \begin{array} {l c l}
+ 	1 & \quad & \textrm{falls } i = j \\ 0 & & \textrm{falls } i \neq j
+	 \end{array} \right) $$
+heißt $n \times n$--Einheitsmatrix \index{Matrix!Einheitsmatrix}. Hierfür schreiben wir auch $\mathbf{E}_n$ oder 
+$\textbf{1}_n$.
+
+Die $2 \times 2$--Einheitsmatrix hat also folgende Gestalt:
+  	$$ \mathbf{E}_2 = \left( \begin{array}{ l  l }
+	1 & 0 \\ 0 & 1 \end{array} \right) $$
+\end{beispiel}
+
+In quadratischen Matrizen gibt es neben den Zeilen und Spalten noch weitere 
+ausgezeichnete Gruppen von Matrixelementen, die Diagonale und die Gegendiagonale:
+  	$$ \left( \begin{matrix} a_{1,1}  & \ldots & a_{1,n} \\
+ 	& \diagdown  &  \\
+	a_{n,1}  & \ldots  & a_{n,n} \end{matrix} \right)
+  	\quad \textrm{ bzw. } \quad
+ 	\left( \begin{matrix} a_{1,1} & \ldots  & a_{1,n} \\
+	& \diagup  &  \\
+	a_{n,1} & \ldots   & a_{n,n} \end{matrix} \right) $$
+Die Diagonale umfasst also die Element $a_{1,1}, a_{2,2}, \ldots , a_{n,n}$ und die 
+Gegendiagonale die Elemente $a_{1,n}, a_{2, n-1}, \ldots , a_{n, 1}$.
+
+\begin{definition} Eine quadratische Matrix $A = \left( a_{i,j} \right)$ heißt 
+\index{Matrix!Diagonalmatrix}\textbf{Diagonalmatrix}, wenn alle Matrixelemente 
+außerhalb der Diagonale verschwinden, d.h. $a_{i,j} = 0$ für $i \neq j$. 
+
+Eine quadratische Matrix  $A = \left( a_{i,j} \right)$ heißt 
+\index{Matrix!Dreiecksmatrix}\textbf{(obere) Dreiecksmatrix}, wenn nur auf und oberhalb 
+der Diagonale von Null verschiedene Elemente stehen, d.h. $a_{i,j} = 0$ für 
+$i > j$.
+
+Entsprechend heißt eine Matrix  $A = \left( a_{i,j} \right)$ 
+\textbf{untere Dreiecksmatrix}, wenn nur auf und unterhalbhalb 
+der Diagonale von Null verschiedene Elemente stehen, d.h. $a_{i,j} = 0$ für 
+$i < j$.
+\end{definition}
+
+\begin{beispiel} Die Matrizen
+ $$ E_3 = \left( \begin{matrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{matrix} \right), 
+ \quad  \left( \begin{matrix} 3 & 0 & 0 \\ 0 & -4 & 0 \\ 0 & 0 & 0 \end{matrix} \right), 
+ \quad  \left( \begin{matrix} -2 & 0 & 0 & 0 \\ 0 & 3 & 0 & 0 \\ 0 & 0 & 7 & 0 \\
+  0 & 0 & 0 & 2 \end{matrix} \right) $$  
+sind Diagonalmatrizen, die Matrizen
+ $$ E_3 = \left( \begin{matrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{matrix} \right), 
+ \quad  \left( \begin{matrix} 2 & 1 & 3 \\ 0 & 4 & -3 \\ 0 & 0 & 9 \end{matrix} \right), 
+ \quad  \left( \begin{matrix} -2 & 0 & -1 & -4 \\ 0 & 3 & 3 & 0 \\ 0 & 0 & 7 & 1 \\
+  0 & 0 & 0 & 2 \end{matrix} \right) $$  
+sind (obere) Dreiecksmatrizen.
+\end{beispiel}
+
+\bigbreak
+
+\begin{beispiel} Jedes allgemeine lineare Gleichungssystem 
+  $$ \begin{array} {l c l c c c l c l }
+  a_{1,1} x_1 & + & a_{1,2} x_2 & + & \cdots & + a_{1,n} x_n & = & b_1 \\
+  a_{2,1} x_1 & + & a_{2,2} x_2 & + & \cdots & + a_{2,n} x_n & = & b_2 \\
+  \vdots & & & & \ddots & & & \vdots \\
+  a_{m,1} x_1 & + & a_{m,2} x_2 & + & \cdots & + a_{m,n} x_n & = & b_m 
+  \end{array} $$
+mit $n$ Unbekannten und $m$-Gleichungen führt zu einer $m \times n$--Matrix $A = \left(a_{i,j}\right)$, der 
+sogenannten \index{Matrix!Koeffizientenmatrix}\textbf{Koeffizientenmatrix} des Gleichungssystems, 
+und einem Vektor (oder einer $m \times 1$--Matrix) $\vektor{b} 
+= \left( \begin{smallmatrix} b_1 \\ \vdots \\ b_m \end{smallmatrix} \right)$. Darüberhinaus 
+können wir auch die Unbekannten zu einem Vektor $\vektor{x} 
+= \left( \begin{smallmatrix} x_1 \\ \vdots \\ x_n \end{smallmatrix} \right)$ der Länge $n$ zusammenfassen.
+
+Im Fall des linearen Gleichungssystems
+  $$ \begin{array} {l c l c l c l c l}
+   40 x_1 & + & 50 x_2 & + & 60 x_3 & + & 70 x_4 & = & 5500 \\
+   26 x_1 & + & 22 x_2 & + & 25 x_3 & + & 18 x_4 & = & 2300 \\
+   34 x_1 & + & 28 x_2 & + & 15 x_3 & + & 12 x_4 & = & 2200 \\
+   \end{array} $$
+
+aus Beispiel~\ref{gls_chemie} ergibt das
+  $$ A = \left( \begin{array} {l l l l} 40 & 50 & 60 & 70 \\ 26 & 22 & 25 & 18 \\
+         34 & 28 & 15 & 12 \end{array} \right), \quad \vektor{b} 
+       = \left( \begin{matrix} 5500 \\ 2300 \\ 2200 \end{matrix} \right) $$
+
+Umgekehrt definieren auch jede $m \times n$--Matrix $A = \left(a_{i,j}\right)$ und jeder Vektor 
+$\vektor{b} 
+= \left( \begin{smallmatrix} b_1 \\ \vdots \\b_m \end{smallmatrix} \right)$ der 
+Länge $m$ ein 
+lineares Gleichungssystem in $n$--Unbekannten und mit $m$ Gleichungen via
+  $$ \begin{array} {l c l c c c l c l }
+  a_{1,1} x_1 & + & a_{1,2} x_2 & + & \cdots & + a_{1,n} x_n & = & b_1 \\
+  a_{2,1} x_1 & + & a_{2,2} x_2 & + & \cdots & + a_{2,n} x_n & = & b_2 \\
+  \vdots & & & & \ddots & & & \vdots \\
+  a_{m,1} x_1 & + & a_{m,2} x_2 & + & \cdots & + a_{m,n} x_n & = & b_m 
+  \end{array} $$
+  
+\end{beispiel}
+
+\begin{definition} Die \index{Matrix!transponiert}\textbf{transponierte Matrix} zu einer 
+$m \times n$--Matrix $A = \left(a_{i,j}\right)$ ist die $n \times m$--Matrix $A^T = (a^T_{i,j})$ mit
+  $$ a^T_{i,j} = a_{j,i} \quad \textrm{ für alle } i = 1, \ldots, n, \, j = 1, \ldots, m $$
+\end{definition}
+
+\begin{notiz} $A^T$ entsteht also aus $A$ indem wir Zeilen und Spalten von $A$ miteinander vertauschen.
+\end{notiz}
+
+\begin{beispiel} Es sei 
+   $$ A = \left( \begin{array} {l l l l} 1 & 2 & 3 & 4 \\ 6 & 5 & 4 & 3 \end{array} \right) $$
+Dann ist 
+   $$ A^T = \left( \begin{array} {l l} 1 & 6 \\ 2 & 5 \\ 3 & 4 \\ 4 & 3 \end{array} \right) $$
+\end{beispiel}
+
+\begin{beispiel} Es sei 
+   $$ A = \left( \begin{array} {l l} 2 & 3 \\ 4 & 5 \end{array} \right) $$
+Dann ist
+   $$ A = \left( \begin{array} {l l} 2 & 4 \\ 3 & 5 \end{array} \right) $$
+die Transponierte einer quadratischen Matrix ist also wieder eine quadratische Matrix der gleichen Größe.
+\end{beispiel}
+
+\bigbreak
+
+\begin{definition} Eine quadratische $n \times n$--Matrix $A$ heißt 
+\index{Matrix!symmetrisch}\textbf{symmetrisch}, wenn $A = A^T$.
+\end{definition}
+
+\begin{notiz} Eine quadratische Matrix ist also symmetrisch, wenn gilt
+  $$ a_{i,j} = a_{j,i} \quad \textrm{ für alle } i, j = 1, \ldots, n $$
+\end{notiz}
+
+\begin{beispiel} Die Matrix 
+  $$ A = \left( \begin{array} {l l} 2 & 3 \\ 3 & 2 \end{array} \right) $$
+ist symmetrisch. 
+\end{beispiel}
+
+\bemerkung{Bezeichnung} Die Menge aller reellen $m \times n$--Matrizen bezeichnen wir $\textrm{Matr}(m,n)$ 
+oder $\textrm{Matr}(m,n; \mathbb R)$.
+
+\bigbreak
+
+Mit Hilfe der Matrizenschreibweise lässt sich nun der Gaußsche Eliminationsalgorithmus zum Lösen 
+linearer Gleichungssystem einfacher hinschreiben:
+
+Wie wir gesehen haben, liefert jedes lineare Gleichungssystem
+  $$ \begin{array} {l c l c c c l c l }
+  a_{1,1} x_1 & + & a_{1,2} x_2 & + & \cdots & + a_{1,n} x_n & = & b_1 \\
+  a_{2,1} x_1 & + & a_{2,2} x_2 & + & \cdots & + a_{2,n} x_n & = & b_2 \\
+  \quad \vdots & & & & \ddots & & & \vdots \\
+  a_{m,1} x_1 & + & a_{m,2} x_2 & + & \cdots & + a_{m,n} x_n & = & b_m 
+  \end{array} $$
+eine $m \times n$--Matrix $A = \left(a_{i,j}\right)$ und einen Spaltenvektor $\vektor{b} 
+= \left( \begin{smallmatrix} b_1 \\ \vdots \\ b_m \end{smallmatrix} \right)$ der Länge $m$. Daraus bilden 
+wir die \textbf{augmentierte Matrix}
+  	$$\left(A \, \vert \vektor{b}\right) = \left( \begin{array}  {c c c | c}
+    	a_{1,1} & \ldots & a_{1,n}   & b_1 \\
+    	a_{2,1} & \ldots & a_{2,n} & b_2 \\
+    	\vdots & \ddots & &  \vdots  \\
+    	a_{m,1} & \ldots & a_{m,n} &  b_m
+    	\end{array} \right) $$
+Die augmentierte Matrix $\left(A \, \vert \vektor{b}\right)$ ist also ein $m \times (n+1)$--Matrix, 
+die aus $A$ dadurch entsteht, dass wir ein Spalte, bestehend aus den Elementen von 
+$\vektor{b}$ anfügen. In Analogie zu linearen Gleichungssystemen definieren wir:
+
+\begin{definition} Die augmentierte Matrix $\left(A \, \vert \vektor{b}\right)$ liegt in 
+\index{Matrix!Gauß--Normalform}\textbf{(Gaußscher) Normalform} vor, 
+wenn es ein $t \in \{1, \ldots, m \}$ gibt mit
+\begin{itemize}
+\item $a_{i,j} = 0$ für alle $i > t$ und alle $j$.
+\item $a_{i,j} = 0$ für $i \in \{2, \ldots, t\}$ und $j < i$.
+\item $a_{i,i} = 1$ für $i = 1, \ldots, t$.
+\end{itemize}
+\end{definition}
+
+Eine augmentierte Matrix in Normalform hat also die Gestalt
+  	$$ \left( \begin{array} { c c c c c c | c}
+	1 & a_{1,2} & \ldots & a_{1,t} & \ldots & a_{1,n} &  b_1 \\
+  	0 & 1 & \ldots & a_{2,t} & \ldots & a_{2, n} &  b_2 \\
+  	\vdots & & \ddots & & & & \vdots \\
+  	0 & 0 & \ldots & 1 & \ldots & a_{t,n} &  b_t \\
+   	0 & 0 & \ldots & 0 & \ldots & 0 &  b_{t+1} \\
+  	\vdots & & \ddots & & & &  \vdots \\
+   	0 & 0 & \ldots & 0 & \ldots & 0 &  b_m 
+  	\end{array} \right) $$
+und zu einer augmentierten Matrix in Normalform gehört ein lineares Gleichungssystem in Normalform, 
+nämlich 
+  	$$   \begin{array} {l c l c l c c c l c l }
+  	x_1 & + & a_{1,2} x_2 & + & a_{1,3} x_3 & + & \cdots & + & a_{1,n} x_n & = & b_1 \\
+  	0 & + &  x_2 &  + & a_{2,3} x_3 & + & \cdots & + & a_{2,n} x_n & = & b_2 \\
+ 	\vdots & & &  & & & \ddots & & & \vdots \\
+  	0 & + & 0 & + & 0 &  \cdots &  + \, x_t \, +  \, \cdots & + & a_{t,n} x_n & = & b_t \\  
+  	0 & + & 0 & + & 0 & + & \cdots & + & 0 & = & b_{t+1} \\
+  	\vdots & &  & & & & \ddots  & & & \vdots \\
+  	0 & + & 0 & + & 0 & + & \cdots & + & 0 & = & b_m 
+  	\end{array}  $$
+
+
+\begin{satz}\label{gls_mat_operation}
+Wir betrachten die folgenden vier Operationen auf einer augmentierten Matrix 
+$\left(A \, \vert \vektor{b}\right))$
+
+\begin{itemize}
+\item[(i)] Subtrahiere das Vielfache einer Zeile von $\left(A \, \vert \vektor{b}\right)$ 
+von einer anderen Zeile 
+\item[(ii)] Vertausche zwei Zeilen von $\left(A \, \vert \vektor{b}\right)$ 
+\item[(iii)] Vertausche zwei Spalten von $\left(A \, \vert \vektor{b}\right)$, von denen keine 
+die letzte sein darf.
+\item[(iv)] Multipliziere eine Zeile von $\left(A \, \vert \vektor{b}\right)$ mit einer Zahl 
+$r \neq 0$.
+\end{itemize}
+
+Jede augmentierte Matrix $\left(A \, \vert \vektor{b}\right)$ lässt sich durch wiederholtes 
+Anwenden der Operationen (i) - (iv) auf Normalform bringen. Das zu dieser Normalform gehörige 
+lineare Gleichungssystem ist eine Normalform des ursprünglichen linearen Gleichungssystems.
+\end{satz}
+
+\beweis Der Beweis ist identisch mit dem Beweis Satz~\ref{sol_gls_nf}.
+
+\begin{beispiel}\label{gls_normal_augmentiert_1} Wir betrachten das linear Gleichungssystem
+  	$$ \begin{array} {l c l c l}
+   	x_1 & + & 2 x_2 & = & 3 \\
+   	2 x_1 & + & 3 x_2 & = & 4
+   	\end{array} $$
+Hierzu gehört die augmentierte Matrix
+  	$$ \left(A \, \vert \vektor{b}\right) = 
+	\left( \begin{array} {c c | c}
+	1 & 2 & 3 \\ 2 & 3 & 4 
+     	\end{array} \right) $$
+Subtrahieren wir das Doppelte der ersten Zeile von der zweiten, so erhalten wir 
+  	$$  \left(A' \vert \vektor{b'}\right) = 
+	\left( \begin{array} {c c | c} 1 & 2 & 3 \\ 0 & -1 & -2 
+   	\end{array} \right) $$ 
+Multiplizieren wir die zweite Zeile mit -1, so ergibt sich 
+  	$$  \left(A^{\prime \prime} \vert \vektor{b^{\prime \prime}}\right) = 
+   	\left( \begin{array} {c c | c} 1 & 2  & 3 \\ 0 & 1 & 2 
+     	\end{array} \right) $$ 
+also eine augmentierte Matrix in Normalform. Das zugehörige lineare Gleichungssystem ist
+  	$$ \begin{array} {l c l c l}
+   	x_1 & + & 2 x_2 & = & 3 \\
+     	&   &  x_2 & = & 2
+   	\end{array} $$
+also ein Gleichungssystem in Normalform. Seine eindeutige Lösung ist
+  	$$ x_1 = -1, \quad x_2 = 2 $$
+und das ist auch die Lösung des ursprünglichen Gleichungssystems
+\end{beispiel}
+
+\begin{notiz}\label{gls_einfache_normalform} 
+Die Normalform einer augmentierten Matrix $\left(A \vert \vektor{b}\right)$ ist nicht eindeutig, genauso wie die 
+Normalform eines Gleichungssystems nicht eindeutig war, und nicht alle Normalformen sind gleich einfach zu 
+behandeln. Wir können aber immer eine Normalform $\left(A' \, \vert \vektor{b'}\right)$ erreichen, die 
+die Gestalt 
+  	$$ \left(A \, \vert \vektor{b}\right) = \left( \begin{array} {c c c c c c c | c}
+   	1 & 0 & \ldots & 0 & a^{\prime}_{1,t+1} & \ldots & a^{\prime}_{1,n} & b_1^{\prime} \\
+   	0 & 1 & \ldots & 0 & a^{\prime}_{2,t+1} & \ldots & a^{\prime}_{2,n} & b_2^{\prime} \\
+   	\vdots & & & & \ddots & & & \\
+   	0 & 0 & \ldots & 1 & a^{\prime}_{t, t+1} & \ldots & a^{\prime}_{t, n} & b_t^{\prime} \\
+   	0 & 0 & \ldots & 0 & 0 & \ldots & 0 & b_{t+1}^{\prime} \\
+   	\vdots & & & & \ddots & & & \\
+   	0 & 0 & \ldots & 0 & 0 & \ldots & 0 & b_m^{\prime} \\ \end{array} \right) $$
+hat. Dazu müssen wir lediglich, nach Erreichen einer Normalform, ein geeignetes Vielfaches der zweiten Zeile 
+von der ersten Zeile abziehen, dann geeignete Vielfache der dritten Zeile von der ersten und der zweiten, usw.
+
+Diese Art der Normalform hat den Vorteil, dass sich die Lösungen des zugehörigen Gleichungssystems
+  	$$ A^{\prime} \cdot \vektor{x} = \vektor{b^{\prime}} $$
+(falls sie existieren), und damit auch (bis auf Vertauschungen) die Lösungen des Ausgangssystems sofort 
+aus der augentierten Matrix ablesen lassen:
+
+ist $x_{t+1} = \lambda_{t+1}, \ldots, x_n = \lambda_n$ die Belegung der freien Variablen, so berechnet sich 
+die komplette Lösung als
+  	$$ \begin{array} {l c l}
+   	x_1 & = & b^{\prime}_1 - a^{\prime}_{1,t+1} \lambda_{t+1} - \cdots - a^{\prime}_{1,n} \lambda_n \\
+   	x_2 & = & b^{\prime}_2 - a^{\prime}_{2,t+1} \lambda_{t+1} - \cdots - a^{\prime}_{2,n} \lambda_n \\
+   	\vdots & & \\
+   	x_t & = & b^{\prime}_t - a^{\prime}_{t,t+1} \lambda_{t+1} - \cdots - a^{\prime}_{t,n} \lambda_n 
+  	\end{array} $$ 
+Ist speziell auch noch $t = m = n$ so erhält man direkt die (eindeutige) Lösung als
+  	$$ x_1 = b^{\prime}_1, x_2 = b^{\prime}_2, \ldots , x_m = b^{\prime}_m $$
+\end{notiz}
+
+\begin{beispiel}\label{gls_normal_augmentiert_2} 
+Wir betrachten nochmal das Gleichungssystem
+  	$$ \begin{array} {l c l c l}
+   	x_1 & + & 2 x_2 & = & 3 \\
+   	2 x_1 & + & 3 x_2 & = & 4
+   	\end{array} $$
+aus Beispiel~\ref{gls_normal_augmentiert_1}. Wir haben schon die Normalform 
+  	$$  \left(A^{\prime \prime} \vert \vektor{b^{\prime \prime}}\right) = 
+     	\left( \begin{matrix} 1 & 2 & \quad & 3 \\ 0 & 1 & \quad & 2 
+     	\end{matrix} \right) $$ 
+erhalten. Indem wir jetzt noch das Doppelte der zweiten Zeile von der ersten Zeile subtrahieren, erhalten wir
+  	$$ \left(A^{\prime \prime \prime} \vert \vektor{b^{\prime  \prime \prime}}\right) = 
+     	\left( \begin{matrix} 1 & 0 & \quad & -1 \\ 0 & 1 & \quad & 2  \end{matrix} \right) $$
+und lesen sofort die eindeutige Lösung $x_1 = -1$ und $x_2 = 2$ ab.
+\end{beispiel}
+
+\begin{notiz}\label{gls_augmentiert_simultan} Die Methode mit den augmentierten Matrizen eignet sich auch 
+ausgezeichnet, um mehrere Gleichungssysteme (mit denselben Koeffizienten) simultan zu lösen. Betrachten 
+wir etwa die Gleichungen
+  	$$ A \cdot \vektor{x} = \vektor{b_1}, \qquad 
+  	A \cdot \vektor{x} = \vektor{b_2} $$
+so können wir daraus die (erweiterte) augmentierte Matrix
+$\left(A \, \vert \vektor{b_1} \vektor{b_2} \right)$ bilden und diese nach den Methoden von 
+Satz~\ref{gls_mat_operation} auf Normalform bringen (wobei hier lediglich zu beachten ist, dass bei den 
+Vertauschungsoperationen die letzten beiden Spalten ausgeschlossen sind). Ist dann 
+$\left(A' \vert \vektor{b'_1} \vektor{b'_2} \right)$ eine 
+Normalform dieser erweiterten augmentierten Matrix, so sind $\left(A' \vert \vektor{b'_1}\right)$ 
+und $\left(A' \vert \vektor{b'_2}\right)$ Normalformen der 
+jeweiligen einfachen augmentierten Matrizen.
+\end{notiz}
+     
+\medbreak
+
+\begin{notiz}\label{lin_alg_matrix_gls_komplex} Wie bei linearen Gleichungssystemen können auch bei Matrizen 
+komplexe Koeffizienten auftreten. Betrachten wir etwa wieder das Gleichungssystem aus 
+Bemerkung~\ref{lin_alg_gls_komplex} im letzten Abschnitt, so erhalten wir die KOeffizientenmatrix
+  	$$ A = \left( \begin{matrix} 1 & \ii \\ 1+\ii & -2 \end{matrix} \right) $$
+und die augmentierte Matrix
+  	$$ \left( A \vert \vektor{b} \right) = \left( \begin{matrix} 1 & \ii & \quad & 1 + \ii 
+   	\\ 1+\ii & -2 & & 1 + 3 \cdot \ii \end{matrix} \right) $$
+Alle Operationen, die wir mit reellen Matrizen durchgeführt haben, lassen sich auch auf komplexe Matrizen 
+ausdehnen, und komplexe Gleichungssysteme lassen sich mit Hilfe der augmentierten Matrix lösen.
+\end{notiz}
+
+\bigbreak
+
+\begin{aufgabe} Bestimmen Sie die Transponierte von 
+	$$ A = \left( \begin{matrix}
+	1 & 2 & 3 & 4 \\ 4 & 3 & 2 & 5 \\ 3 & - 3 & 4 & - 4 \end{matrix} \right) $$
+\end{aufgabe}
+
+\begin{aufgabe} Bestimmen Sie die Transponierte von 
+  	$$ A = \left( \begin{array}{ l  l  l }
+	1 & 2 & 3   \\ 2 & 3 & 2  \\ 3 & 1 & 4  \end{array} \right) $$ 
+Ist $A$ symmetrisch? 
+\end{aufgabe}
+
+\begin{aufgabe} Wir betrachten das lineare Gleichungssystems
+  	$$ \begin{array} {r c r c r c r c l}
+    	&  &  x_2 & + &  x_3 & + & x_4 & = & 5 \\
+   	2 x_1 &  +  &  x_2  & + & 2 x_3 & + & 3 x_4 & = & 3 \\
+   	3 x_1 & - &  x_2 & +  & x_3   & - & 2 x_4 & = & 1 \\
+  	x_1 & - & x_2 & - & x_3 & + & 4 x_4 & = & 3
+   	\end{array} $$
+Bestimmen Sie die Koeffizientenmatrix und die augmentierte Matrix dieses Gleichungssystems, 
+überprüfen Sie, ob es Lösungen hat, und bestimmen Sie diese gegebenenfalls.
+\end{aufgabe}
+
+\begin{aufgabe} Wir betrachten das lineare Gleichungssystems
+  	$$ \begin{array} {r c r c r c r c l}
+   	-x_1 & +  &  x_2 & + &  2 x_3 & + & x_4 & = & 1 \\
+   	x_1 &  +  &  2 x_2  & + & 2 x_3 & + & 3 x_4 & = & 2  \\
+   	2 x_1 & - &  x_2 & +  & 3 x_3   & - &  x_4 & = & 3 \\
+  	x_1 & - & x_2 & - & x_3 & + & x_4 & = & 4
+   	\end{array} $$
+Bestimmen Sie die Koeffizientenmatrix und die augmentierte Matrix dieses Gleichungssystems, 
+überprüfen Sie, ob es Lösungen hat, und bestimmen Sie diese gegebenenfalls.
+\end{aufgabe}
+
+\begin{aufgabe} Wir betrachten das lineare Gleichungssystems
+  	$$ \begin{array} {r c r c r  c l}
+   	\ii \cdot x_1 & +  &  (1+\ii) \cdot x_2 & + &  (1-\ii) \cdot x_3 &  = & 2 \\
+   	2 \cdot x_1 &     &    & + & 3 \cdot \ii \cdot x_3 &  = & 1+2 \cdot \ii  \\
+    	&  &  \ii \cdot  x_2 & +  &  x_3   &  = & 3 \cdot \ii \\
+   \end{array} $$
+Bestimmen Sie die Koeffizientenmatrix und die augmentierte Matrix dieses Gleichungssystems, 
+überprüfen Sie, ob es Lösungen hat, und bestimmen Sie diese gegebenenfalls.
+\end{aufgabe}
+
+\begin{aufgabe} Bestimmen Sie alle Zahlen $a \in \mathbb R$, für die das Gleichungssystem
+  	$$ \begin{array} {r c r c r c r c l}
+  	 x_1 & + &  x_2 & - &  x_3 & + & x_4 & = & 2 \\
+   	2 x_1 & +  & 2 x_2  & - &  x_3 & - &  x_4 & = & 1 \\
+  	-x_1 & + & x_2 & - & x_3 & + & x_4 & = & 2 \\
+   	x_1 & + & 3 x_2 & +  & a \cdot x_3  & + & a \cdot x_4 & = & 1 
+    	\end{array} $$
+eine Lösung hat.
+\end{aufgabe}
+
+\newpage
+
+
+\section{Matrizenoperationen}\label{gls_matrix_op}
+
+\setcounter{definition}{0}
+\setcounter{beispiel}{0}
+\setcounter{notiz}{0}
+
+
+Wichtig wird es für uns sei, mit Matrizen zu rechnen, ähnlich wie wir das schon mit Vektoren können. 
+Bei der Definition der Operationen gehen wir auch so vor wie bei den Vektoren im $\mathbb R^n$.
+
+\begin{definition} Es seien $A = \left(a_{i,j}\right), B = \left( b_{i,j} \right) \in \textrm{Matr}(m,n)$ 
+und $\lambda \in \mathbb R$. 
+
+Wir definieren die Matrizenaddition durch 
+  	$$ A + B = \left(a_{i,j} + b_{i,j}\right) = 
+	\left(\begin{matrix} 
+    	a_{1,1} + b_{1,1} & a_{1,2} + b_{1,2} & \ldots & a_{1,n} + b_{1,n} \\
+ 	a_{2,1} + b_{2,1} & a_{2,2} + b_{2,2} & \ldots & a_{2,n} + b_{2,n} \\
+ 	\vdots & & \ddots & \vdots \\
+ 	a_{m,1} + b_{m,1} & a_{m,2} + b_{m,2} & \ldots & a_{m,n} + b_{m,n}
+    	\end{matrix} \right) $$
+$A+B$ ist also wieder eine $n \times m$--Matrix, die in der $i$--ten Zeile und der $j$--ten Spalte den Eintrag 
+$a_{i,j} + b_{i,j}$ hat. Analog defineren wir Matrixsubtraktion durch 
+  	$$ A - B = \left(a_{i,j} - b_{i,j}\right) = \left(\begin{matrix} 
+  	a_{1,1} - b_{1,1} & a_{1,2} - b_{1,2} & \ldots & a_{1,n} - b_{1,n} \\
+	a_{2,1} - b_{2,1} & a_{2,2} - b_{2,2} & \ldots & a_{2,n} - b_{2,n} \\
+ 	\vdots & & \ddots & \vdots \\
+	a_{m,1} - b_{m,1} & a_{m,2} - b_{m,2} & \ldots & a_{m,n} - b_{m,n}
+	\end{matrix} \right) $$
+
+Wir definieren die Multiplikation einer Matrix mit einem Skalar durch
+  	$$ \lambda \cdot A = \left(\lambda \cdot a_{i,j}\right) = \left(\begin{matrix} 
+   	\lambda \cdot a_{1,1}  & \lambda \cdot a_{1,2}  & \ldots & \lambda \cdot a_{1,n}  \\
+ 	\lambda \cdot a_{2,1}  & \lambda \cdot a_{2,2}  & \ldots & \lambda \cdot a_{2,n}  \\
+ 	\vdots & & \ddots & \vdots \\
+  	\lambda \cdot a_{m,1}  & \lambda \cdot a_{m,2}  & \ldots & \lambda \cdot a_{m,n}
+   	\end{matrix} \right) $$
+$\lambda \cdot A$ ist also wieder eine $n \times m$--Matrix, die in der $i$--ten Zeile und der $j$--ten Spalte 
+den Eintrag  $ \lambda \cdot a_{i,j}$ hat.
+\end{definition}
+      
+\begin{beispiel} Für 
+ 	$$ A = \left( \begin{matrix} 1 & 2 & 3 & 4 \\  5 & 6 & 5 & 4 \end{matrix} \right), \qquad
+    	B = \left( \begin{matrix} 2 & 1 & 3 & 2 \\  1 & 4 & 1 & 5 \end{matrix} \right) $$
+gilt
+ 	$$ A + B = \left( \begin{matrix} 1 +2 & 2 +1 & 3+3 & 4+2 \\  5+1 & 6+4 & 5+1 & 4+5 \end{matrix} \right)
+    	= \left( \begin{matrix} 3 & 3 & 6 & 6 \\  6 & 10 & 6 & 9 \end{matrix} \right) $$
+und 
+ 	$$ A - B = \left( \begin{matrix} 1-2 & 2-1 & 3-3 & 4-2 \\  5-1 & 6-4 & 5-1 & 4-5 \end{matrix} \right)
+    	= \left( \begin{matrix} -1 & 1 & 0 & 2 \\  4 & 2 & 4 & -1 \end{matrix} \right) $$
+\end{beispiel}
+
+\begin{beispiel} Für 
+  	$$ \lambda = 3, \quad A = \left( \begin{matrix} 1 & 2 & 3 & 4 \\  5 & 6 & 5 & 4 \end{matrix} \right) $$
+gilt
+  	$$ \lambda \cdot A = \left( \begin{matrix} 3 \cdot 1 & 3 \cdot 2 & 3 \cdot 3 & 3 \cdot 4 \\ 
+	3 \cdot 5 & 3 \cdot 6 & 3 \cdot 5 & 3 \cdot 4 \end{matrix} \right)
+    	=  \left( \begin{matrix} 3 & 6 & 9 & 12 \\  15 & 18 & 15 & 12 \end{matrix} \right) $$
+\end{beispiel}
+
+\begin{definition} Die negative Matrix $-A$ zu einer Matrix $A = \left( a_{i,j} \right)$ ist definiert als
+  	$$ - A = \left( -a_{i,j} \right) $$
+also $- A = (-1) \cdot A$.
+\end{definition}
+
+Für das Rechnen mit Matrizen gelten die folgenden Regeln:
+
+\begin{regel} Für $m \times n$--Matrizen $A, B, C$ und Skalare $r, s$ gilt:
+
+\begin{tabular} {l l l}
+$\bullet$ & $(A+B)+C = A+(B+C)$ & (1. Assoziativgesetz) \\
+$\bullet$ & $A + B = B + A$ & (Kommutativgesetz) \\ 
+$\bullet$ & $A + 0_{(m,n)} = A$ & (neutrales Element Addition) \\
+$\bullet$ & $A + (-A) = 0_{(m,n)}$ & (inverses Element Additon) \\
+$\bullet$ & $(r \cdot s) \cdot A = r \cdot (s \cdot A)$ & (2. Assoziativgesetz) \\
+$\bullet$ & $r \cdot (A + B) = r \cdot A + r \cdot B$ & (1. Distributivgesetz) \\
+$\bullet$ & $(r+s) \cdot A = r \cdot A + s \cdot A$ & (2. Distributivgesetz) \\
+$\bullet$ & $1 \cdot A = A$ & (neutrales Element Skalarmultiplikation)
+\end{tabular}
+\end{regel}
+
+\begin{korollar} Die Menge $\textrm{Matr}(m,n)$ zusammen mit der Matrizenaddition und der 
+Skalarmultiplikation von Matrizen ist ein Vektorraum.
+\end{korollar} 
+
+Mit $E_{l,k}$ bezeichnen wir die $m \times n$--Matrix mit den Matrixelementen
+  	$$ a_{i,j} = \left\{ \begin{array} { l c l} 
+	1 & \, & \textrm{ falls } i = l, j = k \\
+    	0 & \, & \textrm{ sonst} \end{array} \right.$$
+
+\begin{beispiel} Für $m = 2, n = 2$ gilt
+  	$$ E_{1,1} = \left( \begin{matrix} 1 & 0 \\ 0 & 0 \end{matrix} \right), \, 
+	E_{1,2} = \left( \begin{matrix} 0 & 1 \\ 0 & 0 \end{matrix} \right), \, 
+   	E_{2,1} = \left( \begin{matrix} 0 & 0 \\ 1 & 0 \end{matrix} \right), \, 
+   	E_{2,2} = \left( \begin{matrix} 0 & 0 \\ 0 & 1 \end{matrix} \right) $$
+\end{beispiel}
+
+\begin{satz} Die Matrizen $\{E_{l,k}\}_{\begin{smallmatrix} l = 1, \ldots, m \\ k = 1, \ldots, n 
+\end{smallmatrix}}$ 
+bilden eine Basis von $\textrm{Matr}(m,n)$. Insbesondere gilt also 
+  	$$ \textrm{dim}(\textrm{Matr}(m,n)) = m \cdot n $$
+\end{satz}
+
+\beweis Das lässt sich leicht nachrechnen.
+
+Wir haben nun auf den Matrizen Vektorraumoperationen eingeführt. Darüberhinaus gibt es noch eine 
+weitere, sehr interessante Operation auf Matrizen:
+
+\begin{definition} Für eine $m \times n$--Matrix $A = \left( a_{i,j} \right)$ und eine 
+$n \times l$--Matrix $B = \left( b_{i,j} \right)$ definieren wir das \index{Matrix!Produkt} 
+\textbf{Matrizenprodukt} $A \cdot B$ von $A$ und $B$ als diejenige $m \times l$--Matrix $C = \left( 
+c_{i,j} \right)$ mit 
+  	$$ c_{i,j} = a_{i,1} \cdot b_{1,j} + a_{i,2} \cdot b_{2,j} + \cdots + a_{i,n} \cdot b_{n,j} = 
+	\sum_{k = 1}^n a_{i,k} \cdot b_{k,j} $$
+\end{definition}
+
+\begin{notiz} Der entscheidende Punkt bei der Matrizenmultiplikation von $A$ mit $B$ ist die Tatsache, 
+dass die Anzahl der Spalten von $A$ mit der Anzahl der Zeilen von $B$ übereinstimmt.
+\end{notiz}
+
+\begin{beispiel} Für die Matrizen 
+  	$$ A = \left( \begin{matrix}  1 & 2 & 3 \\ 4 & 2 & 0\end{matrix} \right), \quad B 
+	=  \left( \begin{matrix}  2 & 1 & 4 \\ 3 & 1 & 2 \\ -1 & -2 & 1	\end{matrix} \right) $$
+gilt 
+  	$$ \begin{array} {l c l} 
+  	A \cdot B & = & \left( \begin{array} { c c c }
+ 	1 \cdot 2 + 2 \cdot 3 + 3 \cdot (-1) & 1 \cdot 1 + 2 \cdot 1 + 3 \cdot (-2) &
+ 	1 \cdot 4 + 2 \cdot 2 + 3 \cdot 1 \\
+	4 \cdot 2 + 2 \cdot 3 + 0 \cdot (-1) & 4 \cdot 1 + 2 \cdot 1 + 0 \cdot (-2) &
+	4 \cdot 4 + 2 \cdot 2 + 0 \cdot 1 
+ 	\end{array} \right) \\
+  	& = & \left( \begin{matrix}
+	5 & -3 & 11 \\ 14 & 6 & 20 
+ 	\end{matrix} \right) 
+  \end{array} $$
+\end{beispiel}
+
+\begin{beispiel}Für die Matrizen 
+  	$$ A = \left( \begin{matrix}  2 & 1 & 3 \\ 1 & 2 & 0
+	\end{matrix} \right), \quad B =  \left( \begin{matrix}  1 & 4 \\ 3  & 2 \\ -1 & -2 
+  	\end{matrix} \right) $$
+gilt 
+  	$$ \begin{array} {l c l} 
+  	A \cdot B & = & \left( \begin{array} { c c }
+	2 \cdot 1 + 1 \cdot 3 + 3 \cdot (-1) & 2 \cdot 4 + 1 \cdot 2 + 3 \cdot (-2) \\
+	1 \cdot 1 + 2 \cdot 3 + 0 \cdot (-1) & 1 \cdot 4 + 2 \cdot 2 + 0 \cdot (-2) 
+	\end{array} \right) \\
+  	& = & \left( \begin{array}{ l l }
+	2 & 4  \\ 7 & 8  
+	\end{array} \right) 
+  	\end{array} $$
+
+Beachten Sie, dass wir in diesem Beispiel auch $B \cdot A$ bilden können. Hierfür erhalten wir
+  	$$ \begin{array} {l c l} 
+  	B \cdot A & = & \left( \begin{array} { c c c }
+	1 \cdot 2 + 4 \cdot 1 & 1 \cdot 1 + 4 \cdot 2 & 1 \cdot 3 + 4 \cdot 0 \\
+	3 \cdot 2 + 2 \cdot 1 & 3 \cdot 1 + 2 \cdot 2 & 3 \cdot 3 + 2 \cdot 0 \\
+	(-1) \cdot 2 + (-2) \cdot 1 & (-1) \cdot 1 + (-2) \cdot 2 & (-1) \cdot 3 + (-2) \cdot 0 
+	\end{array} \right) \\
+  	& = & \left( \begin{array}{ l l l }
+	6 & 5 & 3 \\ 8 & 7 & 9 \\ -4 & -3 & -3  
+	\end{array} \right) 
+ 	\end{array} $$
+Dieses Beispiel zeigt, dass im allgemeinen  $A \cdot B \neq B \cdot A$, selbst wenn beide Multiplikationen 
+definiert sind. Es stimmen weder die Größen der resultierenden Ergebnissen noch deren Einträge 
+überein. 
+\end{beispiel}
+
+\begin{notiz}\label{matr_mult_st_basis} Fassen wir einen Vektor $\vektor{v}$ 
+als eine $n \times 1$--Matrix auf, so können wir eine $m \times n$--Matrix $A$ mit 
+$\vektor{v}$ multiplizieren. Das Ergebnis $A \cdot \vektor{v}$ ist eine 
+$m \times 1$--Matrix, also ein Vektor der Länge $m$.
+
+Ist $\vektor{e_1} = \left( \begin{smallmatrix} 1 \\ 0 \\ \vdots \\ 0 
+\end{smallmatrix}\right), \ldots, \vektor{e_n} = \left( \begin{smallmatrix} 
+0 \\ 0 \\ \vdots \\ 1 \end{smallmatrix}\right)$ die Standardbasis des $\mathbb R^n$, 
+so gilt:
+  	$$ A \cdot \vektor{e_j} = A_{\bullet, j} \qquad \textrm{ für alle } \, 
+     	j \in \{1, \ldots, n \} $$
+ist der $j$--te Spaltenvektor von $A$. Das folgt sofort aus de Definition der 
+Matrizenmultiplikation.
+\end{notiz}
+
+\begin{beispiel}
+ 	$$ \left( \begin{matrix} 1 & 2 & 3 & 4 \\ 2 & 3 & 4 & 5 \\ 3 & 4 & 5 & 6 
+    	\end{matrix} \right) \cdot \left( \begin{matrix} 0 \\ 0 \\ 1 \\ 0 \end{matrix} 
+    	\right) = \left( \begin{matrix} 1 \cdot 0 + 2 \cdot 0 + 3 \cdot 1 + 4 \cdot 0 \\ 
+    	2 \cdot 0 + 3 \cdot 0 + 4 \cdot 1 + 5 \cdot 0 \\ 3 \cdot 0 + 4 \cdot 0 + 5 \cdot 1 + 
+    	6 \cdot 0 \end{matrix} \right)
+    	= \left( \begin{matrix} 3 \\ 4 \\ 5 \end{matrix} \right) $$
+ist die dritte Spalte von $A$.
+\end{beispiel}
+           
+\bigbreak
+
+Für die Matrizenmultiplikation gelten eine Reihe einfacher Regeln:
+
+\begin{regel}\label{regel_matrix_mult} 
+
+\begin{enumerate} 
+\item Für eine $m \times n$--Matrix $A$, eine $n \times l$--Matrix $B$ und eine $l \times 
+k$--Matrix $C$ gilt
+  	$$ (A \cdot B) \cdot C = A \cdot (B \cdot C) $$
+\item Für eine  $m \times n$--Matrix $A$, eine $n \times l$--Matrix $B$ und einen Skalar $\lambda 
+\in \mathbb R$ gilt:
+  	$$ A \cdot (\lambda \cdot B) = \lambda \cdot (A \cdot B) $$
+\item Für eine $m \times n$--Matrix $A$, eine $n \times l$--Matrix $B$ und eine $n \times 
+l$--Matrix $C$ gilt
+  	$$ A \cdot ( B + C ) = A \cdot B + A \cdot C $$
+\item Für eine $m \times n$--Matrix $A$, eine $m \times n$--Matrix $B$ und eine $n \times 
+l$--Matrix $C$ gilt
+  	$$ (A + B)\cdot C = A \cdot C + B \cdot C $$
+\item Für eine $m \times n$--Matrix $A$, eine $n \times l$--Matrix $B$ gilt
+  	$$ (A \cdot B)^T = B^T \cdot A^T $$
+\item Für eine $m \times n$--Matrix $A$ gilt
+  	$$ A \cdot E_n = A = E_m \cdot A $$
+wobei $E_n$ die $n \times n$--Einheitsmatrix und $E_m$ die $m \times m$--Einheitsmatrix aus 
+Beispiel~\ref{einheitsmatrix} bezeichnet.
+\end{enumerate}
+\end{regel}  
+
+\begin{korollar}\label{matrix_mult_spalten} 
+Ist $A = \left( a_{i,j} \right)$ eine $m \times n$--Matrix mit den
+Spaltenvektoren $\vektor{a_1} = A_{\bullet,1}, \ldots,  
+\vektor{a_n} = A_{\bullet, n}$, und ist $\vektor{v} = 
+\left( \begin{smallmatrix} v_1 \\ \vdots \\ v_n \end{smallmatrix} \right)$ ein 
+$n$--Vektor, so gilt
+  	$$ A \cdot \vektor{v} = v_1 \cdot \vektor{a_1} + \cdots + v_n \cdot \vektor{a_n} $$
+\end{korollar}
+
+\beweis Wir können schreiben
+  	$$ \vektor{v} = v_1 \cdot \vektor{e_1} + \cdots + 
+     	v_n \cdot \vektor{e_n} $$
+wobei $\vektor{e_1}, \ldots , \vektor{e_n}$ die Standardbasis des 
+$\mathbb R^n$ bezeichnet. Dann gilt nach Regeln~\ref{regel_matrix_mult} (2) und (3):
+  	$$ \begin{array} {l c c}
+  	A \cdot \vektor{v} & = & A \cdot \left( v_1 \cdot \vektor{e_1} + 
+	\cdots + v_n \cdot \vektor{e_n} \right) \\
+  	& = & v_1 \cdot A \cdot \vektor{e_1} + \cdots + 
+   	v_n \cdot A \cdot \vektor{e_n} \\
+  	& = & v_1 \cdot \vektor{a_1} + \cdots + 
+	v_n \cdot \vektor{a_n}
+  	\end{array} $$
+
+\medbreak
+
+Eine interessante Beziehung erhalten wir zwischen Matrizenprodukt und Skalarprodukt:
+
+\begin{regel}\label{matrix_skalarprod} 
+Ist $A$ eine $n \times n$--Matrix und sind $\vektor{v}$ und  $\vektor{w}$ 
+zwei $n$--Vektoren, so gilt
+  	$$ \langle A \cdot  \vektor{v}, \, \vektor{w} \rangle = 
+      	\langle  \vektor{v}, \,  A^T \cdot \vektor{w} \rangle $$
+Ist also speziell $A$ eine symmetrische Matrix, ist also $A^T = A$, so gilt
+  	$$ \langle A \cdot  \vektor{v}, \, \vektor{w} \rangle = 
+    	\langle  \vektor{v}, \,  A \cdot \vektor{w} \rangle $$
+\end{regel}
+
+\beweis Ist $A = \left(a_{i,j}\right)$, und schreiben wir $\vektor{v} = 
+\left( \begin{smallmatrix} v_1 \\ \vdots \\ v_n \end{smallmatrix} \right)$ und 
+$\vektor{w} = 
+\left( \begin{smallmatrix} w_1 \\ \vdots \\ w_n \end{smallmatrix} \right)$
+so gilt
+  	$$ A \cdot \vektor{v} = \left( \begin{matrix} \sum\limits_{i = 1}^n a_{1,i} \cdot v_i \\ \vdots \\ 
+   	\sum\limits_{i = 1}^n a_{n,i} \cdot v_i  \end{matrix} \right) $$
+also 
+  $$ \langle A \cdot  \vektor{v}, \, \vektor{w} \rangle = \sum\limits_{j = 1}^n 
+      \sum\limits_{i = 1}^n a_{j,i} \cdot v_i \cdot w_j $$
+Andererseits ist $A^T = \left( a_{j,i} \right)$, und daher
+  	$$  A \cdot \vektor{w} = \left( \begin{matrix} \sum\limits_{j = 1}^n a_{j,1} \cdot w_j \\ \vdots \\ 	
+   	\sum\limits_{j = 1}^n a_{j,n} \cdot w_j  \end{matrix} \right) $$
+also 
+  	$$ \langle  \vektor{v}, \, A^T \cdot \vektor{w} \rangle = \sum\limits_{ji= 1}^n 
+    	\sum\limits_{j = 1}^n a_{j,i} \cdot w_j \cdot v_i = \langle A \cdot  \vektor{v}, \, 
+     	\vektor{w} \rangle  $$
+wie gewünscht.
+
+\bigbreak
+
+\begin{notiz}\label{matrix_sym_skalarprod}  
+Genau dann ist eine $n \times n$--Matrix symmetrisch, wenn für alle $n$--Vektoren 
+$\vektor{v}$ und  $\vektor{w}$ gilt
+   	$$ \langle A \cdot  \vektor{v}, \, \vektor{w} \rangle = 
+	\langle  \vektor{v}, \,  A \cdot \vektor{w} \rangle $$
+Wir wissen nämlich schon aus Regel~\ref{matrix_skalarprod} , dass
+  	$$ \langle A \cdot  \vektor{v}, \, \vektor{w} \rangle = 
+	\langle  \vektor{v}, \,  A^T \cdot \vektor{w} \rangle $$
+Ist also $A$ symmetrisch, so gilt $A = A^T$ und diese Beziehung wird  
+   	$$ \langle A \cdot  \vektor{v}, \, \vektor{w} \rangle = 
+ 	\langle  \vektor{v}, \,  A \cdot \vektor{w} \rangle $$
+wie gewünscht. 
+
+Gilt nun umgekehrt diese Beziehung für alle Vektoren, so gilt sie speziell auch für die 
+Einheitsvektoren, also
+  	\begin{equation}\label{mat_equ_skalar_sym} 
+    	\langle A \cdot  \vektor{e_i}, \, \vektor{e_j} \rangle = 
+     	\langle  \vektor{e_i}, \,  A \cdot \vektor{e_j} \rangle 
+ 	\end{equation}
+für alle $i, j \in \{1, \ldots, n\}$. Nun gilt aber
+  	$$ \begin{array} {l c l}
+  	\langle A \cdot  \vektor{e_i}, \, \vektor{e_j} \rangle & = & a_{j,i} \\
+   	\langle \vektor{e_i}, \, A \cdot \vektor{e_j} \rangle & = & a_{i,j}
+  	\end{array} $$
+so dass aus Gleichung~\ref{mat_equ_skalar_sym} folgt, dass $A$ symmetrisch ist.
+\end{notiz}
+
+\medbreak
+
+\begin{notiz} Addition und Multiplikation sind auch für komplexe Matrizen definiert.
+\end{notiz}
+
+\bigbreak
+
+\begin{aufgabe} Gegeben seien die Matrizen
+  	$$ A = \left( \begin{matrix} 1 & 2 \\ 3 & 4 \end{matrix} \right) \qquad 
+   	B = \left( \begin{matrix} 2 & 3 & 1 \\ 6 & - 4 & - 2 \end{matrix} \right) $$
+Bestimmen Sie $A^T, B^T, A \cdot B$ und $B^T \cdot A$.
+\end{aufgabe}
+
+\begin{aufgabe} Gegeben seien die Matrizen
+  	$$ A = \left( \begin{matrix} 1 & -1 \\ 1 & 1 \end{matrix} \right) \qquad 
+     	B = \left( \begin{matrix} 2 & -3 \\ -3 & 2 \end{matrix} \right) $$
+Bestimmen Sie $A^T, B^T, A + B, A \cdot B$ und $B \cdot A$.
+\end{aufgabe}
+
+\begin{aufgabe} Gegeben seien die Matrizen
+  	$$ A = \left( \begin{matrix} 1+ \ii & 1-2 \cdot \ii \\ 4 & 3 \cdot \ii \end{matrix} \right) \qquad 
+   	B = \left( \begin{matrix} 3 \cdot \ii & 2+ \ii & 1 \\ 5-\ii & \ii - 4 & - 2 -\ii \end{matrix} \right) $$
+Bestimmen Sie $A \cdot B$ und $B^T \cdot A$.
+\end{aufgabe}
+
+\begin{aufgabe} Gegeben seien die Matrizen
+ 	$$ A = \left( \begin{matrix} 1 & 2 \\ 2 & 1 \end{matrix} \right), \quad 
+   	B = \left( \begin{matrix} 1 & -1 & 1 \\ -2 & 3 & -4 \end{matrix} \right), \quad
+     	C = \left( \begin{matrix} 1 & 1 \\ 2 & 1 \\ 1 & 2 \end{matrix} \right) $$
+Berechnen Sie (falls der Ausdruck existiert): 
+\begin{itemize}
+\item[a)] $A \cdot B$
+\item[b)] $B \cdot A$
+\item[c)] $B \cdot C$
+\item[d)] $B^T \cdot A$
+\item[e)] $B^T + C$
+\end{itemize}
+\end{aufgabe} 
+
+\newpage
+
+\section{Matrizen  und Abbildungen}\label{section_lin_abb}
+
+
+\setcounter{definition}{0}
+\setcounter{beispiel}{0}
+\setcounter{notiz}{0}
+
+Wir haben schon gesehen, dass sich lineare Gleichungssysteme mit Matrizen und 
+augmentierten Matrizen beschreiben lassen. In diesem Abschnitt wollen wir diese 
+Beziehungen weiter studieren und vertiefen.
+
+\begin{notiz}\label{matrix_lin_abb} 
+Fassen wir einen Vektor der Länge $n$ als eine $n \times 1$--Matrix auf, so können wir 
+insbesondere eine $m \times n$--Matrix $A$ mit einem Vektor $\vektor{v}$ der Länge $n$ 
+multiplizieren. Das Ergebnis $A \cdot \vektor{v}$ ist eine $m \times 1$--Matrix, also ein 
+Vektor der Länge $m$. Damit definiert $A$ eine Abbildung
+  	$$ f = f_A : \mathbb R^n \longrightarrow \mathbb R^m, \quad \vektor{v} \longmapsto 
+ 	A \cdot \vektor{v} $$
+Aus Regel~\ref{regel_matrix_mult} folgt sofort, dass diese Abbildung $f_A$ folgende interessante 
+Eigenschaften hat:
+\begin{itemize} 
+\item[(i)] Für $\vektor{v}, \vektor{w} \in \mathbb R^n$ gilt:
+  	$$ f_A(\vektor{v} + \vektor{w}) = f_A(\vektor{v}) + f_A(\vektor{w}) $$
+\item[(ii)] Für $\vektor{v} \in \mathbb R^n$ und $\lambda \in \mathbb R$ gilt:
+  	$$ f_A( \lambda \cdot \vektor{v}) = \lambda \cdot f_A(\vektor{v}) $$
+\end{itemize}
+\end{notiz}
+
+Abbildungen, die die beiden Eigenschaften aus Bemerkung~\ref{matrix_lin_abb} erfüllen, sind von 
+besonderem Interesse in der Mathematik
+
+\begin{definition}\label{lineare_abbildung}
+Eine Abbildung $f: \mathbb R^n \longrightarrow \mathbb R^m$  heißt 
+\index{linear Abbildung}\textbf{lineare Abbildung} von $\mathbb R^n$ nach $\mathbb R^m$, wenn 
+sie die folgenden beiden Eigenschaften hat 
+\begin{itemize} 
+\item[(i)] Für $\vektor{v}, \vektor{w} \in \mathbb R^n$ gilt:
+  	$$ f_A(\vektor{v} + \vektor{w}) = f_A(\vektor{v}) + f_A(\vektor{w}) $$
+\item[(ii)] Für $\vektor{v} \in \mathbb R^n$ und $\lambda \in \mathbb R$ gilt:
+  	$$ f_A( \lambda \cdot \vektor{v}) = \lambda \cdot f_A(\vektor{v}) $$
+\end{itemize}
+\end{definition}
+
+\begin{notiz}\label{matrix_hom_matrix}
+Wir haben gesehen, dass jede $m \times n$--Matrix $A$ eine lineare Abbildung $f_A$ von $\mathbb R^n$ 
+nach $\mathbb R^m$ definiert. Umgekehrt gilt aber auch, dass jede lineare Abbildung $f$ von $\mathbb R^n$ 
+nach $\mathbb R^m$ auf diese Art und Weise von einer $m \times n$--Matrix $A$ kommt, d.h. $f = f_A$ 
+für eine $m \times n$--Matrix $A$.
+
+Dazu sei $ \vektor{e_1}, \vektor{e_2}, \ldots, \vektor{e_n}$ 
+die Standardbasis des $\mathbb R^n$ aus Beispiel~\ref{uvr_standard_basis} in 
+Abschnitt~\ref{section_rn}. Dann ist $f(\vektor{e_i})$ ein Vektor in 
+$\mathbb R^m$ für alle $i \in \{1, \ldots , n\}$, wir können also schreiben
+  $$ f(\vektor{e_i}) = 
+  \left( \begin{matrix} a_{1,i} \\ \vdots \\ a_{m,i} \end{matrix} \right) $$
+und bilden daraus die Matrix 
+  	$$ A = \left(a_{i,j}\right) = \left( \begin{matrix} 
+ 	a_{1,1} & a_{1,2} & \ldots & a_{1,n} \\
+   	a_{2,1} & a_{2,2} & \ldots & a_{2,n} \\
+    	\vdots & & \ddots & \vdots  \\
+    	a_{m,1} & a_{m,2} & \ldots & a_{m,n}
+    	\end{matrix} \right) $$
+in der also die $f(\vektor{e_i})$ gerade die $i$--ten Spalten bilden. Dann 
+erhalten wir für einen beliebigen Vektor $\vektor{v} = \left( 
+\begin{smallmatrix} v_1 \\ \vdots \\ v_n \end{smallmatrix} \right) \in \mathbb R^n$ 
+aufgrund der Linearität von $f$:
+  	$$ \begin{array} {l c l}
+  	f(\vektor{v}) & = & f(v_1 \cdot \vektor{e_1} + \cdots + v_n \cdot \vektor{e_n}) \\
+  	& = & v_1 \cdot f(\vektor{e_1}) + \cdots + v_n \cdot f(\vektor{e_n}) \\
+  	& = & v_1 \cdot \left(\begin{matrix} a_{1,1} \\ \vdots \\ a_{m,1}\end{matrix}\right) + \cdots + 
+	v_n \cdot  \left( \begin{matrix} a_{1,n} \\ \vdots \\ a_{m,n} \end{matrix} \right) \\
+  	& = & \left( \begin{matrix} v_1 \cdot a_{1,1} + \cdots v_n \cdot a_{1,n} \\ 
+	\vdots \\ v_1 \cdot a_{m,1} + \cdots v_n \cdot a_{m,n} \end{matrix} \right) \\
+  	& = & A \cdot \vektor{v}
+  	\end{array} $$
+und damit ist gezeigt, dass $f = f_A$.
+
+$A$ heißt \index{linear Abbildung!Matrix}\textbf{darstellende Matrix} von $f$ 
+(bezüglich der Standardbasis).
+
+Zu jeder linearen Abbildung gehört auf diese Art und Weise also eine eindeutige Matrix, 
+und umgekehrt bestimmt auch jede Matrix genau eine lineare Abbildung. Matrizen und lineare 
+Abbildungen entsprechen sich also eineindeutig.
+\end{notiz}
+
+\bigbreak
+         
+Wie wir schon gesehen haben, gibt jedes allgemeine lineare Gleichungssystem 
+  	\begin{equation}\label{lgs_matrix}
+ 	\begin{array} {l c l c c c l c l }
+  	a_{1,1} x_1 & + & a_{1,2} x_2 & + & \cdots & + a_{1,n} x_n & = & b_1 \\
+  	a_{2,1} x_1 & + & a_{2,2} x_2 & + & \cdots & + a_{2,n} x_n & = & b_2 \\
+  	\vdots & & & & \ddots & & & \vdots \\
+  	a_{m,1} x_1 & + & a_{m,2} x_2 & + & \cdots & + a_{m,n} x_n & = & b_m 
+  	\end{array} 
+  	\end{equation}
+Anlaß zu einer $m \times n$--Koeffizientenmatrix $A = \left(a_{i,j}\right)$, einem Spaltenvektor 
+$\vektor{b} = \left( \begin{smallmatrix} b_1 \\ \vdots \\ b_m \end{smallmatrix} \right)$ der 
+Länge $m$ und einem Vektor von Unbekannten $\vektor{x} 
+= \left( \begin{smallmatrix} x_1 \\ \vdots \\ x_n \end{smallmatrix} \right)$ der Länge $n$. wir rechnen 
+leicht nach, dass sich linke Seite des Gleichungssystems~\ref{lgs_matrix} nichts anderes ist als
+$A \cdot \vektor{x}$. Damit schreibt sich das Gleichungssystem~\ref{lgs_matrix} kompakt als
+  	$$ A \cdot \vektor{x} = \vektor{b} $$
+Im Sinne von Bemerkung~\ref{matrix_lin_abb} ist also das Finden der Lösungsmenge von 
+Gleichungssystem~\ref{lgs_matrix} äquivalent zum Finden der Urbildmenge $f_A^{-1}(\vektor{b})$.
+
+\medbreak
+
+\begin{definition} Für eine $m \times n$--Matrix $A$ nennen wir
+  	$$ \mathrm{Ker}(A) := \{ \vektor{v} \in \mathbb R^n \, \vert \, A \cdot \vektor{v} = \vektor{0} \} $$
+den \index{Matrix!Kern}\textbf{Kern} von $A$ und 
+  	$$ \mathrm{Im}(A) := \{ \vektor{b} \in \mathbb R^m \, \vert \, \exists \vektor{v} \in \mathbb R^n \,
+	\textrm{ mit }\,  A \cdot \vektor{v} = \vektor{b} \} $$
+das \index{Matrix!Bild}\textbf{Bild} oder den \textbf{Spaltenraum} von $A$.
+\end{definition}
+
+\begin{satz} Für jede $m \times n$--Matrix $A$ gilt
+
+\begin{itemize} 
+\item $\textrm{Ker}(A)$ ist ein Untervektorraum von $\mathbb R^n$.
+\item $\textrm{Im}(A)$ ist ein Untervektorraum von $\mathbb R^m$.
+\end{itemize}
+\end{satz}
+
+\beweis Sicherlich gilt $\vektor{0} \in \textrm{Ker}(A)$ und 
+$\vektor{0} \in \textrm{Im}(A)$, also sind beide Mengen nicht leer.
+
+Seien jetzt $\vektor{v}, \vektor{w} \in \textrm{Ker}(A)$ und sei 
+$\lambda \in \mathbb R$. Dann gilt nach den allgemeinen 
+Eigenschaften~\ref{regel_matrix_mult} der Matrizenmultiplikation oder der Linearität 
+von $A$:
+  	$$ \begin{array} {l c l c l c l}
+   	A\cdot\left(\vektor{v} + \vektor{w}\right) & = & 
+   	A\cdot \vektor{v} + A \cdot \vektor{w} & = & 
+   	\vektor{0} + \vektor{0} & = & \vektor{0} \\
+   	A \cdot \left( \lambda \vektor{v} \right) & = & 
+   	\lambda \cdot A \cdot \vektor{v} & = & 
+   	\lambda \cdot \vektor{0} & = & \vektor{0}
+   	\end{array} $$
+also sind auch $\vektor{v} + \vektor{w} \in \textrm{Ker}(A)$ und 
+$\lambda \cdot \vektor{v} \in \textrm{Ker}(A)$ und damit ist 
+$\textrm{Ker}(A)$ ein Untervektorraum. 
+
+Sind $\vektor{b}, \vektor{c} \in \textrm{Im}(A) $ und ist $\lambda 
+\in \mathbb R$, so schreibe zunächst
+  	$$ \vektor{b} = A \cdot \vektor{v}, \quad 
+ 	\vektor{c} = A \cdot \vektor{w} $$
+für geeignete $\vektor{v}, \vektor{w} \in \mathbb R^n$. Damit gilt, 
+wieder nach den allgemeinen Regeln~\ref{regel_matrix_mult} für die 
+Matrixmultiplikation oder der Linearität von $A$:
+  	$$ \begin{array} { l c l c l}
+  	\vektor{b} + \vektor{c} & = & 
+  	A \cdot \vektor{v} + A \cdot \vektor{w} & = & 
+  	A \cdot \left( \vektor{v} + \vektor{w} \right) \\
+  	\lambda \cdot \vektor{b} & = & 
+  	\lambda \cdot \left(A \cdot \vektor{v}\right) & = & 
+  	A \cdot \left( \lambda \cdot \vektor{v} \right)
+  	\end{array} $$
+also sind auch $\vektor{b} + \vektor{c} \in \textrm{Im}(A)$ und 
+$\lambda \cdot \vektor{b} \in \textrm{Im}(A)$ und damit ist 
+$\textrm{Im}(A)$ ein Untervektorraum.
+
+\begin{definition} $\textrm{rg}(A) := \textrm{dim}(\textrm{Im}(A))$ heißt 
+der \index{Matrix!Rang}\textbf{Rang} der Matrix $A$.
+
+$\textrm{nul}(A) = \textrm{dim}(\textrm{Ker}(A))$ heißt die
+\index{Matrix!Nullität}\textbf{Nullität} von $A$.
+\end{definition}
+
+\begin{notiz} Ist $A$ eine $m \times n$--Matrix, sind $\vektor{a_1} = A^T_{1, \bullet}, \ldots, 
+\vektor{a_m} = A^T_{m, \bullet}$ die Zeilenvektoren von $A$ (als Spalten geschrieben) und ist 
+  	$$ \mathscr{Z} = \langle \{ \vektor{a_1}, \ldots, \vektor{a_m} \} \rangle $$
+der hiervon erzeugte Untervektorraum von $\mathbb R^n$ (der \textbf{Zeilenraum} von $A$), so gilt
+  	$$   \mathrm{Ker}(A) = \mathscr{Z}^{\perp} $$
+wobei $ \mathscr{Z}^{\perp}$ das orthogonale Komplement von $ \mathscr{Z}$ bezeichent (vergleiche 
+hierzu Definition~\ref{linalg_vr_def_orth_komplement} aus Abschnitt~\ref{section_rn}).
+
+In der Tat sehen wir, dass 
+  	$$ A \cdot \vektor{v} = \left( \begin{matrix} \langle  \vektor{v},  \vektor{a_m} \rangle \\ 
+	\vdots \\ \langle  \vektor{v},  \vektor{a_1} \rangle \end{matrix} \right) $$
+und damit gilt
+  	$$ \begin{array} {l c l}
+  	A \cdot \vektor{v} = \vektor{0} & \iff & \langle  \vektor{v},  \vektor{a_i} \rangle 
+	= 0 \quad \textrm{ für alle } i \in \{1, \ldots, m \} \\
+ 	& \iff &  \vektor{v} \in  \mathscr{Z}^{\perp} 
+  	\end{array} $$
+\end{notiz}
+
+\medbreak
+
+\begin{satz}\label{gls_loesung_ker} Genau dann ist $x_1, \ldots, x_n$ eine Lösung 
+des homogenen linearen Gleichungssystems 
+  	$$ A \cdot \vektor{x} = \vektor{0} $$
+wenn $\vektor{x} 
+= \left( \begin{smallmatrix} x_1 \\ \vdots \\ x_n \end{smallmatrix} \right)
+\in\textrm{Ker}(A)$.
+
+Genau dann hat das allgemeine lineare Gleichungssystem 
+  	$$ A \cdot \vektor{x} = \vektor{b} $$
+eine Lösung, wenn $\vektor{b} \in \textrm{Im}(A)$.
+
+Ist $\vektor{v}$ eine Lösung von 
+  	$$ A \cdot \vektor{x} = \vektor{b} $$
+so ist jede weitere Lösung dieses Gleichungssystems von der Form $\vektor{v} 
++ \vektor{w}$ für ein $\vektor{w} \in \textrm{Ker}(A)$ und umgekehrt 
+ist auch für jedes $\vektor{w} \in \textrm{Ker}(A)$ der Vektor 
+$\vektor{v} + \vektor{w}$ eien Lösung dieses Gleichungssystems.
+\end{satz}
+
+\beweis Die ersten beiden Aussagen sind nur eine Umformulierung von 
+Bemerkung~\ref{matrix_lin_abb}.
+
+Ist $\vektor{v}$ eine Lösung des gegebenen Gleichungssystems, und ist 
+$\vektor{w} \in \textrm{Ker}(A)$, so gilt
+  	$$ A \cdot \left(\vektor{v} + \vektor{w}\right) = 
+  	A \cdot \vektor{v} + A \cdot \vektor{w} = \vektor{b} 
+ 	+ \vektor{0} = \vektor{b} $$
+und damit ist $\vektor{v} + \vektor{w}$ eine Lösung des 
+Gleichungssystems. Ist $\vektor{v'}$ eine weitere Lösung des 
+Gleichungssystems, so gilt für den Vektor $\vektor{w} = \vektor{v'} 
+- \vektor{v}$:
+  	$$ A \cdot \vektor{w} = A \cdot \vektor{v'} - A \cdot 
+  	\vektor{v} = \vektor{b} - \vektor{b} = 
+  	\vektor{0} $$
+und damit ist $\vektor{w} \in \textrm{Ker}(A)$ mit 
+  	$$ \vektor{v'} = \vektor{v} + \vektor{w} $$
+wie gewünscht.
+
+\medbreak
+
+\begin{notiz}\label{ker_normalform} Ist $A$ die Matrix, die zu einem homogenen 
+Gleichungssystem in Normalform gehört, so kann eine Basis von $\text{Ker}(A)$ 
+leicht ermittelt werden. Hat das homogene Gleichungssystem die Gestalt
+  	$$ \begin{array} {l c l c l c c c l c l }
+  	x_1 & + & a_{1,2} x_2 & + & a_{1,3} x_3 & + & \cdots & + & a_{1,n} x_n & = & b_1 \\
+  	0 & + &  x_2 &  + & a_{2,3} x_3 & + & \cdots & + & a_{2,n} x_n & = & b_2 \\
+ 	\vdots & & &  & & & \ddots & & & \vdots \\
+  	0 & + & 0 & + & 0 &  \cdots &  + \, x_t \, +  \, \cdots & + & a_{t,n} x_n & = & b_t \\  
+  	0 & + & 0 & + & 0 & + & \cdots & + & 0 & = & b_{t+1} \\
+  	\vdots & &  & & & & \ddots  & & & \vdots \\
+  	0 & + & 0 & + & 0 & + & \cdots & + & 0 & = & b_m 
+  	\end{array} $$
+so haben wir gesehen, dass wir genau $n-t$ Freiheitsgrade $x_{t+1} = \lambda_{t+1}, 
+x_{t+2} = \lambda_{t+2}, \ldots, x_n = \lambda_n$ haben und zu jeder dieser 
+Parametervorgaben genau eine Lösung (also passende $x_1, \ldots,  x_t$) finden. 
+Speziell gilt das für die Kombinationen
+  	$$ \begin{array}{l l l l c l}
+  	1: & x_{t+1} = 1, & x_{t+2} = 0, & x_{t+3} = 0, & \ldots, & x_{n} = 0 \\
+  	2: & x_{t+1} = 0, & x_{t+2} = 1, & x_{t+3} = 0, & \ldots, & x_{n} = 0 \\
+  	\vdots & & & \ddots & & \vdots \\
+  	n-t: \, & x_{t+1} = 0, & x_{t+2} = 0, & x_{t+3} = 0, & \ldots, & x_n = 1
+  	\end{array} $$
+Bezeichnen wir die zugehörigen Lösungen mit $\vektor{v_1}, 
+\vektor{v_2}, \ldots , \vektor{n_{n-t}}$, so rechnen wir leicht nach, 
+dass die Lösung $\vektor{v}$ zu den Parametern $x_{t+1} = \lambda_{t+1}, 
+x_{t+2} = \lambda_{t+2}, \ldots, x_n = \lambda_n$ gegeben ist durch 
+  	$$ \vektor{v} = \lambda_{t+1} \vektor{v_1} + 
+ 	\lambda_{t+2} \vektor{v_2} + \cdots + \lambda_n \vektor{v_{n-t}} $$
+Aufgrund der speziellen Wahl der Kombinationen 1 bis $n-t$ rechnet man sofort nach, 
+dass $\vektor{v_1}, \vektor{v_2}, \ldots , \vektor{n_{n-t}}$ 
+linear unabhängig sind. Damit ist gezeigt, dass sie ein Basis von 
+$\textrm{Ker}(A)$ bilden.
+\end{notiz}
+
+\bigbreak
+
+Im Rest dieses Abschnitts wollen wir noch die Vielfältigkeit der Lösungen 
+genauer analysieren.   
+
+\begin{satz}\label{gls_image_row} Es sei $A = \left( a_{i,j} \right)$ eine $m \times n$--Matrix, und es 
+seien $\vektor{a_1} = A_{\bullet,1}, \ldots,  
+\vektor{a_n} = A_{\bullet, n}$ die Spaltenvektoren von $A$. Dann gilt
+  	$$ \textrm{Im}(A) = \langle \vektor{a_1}, \ldots , 
+  	\vektor{a_n} \rangle  $$
+\end{satz}  
+
+\beweis Nach Definition der Matrizenmultipikation und 
+Bemerkung~\ref{matr_mult_st_basis} ist
+  	$$ A \cdot \left( \begin{matrix} v_1 \\ \vdots \\ v_n \end{matrix} \right) = 
+ 	v_1 \cdot \vektor{a_1} + \cdots + v_n \cdot 
+  	\vektor{a_n}  $$
+und damit gilt 
+  	$$ \textrm{Im}(A) \subseteq \langle \vektor{a_1}, \ldots , 
+   	\vektor{a_n} \rangle   $$
+Umgekehrt gilt aber auch 
+  	$$ \lambda_1 \cdot \vektor{a_1} + \cdots + \lambda_n \cdot 
+   	\vektor{a_n} = 
+  	A \cdot \left( \begin{matrix} \lambda_1 \\ \vdots \\ \lambda_n \end{matrix} \right)$$
+und hieraus folgt die andere Inklusion 
+  	$$ \textrm{Im}(A) \supseteq \langle \vektor{a_1}, \ldots , 
+   	\vektor{a_n} \rangle   $$
+also Gleichheit der beiden Mengen.
+
+\medbreak
+
+Wir haben also jetzt gesehen, dass wir aus $A$ unmittelbar ein Erzeugendensystem von 
+$\textrm{Im}(A)$ ablesen können. Wie aber können wir daraus eine Basis von 
+$\textrm{Im}(A)$ ableiten? Wie finden wir eine Basis von $\textrm{Ker}(A)$? Und wie 
+können wir den Rang von $A$ schnell bestimmen. 
+
+Zunächst halten wir hierzu fest, dass gilt
+  	$$ \textrm{rg}(A) = \textrm{rg}\left(A \, \vert \, \vektor{0}\right) $$ 
+wobei $\left(A \, \vert \, \vektor{0}\right)$ die augmentierte Matrix zum 
+homogenen Gleichungssystem 
+  	$$ A \cdot \vektor{x} = \vektor{0} $$
+ist, denn durch Hinzunahme des Nullvektors ändert sich ein Untervektorraum nicht.
+Augmentierte Matrizen haben wir in Satz~\ref{gls_mat_operation} durch die vier 
+Operationen
+
+\begin{itemize}
+\item[(i)] Subtrahiere das Vielfache einer Zeile von $\left(A \, \vert \vektor{b}\right))$ 
+von einer anderen Zeile 
+\item[(ii)] Vertausche zwei Zeilen von $\left(A \, \vert \vektor{b}\right)$ 
+\item[(iii)] Vertausche zwei Spalten von $\left(A \, \vert \vektor{b}\right)$, 
+von denen keine die letzte sein darf.
+\item[(iv)] Multipliziere eine Zeile von $\left(A \, \vert \vektor{b}\right)$ mit einer Zahl 
+$r \neq 0$.
+\end{itemize}
+
+auf Normalform gebracht. Der entscheidende Punkt für unsere \"Uberlegungen ist
+
+\begin{lemma}\label{rg_equ_operation} 
+Führen wir an einer augementierten Matrix 
+$\left(A \, \vert \, \vektor{0}\right)$ eine der Operationen (i) - (iv) 
+durch, so ändert sich dadurch der Rang von $\left(A \, \vert \, 
+\vektor{0}\right)$ nicht.
+\end{lemma}
+
+\beweis Klar ist, dass die Operation (iii) den Rang nicht ändert, denn das Erzeugnis 
+von Vektoren hängt nicht von deren Reihenfolge ab. 
+
+Für den Nachweis in den anderen Fällen führen wir eine der Operation (i), (ii) 
+oder (iv) an der Matrix $\left(A \, \vert \, \vektor{0}\right)$ durch und 
+nennen die dadurch erhaltene augmentierte Matrix
+$\left(A' \, \vert \, \vektor{0}\right)$. Mit $\vektor{a_j}$ bezeichnen 
+wir den $j$--ten Spaltenvektor von $\left(A \, \vert \, \vektor{0}\right)$ und 
+mit $\vektor{a^{\prime}_j}$ den entsprechenden Spaltenvektor von 
+$\left(A' \, \vert \, \vektor{0}\right)$. Es reicht dann zu zeigen:
+Sind $1 \leq j_1 < \cdots < j_t \leq n+1$, so sind die Vektoren 
+$\vektor{a_{j_1}}, \ldots , \vektor{a_{j_t}}$ genau dann linear 
+unabhängig, wenn es die Vektoren $\vektor{a^{\prime}_{j_1}}, \ldots , 
+\vektor{a^{\prime}_{j_t}}$ sind. Wir können dabei auch immer annehmen, 
+dass $j_t \leq n$, denn $\vektor{a^{\prime}_{n+1}} = \vektor{a_{n+1}} 
+= \vektor{0}$.
+
+Wir betrachten Operation (i). Zur Vereinfachung der Schreibweise nehmen wir an, dass
+wir dabei das $r$--fache der zweiten Zeile zur ersten Zeile addieren. Dann ist die 
+lineare Unabhängigkeit von $\vektor{a_{j_1}}, \ldots , 
+\vektor{a_{j_t}}$ äquivalent dazu, dass das Gleichungssystem
+  	\begin{equation}\label{mat_rg_before}
+	\begin{array} {l c l c l c l c l }
+  	a_{1, j_1} x_1 & + & a_{1, j_2} x_2 & + & \ldots & + & a_{1, j_t} x_t & = & 0 \\
+  	a_{2, j_1} x_1 & + & a_{2, j_2} x_2 & + & \ldots & + & a_{2, j_t} x_t & = & 0 \\
+  	\vdots & & & & \ddots & & & & \vdots \\
+  	a_{m, j_1} x_1 & + & x_{m, j_2} x_2 & + & \ldots & + & a_{m, j_t} x_t & = & 0 
+  	\end{array} 
+  	\end{equation}
+nur die triviale Lösung hat,
+und die lineare Unabhängigkeit von $\vektor{a^{\prime}_{j_1}}, \ldots , 
+\vektor{a^{\prime}_{j_t}}$ ist äquivalent dazu, dass das Gleichungssystem
+  	\begin{equation}\label{mat_rg_after}
+  	\begin{array} {l c l c l c l c l }
+   	\left((a_{1, j_1} + r a_{2, j_1}\right) x_1 & + & 
+   	\left(a_{1, j_2} + r a_{2, j_2}\right) x_2 & + & \ldots & + & 
+   	\left(a_{1, j_t} + r a_{2, j_t}\right) x_t & = & 0 \\
+  	a_{2, j_1} x_1 & + & a_{2, j_2} x_2 & + & \ldots & + & a_{2, j_t} x_t & = & 0 \\
+  	\vdots & & & & \ddots & & & & \vdots \\
+  	a_{m, j_1} x_1 & + & x_{m, j_2} x_2 & + & \ldots & + & a_{m, j_t} x_t & = & 0 
+  	\end{array} 
+  	\end{equation}
+nur die triviale Lösung hat. 
+
+Aber die Gleichungssysteme (\ref{mat_rg_before}) und (~\ref{mat_rg_after}) 
+sind äquivalent, haben also die gleichen Lösungen. 
+
+Die anderen beiden Fälle behandelt man ähnlich.
+
+\begin{notiz}\label{rg_equ_operation_trans} 
+Anstelle der Zeilenoperationen
+
+\begin{itemize}
+\item[(i)] Subtrahiere das Vielfache einer Zeile von $\left(A \, \vert \vektor{b}\right))$ 
+von einer anderen Zeile 
+\item[(iv)] Multipliziere eine Zeile von $\left(A \, \vert \vektor{b}\right)$ mit einer Zahl 
+$r \neq 0$.
+\end{itemize}
+
+können wir an der augmentierten Matrix genauso die Spaltenoperationen
+\begin{itemize}
+\item[(i)] Subtrahiere das Vielfache einer Spalte von $\left(A \, \vert \vektor{b}\right))$ 
+die nicht die letzte ist von einer anderen Spalte, die nicht die letzte ist. 
+\item[(iv)] Multipliziere eine Spalte von $\left(A \, \vert \vektor{b}\right)$, die nicht die 
+letzte ist, mit einer Zahl $r \neq 0$.
+\end{itemize}
+Auch diese Operationen verändern die Lösbarkeit des Gleichungssystems $A \cdot \vektor{x} = 
+\vektor{b}$ (wenn auch das Rückw\"rtsrechnen er Lösugn komplizierter wird). 
+\end{notiz}
+
+\medbreak
+
+\begin{notiz}\label{gls_rang_normalform} 
+Die Operationen (i) - (iv) lassen die letzte Spalte der augmentierten 
+Matrix $\left(A \, \vert \, \vektor{0}\right)$ unberührt; sie bleibt immer 
+die Nullspalte. Daher verzichten wir in diesem Fall darauf, diese Spalte mitzuführen 
+und führen die Operationen an der Matrix $A$ durch. Wir sprechen dann auch von der 
+Normalform von $A$.
+
+Benutzen  wir für die Findung der Normalform sowohl Zeilen-- als auch Spaltenoperationen, so 
+können wir $A$ in eine rangäquivalente Matrix der Gestalt
+  	$$ A' = \left( \begin{matrix} 1 & 0 &   \ldots & 0 & 0 & \ldots & 0 \\
+	0 & 1 &   \ldots & 0 & 0 & \ldots & 0 \\
+	\vdots & & \ddots & & &  \vdots \\
+	0 & 0 &   \ldots & 1 & 0 & \ldots & 0 \\
+	0 & 0 &   \ldots & 0 & 0 & \ldots & 0 \\
+	\vdots & & \ddots & & &  \vdots \\
+ 	0 & 0 &   \ldots & 0 & 0 & \ldots & 0
+  	\end{matrix} \right) $$
+In diesem Fall ist der Rang von $A$ die Anzahl der 1--Einträge in der Matrix $A'$.
+\end{notiz}
+
+\medbreak
+
+\begin{korollar} Der Rang einer Matrix $A$ ist der Rang des zugehörigen 
+Gleichungssystems $A \cdot \vektor{x} = \vektor{0}$, kann also mit Hilfe des 
+Gau{ss}schen Eliminationsalgorithmus ermittelt werden.
+\end{korollar}
+
+\begin{korollar} Genau dann hat das Gleichungssystem 
+  	$$ A \cdot \vektor{x} = \vektor{b} $$
+eien Lösung, wenn
+  	$$ \textrm{rg}\,(A) = \textrm{rg}\left(A \, \vert \, \vektor{b}\right) $$
+\end{korollar}
+
+Aus Satz~\ref{gls_voller_rang_n} in Verbindung mit Satz~\ref{gls_mat_operation} 
+erhalten wir damit
+
+\begin{korollar}\label{gls_mat_operation_rang_n} Hat die Matrix $A$ den Rang $n$, 
+so kann jede augmentierte Matrix $\left(A \, \vert \vektor{b}\right)$ durch 
+wiederholtes Anwenden der Operationen (i) (ii) und (iv) auf Normalform gebracht werden.
+\end{korollar}
+
+
+\begin{korollar}\label{gls_rang_transp} Ist $A$ eine $m \times n$--Matrix, so gilt
+  	$$ \textrm{rg}(A) = \textrm{rg}(A^T) $$
+\end{korollar}
+
+\beweis Wie wir in ~\ref{rg_equ_operation} und ~\ref{rg_equ_operation_trans} gesehen haben, ändert sich 
+der Rang von $A$ nicht, wenn wir die erlaubten Zeilen-- oder Spaltenoperationen an $A$ durchführen. Aber 
+Spaltenoperationen an $A$ entsprechen Zeilenoperationen an $A^T$ und umgekehrt. Ist daher
+$A'$ eine rangäquivalente Form von $A$ wie wir sie in ~\ref{gls_rang_normalform} erreicht haben, so ist 
+$(A')^T$ eine rangäquivalente Form von $A^T$, und daraus folgt die Behauptung.
+
+\begin{korollar}\label{gls_rangsatz} Ist $A$ eine $m \times n$--Matrix, so gilt
+  	$$ \textrm{rg}(A) + \textrm{nul}(A) = n $$
+\end{korollar}
+
+\beweis{ Wir können dazu annehmen, dass $A$ in Normalform vorliegt. Nach 
+Lemma~\ref{rg_equ_operation} ändert sich dadurch der Rang der Matrix nicht, und 
+auch die Lösungsmenge von $A \cdot \vektor{x} = \vektor{0}$ 
+bleibt von den Operationen (i) bis (iv) bis auf eventuelles Vertauschen von 
+Komponenten unberührt. Hat aber die Normalform von $A$ die Gestalt
+  	$$ \begin{array} { c  c  c  c  c  c }
+  	1  & a_{1,2}  & \ldots & a_{1,t} & \ldots & a_{1,n} \\
+  	0 & 1 & \ldots & a_{2,t} & \ldots & a_{2,n} \\
+  	\vdots & & \ddots & & \vdots \\
+  	0 & 0 & \ldots & 1 & \ldots & a_{t,n} \\
+  	0 & 0 & \ldots & 0 & \ldots & 0 \\
+  	\vdots & & \ddots & & \vdots \\
+  	0 & 0 & \ldots & 0 & \ldots & 0 
+  	\end{array} $$
+so hat $A$ den Rang $t$, und in Bemerkung~\ref{ker_normalform} haben wir bereits 
+festgestellt, dass $\textrm{dim}(\textrm{Ker}(A)) = n-t$.
+}
+
+\begin{korollar}\label{gls_eindeutig_notwendig} Hat ein lineares Gleichungssystem
+  	$$ A \cdot \vektor{x} = \vektor{b} $$
+mit einer $m \times n$--Matrix $A$ eine eindeutige Lösung für jede Wahl von $\vektor{b} 
+\in \mathbb R^m$, so muss gelten $n = m$.
+\end{korollar}
+
+\beweis{ 
+Damit es überhaupt eine Lösung von 
+  	$$ A \cdot \vektor{x} = \vektor{b} $$
+gibt, muss auf jeden Fall jeder Vektor $\vektor{b} \in \mathbb R^1m$ im Bild $\textrm{Im}(A)$ von 
+$A$ sein, und damit muss $\textrm{rg}(A) = m$ gelten. Andererseits wollen wir das jedes Gleichungssystem 
+nur eine Lösung hat, speziell also auch 
+  	$$ A \cdot \vektor{x} = \vektor{0} $$
+Das bedeutet aber, dass $\textrm{nul}(A) = 0$, und aus~\ref{gls_rangsatz} folgt jetzt sofort, dass $n = m$.
+}
+
+\bigbreak
+
+Wir können die Ergebnisse unserer \"Uberlegungen wie folgt zusammenfassen:
+
+\begin{regel}\label{gls_summary} Es sei $A$ eine $m \times n$--Matrix und es sei 
+  	$$  A  \cdot \vektor{x} = \vektor{b} $$
+das zugehörige allgemeine Gleichungssystem. Dann gilt:
+
+\begin{enumerate}
+\item Ist $\vektor{b} \in \textrm{Im}(A)$, so hat das Gleichungssystem (mindestens) eine Lösung, ist
+ $\vektor{b} \notin \textrm{Im}(A)$, so hat das Gleichungssystem keine Lösung.
+\item Ist $\textrm{nul}(A) = 0$, so hat das Gleichungssystem höchstens eine Lösung.
+\item Ist $\textrm{nul}(A) > 0$, so hat das Gleichungssystem entweder keine oder unendlich viele Lösungen.
+\end{enumerate}
+\end{regel}
+
+\medbreak
+
+\begin{notiz} Betrachten wir eine komplexe $m \times n$--Matrix $A$, so definiert diese keine Abbildung 
+$f_A \mathbb R^n \longrightarrow \mathbb R^n$, sondern eine Abbildung 
+$f_A: \mathbb C^n \longrightarrow \mathbb C^n$. Wie wir im Abschnitt~\ref{sect_vr_beliebig} gesehen haben, 
+können wir $\mathbb C^n$ als komplexen Vektorraum der Dimension $n$ auffassen. Mit dieser Betrachtung 
+gelten die Aussagen dieses Abschnitts analog auch für komplexe Matrizen.
+\end{notiz}
+
+\bigbreak
+
+\begin{aufgabe} Gegeben sei die Matrix 
+   	$$ A = \left( \begin{matrix} 1 & 2 & 3 \\ 2 & 3 & 4 \\ 5 & 6 & 7 \end{matrix} \right) $$
+Bestimmen Sie $\textrm{rg}(A)$ und $\textrm{nul}(A)$.
+\end{aufgabe} 
+
+\begin{aufgabe} Gegeben sei die Matrix 
+   	$$ A = \left( \begin{matrix} 1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 5 \\ 1 & 2 & 6 & 7 \end{matrix} \right) $$
+Bestimmen Sie $\textrm{rg}(A)$ und $\textrm{nul}(A)$.
+\end{aufgabe} 
+
+
+\begin{aufgabe} Gegeben sei die Matrix 
+   	$$ A = \left( \begin{matrix} 1 & 2 & 3 \\ 3 & 2 & 1 \\ 2 & 0 & -2 \end{matrix} \right) $$
+Bestimmen Sie alle $\vektor{b} \in \mathbb R^3$, für die das Gleichungssystem 
+  	$$  A  \cdot \vektor{x} = \vektor{b} $$
+Lösungen hat.
+\end{aufgabe} 
+
+\begin{aufgabe} Gegeben sei die Matrix 
+   	$$ A = \left( \begin{matrix} 1 & 2 & 3 \\ 1 & 2 & 4 \\ 1 & 2 & 2 \\ 0 & 0 & 5 \\
+	\end{matrix} \right) $$
+Bestimmen Sie eine Basis von $\textrm{ker}(A)$ und eine Basis von $\textrm{Im}(A)$.
+\end{aufgabe} 
+
+\begin{aufgabe} Zeigen Sie: Ist $A$ eine $n \times n$--Matrix mit $\textrm{nul}(A) = 0$, so hat das 
+Gleichungssystem 
+  	$$  A  \cdot \vektor{x} = \vektor{b} $$
+für jedes $\vektor{b} \in \mathbb R^n$ eine eindeutige Lösung.
+\end{aufgabe}
+
+\begin{aufgabe} Wir betrachten eine $3 \times 3$--Matrix $A$ mit $\textrm{rg}(A) = 2$, und wir nehmen 
+an, dass die ersten beiden Zeilen $\vektor{a_1}$ und $\vektor{a_2}$ von $A$ 
+linear unabhängig sind. Zeigen Sie, dass der Vektor
+  	$$ \vektor{v} = \vektor{a_1} \times \vektor{a_2} $$
+(das Vektorprodukt der Vektoren  $\vektor{a_1}$ und $\vektor{a_2}$) eine Basis von  
+$\textrm{ker}(A)$ ist.
+\end{aufgabe}

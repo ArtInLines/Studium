@@ -1,0 +1,1017 @@
+\chapter{Logik}
+
+\section{Elementare Aussagenlogik}
+
+\setcounter{definition}{0}
+\setcounter{beispiel}{0}
+\setcounter{notiz}{0}
+
+Mit der Logik, also der \textit{Lehre vom Argumentieren} oder der \textit{Lehre vom Schlussfolgern} beschäftigten sich 
+bereits die Philosophen des antiken Griechenlands.
+Ziel der Logik ist es, Sicherheit in die Regeln das Schließens und des Argumentierens zu bringen. 
+Oft führen (scheinbar) zwingende Schlüsse zu offensichtlich absurden Ergebnissen (Paradoxien). Die Logik hat 
+sich das Ziel gesetzt, die Regeln des Argumentierens so streng zu fassen, das solche Paradoxien und Widersprüche
+möglichst ausgeschlossen sind. Wesentliche Komponenten der Aussagenlogik \index{Aussagenlogik} gehen schon 
+zurück auf Aristoteles, der 
+erstmals aussagenlogische Grundsätze diskutierte. Die klassische Aussagenlogik beschäftigt sich dabei mit der 
+inneren Struktur von Sätzen und der Frage aus welchen Teilsätzen ein Satz aufgebaut ist. Die Grundidee dabei 
+ist, dass jede Aussage genau einen Wahrheitswert (in der Regel \textit{wahr} oder \textit{falsch}) hat, und dass 
+sich der Wahrheitswert einer zusammengesetzten Aussage eindeutig aus den Wahrheitswerten ihrer Komponenten ergibt. 
+
+Wir wollen hier zunächst einen intuitiven und umgangssprachlichen Zugang vorstellen.
+
+\begin{definition}\label{defaussagen} Eine \textbf{Aussage} $A$ ist ein Satz der (in einem gegebenen Kontext) 
+eindeutig entweder wahr \textit{w} oder falsch \textit{f} ist.
+\end{definition}
+
+\begin{beispiel}\label{bsp1aussagen} 
+Beispiele für Aussagen sind etwa:
+\begin{itemize}
+\item $A_1:$ Berlin liegt nördlich von Hamburg.
+\item $A_2:$ 3 ist eine Quadratzahl (in $\mathbb Z$)
+\item $A_3:$ 3 ist eine Quadratzahl (in $\mathbb R$)
+\end{itemize}
+\end{beispiel}
+
+
+Solche Elementaraussagen können nun durch Verknüpfungen (sogenannen \textbf{Junktoren})\index{Junktoren} 
+miteinander zu neuen, komplexeren Aussagen verbunden werden. 
+
+\paragraph{Die Verneinung \index{Negation}(Negation): \newline }
+Die \textbf{Negation} einer Aussage $A$ ist eine Aussage, die mit $\neg A$ bezeichnet wird. Negation ist also ein Junktor, 
+der sich nur auf eine Aussage bezieht. $\neg A$ ist genau dann wahr, wenn $A$ falsch ist und genau dann falsch, 
+wenn $A$ wahr ist.
+
+
+Die Beziehung zwischen $A$ und $\neg A$ lässt sich also durch folgende Wahrheitswertetafel beschreiben:
+
+	$$ \begin{array}{ r | | l }
+	A &  \neg A \\
+	\hline \hline
+	w &  f \\
+	f &  w \\
+	\end{array} $$
+
+\begin{beispiel}\label{bsp2aussagen} Die Verneinungen der Aussagen aus Beispiel ~\ref{bsp1aussagen} sind:
+\begin{itemize}
+\item $\neg A_1:$ Berlin liegt nicht nördlich von Hamburg.
+\item $\neg A_2:$ 3 ist keine Quadratzahl (in $\mathbb Z$)
+\item $\neg A_3:$ 3 ist keine Quadratzahl (in $\mathbb R$)
+\end{itemize}
+\end{beispiel}
+
+\paragraph{Die Und--Verknüpfung (Konjunktion)\index{Konjunktion}: \newline }
+Die \textbf{Konjunktion} von zwei Aussagen $A$ und $B$ ist eine Aussage, die mit $A \wedge B$ bezeichnet 
+wird. Konjunktion ist also ein Junktor,der sich auf zwei Aussagen bezieht. $A \wedge B$ ist genau dann wahr, wenn 
+sowohl $A$ als auch $B$ wahr sind. Ist eine der Aussagen $A$ oder $B$ falsch, so auch deren Konjunktion.
+
+\paragraph{Die Oder--Verknüpfung (Disjunktion)\index{Disjunktion}: \newline } 
+Die \textbf{Disjunktion} von zwei Aussagen $A$ und $B$ ist eine Aussage, die  mit $A \vee B$ bezeichnet wird. Disjunktion 
+ist also ebenfalls ein Junktor, der sich auf zwei Aussagen bezieht. $A \vee B$ ist genau dann wahr, wenn entweder 
+$A$ oder $B$ wahr ist (oder beide), und $A \vee B$ ist genau dann falsch, wenn sowohl $A$ als auch $B$ falsch sind.
+
+\paragraph{Die Entweder--Oder--Verknüpfung (Kontravalenz)\index{Kontravalenz}: \newline } 
+Die \textbf{Kontravalenz} von zwei Aussagen $A$ und $B$ ist eine Aussage, die  mit $A \oplus B$ bezeichnet 
+wird. Kontravalenz ist also ein weiterer Junktor, der sich auf zwei Aussagen bezieht. $A \oplus B$ ist genau dann wahr, 
+wenn entweder $A$ oder $B$ wahr ist, aber nicht beide, und $A \vee B$ ist genau dann falsch, wenn sowohl $A$ 
+als auch $B$ falsch sind oder sowohl $A$ als auch $B$ richtig sind. 
+
+Umgangssprachlich wird die Kontravalenz oft mit der Disjunktion verwechselt und ein \textit{oder} gerne in dem Sinne 
+verwendet, dass genau eine der beiden Alternativen korrekt ist. In der Logik muss der Unterschied zwischen dem einfachen 
+\textit{oder}, bei dem beide Aussagen wahr sein dürfen und dem \textit{entweder - oder}, bei dem nur eine Aussage 
+wahr sein darf, damit eine korrekte Aussage herauskommt, immer beachtet werden. 
+
+In der Informatik wird die Kontravalenz oft auch als XOR--Verknüfung bezeichnet.  
+
+Konjunktion, Disjunktion und Kontravalenz werden durch folgende Wahrheitstafel beschreiben:
+
+	$$ \begin{array}{ r | c || c | c | c }
+	A & B & A \wedge B & A \vee B & A \oplus B\\
+	\hline \hline
+	w & w &  w & w & f\\
+	w & f &  f & w & w \\
+	f & w &  f & w & w \\
+	f & f &  f & f & f
+	\end{array}$$
+
+\begin{beispiel}\label{bsp3aussagen} Betrachte die beiden Aussagen
+
+\begin{tabular}{r c l}
+$A$: & $\quad$ & 5 ist das Quadrat von 2. \\
+$B$: & $\quad$ & $ 8 = 4 \cdot 2$.
+\end{tabular}
+
+Dann ist $A$ eine falsche Aussage, $B$ ist wahr. Also gilt:
+
+\begin{tabular}{r c l}
+$A \wedge B = f$ & $\quad$ & (da $A$ falsch ist) \\
+$A \vee B = w$ & $\quad$ & (da $B$ wahr ist) \\
+$A \oplus B = w$ & $\quad$ & (da $B$ wahr und $A$ falsch ist) \\
+\end{tabular}
+
+\end{beispiel}
+
+\paragraph{Die Wenn--Dann--Verknüpfung (Implikation)\index{Implikation}: \newline} 
+Die \textbf{Implikation} von $A$ nach $B$, geschrieben $A \Longrightarrow B$, ist eine neue Aussage, die
+eine hinreichende Bedingung für die Wahrheit der Aussage $B$ ausdrückt: 
+Immer dann, wenn $A$ wahr ist, ist auch $B$ wahr. Man sagt auch, 
+$A$ ist eine \textbf{hinreichende} Bedingung für $B$ oder $B$ ist eine \textbf{notwendige} Bedingung 
+für $A$.
+
+\paragraph{Die Genau--dann--wenn--Verknüpufung (Äquivalenz)\index{Äquivalenz}: \newline} 
+Die \textbf{Äquivalenz} der Aussagen $A$ und $B$, geschrieben $A \iff B$, ist eine neue Aussage, die eine hinreichende und 
+notwendige Bedingung für die Wahrheit der Aussage $B$ ausdrückt: 
+Genau dann, wenn $A$ wahr ist, ist auch $B$ wahr, und genau dann, wenn 
+$A$ falsch ist, ist auch $B$ falsch. Man sagt auch, 
+$A$ ist eine \textbf{hinreichende und notwendige} Bedingung für $B$.
+
+Implikation und Äquivalenz werden durch folgende Wahrheitstafel beschreiben:
+
+	$$ \begin{array}{ r | c || c | c}
+	A & B & A \Longrightarrow B & A \iff B \\
+	\hline \hline
+	w & w &  w & w \\
+	w & f &  f & f \\
+	f & w &  w & f \\
+	f & f &  w & w
+	\end{array} $$
+
+Die Äquivalenz von $A$ und $B$ lässt sich durch Implikationen wie folgt beschreiben: Genau dann sind $A$ und $B$ 
+äquivalent, wenn $A \Longrightarrow B$ und $B \Longrightarrow A$.
+
+\begin{beispiel}\label{bsp4aussagen} Betrachte die beiden Aussagen
+
+\begin{tabular}{r c l}
+$A$: & $\quad$ & Die Zahl $a$ erfüllt $a = 5$. \\
+$B$: & $\quad$ & Die Zahl $a$ erfüllt $a^2 = 25$.
+\end{tabular}
+
+Dann ist $A$ hinreichend für $B$ und $B$ notwendig für $A$, dh. die Aussage $A \Longrightarrow B$ ist wahr.
+
+Aber $A$ ist nicht notwendig für $B$ (auch für $a = - 5$ ist $B$ wahr), 
+dh. die Aussage $A \iff B$ ist falsch.
+\end{beispiel}
+
+\begin{beispiel}\label{bsp6aussagen} Betrachte die beiden Aussagen:
+
+\begin{tabular}{r c l}
+$A$: & $\quad$ & Die Zahl $a$ erfüllt $a = 5$ oder $a = - 5$. \\
+$B$: & $\quad$ & Die Zahl $a$ erfüllt $a^2 = 25$.
+\end{tabular}
+
+Dann ist $A$ hinreichend und notwendig für $B$, dh. es gilt $A \iff B$.
+\end{beispiel}
+
+
+\begin{beispiel} Anton sagt: \textit{Bertram lügt.} Bertram sagt: \textit{Anton lügt}. Offensichtlich kann nur 
+einer von beiden recht haben (wenn wir annehmen, dass sich der Satz des einen jeweils auf die Aussage 
+des anderen bezieht). Das können wir jetzt auch mit den Regeln der Logik begründen. Dazu betrachten wir 
+die beiden Aussagen
+
+\begin{tabular}{r c l}
+$A$: & $\quad$ & Antons Aussage ''Bertram lügt'' ist wahr. \\
+$B$: & $\quad$ & Bertrams Aussage ''Anton lügt'' ist wahr.
+\end{tabular}
+
+Dann können wir den Text als $A \iff \neg B$ und $B \iff \neg A$ formulieren. Betrachten wir die 
+Wahrheitswertetafel, so erhalten wir aus unseren Regeln für Negation und Äquivalenz
+  	$$ \begin{array} { c | c || c | c }
+  	A & B & A \iff \neg B & B \iff \neg A \\
+  	\hline
+  	w & w & f & f \\
+  	w & f & w & w \\
+  	f & w & w & w \\
+  	f & f & f & f 
+  	\end{array} $$
+Damit sind die beiden Aussagen des Textes nur dann wahr, wenn entweder $A$ wahr und $B$ falsch ist oder umgekehrt, 
+wenn also entweder Anton die Wahrheit sagt und Bertram lügt oder umgekehrt.
+\end{beispiel}
+
+\begin{aufgabe}\label{logik_aufgabe_1}
+Anton sagt \textit{Bertram lügt}, Bertram sagt \textit{Claus lügt} und Claus sagt 
+\textit{Anton und Bertram lügen}. Wer von den Dreien sagt die Wahrheit und wer lügt?
+\end{aufgabe}
+
+\bigbreak 
+
+Dieser naive Zugang zur Aussagenlogik lässt natürlich noch viele Fragen offen, speziell was die Regeln des 
+Schließens und Schlussfolgerns betrifft. Daher wollen wir hier auch noch einen formalen Zugang skizzieren.
+
+\begin{definition} Die Sprache der Aussagenlogik besteht aus 
+
+\begin{itemize} 
+\item einer (abzählbaren) Menge von Aussagevariablen oder atomaren Formeln 
+$V = \{\mathscr{A}_0, \mathscr{A}_1, \mathscr{A}_2, \ldots \}$
+\item den Junktoren oder Verknüpfungssymbolen $\neg, \wedge, \vee, \rightarrow$ und $\leftrightarrow$.
+\item den Gliederungssysmbolen $($ und $)$.
+\end{itemize}
+
+Aus diesen Bausteinen können nach folgenden Regeln aussagenlogische Sätze oder Formeln gebildet werden:
+\begin{enumerate}
+\item Alle Aussagevariablen $\mathscr{A}_i \in V$ sind Formeln.
+\item Ist $\alpha$ eine Formel, so auch $\neg \alpha$ (\textbf{Negation}).
+\item Sind $\alpha$ und $\beta$ Formeln so auch $\alpha \wedge \beta$ (\textbf{Konjunktion}), 
+$\alpha \vee \beta$ (\textbf{Disjunktion}), $\alpha \rightarrow \beta$ (\textbf{materiale Implikation}) und 
+$\alpha \leftrightarrow \beta$ (\textbf{Bikonditional}).
+\item Die Gliederungssymbole kennzeichnen die Bildungsschritte der Formeln.
+\item Alle Formeln können mit Hilfe der Regeln (1) - (4) in endlich vielen Schritten aus den Aussagevariablen 
+gebildet werden.
+\end{enumerate}
+Die Menge aller aussagenlogischen Sätze bezeichnen wir mit $\mathcal{A}$.
+\end{definition}
+
+Die Gliederungssymbole werden dabei verwendet um bei iterierten Formeln die ersten Schritte zusammenzufassen. Die 
+Konjunktion von $\alpha$ und $\beta \vee \delta$ etwa wird mit $\alpha \wedge ( \beta \vee \gamma )$ bezeichnet, 
+um sie von der Disjunktion von $\alpha \wedge \beta$ und $\gamma$ zu unterscheiden, die mit 
+$(\alpha \wedge \beta) \vee \gamma$ bezeichnet wird. Um zu vermeiden, dass die Formeln zu unübersichtlich werden, 
+gibt es Präzedenz-- oder Vorfahrtsregeln, analog zur ''Punkt vor Strich'' Regel in der Arithmetik, die es 
+erlauben, Klammern wegzulassen. Diese besagen, dass Negation stärker bindet als Konjunktion, und diese wiederum 
+stärker bindet als Disjunktion. Damit können wir also statt $\left(\left( \alpha \wedge \beta \right) \vee 
+\left(\neg \gamma \right) \right)$ einfach $\alpha \wedge \beta \vee \neg \gamma$ schreiben. Zu beachten ist aber, 
+dass das eine andere Formel ist als $\alpha \wedge \left(\beta \vee \neg \gamma \right)$.
+
+Um mit diesen Formeln arbeiten zu können, ist es notwendig, ihnen Wahrheitswerte zuzuweisen. Dazu sei 
+$\mathbb B  = \{ \textrm{wahr}, \textrm{falsch} \}$ oder kurz $\mathbb B = \{w, f\}$ die Menge der 
+Wahrheitswerte. 
+
+\begin{definition} Eine Abbildung $f: V \longrightarrow \mathbb B$, die jeder Aussagenvariable einen Wert 
+zuordnet, heißt \textbf{Belegung der Aussagevariablen} 
+\end{definition}
+
+Aus jeder Belegung der Aussagenvariablen lässt sich auch eine eindeutige Belegung aller Formeln, also eine 
+Abbildung $f: \mathcal{A} \longrightarrow \mathbb B$ herleiten. Dazu verwenden wir die Wahrheitstafeln, die
+wir bereits im ersten Teil dieses Abschnitts betrachtet haben.
+
+Für die Negation bedeutet das
+
+\medskip
+
+	$$ \begin{array}{ c | | c }
+	f(\alpha)  &  f(\neg \alpha) \\
+	\hline \hline
+	w &  f \\
+	f &  w \\
+	\end{array} $$
+
+und für die verbleibenden Junktoren
+
+
+	$$ \begin{array}{ c | c || c | c | c | c }
+ 	f(\alpha) & f(\beta) & f(\alpha \wedge \beta) & f(\alpha \vee \beta) & 
+	f(\alpha \rightarrow \beta) & f(\alpha \leftrightarrow \beta) \\
+	\hline \hline
+	w & w & w & w & w & w \\
+	w & f & f & w & f & f \\
+	f & w & f & w & w & f \\
+	f & f & f & f & w & w
+	\end{array}  $$
+ 
+Hieraus lässt sich in endlich vielen Schritten eine eindeutige Belegung für jede Formel herleiten.
+
+\begin{definition} Wir betrachten eine Formel $\alpha \in \mathcal{A}$.
+
+\begin{itemize}
+\item $\alpha$ heißt \textbf{erfüllbar}, wenn es eine Belegung $f$ mit $f(\alpha) = w$ gibt.
+\item $\alpha$ heißt \textbf{Tautologie}, wenn für jede Belegung $f$ gilt: $f(\alpha) = w$.
+\item $\alpha$ heißt \textbf{Kontradiktion} oder \textbf{widersprüchlich}, wenn für jede 
+Belegung $f$ gilt $f(\alpha) = f$.
+\end{itemize}
+\end{definition}
+
+\begin{beispiel} Die Aussage $\alpha \rightarrow \alpha$ ist eine Tautologie, die Aussage $\alpha \rightarrow 
+\neg \alpha$ dagegen ist eine Kontradiktion. Das folgt sofort aus obigen Verknüpfungstabellen.
+\end{beispiel}
+
+\begin{beispiel} Die Aussage $\alpha \vee \neg \alpha$ ist eine Tautologie. Auch davon überzeugen wir uns 
+sofort.
+\end{beispiel}
+
+\begin{beispiel} Die bekannte Bauernregel \textit{Wenn der Hahn kräht auf dem Mist, ändert sich das Wetter, 
+oder es bleibt wie es ist} ist eine Tautologie. Bezeichnet etwa $\alpha$ die Aussage \textit{der Hahn kräht auf dem 
+Mist} und $\beta$ die Aussage \textit{Das Wetter ändert sich}, so kann die Bauernregel durch die Formel
+  	$$ \alpha \rightarrow (\beta \vee \neg \beta) $$
+abgebildet werden. Diese Formel ist für alle Belegungen richtig.
+
+
+Ändern wir die Wetterregel ab zu  \textit{Wenn der Hahn kräht auf dem Mist, so ändert sich das Wetter}, so ist das  
+keine Tautologie mehr. Als Formel ist das nämlich $\alpha \Longrightarrow \beta$, und die ist nicht richtig, 
+wenn $\alpha$ wahr ist (also der Hahn auf dem Mist kräht), aber $\beta$ falsch ist, 
+sich das Wetter also nicht ändert. Diese Regel ist aber noch erfüllbar. Kräht nämlich der Hahn auf 
+dem Mist und ändert sich das Wetter tatsächlich, so ist unsere Formel wahr. 
+Genauso ist sie wahr, wenn der Hahn schweigt (unabhängig davon was das Wetter macht).
+
+Wandeln wir die Regel zu \textit{Kräht der Hahn auf dem Mist oder tut er es nicht, so ändert sich das Wetter und 
+es ändert sich auch nicht\,} ab, so erhalten wir eine Kontradiktion. Als Formel ist das nämlich $\alpha \vee \neg \alpha 
+\longrightarrow \beta \wedge \neg \beta$. Da die Aussage $\alpha \vee \neg \alpha$ immer wahr ist, unabhängig 
+davon, was der Gockel macht, und da $ \beta \wedge \neg \beta$ immer falsch ist, unabhängig davon, wie 
+sich das Wetter entwickelt, ist die gesamte Formel immer falsch.
+\end{beispiel}
+
+\begin{aufgabe}\label{logik_aufgabe_2} 
+Zeigen Sie, dass die Regel \textit{Wenn der Hahn kräht auf dem Mist, so ändert sich das Wetter und 
+es ändert sich auch nicht\,} erfüllbar ist aber keine Tautologie.
+\end{aufgabe}
+
+\begin{notiz} Die Verneinung einer Tautologie ist eine Kontradiktion, die Verneinung einer Kontradiktion ist 
+eine Tautologie.
+\end{notiz}
+
+\begin{definition} Wir betrachten $\alpha, \beta \in \mathcal{A}$. 
+
+Ist $\alpha \rightarrow \beta$ eine Tautologie, so 
+schreiben wir hierfür $\alpha \Longrightarrow \beta$ ($\alpha$ impliziert $\beta$, $\beta$ folgt aus $\alpha$).
+
+Ist $\alpha \leftrightarrow \beta$ eine Tautologie, so schreiben wir hierfür $\alpha \iff \beta$ ($\alpha$ 
+und $\beta$ sind äquivalent.
+\end{definition}
+
+\bigbreak
+Einige einfache Rechenregeln helfen bei der Arbeit mit aussagenlogischen Formeln.
+
+\begin{satz}\label{logik_regeln_kombi} Wir betrachten logische Ausdrücke $\alpha, \beta, \gamma \in \mathcal{A}$. 
+
+\begin{enumerate}
+\item Es gelten die \textbf{Kommutativgesetze}
+
+\begin{itemize}
+\item $\alpha \wedge \beta \iff \beta \wedge \alpha $.
+\item $\alpha \vee \beta \iff \beta \vee \alpha$.
+\end{itemize}
+
+\item Es gelten die \textbf{Assoziativgesetze}
+
+\begin{itemize}
+\item $(\alpha \wedge \beta) \wedge \gamma \iff \alpha \wedge (\beta \wedge \gamma)$.
+\item $(\alpha \vee \beta) \vee \gamma \iff \alpha \vee (\beta \vee \gamma)$.
+\end{itemize}
+
+\item Es gelten die \textbf{Distributivgesetze}
+
+\begin{itemize}
+\item $(\alpha \wedge \beta) \vee \gamma \iff (\alpha \vee \gamma) \wedge (\beta \vee \gamma)$.
+\item $(\alpha \vee \beta) \wedge \gamma \iff (\alpha \wedge \gamma) \vee (\beta \wedge \gamma)$.
+\end{itemize}
+
+\item Es gelten die \textbf{Absorptionsgesetze}
+
+\begin{itemize}
+\item $\alpha \vee (\alpha \wedge \beta) \iff \alpha $.
+\item $\alpha \wedge (\alpha \vee \beta)  \iff \alpha $.
+\end{itemize}
+
+\item Es gelten die \textbf{Gesetze von de Morgan}
+
+\begin{itemize}
+\item $\neg(\alpha \wedge \beta)  \iff  \neg \alpha \vee \neg \beta $.
+\item $\neg(\alpha \vee \beta)  \iff \neg \alpha \wedge \neg \beta $.
+\end{itemize}
+
+\item Ist $\gamma$ eine Tautologie, so gilt
+
+\begin{itemize}
+\item $\alpha \vee \gamma \iff \gamma$.
+\item $\alpha \wedge \gamma \iff \alpha $.
+\end{itemize}
+
+\item Ist $\gamma$ eine Kontradiktion, so gilt
+
+\begin{itemize}
+\item $\alpha \vee \gamma \iff \alpha$.
+\item $\alpha \wedge \gamma \iff \gamma $.
+\end{itemize}
+
+\item Es gelten die \textbf{Gesetze über Negationen}
+
+\begin{itemize}
+\item $\neg ( \neg \alpha) \iff \alpha$.
+\item $\alpha \vee \neg \alpha$ ist eine Tautologie
+\item $\alpha \wedge \neg \alpha $ ist eine Kontradiktion.
+\end{itemize}
+\end{enumerate} 
+ 
+\end{satz}
+
+\beweis{ Alle Aussagen ergeben sich leicht durch direktes Überprüfen anhand der Wahrheitswertetabellen.
+Wir führen die Argumente daher nur in einigen Fällen aus.
+
+Für das erste Distributivgesetz etwa ist zu zeigen, dass, unabhängig davon ob $\alpha$, $\beta$ oder $\gamma$ 
+wahr sind oder nicht, die zusammengesetzten Aussagen $(\alpha \wedge \beta) \vee \gamma$ und 
+$(\alpha \vee \gamma) \wedge (\beta \vee \gamma)$ immer den gleichen Wahrheitswert haben. Dazu spielen wir alle 
+Kombinationen durch:
+
+	$$ \begin{array}{| c | c | c | c | c | c | c | c |}
+	\hline
+	\alpha & \beta & \gamma & \alpha \wedge \beta & \alpha \vee \gamma & \beta \vee \gamma & 
+	(\alpha \wedge \beta) \vee \gamma & (\alpha \vee \gamma) \wedge (\beta \vee \gamma) \\ 
+	w & w & w & w & w & w & w & w \\
+	w & w & f & w & w & w & w & w \\
+	w & f & w & f & w & w & w & w \\
+	w & f & f & f & w & f & f & f \\
+	f & w & w & f & w & w & w & w \\
+	f & w & f & f & f & w & f & f \\
+	f & f & w & f & w & w & w & w \\
+	f & f & f & f & f & f & f & f \\
+	\hline
+	\end{array} $$
+Wir sehen also, dass in den letzten beiden Spalten immer derselbe Wahr\-heits\-wert steht, und damit sind die 
+letzen beiden Spalten in der Tat äquivalent. 
+
+Als weiteres Beispiel zeigen wir noch ein Absorptionsgesetz, auch hier durch Auswertung der 
+zugehörigen Wahrheitswertetafeln, wobei wir hier die zu überprüfende Formel jeweils in der letzten Spalte 
+direkt angeben.
+
+
+	$$ \begin{array}{ |c | c | c | c | c | }
+	\hline
+	\alpha  &  \beta  &  \alpha \wedge \beta  &  \alpha \vee ( \alpha \wedge \beta)  & 
+   	\alpha \vee (\alpha \wedge \beta) \Leftrightarrow \alpha   \\
+	\hline
+	w & w & w & w & w  \\
+	w & f & f & w & w  \\
+	f & w & f & f & w  \\
+	f & f & f & f & w  \\
+	\hline
+	\end{array} $$
+
+\medskip
+
+Damit ist also nachgewiesen,  dass $\alpha \vee (\alpha \wedge \beta) \iff \alpha $ immer wahr 
+ist, unabhängig davon, ob das für $\alpha$ oder $\beta$ gilt.
+}
+
+\medskip
+
+\begin{aufgabe}\label{logik_aufgabe_kontradik}
+Zeigen Sie, dass für Formeln $\alpha, \kappa$ gilt: 
+Ist $\kappa$ eine Kontradiktion, so gilt
+\vspace{-0.2cm}
+\begin{itemize}
+\item $\alpha \vee \kappa \iff \alpha$.
+\item $\alpha \wedge \kappa \iff \kappa $.
+\end{itemize}
+\end{aufgabe} 
+
+\begin{aufgabe}\label{logik_aufgabe_4} 
+Zeigen Sie, dass für Formeln $\alpha, \beta, \gamma$  die Assoziativgesetze gelten:
+\vspace{-0.2cm}
+\begin{itemize}
+\item $(\alpha \wedge \beta) \wedge \gamma \iff \alpha \wedge (\beta \wedge \gamma)$.
+\item $(\alpha \vee \beta) \vee \gamma \iff \alpha \vee (\beta \vee \gamma)$.
+\end{itemize}
+\end{aufgabe}
+
+\begin{aufgabe}\label{logik_aufgabe_absorp} Zeigen Sie die Absorptionsgesetze der Logik
+
+\begin{itemize}
+\item $\alpha \vee (\alpha \wedge \beta) \iff \alpha $.
+\item $\alpha \wedge (\alpha \vee \beta)  \iff \alpha $.
+\end{itemize}
+\end{aufgabe}
+
+\begin{aufgabe}\label{logik_aufgabe_dem_neg}  Zeigen Sie die Gesetze von de Morgan
+
+\begin{itemize}
+\item $\neg(\alpha \wedge \beta)  \iff  \neg \alpha \vee \neg \beta $.
+\item $\neg(\alpha \vee \beta)  \iff \neg \alpha \wedge \neg \beta $.
+\end{itemize}
+
+und die Gesetze über Negationen
+
+\begin{itemize}
+\item $\neg ( \neg \alpha) \iff \alpha$.
+\item $\alpha \vee \neg \alpha$ ist eine Tautologie
+\item $\alpha \wedge \neg \alpha $ ist eine Kontradiktion.
+\end{itemize}
+\end{aufgabe}
+
+\bigbreak
+
+Besonders wichtig in der Mathematik sind Implikationen und damit die Frage, wann eine Implikation allgemein 
+gültig oder eine Tautologie ist. Sehr viele mathematische Sätze und Formeln sind ja von der Bauart, dass 
+sie eine Voraussetzung formulieren und dann eine Aussage treffen, die unter dieser Voraussetzung gültig 
+ist. So kennen Sie aus der Schule sicherlich den Satz: \textit{Die Summe der Innenwinkel in einem Dreieck 
+$\Delta$ beträgt $180^{\circ}$}. Hier ist also die Voraussetzung, dass $\Delta$ ein Dreieck ist und daraus wird 
+gefolgert, dass die Summe der Innenwinkel in $\Delta$ immer $180^{\circ}$ ist. Betrachten wir also die Aussagen
+
+\vspace{-0.2cm}
+\begin{itemize}
+\item[$\alpha$:] $\Delta$ ist ein Dreieck
+\item[$\beta$:] Die Summe der Innenwinkel in $\Delta$ ist $180^{\circ}$.
+\end{itemize}
+
+so bedeutet unser Satz gerade, dass $\alpha \Longrightarrow \beta$ (im Rahmen der klassischen 
+eu\-kli\-dischen Geometrie) also dass $\alpha \longrightarrow \beta$ allgemeingültig oder eine Tautologie ist. 
+Das Arbeiten mit Implikationen ist daher ein wichtiger Bestandteil der Mathematik, und viele schwierige 
+Folgerungen werden dadurch gezeigt, dass einfachere Implikationen in geschickter Weise zusammengesetzt und 
+kombiniert werden. Oft helfen dabei die folgenden Regeln:
+
+\begin{regel} Der \textbf{Modus Barbara}: Für aussagenlogische Formeln $\alpha$ und $\beta$ und $\gamma$ 
+gilt: 
+  	$$ (\alpha \rightarrow \beta) \wedge (\beta \rightarrow \gamma) \Longrightarrow (\alpha \rightarrow \gamma) $$
+Wenn also die Gültigkeit von $\alpha$ die Gültigkeit von $\beta$ impliziert, und wenn aus $\beta$ dann $\gamma$ 
+folgt, so folgt aus der Gültigkeit von  $\alpha$ schon die Gültigkeit von $\gamma$.
+Diese Regel nennt man auch den \textbf{Kettenschluss}.
+\end{regel}
+
+\begin{beispiel}
+Wir können aus den Aussagen 
+\textit{Wenn es regnet, ist die Straße nass\,} und \textit{Wenn die Straße nass ist, besteht 
+Rutschgefahr\,} folgern, dass gilt: \textit{Wenn es regnet, besteht Rutschgefahr}.
+
+Dazu betrachten wir 
+
+\vspace{-0.3cm}
+\begin{itemize}
+\item[$\alpha$:] Es regnet
+\item[$\beta$:] Die Straße ist nass
+\item[$\gamma$:] Es besteht Rutschgefahr
+\end{itemize}
+\vspace{-0.2cm}
+Dann sind gegeben $\alpha \Longrightarrow \beta$ und $\beta \Longrightarrow \gamma$, also können wir 
+$\alpha \Longrightarrow \gamma$ ableiten.
+\end{beispiel}
+
+\begin{regel} Der \textbf{Modus Ponens}: Für aussagenlogische Formeln $\alpha$ und $\beta$ gilt: 
+  	$$ \alpha \wedge ( \alpha \rightarrow \beta) \Longrightarrow \beta $$
+Wenn also $\alpha$ gilt, und wenn aus $\alpha$ schon $\beta$ folgt, so gilt auch $\beta$.
+Diese Regel heißt auch \textbf{Abtrennungsregel}. 
+\end{regel}
+
+\begin{beispiel} Wir können aus den Aussagen 
+\textit{Wenn es regnet, ist die Straße nass\,} und \textit{Es regnet\,} die Aussage \textit{Die Straße ist 
+nass\,} ableiten.
+\end{beispiel}
+
+\begin{beispiel} Wir können aus den Aussagen \textit{Wenn $a = 5$, dann ist $a^2 = 25$} und \textit{$a = 5$} 
+die Aussage \textit{$a^2 = 25$} ableiten.
+\end{beispiel}
+
+
+\begin{regel} Der \textbf{Modus Tollens}: Für aussagenlogische Formeln $\alpha$ und $\beta$ gilt: 
+  	$$ \neg \alpha \wedge ( \beta \longrightarrow \alpha) \Longrightarrow \neg \beta $$
+Wenn also $\beta$ nicht gilt, und wenn aus der Formel $\alpha$ die Formel $\beta$ folgen würde, dann kann 
+auch $\alpha$ nicht gelten.
+Diese Folgerung heißt auch \textbf{Aufhebungsregel}. 
+\end{regel}
+
+\begin{beispiel} Aus den Aussagen 
+\textit{Wenn es regnet, ist die Straße nass\,} und \textit{Die Straße ist nicht nass\,} 
+können wir die Aussage 
+\textit{Es regnet nicht\,} ableiten.
+\end{beispiel}
+
+\begin{beispiel} Aus den Aussagen $a^2 \neq 25$ und \textit{Wenn $a=5$ dann ist $a^2 = 25$} können wir 
+ableiten, dass $a \neq 5$ gilt.
+\end{beispiel}
+
+\begin{regel} Die \textbf{Kontraposition}: Für aussagenlogische Formeln $\alpha$ und $\beta$ gilt: 
+  	$$ (\alpha \longrightarrow \beta) \Longrightarrow ( \neg \beta \longrightarrow \neg \alpha ) $$
+Wenn also aus der Gültigkeit von $\alpha$ die von $\beta$ folgt, und wenn wir wissen, dass $\beta$ nicht wahr 
+ist, dann kann auch $\alpha$ nicht wahr sein.
+Diese Folgerung nennt man auch \textbf{Umkehrschluß}. 
+\end{regel}
+
+\begin{beispiel}
+Aus der Aussage 
+\textit{Wenn es regnet, ist die Straße nass\,} kann die Aussage \textit{Wenn die Straße nicht nass ist, 
+dann regnet es nicht\,} abgeleitet werden. Falsch wäre es aber, die Aussage \textit{Wenn es nicht regnet, 
+dann ist die Straße nicht nass\,} zu folgern. 
+\end{beispiel}
+
+\begin{beispiel} Aus den Aussagen \textit{Alle Griechen sind Menschen\,} und \textit{Alle Menschen sind 
+sterblich\,} können wir mit Hilfe des Kettenschlusses und des Umkehrschlusses die Aussage \textit{Wer 
+nicht sterblich ist, ist kein Grieche\,} ableiten. 
+\end{beispiel}
+
+\section{Prädikatenlogik}
+
+Wir haben jetzt die Grundzüge der Aussagen kennengelernt. Nun wollen wir die Sprache der Aussagenlogik um die 
+Einführung von Unbekannten sowie Quantoren erweitern und uns noch kurz der Prädikatenlogik zuwenden. 
+
+\medskip
+
+Mit der elementaren Aussagenlogik lassen sich nur Aussagen der Form 
+	$$ \alpha : \quad 7 > 0 $$ 
+betrachten. In der Prädikatenlogik ist es auch möglich, Prädikate oder Aussageformen der Art 
+	$$ \alpha(x) : \quad x > 0 $$ 
+zu formulieren und zu behandeln. 
+
+Informell gesprochen ist ein Prädikat eine Folge von Wörtern mit definierten Platzhaltern (oder Variablen), 
+die zu einer (falschen oder wahren) Aussage wird, wenn für jeden Platzhalter ein Wert (aus einem 
+vorgegebenen Konstantenraum) eingesetzt wird.
+
+
+\begin{beispiel} Der Ausdruck \textit{$x$ ist ein Mensch} ist ein Prädikat, das durch Einsetzen des konkreten 
+Namens eines Menschen zu einer wahren Aussage wird.
+\end{beispiel}
+
+
+\begin{beispiel}\label{praed_ein} $\alpha(x) : \, x > 0 \,\,$ ist in diesem Sinn ein Prädikat mit Platzhalter $x$. 
+Setzt man etwa den Wert 5 für diesen Platzhalter ein, so erhält man eine wahre Aussage, für -3 dagegen eine falsche.
+\end{beispiel}
+
+\begin{beispiel}\label{praed_zwe} $\beta(x,y) : \, y = x^2 + 2 \,\,$ ist ein Prädikat mit zwei Platzhaltern 
+(zweistelliges Prädikat). Durch Einsetzen eines Platzhalters, etwa $x = 2$ wird daraus ein einstelliges 
+Prädikat $y = 6$ (wie in Beispiel~\ref{praed_ein}). Durch weiteres Einsetzen des Platzhalters $y = 6$ erhält man 
+hieraus eine wahre Aussage, alle anderen Belegungen für $y$ führen zu falschen Aussagen.
+\end{beispiel}
+
+Die Menge aller Formeln mit einem Platzhalter $x$ bezeichnen wir mit $\mathcal{A}(x)$, entsprechend die 
+mit zwei Platzhaltern $x$ und $y$ mit $\mathcal{A}(x,y)$ usw.
+
+Bei Prädikaten ist es nicht nur interessant, zu untersuchen, für welche Belegungen der Platzhalter eine wahre 
+Aussage besteht, es ist auch von Bedeutung, festzustellen, ob es überhaupt Belegungen gibt, die zu wahren 
+Aussagen führen, oder ob alle Belegungen wahre Aussagen ergeben, d.h. bei einem einstelligen Prädikat $\alpha(x)$ 
+können die folgenden Fälle auftreten:
+\begin{itemize}
+\item $\alpha(x)$ ist für jeden Wert von $x$ wahr. Das ist etwa der Fall für 
+  	$$\alpha: \mathbb R \longrightarrow  \mathcal{A}(x),\,  \alpha(x) : x^2 \geq 0.$$
+\item $\alpha(x)$ ist für keinen Wert von $x$ wahr. Das ist etwa der Fall für 
+  	$$ \alpha: \mathbb R \longrightarrow \mathcal{A}(x),\,  \alpha(x) : x^2 \leq -1.$$
+\item $\alpha(x)$ ist für mindestens einen Wert von $x$ wahr. Das ist der Fall für 
+  	$$ \alpha: \mathbb R  \longrightarrow \mathcal{A}(x),\,  \alpha(x) : x^2 \leq 4.$$
+\item $\alpha(x)$ ist für mindestens einen Wert von $x$ falsch. Das ist ebenfalls der Fall für 
+das Beispiel
+  	$$ \alpha: \mathbb R  \longrightarrow \mathcal{A}(x),\,  \alpha(x) : x^2 \leq 4.$$
+\end{itemize}
+ Um diese Untersuchungen anstellen zu können, verwendet man in der Prädikatenlogik die 
+\index{Quantor}\textbf{Quantoren} $\forall$ \index{Allquantor}(\textbf{Allquantor}) 
+und $\exists$ \index{Existenzquantor}(\textbf{Existenzquantor}). Damit schreiben sich die 
+obigen Aussagen wie folgt:
+\begin{itemize}
+\item $\forall x \,\, \alpha(x) \quad$ (für alle Werte von $x$ ist $\alpha(x)$ wahr).
+\item $\forall x \,\, \neg \alpha(x) \,\,$ (für alle Werte von $x$ ist $\alpha(x)$ falsch).
+\item $\exists x \,\, \alpha(x) \quad$ (es gibt einen Wert von $x$, für den $\alpha(x)$ wahr ist).
+\item $\exists x \,\, \neg \alpha(x)\,\,$ (es gibt einen Wert von $x$, für den $\alpha(x)$ falsch ist).
+\end{itemize}
+
+Ein Quantor bindet bei einem Prädikat immer eine Variable, und macht also aus einem einstufigen Prädikat eine 
+Aussage. Aus einem Prädikat $\alpha(x)$ wird also eine Aussage $\forall x \, \alpha(x)$, die genau dann wahr ist, 
+wenn für jede Wahl von $x$ aus dem zugrundeliegenden Individuenraum $\alpha(x)$ eine wahre Aussage wird. 
+Entsprechend macht ein Quantor aus einem $n+1$--stelligen Prädikat ein $n$--stelliges Prädikat. So wird etwa 
+aus dem zweistelligen Prädikat $\beta(x,y) : y = x^2 + 2$ durch die Quantifizierung $\forall x \, \beta(x,y)$ ein 
+einstelliges Prädikat und durch $\forall x \exists y \, \beta(x,y)$ eine (wahre) Aussage (mit $\mathbb R$ als  
+Individuenraum). Hierfür schreiben wir auch ausführlicher
+  	$$ \forall x \in \mathbb R \,\, \exists y \in \mathbb R : y = x^2 + 2 $$
+Zu beachten ist dabei, dass die Reihenfolge eine entscheidende Rolle spielt und dass
+$\forall x \exists y B(x,y)$ eine andere Aussage ist als $\exists y \forall x B(x,y)$. 
+Letztere ist nämlich falsch, denn es gibt kein $y$, das für alle $x$ die Gleichung $y = x^2 + 2$ löst. 
+
+Umgekehrt setzt aber die Anwendung eines Quantors auf ein Prädikat auch voraus, dass dieses Prädikat 
+eine freie Variable hat, auf die sich der Quantor beziehen kann.
+
+Für die Prädikatenlogik ist es also zunächst einmal wesentlich, einen \textbf{Individuenraum} festzulegen, 
+also eine Gesamtheit von möglichen Belegungen für die Variablen. In unseren Beispielen haben wir dafür immer 
+die reellen zahlen $\mathbb R$ genommen.
+
+Der \index{Prädikatenlogik}\textbf{Prädikatenlogik} liegen zwei \textbf{Alphabete}\index{Prädikatenlogik!Alphabet} 
+zugrunde, ein Alphabet der logischen Zeichen, bestehend aus 
+Variablen, Konnektoren, Trennzeichen, Quantoren und logischen Atomen, und ein Alphabet der Theoriezeichen, 
+bestehend aus einer Menge von Konstanten (also Objekten oder Individuum aus einem vorgegebenen 
+Individuenbereich, der betrachtet wird), einer Menge von Funktionszeichen und einer Menge von Relationszeichen. 
+
+Unter Funktionszeichen $f$ können wir uns dabei ganz konkret mathematische Funktionszeichen, etwa $f(x, y) = 
+x \cdot y$, und unter Relationszeichen $r$ entsprechend mathematische Relationen wie $r(x,y) : x > y$ vorstellen.
+
+Variablen sind Platzhalter, die für noch nicht spezifizierte Objekte des Individuenbereichs stehen und zu 
+einem gegebenen Zeitpunkt genau einen Wert aus dem Individuenbereich annehmen können. 
+
+Ein Term ist nun alles, was sich aus Konstanten, Variablen und Funktionszeichen sukkzessive (in endlich vielen 
+Schritten) bilden lässt. Mit 
+Konstanten $\mathbb R$ etwa können wir den Term $t_1 = f(x,2) = 2 \cdot x$ bilden, mit diesem Term wiederum 
+den Term $f(x, t_1) = x \cdot t_1 = 2x^2$. Konstanten und Variablen selbst sind auch Terme.
+
+
+Die Sprache $\mathscr{P}$ der Prädikatenlogik besteht also aus den folgenden Elementen 
+\begin{itemize}
+\item Termen:
+\begin{enumerate}
+\item Jede Konstante ist ein Term.
+\item Jede Variable ist ein Term.
+\item Sind $t_1, \ldots, t_n$ Terme und ist $f$ ein $n$--stelliges Funktionszeichen, so ist auch 
+$f(t_1, \ldots, t_n)$ ein Term.
+\end{enumerate}
+\item Ausdrücken oder Prädikaten
+\item Verknüpfungssymbole $\neg$, $\wedge$, $\vee$, $\rightarrow$ und $\leftrightarrow$.
+\item Quantoren $\forall$ und $\exists$.
+\end{itemize}
+wobei für die Formeln und Ausdrücke der Prädikatenlogik folgende Bildungsgesetze gelten:
+\begin{enumerate}
+\item Alle logischen Terme sind Ausdrücke der Prädikatenlogik.
+\item Sind $t_1, \ldots , t_n$ Terme und ist $r$ eine $n$--stellige Relation, so ist $r(t_1, \ldots, t_n)$ 
+ein Ausdruck der Prädikatenlogik.
+\item Ist $\alpha$ eine Formel, so auch $\neg \alpha$ (\textbf{Negation}).
+\item Sind $\alpha$ und $\beta$ Formeln sich auch $\alpha \wedge \beta$, 
+$\alpha \vee \beta$, $\alpha \rightarrow \beta$ und 
+$\alpha \leftrightarrow \beta$.
+\item Ist $\alpha$ eine Formel der Prädikatenlogik mit mindestens einer freien Variable $x$, so sind auch 
+$\forall x \,\alpha$ und $\exists x \, \alpha$ Formeln der Prädikatenlogik.
+\item Die Gliederungssymbole kennzeichnen die Bildungsschritte der Formeln.
+\item Alle Formeln der Prädikatenlogik können mit Hilfe der Regeln (1) - (6) in endlich vielen Schritten aus 
+den Prädikaten gebildet werden.
+\end{enumerate} 
+
+Durch eine Variablenbelegung wird aus einem Prädikat eine Aussage, und durch eine Wahrheitswertebelegung 
+lässt sich dann wiederum entscheiden, ob diese wahr oder falsch ist. 
+
+\bigbreak
+
+Mit der Sprache der Prädikatenlogik lassen sich mathematische Fragenstellungen knapp und präzise fromulieren 
+und definieren. Die Aussage
+
+\centerline{ \textit{Die Zahlenfolge $a_n = \frac {n+1}{n}$ konvergiert gegen $1$ für $n \rightarrow \infty$.}}
+
+formuliert sich dann etwa so
+
+  	$$ \forall \varepsilon > 0 \,\, \exists N  \,\, \forall n \geq N \, : \,  \vert a_n - 1 \vert < \varepsilon $$
+
+
+\bigbreak
+
+Ein anderes Beispiel ist die Aussage
+ 
+\centerline{\textit{Jede gerade Zahl, die größer als zwei ist, ist die Summe zweier Primzahlen.}}
+
+Diese lässt sich wie folgt formulieren:
+
+  	$$ \forall n \in \mathbb N \, \, \left( ( 2n > 2 ) \, \rightarrow \, (\exists x \in \mathbb P \, \exists y \in 
+    	\mathbb P \, : \, 2n = x + y) \right) $$
+wobei $\mathbb N$ die natürlichen Zahlen und $\mathbb P$ die Primzahlen bezeichnet. 
+Diese Aussage ist die sogenannte \textbf{Goldbachvermutung}. Sie geht zurück auf den Mathematiker Christian 
+Goldbach (1690 - 1764). Es ist bis heute nicht bekannt, ob sie wahr ist.
+
+\bigbreak
+
+\begin{beispiel} Sind $\alpha(x)$ und $\beta(x)$ Prädikate über reelle Zahlen, so fragt die Aussage $\forall x 
+\in \mathbb R \, \alpha(x) \rightarrow \eta(x)$, danach, ob für alle reellen Zahlen $x$, für die $\alpha(x)$ wahr ist, auch 
+$\beta(x)$ eine wahre Aussage wird. Ist etwa $\alpha(x): x \geq 5$ und $\beta(x): x^2 \geq 25$ so ist $\forall x 
+\in \mathbb R \, \alpha(x) \rightarrow \beta(x)$ eine wahre Aussage, denn für jede reelle Zahl $a$, für die 
+$a \geq 5$ wahr ist, gilt auch $a^2 \geq 25$. Dagegen ist die Aussage $\forall x 
+\in \mathbb R \,\, \beta(x) \rightarrow \alpha(x)$ falsch, denn $\beta(-6)$ ist wahr, aber $\alpha(-6)$ ist falsch. 
+Die Aussage $\exists x \geq 0 \, \beta(x) \rightarrow \alpha(x)$ dagegen ist eine wahre Aussage. 
+
+Bei Implikationen mit parametrisierten Aussagen interessiert uns also vor allem der Allquantor, wir wollen wissen, ob die 
+Gültigkeit einer Aussage $\alpha(x)$ für alle $x$ (aus einem bestimmten Bereich) die Gültigkeit von $\beta(x)$ für diese 
+$x$ impliziert. Ist dabei klar, auf welche $x$ wir uns beziehen, so lassen wir hier den Allquantor sogar weg und 
+schreiben kurz $\alpha(x) \Rightarrow \beta(x)$, also etwa 
+  	$$ x \geq 5 \Rightarrow x^2 \geq 25 $$
+und meinen damit, dass alle reellen Zahlen $x$, die die Ungleichung $x \geq 5$ erfüllen, auch die 
+Ungleichung $x^2 \geq 25$ erfüllen, dass also die Aussage $\forall x \in \mathbb R \, \, 
+(x \geq 5) \Rightarrow (x^2 \geq 25) $ eine Tautologie ist.
+\end{beispiel}
+
+\begin{notiz} Implikationen, die von einer Variable $x$ abhängen, sind erst dann allgemein bewiesen, wenn 
+für jede zulässige Belegung der Variable $x$ gezeigt ist, dass die resultierende Implikation richtig ist.
+
+Betrachten wir nun folgenden mathematischen Satz: \textbf{ Das Quadrat einer geraden Zahl ist eine gerade Zahl}. 
+Dazu setzen wir
+
+\begin{tabular} {l c l}
+$\alpha(x)\,:$ & \quad & $x$ ist eine gerade natürliche Zahl \\
+$\beta(x)\,:$ & \quad & $x^2$ ist eine gerade Zahl
+\end{tabular}
+
+Dann können wir unsere Aussage wie folgt formulieren
+  	$$ \forall x \in \mathbb Z \, \left( \alpha(x) \, \longrightarrow \, \beta(x) \right) $$
+und zum Nachweis dieser Aussage muss nun wirklich für jede einzelne Zahl $x \in \mathbb Z$ gezeigt werden, 
+dass $\alpha(x) \Longrightarrow \beta(x)$ eine wahre Aussage ist. Allerdings ist dabei für ungerade $x$ nichts 
+zu zeigen, denn für ungerade $x$ ist ja $\alpha(x)$ eine falsche Aussage und damit $\alpha(x) \Rightarrow 
+\beta(x)$ daher immer richtig. 
+
+Für gerade $x$ können wir in diesem Fall wie folgt vorgehen: Wir schreiben $x = 2 \cdot n$ mit einer 
+ganzen Zahl $n$. Das geht, denn $x$ ist eine gerade Zahl. Dann gilt 
+ 	$$ x^2 = (2 \cdot n)^2 = 4 \cdot n^2 = 2\cdot (2 \cdot n^2) $$
+und damit ist $x^2$ das zweifache einer ganzen Zahl, also wieder eine gerade Zahl. 
+
+In diesem Fall haben wir aus der Gültigkeit von $\alpha(x)$ für ein gegebenes $x$ unmittelbar die Gültigkeit von 
+$\beta(x)$ für dieses $x$ abgeleitet. Diese Art des Beweises nennt man \textbf{direkter Beweis}. Bei einem 
+direkten Beweis gehen wir also von einer uns bereits bekannten Tatsache aus (z.B. dass sich jede gerade ganze 
+Zahl $x$ als $x = 2 \cdot n$ mit einer ganzen Zahl $n$) und arbeiten mit dieser solange, bis wir daraus die 
+Folgerung ableiten können. 
+
+Ein weiteres wichtiges mathematisches Beweisprinzip liefert uns der Umkehrschluss, nämlich den 
+sogenannten \textbf{indirekten Beweis} oder \textbf{Wider\-spruchs\-beweis}. 
+Dieses Prinzip können wir anwenden, 
+wenn wir eine Implikation $\alpha \Longrightarrow \beta$ zeigen wollen. Nehmen wir nämlich an, dass $\beta$ falsch 
+ist, und können wir daraus ableiten, dass dann auch $\alpha$ falsch sein muss, können wir also 
+$\neg \beta \Longrightarrow \neg \alpha$ zeigen, so ist nach dem Umkehrschluss die Implikation $\alpha 
+\longrightarrow \beta$ eine Tautologie. Eine Variante davon ist, dass wir annehmen, dass die Folgerung nicht 
+richtig ist und daraus einen Widerspruch ableiten. 
+
+Dazu betrachten wir als Beispiel die Aussage:
+
+\textit{Ist $n$ eine natürliche Zahl, deren Quadratwurzel $\sqrt{n}$ eine ganze Zahl ist, 
+und ist $n$ ungerade, so ist auch $\sqrt{n}$ ungerade}.
+
+Dazu setzen wir
+
+\begin{tabular} {l l}
+$\alpha(x) \,:$ &  $x$ ist eine ungerade natürliche Zahl und $\sqrt{x}$ ist eine ganze Zahl \\
+$\beta(x) \,:$ &  $\sqrt{x}$ ist eine ungerade natürliche Zahl
+\end{tabular}
+
+Dann können wir unsere Aussage wie folgt formulieren
+  	$$ \forall x \in \mathbb Z \, \left( \alpha(x) \, \longrightarrow \, \beta(x) \right) $$
+
+Zum Beweis nehmen wir an, wir hätten eine ungerade natürliche Zahl $n$ gefunden, deren Quadratwurzel 
+$\sqrt{n}$ wieder eine natürliche Zahl ist (so dass also $\alpha(n)$ wahr ist), für die aber 
+$\sqrt{n}$ gerade ist (also $\beta(n)$ falsch ist). Nun haben wir ja im ersten Teil dieser Bemerkung schon gesehen, 
+dass dann auch 
+  	$$ n = \sqrt{n}^2 $$
+eine gerade Zahl ist, im Widerspruch zu unserer Annahme, dass $\alpha(n)$ wahr ist. Damit ist die Aussage bewiesen.
+
+Um eine von einer Variable $x$ abhängige Implikation zu widerlegen und als nicht allgemeingültig zu 
+erkennen, genügt es eine einzige Belegung von $x$ zu finden, für die die Implikation falsch wird. Wir betrachten 
+dazu die mathematische Aussage: \textit{Jede ungerade Zahl ist eine Primzahl}. Zunächst setzen wir 
+
+\begin{tabular} {l c l}
+$\alpha(x) \,:$ & \quad & $x$ ist eine ungerade Zahl \\
+$\beta(x) \,:$ & \quad & $x$ ist eine Primzahl
+\end{tabular}
+
+Dann können wir unsere Aussage wie folgt formulieren
+  	$$ \forall x \in \mathbb Z \, \left( \alpha(x) \, \longrightarrow \, \beta(x) \right) $$
+Diese Aussage ist sicherlich richtig für $x = 3$ oder $x = 5$, aber für $x = 9$ gilt zwar, dass $x$ ungerade ist, sodass 
+also $\alpha(9)$ wahr ist, aber $x = 3 \cdot 3$, und damit ist $9$ keine Primzahl (also $\beta(9)$ falsch). 
+Damit haben wir eine Belegung $x$ gefunden, für die $\alpha(x) \longrightarrow \beta(x)$ eine 
+falsche Aussage ist, und damit ist unsere Behauptung widerlegt. Eine Belegung von $x$ für die 
+$\alpha(x) \longrightarrow \beta(x)$ falsch wird, nennen wir \textbf{Gegenbeispiel}. Eine Implikation kann 
+also durch Angabe eines einzigen Gegenbeispiels widerlegt werden.
+\end{notiz}
+
+
+\section{Das Prinzip der vollständigen Induktion}
+
+Von besonderem Interesse sind auch Aussagen mit den natürlichen Zahlen als Variablen, also Aussagen 
+$A(0), A(1), A(2), \ldots, A(n), \ldots$, etwa
+  	$$ A(n) : \, \sum_{i=1}^n i \, = \, \frac {n(n+1)}{2} $$
+wobei $\sum$ das Summenzeichen ist, also
+  	$$ \sum_{i=1}^n a_i \, = \, a_1 + a_2 + \cdots + a_n $$
+Ein wichtiges Hilfsmittel zur Überprüfung der Wahrheit der Aussagen $A(n)$ 
+\index{vollständige Induktion}ist 
+
+\begin{satz}[Das Prinzip der vollständigen Induktion]\label{induktion} 
+
+Ist $n_0$ eine natürliche Zahl, für die gilt
+
+\begin{enumerate}
+\item $A(n_0)$ ist wahr.
+\item $A(n) \Longrightarrow A(n+1)$ für alle $n \geq n_0$.
+\end{enumerate}
+so ist $A(n)$ wahr für alle $n \geq n_0$
+\end{satz}
+
+Im Regelfall werden wir mit $n_0 = 0$ oder $n_0 = 1$ arbeiten, also
+
+\begin{korollar}
+
+Gilt
+\begin{itemize}
+\item $A(0)$ ist wahr.
+\item $A(n) \Longrightarrow A(n+1)$ für alle $n \in \mathbb N$.
+\end{itemize}
+so ist $A(n)$ wahr für alle $n \in \mathbb N$
+
+Gilt
+\begin{itemize}
+\item $A(1)$ ist wahr.
+\item $A(n) \Longrightarrow A(n+1)$ für alle $n \geq 1$.
+\end{itemize}
+so ist $A(n)$ wahr für alle $n \geq 1$
+\end{korollar}
+
+\beweis{ Das Prinzip der vollständigen Induktion ist nichts anders als ein sukkzessive Anwendung des 
+Kettenschlusses:
+ 
+Ist $n > n_0$, so folgt aus Voraussetzung (2) 
+  	$$ \begin{array} {c l c l}
+	& \left(A(n_0)      \right. & \longrightarrow & \left. A(n_0 + 1)\right) \\
+   	\wedge    & \left((A(n_0 + 1) \right. & \longrightarrow & \left. A(n_0 + 2)\right) \\
+  	\wedge    & \vdots & \\
+  	\wedge    & \left(A(n-1)      \right. & \longrightarrow & \left. A(n) \right)
+  	\end{array} $$
+und daher durch wiederholtes Anwenden des Modus Barbara $A(n_0) \longrightarrow A(n)$ 
+Nach Voraussetzung (1) ist aber $A(n_0)$ wahr, und damit auch $A(n)$. 
+}
+
+\begin{beispiel} Wir wollen mit vollständiger Induktion die Aussagen 
+  	$$ A(n) : \, \sum_{i=1}^n i \, = \, \frac {n \cdot (n+1)}{2} $$
+für alle $n \geq 1$ beweisen:
+
+Für $n = 1$ gilt: 
+  	$$ \sum_{i = 1}^1 i = 1 = \frac {(1+1)\cdot 1}{2}, $$
+also ist $A(1)$ wahr.
+
+Wir haben noch zu zeigen: Ist $A(n)$ wahr, so auch $A(n+1)$. Wir nehmen also an, dass gilt
+  	\begin{equation}\label{iv_sum_i} \sum_{i=1}^n i \, = \, \frac {n(n+1)}{2} \end{equation}
+und erhalten daraus
+  	$$ \begin{array} {l c l c l}
+   	\sum\limits_{i=1}^{n+1} i & = & \sum\limits_{i=1}^n i \, + \, (n+1) & \qquad &  \textrm{Abspaltung des 
+  	letzten Summanden} \\[0.2em]
+     	& = & \frac {((n+1)n}{2} + {n+1} & & \textrm{Induktionsvoraussetzung~\ref{iv_sum_i}} \\[0.2em]
+     	& = & \frac { n^2 + n}{2} + \frac {2n+2}{2} & & \\[0.2em]
+     	& = & \frac {n^2 + 3n + 2}{2} & & \\[0.2em]
+     	& = & \frac {((n+1)+1)(n+1)}{2} & &
+    	\end{array} $$
+und das ist gerade die behauptete Formel für $A(n+1)$, so dass wir also gezeigt haben 
+  	$$ A(n) \Longrightarrow A(n+1) $$
+und damit folgt aus Satz~\ref{induktion} die Behauptung.
+\end{beispiel}
+
+\begin{beispiel} Wir wollen mit vollständiger Induktion die Aussagen 
+  	$$ A(n) : \, \sum_{i=1}^n i^2 \, = \, \frac { n(n+1)(2n+1)}{6}  $$
+für alle $n \geq 1$ beweisen:
+
+\textit{Induktionsanfang:} Für $n = 1$ gilt: 
+  	$$ \sum_{i = 1}^1 i^2 = 1 = \frac {1(1+1)(2 \cdot 1 + 1)}{6}, $$
+also ist $A(1)$ wahr.
+
+\textit{Induktionsschluss:} Wir haben noch für $n \geq 1$ zu zeigen: Ist $A(n)$ wahr, so auch $A(n+1)$. 
+Wir nehmen also an, dass gilt
+  	\begin{equation}\label{iv_sum_i2} \sum_{i=1}^n i^2 \, = \, \frac { n(n+1)(2n+1)}{6}  \end{equation}
+und erhalten daraus
+  	$$ \begin{array} {l c l c l}
+   	\sum\limits_{i=1}^{n+1} i^2 & = & \sum\limits_{i=1}^n i^2 \, + \, (n+1)^2 & \qquad &  \textrm{Abspaltung des 
+  	letzten Summanden} \\[0.2em]
+     	& = & \frac { n(n+1)(2n+1)}{6}  + (n+1)^2 & & \textrm{Induktionsvoraussetzung~\ref{iv_sum_i2}} \\[0.2em]
+     	& = & \frac { n(n+1)(2n+1)}{6} + \frac {6(n+1)^2}{6} & & \\[0.2em]
+     	& = & \frac {n(n+1)(2n+1) + 6(n+1)^2}{6} & & \\[0.2em]
+     	& = & \frac {(n+1)\left( (2n^2+n) + 6(n+1)\right)}{2} & & \\[0.2em]
+     	& = & \frac {(n+1)(2n^2+7n+6)}{6} & & \\[0.2em]
+     	& = & \frac {(n+1)(n+2)(2n+3)}{6} & & \\[0.2em]
+     	& = & \frac {(n+1)((n+1)+1)(2(n+1)+1)}{6} & &
+    	\end{array} $$
+und das ist gerade die behauptete Formel für $A(n+1)$, so dass wir also gezeigt haben 
+  	$$ A(n) \Longrightarrow A(n+1) $$
+und damit folgt aus Satz~\ref{induktion} die Behauptung.
+\end{beispiel} 
+
+
+\bigbreak
+
+\begin{aufgabe}
+Welche der Aussagen $A \vee B$, $A \wedge B$, $\neg A \vee B$,
+$A \wedge \neg B$ sind wahr:
+\begin{itemize}
+\item[a)] $A: 16 $ ist durch 2 teilbar, $\quad B: 16$ ist eine Quadratzahl.
+\item[b)] $A: 5 < 3$, $\quad B: 7$ ist eine gerade Zahl.
+\item[c)] $A: 4 \cdot 2 = 8$, $\quad B: 4 + 2 = 7$.
+\end{itemize}
+\end{aufgabe}
+
+\begin{aufgabe} Gegeben seien die Aussagen
+\begin{itemize}
+\item[-] $A:\,$ ''Wenn es regnet, ist die Straße nass.''
+\item[-] $B:\,$ ''Wenn die Sraße nass ist besteht Rutschgefahr.''
+\end{itemize}
+Kann man daraus die Aussage
+\begin{itemize}
+\item[-] $C:\,$ ''Wenn keine Rutschgefahr besteht, dann regnet es nicht.'' ableiten? 
+\end{itemize}
+\end{aufgabe}
+
+\begin{aufgabe}
+Zeigen Sie, dass für ein Prädikat $A(x)$ folgende \"Aquivalenzen gelten:
+
+  $$ \begin{array} {l c l}
+  \neg \left( \forall x \, A(x) \right)  & \, \iff  \, & \exists x \, \neg A(x) \\
+  \neg \left( \exists x  \, A(x) \right) & \iff & \forall x \, \neg A(x)
+  \end{array} $$
+\end{aufgabe}
+
+\begin{aufgabe}
+Welche der Beziehungen $A(x) \rightarrow B(x)$, 
+$B(x) \rightarrow A(x)$, $A(x) \leftrightarrow B(x)$ sind für alle $x \in \mathbb R$ wahr:
+\begin{itemize}
+\item[a)] $A(x): x = 5$, $\quad B(x): x^6 = 625$.
+\item[b)] $A(x): 2x + 3 = 5$, $\quad B(x): x + 7 = 8$.
+\item[c)] $A(x): x^2 \geq 10$, $\quad B(x): x \geq 5$.
+\end{itemize}
+\end{aufgabe}
+
+\begin{aufgabe} Zeigen Sie, dass für alle $n \geq 1$ gilt:
+  $$ \sum_{i=1}^n (2i - 1) \, = \, n^2 $$
+\end{aufgabe}
+
+\begin{aufgabe} Zeigen Sie, dass für alle $n \geq 1$ gilt:
+  $$ \sum_{i=1}^n  i^3 \, = \, \frac { n^2(n+1)^2}{4}  $$
+\end{aufgabe} 
+
+\begin{aufgabe}\label{logik_aufgabe_6} Zeigen Sie, dass für jede reelle Zahl $q \neq 1$ und jedes 
+$n \geq 0$ gilt:
+  $$ \sum_{i =0}^n q^i = \frac {1 - \,q^{n+1}}{1 - q} $$
+\end{aufgabe}
+
+\begin{aufgabe}\label{logik_aufgabe_7} Zeigen Sie, dass für alle Zahlen $n \geq 3$ gilt:
+  $$ 2n + 1 < 2^n $$
+\end{aufgabe}
+
+\begin{aufgabe}\label{logik_aufgabe_8} Zeigen Sie, dass $n^3 + 2n$ für alle $n \geq 1$ durch $3$ teilbar ist.
+\end{aufgabe}
+
+
+\begin{aufgabe} An einem Tanzkurs nehmen  $n$ Männer und $n$ Frauen teil. Wählen wir aus den Männern 
+eine Gruppe von $a$ Männern aus (für irgendein $a \in \{ 1, , \ldots, n\}$), so kennen diese $a$ Männer 
+mindestens $a$ der Frauen schon aus ihrer Schulzeit. Ist es möglich, die Tanzpaare so einzuteilen, dass 
+jeder Mann mit einer Bekannten aus seiner Schulzeit zusammenkommt? 
+\end{aufgabe}

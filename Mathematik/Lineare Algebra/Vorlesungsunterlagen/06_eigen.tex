@@ -1,0 +1,877 @@
+
+\chapter{Eigenwerte und Normalformen}\label{section_eigenwert}
+
+\setcounter{definition}{0}
+\setcounter{beispiel}{0}
+\setcounter{notiz}{0}
+
+Matrizen können sehr unterschiedliche Gestalt annehmen, und ihre Gestalt ist von 
+entscheidender Bedeutung dafür, wie leicht oder schwer es ist, mit diesen Matrizen 
+zu arbeiten und zu rechnen. So ist es in der Regel etwa umso einfacher mit einer 
+Matrix zu arbeiten, je weniger von Null verschiedene Einträge sie hat. Besonders 
+leicht zu behandeln sind dabei Matrizen, die nur entlang der Diagonale von Null 
+verschiedene Einträge haben. So ist etwa das Gleichungssystem
+  	$$ \begin{array} {l c l c l c l}
+   	2 x_1 & & & & & = & 1 \\
+   	& & 3 x_2 & & & = & 2 \\
+   	& & & & - x_3 & = & 4
+  	\end{array} $$
+einfacher zu lösen als das Gleichungssystem
+  	$$  \begin{array} {l c l c l c l}
+   	2 x_1 & + & 4 x_2 & + & 3 x_3& = & 1 \\
+   	x_1 & - & 3 x_2 & - & 2 x_3 & = & 2 \\
+   	2x_1 & - & 2 x_3 & + & x_3 & = & 4
+  	\end{array} $$
+und auch bei der Determinantenberechnung ist 
+  	$$ A = \left( \begin{matrix} 2 & 0 & 0 \\ 0 & 3 & 0 \\ 0 & 0 & -1 \end{matrix} \right) $$
+einfacher zu handhaben als
+  	$$ B = \left( \begin{matrix} 2 & 4 & 3 \\  1 & -3 & -2 \\ 2 & -2 & 1 \end{matrix} \right) $$ 
+Nun kommen natürlich in vielen Fragestellungen Matrizen mit vielen Einträgen vor. 
+In diesem Fall können wir uns jedoch fragen, ob es möglich ist, diese Matrizen 
+durch eine geschickte Transformation zu vereinfachen und auf Diagonalgestalt (oder 
+eine Form, die zumindest nahe an der Diagonalgestalt ist) zu bringen. Dabei stellt sich 
+natürlich als erstes die Frage, was wir unter ''geschickter Transformation'' verstehen 
+wollen. Der Schlüssel hierzu liegt in der Interpretation von Matrizen als lineare 
+Abbildung. Wir haben diese Matriz mit Hilfe der Standardbasis des $\mathbb R^n$ 
+gebildet. In diesem Abschnitt wollen wir versuchen, durch geschickte Wahl einer Basis 
+eine einfachere Form der beschreibenden Matriz einer linearen Abbildung zu bekommen. 
+ 
+\section{Eigenwerte und Eigenvektoren}\label{section_ew_evg}
+
+\setcounter{definition}{0}
+\setcounter{beispiel}{0}
+\setcounter{notiz}{0}
+
+Besonders einfache Matrizen sind die Diagonalmatrizen $D$. Diese zeichnen sich 
+dadurch aus, dass für sie gilt:
+  	$$ D \cdot \vektor{e_i} = d_i \cdot \vektor{e_i} 
+  	\textrm{ für alle } i $$
+wobei $\vektor{e_1}, \ldots, \vektor{e_n}$ die Standardbasis des 
+$\mathbb R^n$ bezeichnet und $d_i$ das $i$--te Diagonalelement von $D$. Bei einer 
+stark besetzten Matrix ist das nicht mehr der Fall, wir können uns aber auch in dieser 
+Situation fragen, ob es Vektoren gibt, die eine analoge Eigenschaft haben. Dazu 
+betrachten wir eine $n \times n$--Matrix $A$ und definieren 
+  
+\begin{definition} Ein $\lambda \in \mathbb R$ heißt 
+\index{Eigenwert}\textbf{Eigenwert} von $A$, wenn es einen Vektor $\vektor{v} 
+\in \mathbb R^n$, $\vektor{v} \neq \vektor{0}$ gibt mit
+  	$$ A \cdot \vektor{v} = \lambda \cdot \vektor{v} $$
+In diesem Fall heißt der Vektor $\vektor{v}$ 
+\index{Eigenvektor}\textbf{Eigenvektor} von $A$ zum Eigenwert $\lambda$.
+\end{definition}
+
+\begin{beispiel} Ist 
+  	$$ D = \left( \begin{matrix} 2 & 0 \\ 0 & 3 \end{matrix} \right) $$
+so sind $2$ und $3$ Eigenwerte von $D$. $\vektor{e_1} = \left( 
+\begin{smallmatrix} 1 \\ 0 \end{smallmatrix} \right)$ ist ein Eigenvektor von $D$  
+zum Eigenwert $2$ und $\vektor{e_2} = \left( 
+\begin{smallmatrix} 0 \\ 1 \end{smallmatrix} \right)$ ist ein Eigenvektor von $D$  
+zum Eigenwert $3$. 
+\end{beispiel}
+
+\begin{beispiel}\label{ew_ker_null} Es sei
+  	$$ A = \left( \begin{matrix} 1 & 1 \\ 2 & 2 \end{matrix} \right) $$
+Dann ist $0$ ein Eigenwert von $A$ und $\vektor{v} = \left( 
+\begin{smallmatrix} 1 \\ -1 \end{smallmatrix} \right)$ ist ein Eigenvektor von $A$  
+zum Eigenwert $0$. Ferner ist
+$3$ ein Eigenwert von $A$ und $\vektor{w} = \left( 
+\begin{smallmatrix} 1 \\ 2 \end{smallmatrix} \right)$ ist ein Eigenvektor von $A$  
+zum Eigenwert $2$. 
+\end{beispiel}
+
+\begin{notiz} Der Nullvektor $\vektor{0}$ ist als Eigenvektor nicht zugelassen 
+(schon deswegen nicht, weil ja für jede reelle Zahl $r$ gelten würde: $A \cdot 
+\vektor{0} = r \cdot \vektor{0}$), Der Skalar $0$ ist aber sehr wohl 
+als Eigenwert möglich, wie wir in Beispiel~\ref{ew_ker_null} gesehen haben.
+\end{notiz}
+
+An Beispiel~\ref{ew_ker_null} können wir auch eine andere wichtige Tatsache 
+ablesen: Der Wert $0$ kommt genau dann als Eigenwert von $A$ vor, wenn das homogene 
+Gleichungssystem 
+  	$$ A \cdot \vektor{x} = \vektor{0} $$
+eine nichttriviale Lösung hat. Ist $\vektor{x}$ eine solche nichttriviale 
+Lösung, so ist $\vektor{x}$ ein Eigenvektor von $A$ zum Eigenwert $0$.
+
+Ist jetzt allgemeiner $\lambda$ ein Eigenwert von $A$ und $\vektor{v}$ ein 
+zugehöriger Eigenvektor, so gilt hierfür
+  	$$ A \cdot \vektor{v} = \lambda \cdot \vektor{v} $$
+Das lässt sich umschreiben zu 
+  	$$ A \cdot \vektor{v} = \lambda \cdot E_n \cdot \vektor{v} $$
+wobei $E_n$ die $n \times n$--Einheitsmatirx ist, und damit zu
+  	$$ \lambda \cdot E_n \cdot \vektor{v} - A \cdot \vektor{v} = \vektor{0} $$
+oder äquivalent zu 
+  	$$ \left( \lambda \cdot E_n - A \right) \cdot \vektor{v} = \vektor{0} $$
+Damit ist also $\lambda \in \mathbb R$ genau dann ein Eigenvektor von $A$, wenn das 
+homogene Gleichungssystem
+  	$$ \left( \lambda \cdot E_n - A  \right) \cdot \vektor{v} = \vektor{0} $$
+eine nichttriviale Lösung hat, und jede nicht--triviale Lösung 
+$\vektor{v}$ dieses Gleichungssystems ist ein Eigenvektor von $A$ zum 
+Eigenwert $\lambda$. Damit haben wir gezeigt
+
+\begin{satz} Genau dann ist ein Skalar $\lambda \in \mathbb R$ ein Eigenwert von $A$, wenn
+$\det{\lambda \cdot E_n - A } = 0$. 
+
+In diesem Fall ist jeder nicht--triviale Vektor $\vektor{v} \in 
+\mathrm{Ker}\left( \lambda \cdot E_n - A \right)$ ein Eigenvektor zum Eigenwert 
+$\lambda$.
+\end{satz}
+
+Dieser Satz motiviert die allgemeine Betrachtung von $P_A(\lambda) = 
+\det{ \lambda \cdot E_n - A }$ als Ausdruck in $\lambda$.
+
+\begin{satz}\label{ew_char_pol} 
+Ist $A$ eine $n \times n$--Matrix, so ist $P_A(\lambda) = 
+\det{ \lambda \cdot E_n - A }$ ein normiertes Polynom  
+vom Grad $n$ in $\lambda$.
+\end{satz}
+
+\beweis{ Wir benutzen dazu die vollständige Entwicklung von Determinanten, also 
+die Formel 
+  	$$ \det{A} = \sum\limits_{\sigma \in \S_n} \textrm{sign}(\sigma) \cdot 
+   	a_{1, \sigma(a)} \cdots a_{n, \sigma(n)} $$
+wenden wir das auf die Matrix $\lambda \cdot E_n - A$ an, so sehen wir
+  	$$ \det{ \lambda \cdot E_n - A } = (\lambda- a_{1,1}) \cdot (\lambda - a_{2,2})\cdots 
+  	(\lambda - a_{n,n}) + \textrm{ weitere Terme} $$
+wobei in jedem der weiteren Terme $\lambda$ höchstens $(n-1)$--mal auftaucht. Da 
+  	$$ (\lambda- a_{1,1}) \cdot (\lambda - a_{2,2}) \cdots (\lambda - a_{n,n}) = \lambda^n + \textrm{ weitere 
+     Terme} $$
+wobei auch hier in jedem der weiteren Terme $\lambda$ höchstens $(n-1)$--mal auftaucht, 
+folgt daraus die Behauptung.
+}
+
+\begin{definition} Der Ausdruck $P_A(\lambda) = 
+\det{ \lambda \cdot E_n - A }$ heißt das 
+\index{charakteristisches Polynom}\textbf{charakteristische Polynom} der Matrix $A$.
+\end{definition}
+
+\begin{satz}\label{ew_char_poly_n_null} 
+Ist $A$ eine $n \times n$--Matrix, so hat $A$ höchstens $n$ verschiedene Eigenwerte.
+\end{satz}
+
+\beweis{ Alle Eigenwerte von $A$ sind Nullstellen des charakteristischen Polynoms 
+$P_A(\lambda)$. Da ein Polynom vom Grad $n$ höchstens $n$ verschiedene Nullstellen 
+hat, folgt die Behauptung.
+}
+
+\bigbreak
+
+\begin{beispiel} Wir wollen nochmals die Matrix 
+  	$$ A = \left( \begin{matrix} 1 & 1 \\ 2 & 2 \end{matrix} \right) $$
+betrachten. Hierfür gilt
+  	$$ \lambda \cdot E_2 - A = \left( \begin{matrix} \lambda - 1 & -1 \\ 
+ 	-2 & \lambda - 2 \end{matrix} \right) $$
+und damit 
+  	$$ P_A(\lambda) = (\lambda - 1)(\lambda - 2) - (-1) \cdot (-2) = \lambda^2 - 3 \lambda $$
+Wir sehen also, dass $P_A(\lambda)$ die beiden Nullstellen $\lambda_1 = 0$ und 
+$\lambda_2 = 3$ hat, und dabei handelt es sich um die beiden (einzigen) Eigenwerte 
+von $A$.
+\end{beispiel}
+
+\begin{beispiel}\label{ew_doppelt} Wir betrachten die Matrix
+  	$$ A = \left( \begin{matrix} 0 & 1 & - 1 \\ 3 & 2 & - 3 \\ 2 & 2 & - 3 \end{matrix} \right) $$
+Dann gilt hierfür
+  	$$ \begin{array} {l c l}
+  	P_A(\lambda) & = & \det{\begin{matrix} \lambda & -1 & 1 \\ 
+    	-3 & \lambda - 2 & 3 \\ - 2 & -2 & \lambda + 3 \end{matrix} } \\
+  	& = & \lambda \cdot \det{\begin{matrix} \lambda - 2 & 3 \\
+   	-2 & \lambda + 3 \end{matrix} } - (-3) \cdot \det{\begin{matrix} 
+ 	- 1 & 1 \\ -2 & \lambda + 3 \end{matrix} } \\
+  	& & \quad  + (-2) \cdot 
+   	\det{\begin{matrix} -1 & 1 \\ \lambda - 2 & 3 \end{matrix} } \\
+  	& = & \lambda^3 + \lambda^2 - \lambda - 1 \\
+  	& = & (\lambda+1)^2(\lambda-1)
+  	\end{array} $$
+Damit hat $A$ die Eigenwerte $\lambda_1 = 1$ und $\lambda_2 = -1$. Die Matrix $A$ 
+hat also nur zwei Eigenwerte, einen weniger als wir nach Satz~\ref{ew_char_poly_n_null} 
+maximal bekommen könnten.  
+
+Die Eigenvektoren zum Eigenwert $-1$ sind die nicht--trivialen Lösungen des 
+Gleichungssystems
+  	$$ \begin{array} {l c l c l c l}
+ 	-x_1 & - & x_2 & + & x_3 & = & 0 \\
+ 	-3x_1 & - & 3x_2 & + & 3x_3 & = & 0 \\
+ 	-2x_1 & - & 2x_2 & + & 2x_3 & = & 0 
+  	\end{array} $$
+Eine Basis des zughörigen Lösungsraums sind die beiden Vektoren
+  	$$ \vektor{v_1} = \left( \begin{matrix} 1 \\ 0 \\ 1 \end{matrix} \right), 
+  	\qquad \vektor{v_2} = \left( \begin{matrix} -1 \\ 1 \\ 0 \end{matrix} 
+  	\right) $$
+und damit sind die Vektoren 
+  	$$ \vektor{v} = r \cdot \vektor{v_1} + s \cdot \vektor{v_2} $$
+mit $r \neq 0$ oder $s \neq 0$ die Eigenvektoren zum Eigenwert $-1$.
+
+Die Eigenvektoren zum Eigenwert $1$ sind die nicht--trivialen Lösungen des 
+Gleichungssystems
+  	$$ \begin{array} {l c l c l c l}
+  	x_1 & - & x_2 & + & x_3 & = & 0 \\
+ 	-3x_1 & - & x_2 & + & 3x_3 & = & 0 \\
+ 	-2x_1 & - & 2x_2 & + & 4x_3 & = & 0 
+  	\end{array} $$
+Eine Basis des zughörigen Lösungsraums ist der Vektor 
+  	$$ \vektor{v_3} = \left( \begin{matrix} 1 \\ 3 \\ 2 \end{matrix} \right) $$
+und damit sind die Vektoren 
+  	$$ \vektor{v} = r \cdot \vektor{v_3}$$
+mit $r \neq 0$ die Eigenvektoren zum Eigenwert $1$.
+\end{beispiel}
+
+\medbreak
+
+\begin{notiz} Die Theorie der Eigenwerte und Eigenvektoren lässt sich natürlich auch 
+auf komplexe Matrizen ausdehnen. So hat etwa die Matrix 
+  	$$ A = \left( \begin{matrix} 1 & \ii \\ \ii & 1 \end{matrix} \right) $$
+das charakteristische Polynom
+  	$$ P_A(\lambda) = \mathrm{det} \left(\begin{matrix} \lambda - 1 & -\ii \\ - \ii & \lambda -1 \end{matrix} \right) 
+     	= \lambda ^2 - 2 \lambda + 2 $$
+und damit hat $A$ die Eigenwerte $\lambda_1 = 1+\ii$ und $\lambda_2 = 1-\ii$. Die Eigenvektoren zu 
+$\lambda_1 = 1+\ii$ sind wie im reellen Fall die nicht--trivialen (komplexen) Lösungen des Gleichungssystems
+  	$$ \left( \lambda_1 \cdot E_2 - A \right) \vektor{x} = \vektor{0} $$
+also die Lösungen von
+  	$$ \begin{array} {r c r c l}
+  	\ii  \cdot x_1 & - & \ii \cdot  x_2 & = & 0 \\ -\ii \cdot x_1 & + & \ii \cdot x_2 & = & 0 
+  	\end{array} $$
+Eine Basis des Lösungsraums dieses Gleichungssystems ist
+  	$$ \vektor{v_1} = \left(\begin{matrix}  1 \\ 1 \end{matrix} \right)$$
+und damit sind die Vektoren 
+  	$$ \vektor{v} = z \cdot  \left(\begin{matrix}  1 \\ 1 \end{matrix} \right) $$
+mit $z \in \mathbb C \setminus \{ 0 \}$ die Eigenvektoren zum Eigenwert $1+i$. Entsprechend erhalten wir 
+für $\lambda_2 = 1-i$ die Eigenvektoren
+  	$$ \vektor{v} = z \cdot  \left(\begin{matrix}  -1 \\ 1 \end{matrix} \right)$$
+mit $z \in \mathbb C \setminus \{ 0 \}$.
+
+Der Übergang zu komplexen Zahlen ist allerdings nicht nur notwendig, wenn wir mit einer komplexen Matrix starten. 
+Betrachten wir etwa die Matrix
+  	$$ B = \left( \begin{matrix} 1 & 2 \\ -2 & 1 \end{matrix} \right) $$
+so hat diese charakteristisches Polynom
+ 	$$ P_B(\lambda) = \lambda^2 - 2 \lambda + 5 $$
+Diese Polynom hat keine reellen Nullstellen, aber die beiden komplexen Lösungen $\lambda_1 = 1 + 2 \cdot \ii$ und 
+$\lambda_2 = 1 - 2 \cdot \ii$. Betrachten wir die Matrix $B$ also als komplexe Matrix (\textit{Koeffizientenerweiterung}), 
+so hat $B$ Eigenwerte und die Eigenvektoren zu $\lambda_1 = 1+2\cdot \ii$ 
+erhalten wir aus den nicht--trivialen Lösungen des Gleichungssystems
+  	$$ \begin{array} {r c r c l}
+  	2\cdot \ii \cdot x_1 & - & 2 \cdot x_2 & = & 0 \\ 2 \cdot x_1 & + & 2\cdot \ii \cdot x_2 & = & 0 
+  	\end{array} $$
+Damit sind die Vektoren 
+  	$$ \vektor{v} = z \cdot  \left(\begin{matrix} -\ii \\ 1 \end{matrix} \right)$$
+mit $z \in \mathbb C \setminus \{ 0 \}$ die Eigenvektoren zum Eigenwert $1+2 \cdot \ii$. Entsprechend erhalten wir 
+für $\lambda_2 = 1-2\cdot \ii$ die Eigenvektoren
+  	$$ \vektor{v} = z \cdot  \left(\begin{matrix} \ii \\ 1 \end{matrix} \right)$$
+mit $z \in \mathbb C \setminus \{ 0 \}$. Die Matrix ist also in diesem Fall reell, die Eigenwerte und 
+Eigenvektoren sind aber komplex.
+\end{notiz}
+
+\bigbreak
+
+\begin{aufgabe} Bestimmen Sie Eigenwerte und Eigenvektoren der Matrix
+  	$$ A = \left( \begin{matrix} 2 & - 4 \\ -3 & 6 \end{matrix} \right) $$
+\end{aufgabe}
+
+\begin{aufgabe} Bestimmen Sie Eigenwerte und Eigenvektoren der Matrix
+  	$$ A = \left( \begin{matrix} 0 & 1 \\ -2 & 3 \end{matrix} \right) $$
+\end{aufgabe}
+
+\begin{aufgabe} Bestimmen Sie Eigenwerte und Eigenvektoren der Matrix
+  	$$ A = \left( \begin{matrix} 1 & 0 & 1 \\ 2 & 2 & 1 \\ 4 & 2 & 1 
+     	\end{matrix} \right) $$
+\end{aufgabe}
+
+\begin{aufgabe} Bestimmen Sie Eigenwerte und Eigenvektoren der Matrix
+  	$$ A = \left( \begin{matrix} 0 & 1 & 0 \\ 2 & 1 & 0 \\ -1 & 0 & 1 
+     	\end{matrix} \right) $$
+\end{aufgabe}
+
+\begin{aufgabe} Bestimmen Sie das charakteristische Polynom der Matrix
+  	$$ A = \left( \begin{matrix} \cos(\alpha) & \sin(\alpha) 
+	\\ -\sin(\alpha) & \cos(\alpha) \end{matrix} \right) $$
+Für welche Werte von $\alpha$ hat diese Matrix (reelle) Eigenwerte?
+\end{aufgabe}
+
+\begin{aufgabe} Bestimmen Sie das charakteristische Polynom der Matrix
+  	$$ A = \left( \begin{matrix} \cos(\alpha) & \sin(\alpha) 
+	\\ \sin(\alpha) & -\cos(\alpha) \end{matrix} \right) $$
+Für welche Werte von $\alpha$ hat diese Matrix (reelle) Eigenwerte?
+\end{aufgabe}
+
+\begin{aufgabe} Bestimmen Sie Eigenwerte und Eigenvektoren der Matrix
+  	$$ A = \left( \begin{matrix} 2 & 3 \\ -3 & 2 \end{matrix} \right) $$
+\end{aufgabe}
+
+\begin{aufgabe} Bestimmen Sie Eigenwerte und Eigenvektoren der Matrix
+  	$$ A = \left( \begin{matrix} 1 & 2i \\ -2i & 1 \end{matrix} \right) $$
+\end{aufgabe}
+
+\begin{aufgabe}\label{linalg_ev_kompl_ew_aufg1} Wir betrachten die Matrizen
+  	$$ A_{a,b} = \left( \begin{matrix} a & -b \\ b & a \end{matrix} \right) $$
+mit reellen Zahlen $a,b$. Bestimmen Sie die (komplexen) Eigenwerte und Eigenvektoren 
+von $A_{a,b}$ (in Abhängigkeit von $a,b$).
+\end{aufgabe}
+
+
+\begin{aufgabe}\label{ew_lin_un} Wir betrachten eine $n \times n$--Matrix $A$, 
+(paarweise verschiedene) Eigenwerte $\lambda_1, \ldots, \lambda_m$ von $A$, und zu 
+jedem $\lambda_i$ einen Eigenvektor $\vektor{v_i}$. Zeigen Sie, dass die 
+Vektoren $\vektor{v_1}, \ldots, \vektor{v_m}$ linear unabhängig 
+sind.
+\end{aufgabe}
+
+\bigbreak 
+
+\newpage
+
+\section{Diagonalisierbarkeit}\label{section_diag}
+
+\setcounter{definition}{0}
+\setcounter{beispiel}{0}
+\setcounter{notiz}{0}
+
+Wie wir jetzt gesehen haben, sind Eigenvektoren zu einer Matrix $A$ Vektoren, 
+bezüglich derer sich die Multiplikation von $A$ mit dem Vektor besonders einfach 
+darstellen lässt, nämlich als
+  	$$ A \cdot \vektor{v} = \lambda \cdot \vektor{v} $$
+Wie kann uns das aber jetzt bei der Vereinfachung der Matrizen helfen?
+
+\begin{beispiel} Wir betrachten die Matrix 
+  	$$ A = \left( \begin{matrix} 1 & 1 \\ 1 & 1 \end{matrix} \right) $$
+Wie wir sofort sehen, ist $0$ ein Eigenwert 
+von $A$ und $\vektor{v} = \left( \begin{smallmatrix} 1 \\ -1 \end{smallmatrix} 
+\right)$ ist ein Eigenvektor von $A$ zum Eigenwert $0$. Ferner ist
+$2$ ein Eigenwert von $A$ und $\vektor{w} = \left( 
+\begin{smallmatrix} 1 \\ 1 \end{smallmatrix} \right)$ ist ein zugehöriger Eigenvektor von $A$  
+zum Eigenwert $2$. Wir haben also 
+  	$$ \left( \begin{matrix} 1 & 1 \\ 1 & 1 \end{matrix} \right) \cdot
+     	\left( \begin{matrix} 1 \\ -1 \end{matrix} \right) = 0 \cdot
+    	\left( \begin{matrix} 1 \\ -1 \end{matrix} \right), \qquad 
+  	\left( \begin{matrix} 1 & 1 \\ 1 & 1 \end{matrix} \right) \cdot 
+  	\left( \begin{matrix} 1 \\ 1 \end{matrix} \right) = 2 \cdot 
+  	\left( \begin{matrix} 1 \\ 1 \end{matrix} \right) $$
+oder in Matrixzenschreibweise
+  	$$ \left( \begin{matrix} 1 & 1 \\ 1 & 1 \end{matrix} \right) \cdot
+    	\left( \begin{matrix} 1 & 1 \\ -1 & 1 \end{matrix} \right) = 
+   	\left( \begin{matrix} 0 & 2 \\ 0 & 2 \end{matrix} \right) = 
+   	\left( \begin{matrix} 1 & 1 \\ -1 & 1 \end{matrix} \right) \cdot 
+  	\left( \begin{matrix} 0 & 0 \\ 0 & 2 \end{matrix} \right) $$
+Nun ist die Matrix
+  	$$ S = \left( \begin{matrix} 1 & 1 \\ -1 & 1 \end{matrix} \right) $$
+invertierbar mit Inverser
+  	$$ S^{-1} = \left( \begin{matrix} \frac {1}{2} & - \frac {1}{2} \\ 
+  	\frac {1}{2} & \frac {1}{2} \end{matrix} \right) $$
+Multiplizieren wir also beide Seiten dieser Matrizengleichung mit $S^{-1}$ so erhalten 
+wir daraus
+  	$$ \left( \begin{matrix} \frac {1}{2} & - \frac {1}{2} \\ 
+  	\frac {1}{2} & \frac {1}{2} \end{matrix} \right) \cdot 
+ 	\left( \begin{matrix} 1 & 1 \\ 1 & 1 \end{matrix} \right) \cdot
+  	\left( \begin{matrix} 1 & 1 \\ -1 & 1 \end{matrix} \right) = 
+  	\left( \begin{matrix} 0 & 0 \\ 0 & 2 \end{matrix} \right) $$
+also ist $S^{-1} \cdot A \cdot S$ eine Diagonalmatrix.
+\end{beispiel}
+
+\begin{beispiel} Wir betrachten wieder die Matrix 
+  	$$ A = \left( \begin{matrix} 1 & 1 \\ 2 & 2 \end{matrix} \right) $$
+aus Beispiel~\ref{ew_ker_null}. Wie wir dort gesehen haben, ist $0$ ein Eigenwert 
+von $A$ und $\vektor{v} = \left( \begin{smallmatrix} 1 \\ -1 \end{smallmatrix} 
+\right)$ ist ein Eigenvektor von $A$ zum Eigenwert $0$. Ferner ist
+$3$ ein Eigenwert von $A$ und $\vektor{w} = \left( 
+\begin{smallmatrix} 1 \\ 2 \end{smallmatrix} \right)$ ist ein zugehöriger Eigenvektor von $A$.
+
+Auch hier ist die Matrix
+  	$$ S = \left( \begin{matrix} 1 & -1 \\ 2 & 1 \end{matrix} \right) $$
+invertierbar mit Inverser
+  	$$ S^{-1} = \left( \begin{matrix} \frac {1}{3} &  \frac {1}{3} \\ 
+     -\frac {2}{3} & \frac {1}{3} \end{matrix} \right) $$
+und wir erhalten mit einer analogen Rechnung
+  	$$ S^{-1} \cdot A \cdot S =  \left( \begin{matrix} 3 & 0 \\ 0 & 0 \end{matrix} \right) $$ 
+\end{beispiel}
+
+Wir haben also in diesen Beispielen, ausgehend von den Eigenwerten von $A$ und von 
+zugehörigen Eigenvektoren eine Transformation gefunden, die aus $A$ eine 
+Diagonalmatrix macht. Wir wollen uns nun damit beschäftigen, wie weit sich dieses 
+Beispiel verallgemeinern lässt.
+
+Dazu sei zunächst $A$ eine $n \times n$--Matrix, die die maximal mögliche Anzahl 
+von $n$ verschiedenen (reelle) Eigenwerte hat, für die das charackteristische 
+Polynom also in $n$ paarweise verschiedene Linearfaktoren zerfällt. Diese 
+Eigenwerte bezeichnen wir mit $\lambda_1, \ldots, \lambda_n$, und zu jedem $\lambda_i$ 
+wählen wir einen Eigenvektor $\vektor{v_i}$. Dann können wir die 
+Beziehungen 
+  	$$ A \cdot \vektor{v_i} = \lambda_i \cdot \vektor{v_i} $$
+wieder als Matrizengleichung schreiben. Dazu betrachten wir die Matrix 
+  	$$ S = \left( \vektor{v_1} \, \vektor{v_2} \, \ldots \, \vektor{v_n} \right) $$ 
+die die Vektoren $\vektor{v_i}$ als $i$--te Spaltenvektoren hat. Dann erhalten 
+wir genauso wie im Beispiel 
+  	$$ A \cdot S = S \cdot D $$
+wobei 
+  	$$ D = \left( \begin{matrix} \lambda_1 & 0 & \ldots & 0 \\
+   	0 & \lambda_2 & \ldots & 0 \\ \vdots & & \ddots & \vdots \\
+  	0 & 0 & \ldots & \lambda_n \end{matrix} \right) $$
+eine Diagonalatrix ist. Nun sind nach Aufgabe~\ref{ew_lin_un} die Spalten von $S$ linear 
+unabhängig, und damit ist $S$ invertierbar. Also erhalten wir aus dieser Gleichung 
+durch Multiplikation mit $S^{-1}$ wieder eine Beziehung
+  	$$ S^{-1} \cdot A \cdot S = D $$
+also eine Transformation von $A$ auf Diagonalgestalt. Wir haben also gezeigt
+
+\begin{satz}\label{ew_satz_versch_ew} 
+Ist $A$ eine $n \times n$--Matrix mit $n$ verschiedenen (reellen) 
+Eigenwerten $\lambda_1, \ldots, \lambda_n$, so gibt es eine invertierbare Matrix $S$ mit
+  	$$ S^{-1} \cdot A \cdot S = \left( \begin{matrix} \lambda_1 & 0 & \ldots & 0 \\
+   	0 & \lambda_2 & \ldots & 0 \\ \vdots & & \ddots & \vdots \\
+   	0 & 0 & \ldots & \lambda_n \end{matrix} \right) $$
+\end{satz}
+
+\bigbreak
+
+\begin{definition} Eine quadratische Matrix $A$ heißt \index{Matrix!diagonalisierbar} 
+\index{diagonalisierbare Matrix}\textbf{diagonalisierbar}, wenn es eine invertierbare 
+Matrix $S$ gibt, so dass $S^{-1} \cdot A \cdot S$ eine Diagonalmatrix ist.
+\end{definition}
+
+Wir haben gesehen, dass eine $n \times n$--Matrix mit $n$ verschiedenen Eigenwerten 
+diagonalisierbar ist. Wie sieht es nun aus mit Matrizen, die weniger als $n$ Eigenwerte 
+haben? Betrachten wir dazu etwa die Matrix 
+  	$$ A = \left( \begin{matrix} 0 & 1 & - 1 \\ 3 & 2 & - 3 \\ 2 & 2 & - 3
+ 	\end{matrix} \right) $$
+aus Beispiel~\ref{ew_doppelt}. Wie wir in diesem Beispiel gesehen haben, hat diese Matrix 
+nur zwei Eigenwerte, $-1$ und $1$. Dabei haben wir zum Eigenwert $-1$ zwei linear 
+unabhängige Eigenvektoren 
+  	$$ \vektor{v_1} = \left( \begin{matrix} 1 \\ 0 \\ 1 \end{matrix} \right), 
+  	\qquad \vektor{v_2} = \left( \begin{matrix} -1 \\ 1 \\ 0 \end{matrix} \right) $$
+und zum Eigenwert $1$ den Eigenvektor
+  	$$ \vektor{v_3} = \left( \begin{matrix} 1 \\ 3 \\ 2 \end{matrix} \right) $$
+Wir überzeugen uns, dass die Vektoren $\vektor{v_1}, \vektor{v_2}, 
+\vektor{v_3}$ linear unabhängig sind und bilden mit diesen die Matrix 
+  	$$ S = \left( \vektor{v_1} \, \vektor{v_2} \, \vektor{v_3} \right) 
+	= \left( \begin{matrix} 1 & -1 & 1 \\ 0 & 1 & 3 \\ 1 & 0 & 2 \end{matrix} \right) $$
+Hierfür rechnen wir unmittelbar nach, dass
+  	$$ A \cdot S = S \cdot \left( \begin{matrix} -1 & 0 & 0 \\ 0 & -1 & 0 \\ 0 & 0 & 1 \end{matrix} \right) $$
+und, da $S$ invertierbar ist, also auch hier
+  	$$ S^{-1} \cdot A \cdot S = \left( \begin{matrix} -1 & 0 & 0 \\ 0 & -1 & 0 \\ 0 & 0 & 1 \end{matrix} \right) $$
+Für die Diagonalisierbarkeit von $A$ ist es also nicht notwendig, dass $A$ genau 
+$n$ verschiedene Eigenwerte hat, es reicht, dass $A$ genügend viele linear 
+unabhängige Eigenvektoren hat. Genauer gilt
+
+\begin{satz}\label{ew_diag_equiv} Genau dann ist eine $n \times n$--Matrix 
+$A$ diagonalisierbar, wenn es 
+$n$ linear unabhängige Eigenvektoren von $A$ gibt.
+\end{satz} 
+
+\beweis{ Sind $\vektor{v_1}, \ldots , \vektor{v_n}$ linear unabhängige 
+Eigenvektoren von $A$, so setzen wir 
+  	$$ S = \left( \vektor{v_1} \, \ldots \, \vektor{v_n} \right) $$
+bilden also die Matrix mit diesen Eigenvektoren als Spalten und rechnen dann wie in 
+obigen Vorüberlegungen oder im Beweis von Satz~\ref{ew_satz_versch_ew} nach, dass
+$S^{-1} \cdot A \cdot S$ eine Diagonalmatrix ist. 
+
+Gibt es umgekehrt eine invertierbare Matrix $S$ so dass
+  	$$ S^{-1} \cdot A \cdot S = D $$
+eine Diagonalmatrix ist, so erhalten wir daraus 
+  	$$ A \cdot S = S \cdot D $$
+Bezeichnen wir die Spalten von $S$ mit $\vektor{v_1}, \ldots , \vektor{v_n}$, 
+so sind diese linear unabhängig, und es gilt
+  	$$ A \cdot \vektor{v_i} = d_i \cdot \vektor{v_i} $$
+wobei $d_i$ das $i$--te Diagonalelement von $D$ ist. 
+
+Damit ist der Satz beweisen.
+}
+
+\bigbreak
+
+Es ist nun naheliegend, dass wir uns fragen, ob alle Matrizen diagonalisierbar sind. 
+Das ist nicht der Fall, wie die folgenden Beispiele zeigen. 
+
+\begin{beispiel}\label{linalg_ev_diag_komplex} Wir betrachten die Matrix
+ 	$$ A =  \left( \begin{matrix} 0 & 1  \\ -1  & 0  \end{matrix} \right) $$
+Diese Matrix hat das charakteristische Polynom
+  	$$ P_A(\lambda) = \lambda^2 + 1 $$
+und damit keinen reellen Eigenwert, also auch keine reellen Eigenvektoren. Nach dem 
+Satz~\ref{ew_diag_equiv} ist sie also auch nicht (über den reellen Zahlen) diagonalisierbar. 
+
+Allerdings ist das kein ''echtes'' Gegenbeispiel, denn das charakteristische Polynom hat zwei komplexe 
+Nullstellen, nämlich $\lambda_1 = \ii$ und $\lambda_2 = -\ii$, und dazu gibt es in $\mathbb C^2$ auch Eigenvektoren: 
+Für $\vektor{v_1} = \left( \begin{smallmatrix} - \ii \\ 1 \end{smallmatrix} \right)$ rechnen wir nach, dass
+  	$$ A \cdot \vektor{v_1} = \ii \cdot \vektor{v_1} $$
+also ist $\vektor{v_1}$ ein komplexer Eigenvektor zu $\lambda_1 = \ii$ und entsprechend ist 
+$\vektor{v_2} = \left( \begin{smallmatrix} \ii \\ 1 \end{smallmatrix} \right)$ ein komplexer 
+Eigenvektor zu $\lambda_2 = -\ii$. Die 
+zugehörige komplexe Matrix
+  	$$ S := \left( \begin{matrix} -\ii & \ii \\ 1 & 1 \end{matrix} \right) $$
+ist  invertierbar mit inverser Matrix
+  	$$ S^{-1} = \left( \begin{matrix} \frac {\ii}{2} & \frac {1}{2} \\ - \frac {\ii}{2} & \frac {1}{2} \end{matrix} \right) $$
+Damit gilt dann auch
+  	$$ S^{-1} \cdot A \cdot S = \left( \begin{matrix} \ii & 0 \\ 0 & -\ii \end{matrix} \right) $$
+Die Matrix $A$ ist also nicht über den reellen Zahlen diagonalisierbar, aber über den komplexen Zahlen.
+\end{beispiel} 
+
+
+\begin{beispiel} Wir betrachten die Matrix
+ 	$$ A =  \left( \begin{matrix} 2 & 1  \\ 
+	0  & 2  \end{matrix} \right) $$
+Diese Matrix hat das charakteristische Polynom
+  	$$ P_A(\lambda) = \lambda^2 -4 \lambda + 4 $$
+und damit nur eine Nullstelle $\lambda = 2$. Das zugehörige Gleichungssystem $\left(2 E_2 - A\right) \cdot 
+\vektor{x} = \vektor{0}$ schreibt sich explizit als
+ 	 $$ \begin{array} {l c l c l} 
+  	0 \cdot x_1 & + & 1 \cdot x_2 & = & 0 \\
+  	0 \cdot x_1 & + & 0 \cdot x_2 & = & 0 
+  	\end{array} $$
+und eine Basis des Lösungsraums ist gegeben durch 
+  	$$ \vektor{v} = \left( \begin{matrix} 1 \\ 0 \end{matrix} \right) $$
+Damit sind die Eigenvektoren von $A$ zum Eigenwert $\lambda = 2$ die nicht--trivialen Vielfachen von 
+$\vektor{v}$. Insbesondere gibt es keine zwei linear unabhängigen Eigenvektoren. Da es keinen 
+weiteren Eigenwert gibt (auch nicht über den komplexen Zahlen), ist also $A$ nicht diagonalisierbar. 
+
+In der Tat ist $A$ bereits in der optimalen Form, die wir hierfür durch Transformationen erreichen können.
+\end{beispiel}
+
+
+\bigbreak
+
+Die Theorie der Eigenwerte und Eigenvektoren hat viele Anwendungen, speziell bei den linearen 
+Differentialgleichungssystemen mit konstanten Koeffizienten. Interessant ist sie auch für Probleme, bei 
+denen hohe Potenzen  $A^k$ einer Matrix $A$ berechnet werden müssen, etwa bei Markow--Ketten.
+
+\begin{beispiel} Ein Teilchen kann in zwei Energiezuständen $A$ oder $B$ auftreten. Innerhalb einer Zeiteinheit $t$ 
+geht ein Teilchen im Zustand $A$ mit einer Wahrscheinlichkeit von $40\%$ von Zustand $A$ in Zustand $B$ über 
+(und verbleibt mit einer Wahrscheinlichkeit von $60\%$ im Zustand $A$), und ein Teilchen im Zustand $B$ geht 
+einer Wahrscheinlichkeit von $30\%$ von Zustand $B$ in Zustand $A$ über (und verbleibt mit einer Wahrscheinlichkeit 
+von $70\%$ im Zustand $B$). Wie ist - bei gegebener Anfangsverteilung und bei einer sehr großen Menge von 
+Teilchen - die Zustandsverteilung nach $k$ Perioden?
+
+Wir schreiben den Anfangszustand der Teilchen als Vektor 
+  	$$ \vektor{v} = \vektor{v}(0) = \left( \begin{matrix} v_1 \\ v_2 \end{matrix} \right), $$ 
+wobei $v_1$ die Anzahl der Teilchen im Zustand $A$ und $v_2$ die Anzahl der Teilchen im Zustand $B$ 
+bezeichnet. Nach einer Periode verbleiben $0.6 \cdot v_1$ der $v_1$ Teilchen im Zustand $A$ in diesem Zustand, 
+wohingegen $0.4 \cdot v_1$ Teilchen in den Zustand $B$ gewechselt haben. Von den $v_2$ Teilchen im Zustand 
+$B$ verbleiben $0.7 \cdot v_2$ Teilchen in diesem Zustand, $0.3 \cdot v_2$ Teilchen 
+haben in den Zustand $A$ gewechselt. Damit ist die Verteilung nach einer Periode
+  	$$ \vektor{v}(1) = \left( \begin{matrix} 0.6 \cdot v_1 + 0.3 \cdot v_2 \\ 0.4 \cdot v_1 + 0.7 \cdot v_2 
+   	\end{matrix} \right) = \left( \begin{matrix} 0.6 & 0.3 \\ 0.4 & 0.7 \end{matrix} \right) \cdot 
+   	\left( \begin{matrix} v_1 \\ v_2 \end{matrix} \right) =
+   	\left( \begin{matrix} 0.6 & 0.3 \\ 0.4 & 0.7 \end{matrix} \right) \cdot \vektor{v}(0) $$
+Setzen wir 
+ 	$$ A = \left( \begin{matrix} 0.6 & 0.3 \\ 0.4 & 0.7 \end{matrix} \right) $$
+so ist also der Übergang von Periode $0$ zu Periode $1$ gegeben durch 
+  	$$ \vektor{v}(1) = A \cdot \vektor{v}(0) $$
+und analog gilt für den Zustand nach $k$ Perioden
+  	$$ \vektor{v}(k) = A \cdot \vektor{v}(k-1) = A^k \cdot \vektor{v}(0) $$
+wie wir uns induktiv überzeugen.
+Diese Matrizen $A^k$ sind relativ kompliziert zu berechnen. Hätten wir statt $A$ eine Diagonalmatrix, 
+  	$$ D = \left( \begin{matrix} d_1 & 0 \\ 0 & d_2 \end{matrix} \right) $$
+so wäre die Situation deutlich einfacher, denn 
+  	$$ D^k = \left( \begin{matrix} d_1^k & 0 \\ 0 & d_2^k \end{matrix} \right) $$
+wie man sehr leicht mit Induktion nachrechnet. Fast so einfach ist die Situation, wenn $A$ diagonalisierbar ist. Dann ist 
+nämlich $S^{-1} \cdot A \cdot S = D$ eine Diagonalmatrix, also 
+  	$$ A = S \cdot D \cdot S^{-1} $$
+mit einer Diagonalmatrix $D$. Dann gilt aber 
+  	$$ \begin{array}  {l c l}
+  	A^2 & = & \left( S \cdot D \cdot S^{-1} \right) \cdot \left( S \cdot D \cdot S^{-1} \right)  \\
+  	& = &  S \cdot D \cdot \left( S^{-1} \cdot S \right) \cdot D \cdot S^{-1} \\
+  	& = & S \cdot D \cdot E_2 \cdot D \cdot S^{-1} \\
+  	& = & S \cdot D^2 \cdot S^{-1} 
+  	\end{array} $$
+und allgemein 
+  	$$ A^k = S \cdot D^k \cdot S^{-1} $$
+Wir wollen daher unsere Matrix $A$ auf Diagonalisierbarkeit untersuchen:
+  	$$ \begin{array} {l c l} 
+  	P_A(\lambda) & = & \textrm{det}  \left( \begin{matrix} \lambda - 0.6 & - 0.3 \\ 
+	- 0.4 & \lambda - 0.7 \end{matrix} \right) \\
+	& = & \lambda^2 - 1.3 \cdot \lambda + 0.3 \\
+  	& = & (\lambda - 1) \cdot (\lambda - 0.3) 
+  	\end{array} $$
+Also hat $A$ zwei Eigenwerte, $\lambda_1 = 1$ und $\lambda_2 = 0.3$. Zugehörige Eigenvektoren sind etwa 
+$\vektor{v_1} = \left( \begin{smallmatrix} 3 \\ 4 \end{smallmatrix} \right)$ zu $\lambda_1$ und 
+$\vektor{v_2} = \left( \begin{smallmatrix} -1 \\ 1 \end{smallmatrix} \right)$ zu $\lambda_2$. Die zugehörige Matrix
+  	$$ S = \left( \begin{matrix} 3 & -1 \\ 4 & 1 \end{matrix} \right) $$
+hat Inverse
+  	$$ S^{-1} = \frac {1}{7} \cdot \left( \begin{matrix} 1 & 1 \\ -4 & 3 \end{matrix} \right) $$
+und mit 
+  	$$ D = \left( \begin{matrix} 1 & 0 \\ 0 & 0.3 \end{matrix} \right) $$
+gilt also $A = S \cdot D \cdot S^{-1}$ und damit
+  	$$ \vektor{v}(k) = S \cdot \left( \begin{matrix} 1 & 0 \\ 0 & 0.3^k \end{matrix} \right) \cdot S^{-1} 
+	\cdot \vektor{v}(0) $$
+Interessanterweise gilt auch 
+	$$ A = \begin{pmatrix} 3 \\ 4 \end{pmatrix} =  \begin{pmatrix} 3 \\ 4 \end{pmatrix} $$
+dh. werden eine große Anzahl von Teilchen im Verhältnis $3:4$ auf die beiden Energiezustände aufgeteilt, so 
+bleibt das System im Gleichgewicht und die Verteilung der Teilchen auf diese beiden  Zustände ist stabil. Im 
+allgemeinen ist es so, dass die Verhältnisse der Teilchen sich im Laufe der Zeit einem Verhältnis von $3:4$ 
+annähern wird. 
+\end{beispiel}
+
+\medbreak
+
+Es ist eine mühsame Aufgabe, die Diagonalisierbarkeit einer Matrix $A$ von Fall zu Fall durch die 
+Berechnung von Eigenwerten und Eigenvektoren  zu überprüfen. In der Regel ist das leider die 
+einzige Möglichkeit, erfreulicherweise gibt es aber zumindest eine Klasse von Matrizen, der wir 
+die Diagonalisierbarkeit unmittelbar ansehen:
+
+\begin{satz}\label{ew_matrix_sym_diag}
+Ist $A$ eine symmetrische $n \times n$--Matrix mit reellen Koeffizienten, so ist $A$ diagonalisierbar.
+\end{satz}
+
+\beweis{ Wir zeigen die Behauptung durch Induktion nach $n$. Für $n = 1$ ist $A = (a)$ und wir haben nichts 
+zu zeigen. Wir nehmen also an, dass $n > 1$ und dass wir dii Behauptung für $n -1$ schon gezeigt haben. 
+
+Wir betrachten das charakteristische Polynom $P_A(\lambda) = \det{\lambda \cdot E_n - A}$ 
+von $A$. Als erstes behaupten wir, dass $P_A(\lambda)$ in Linearfaktoren zerfällt, dass also gilt
+  	$$ P_A(\lambda) = (\lambda - b_1) \cdot (\lambda - b_2) \cdots (\lambda - b_n) $$
+mit reellen Zahlen $b_1, \ldots, b_n$ (die nicht notwendigerweise paarweise verschieden sind). Dabei ist klar, dass 
+wir eine solche Zerlegung über $\mathbb C$ haben, dass es also komplexe Zahlen $b_i$ mit dieser Eigenschaft 
+gibt, und wir haben noch zu zeigen, dass $b_i \in \mathbb R$. Dabei ist zu beachten, dass alles, was wir in diesem 
+Abschnitt über den reellen Zahlen gemacht haben, genauso über den komplexen Zahlen gilt. Ist also 
+$b_i$ eine komplexe Nullstelle von $P_A(\lambda)$, so ist $b_i$ ein komplexer Eigenwert von $A$, dh. es gibt einen 
+komplexen Vektor $\vektor{v} \in \mathbb C^n$, verschieden vom Nullvektor, mit 
+  	$$ A \cdot \vektor{v} = b_i \cdot \vektor{v} $$
+Hierfür gilt nun 
+  	$$ \begin{array} {l c l}
+  	b_i \cdot \vert \vektor{v} \vert^2 & = & b_i \cdot \langle \vektor{v}, \vektor{v} \rangle \\
+  	& = & \langle b_i \cdot \vektor{v}, \vektor{v} \rangle \\
+  	& = & \langle A \cdot \vektor{v}, \vektor{v} \rangle \\
+  	& = & \langle \vektor{v},  A \cdot \vektor{v} \rangle \\
+  	& = & \langle \vektor{v},  b_i \cdot \vektor{v} \rangle \\
+  	& = & \overline{b_i} \cdot \langle \vektor{v},  \vektor{v} \rangle \\
+  	& = & \overline{b_i} \cdot \vert \vektor{v} \vert^2 
+   	\end{array} $$
+wobei wir Regel~\ref{regel_skalar_produkt_komplex} aus Abschnitt~\ref{sect_vr_beliebig} und 
+Bemerkung~\ref{matrix_sym_skalarprod} aus Abschnitt~\ref{gls_matrix_op} (also die Eigenschaft, dass
+$ \langle A \cdot  \vektor{v}, \, \vektor{w} \rangle = 
+      \langle  \vektor{v}, \,  A \cdot \vektor{w} \rangle $ für symmetrische Matrizen 
+gilt), benutzt haben. 
+
+Insgesamt erhalten wir daraus
+  	$$ b_i \cdot \vert \vektor{v} \vert^2  = \overline{b_i} \cdot \vert \vektor{v} \vert^2 $$
+also, da $\vert \vektor{v} \vert^2 \neq 0$, auch
+  	$$ b_i = \overline{b_i} $$
+Eine komplexe Zahl und ihre komplex--konjugierte Zahl stimmen aber nur dann überein, wenn die Zahl schon reell 
+ist (also ihr Imaginärteil verschwindet). Damit haben wir gezeigt, dass $P_A(\lambda)$ nur reelle Nullstellen hat. 
+
+Nun geben wir uns eine Nullstelle $b_1$ von $P_A(\lambda)$, also einen Eigenwert von $A$ vor und bestimmen einen 
+Eigenvektor $\vektor{u_1}$ dazu, wobei wir $\vektor{u_1}$ auf die Länge $1$ normieren, also 
+annehmen können, dass $\vert \vektor{u_1} \vert = 1$. Wir ergänzen (mit dem 
+Gram--Schmidt--Orthonormalisierungsverfahren) $\vektor{u_1}$ zu einer Orthonormalbasis von 
+$\mathbb R^n$, wir finden also $\vektor{u_2}, \ldots, \vektor{u_n}$ so, dass 
+$\vektor{u_1}, \ldots, \vektor{u_n}$ eine Orthonormalbasis von $\mathbb R^n$ ist. 
+
+Der entscheidende Punkt für unsere Überlegungen ist nun 
+  	$$ A \cdot \vektor{u_i} \in \mathrm{Span}\left( \vektor{u_2}, \ldots, 
+     	\vektor{u_n} \right) \quad  \textrm{ für alle } i \in \{2, \ldots, n\} $$
+Jeder Vektor $A \cdot \vektor{u_i}$ ($ i = 2, \ldots, n$) ist also schon in dem von 
+$\vektor{u_2}, \ldots,  \vektor{u_n}$ aufgespannten Untervektorraum enthalten. 
+Dazu geben wir uns ein $i \in \{2, \ldots , n\} $ vor und schreiben  
+  	$$ A \cdot \vektor{u_i} = r_1 \vektor{u_1} + r_2 \vektor{u_2} + \cdots + r_n \vektor{u_n} $$
+und haben zu zeigen, dass $r_1 = 0$. Dazu rechnen wir
+  	$$ \begin{array} {l c l }
+ 	r_1 & = & r_1 \cdot \langle \vektor{u_1}, \vektor{u_1} \rangle \\
+ 	& = & \sum\limits_{i = 1}^{n} r_i \cdot \langle \vektor{u_i}, \vektor{u_1} \rangle \\
+ 	& = & \langle r_1 \vektor{u_1} +  r_2 \vektor{u_2} + 
+  	\cdots + r_n \vektor{u_n}, \,  \vektor{u_1} \rangle  \\
+ 	& = & \langle A \cdot \vektor{u_i}, \vektor{u_1} \rangle \\
+   	& = & \langle\vektor{u_i}, \,  A \cdot \vektor{u_1} \rangle \\
+  	& = & \langle\vektor{u_i}, \, b_1 \cdot \vektor{u_1} \rangle \\
+ 	& = &  b_1 \cdot \langle \vektor{u_i}, \vektor{u_1} \rangle \\
+ 	& = & 0 
+ 	\end{array} $$
+Dabei haben wir, neben den üblichen Eigenschaften des Skalarprodukts, in der zweiten und in der letzten 
+Zeile ausgenutzt, dass
+  	$$  \langle \vektor{u_i}, \vektor{u_1} \rangle = 0 = \langle \vektor{u_1}, \vektor{u_i} \rangle  $$
+für $i \neq 1$ und in der ersten Zeile, dass
+  	$$  \langle \vektor{u_1}, \vektor{u_1} \rangle = 1 $$
+
+Wir betrachten nun die Matrix $U = \left( \vektor{u_1} \, \ldots \,\vektor{u_n} \right)$, die die 
+Vektoren $\vektor{u_1}, \ldots, \vektor{u_n}$ als Spaltenvektoren hat. Da die Spalten von $U$ eine 
+Orthonormalbasis von $\mathbb R^n$ bilden, ist $U$ eine orthogonale Matrix, so dass also $U$ gemäß 
+Satz~\ref{det_matrix_orth_inv} invertierbar ist mit
+   	$$ U^{-1} = U^T $$
+Wir betrachten nun die Matrix 
+   	$$ B = U^{-1} \cdot A \cdot U = U^T \cdot A \cdot U $$
+Dann gilt hierfür 
+  	$$ \begin{array} {l c l}
+  	B \cdot \vektor{e_1} & = & U^{-1} \cdot A \cdot U \cdot \vektor{e_1} \\
+  	& = & U^{-1} \cdot A \cdot \vektor{u_1} \\
+  	& = & U^{-1} \cdot b_1 \cdot \vektor{u_1} \\
+  	& = & b_1 \cdot U^{-1} \cdot \vektor{u_1} \\
+  	& = & b_1 \cdot \vektor{e_1}
+  	\end{array} $$
+und für $i \geq 2$ gilt nach oben Gezeigtem, wenn wir $ A \cdot \vektor{u_i} = 
+r_{2,i} \vektor{u_2} +   \cdots + r_{n,i} \vektor{u_n} $ setzen
+  	$$ \begin{array} {l c l}
+  	B \cdot \vektor{e_i} & = & U^{-1} \cdot A \cdot U \cdot \vektor{e_i} \\
+  	& = & U^{-1} \cdot A \cdot \vektor{u_i} \\
+  	& = & U^{-1} \cdot \left( r_{2,i} \vektor{u_2} +   \cdots + r_{n,i} \vektor{u_n} \right) \\
+  	& = &  r_{2,i} \cdot U^{-1} \cdot \vektor{u_2} + \cdots + r_{n, i} \cdot U^{-1} \cdot  \vektor{u_n} \\
+    	& = &  r_{2, i} \vektor{e_2} +   \cdots + r_{n, i} \vektor{e_n}
+	\end{array} $$
+und damit hat $U^{-1} \cdot A \cdot U$ die Gestalt
+  	$$ U^{-1} \cdot A \cdot U = \left( \begin{matrix} 1 & 0 & \hdots & 0 \\ 0 & & & \\ \vdots & & C &  \\  
+	0 & & & \end{matrix} \right) $$
+mit einer $(n-1) \times (n-1)$--Matrix $C$. Genauer gilt $C = \left(r_{i,j} \right)$ mit den oben bestimmten 
+$r_{i,j}$. Nun  gilt für beliebige Vektoren $\vektor{v}$ und 
+$\vektor{w}$ aufgrund der Bemerkung~\ref{matrix_sym_skalarprod} und der Regel~\ref{matrix_skalarprod} 
+aus Abschnitt~\ref{gls_matrix_op} und der Orthogonalität von $U$:
+  	$$ \begin{array} {l c l}
+  	\langle  U^{-1} \cdot A \cdot U \cdot \vektor{v}, \, \vektor{w} \rangle 
+   	& = &  \langle  U^{T} \cdot A \cdot U \cdot \vektor{v}, \, \vektor{w} \rangle \\
+  	& = &  \langle   A \cdot U \cdot \vektor{v}, \,\left( U^T\right)^T \cdot \vektor{w} \rangle \\
+  	& =& \langle   A \cdot U \cdot \vektor{v}, \,U \cdot \vektor{w} \rangle \\
+  	& = & \langle  U  \cdot \vektor{v}, \,  A \cdot U \cdot \vektor{w} \rangle \\
+  	& = & \langle \vektor{v}, \, U^T \cdot A \cdot U \cdot \vektor{w} \rangle \\
+  	& = & \langle \vektor{v}, \, U^{-1} \cdot A \cdot U \cdot \vektor{w} \rangle
+  	\end{array} $$
+so dass also die Matrix $U^{-1} \cdot A \cdot U$ nach Bemerkung~\ref{matrix_sym_skalarprod} 
+aus Abschnitt~\ref{gls_matrix_op} symmetrisch ist. Damit muss aber auch die Matrix $C$ symmetrisch sein, 
+und wir können unsere Induktionsvoraussetzung anwenden und erhalten, dass $C$ diagonalisierbar ist. 
+Wir finden also eine invertierbare $(n-1) \times (n-1)$--Matrix $V$, so dass $V^{-1} \cdot C \cdot V$ eine 
+Diagonalmatrix $D$ ist. Setzen wir 
+  	$$ W :=  \left( \begin{matrix} 1 & 0 & \hdots & 0 \\ 0 & & & \\ \vdots & & V & \\  0 & & &
+	\end{matrix} \right) $$
+so gilt nach den Regeln für die Matrizenrechnung
+  	$$ W^{-1} \cdot U^{-1} \cdot A \cdot U \cdot W = \left( \begin{matrix} b_1 & 0 & \hdots & 0 \\ 0 & & & \\ 
+	\vdots & & D & \\  0 & & &   \end{matrix} \right) $$
+Setzen wir also $S = U \cdot W$, so hat $S^{-1} \cdot A \cdot S$ Diagonalgestalt, wie gewünscht. 
+}
+
+\bigbreak
+
+\begin{notiz} Ist $A$ eine symmetrische Matrix, so können wir die Transformationsmatrix $S$ als orthogonale 
+Matrix wählen. Das haben wir implizit mitgezeigt.
+\end{notiz}
+
+\begin{beispiel} Wir betrachten die Matrix
+  	$$ A = \left( \begin{matrix} 1 & 5 \\5 & 1 \end{matrix} \right) $$
+Dann ist $A$ symmetrisch und damit diagonalisierbar. Hier sehen wir aber auch so sofort, dass
+  	$$ P_A(\lambda) = \lambda^2 - 2 \lambda - 24 = \left(\lambda - 6 \right) \cdot \left( \lambda + 4 \right) $$
+dass wir als zwei verschiedene Eigenwerte haben. Ein Eigenvektor zu $\lambda_1 = 6$ ist 
+$\vektor{u_1} = \left( \begin{smallmatrix} \frac {1}{\sqrt{2}} \\ \frac {1}{\sqrt{2}} \end{smallmatrix} \right)$, 
+und ein Eigenvektor zu $\lambda_2 = -4$ ist $\vektor{u_2} = 
+ \left( \begin{smallmatrix} -\frac {1}{\sqrt{2}} \\ \frac {1}{\sqrt{2}} \end{smallmatrix} \right)$. Die Vektoren 
+$\vektor{u_1}, \vektor{u_2}$ bilden in der Tat eine Orthonormalbasis von $\mathbb R^2$ und mit 
+  	$$ S := \left( \begin{matrix} -\frac {1}{\sqrt{2}} & \frac {1}{\sqrt{2}} \\ 
+	\frac {1}{\sqrt{2}} & \frac {1}{\sqrt{2}} \end{matrix} \right) $$ 
+gilt dann
+  	$$ S^T \cdot A \cdot S = \left( \begin{matrix} -4 & 0 \\ 0 & 6 \end{matrix} \right) $$
+\end{beispiel}
+
+\begin{beispiel} Wir betrachten die Matrix 
+  	$$ A =  \left( \begin{matrix} 5 & -2 & 2 \\ -2 & 2 & 4 \\ 2 & 4 & 2 \end{matrix} \right) $$
+Auch hier ist $A$ symmetrisch, und daher sehen wir ohne Rechnung, dass $A$ diagonalisierbar ist. Hier gilt
+  	$$ P_A(\lambda) = \lambda^3 - 9 \cdot \lambda^2  + 108  
+       = (\lambda -6)\cdot (\lambda - 6) \cdot (\lambda + 3) $$
+Diese Matrix hat also nur zwei Eigenwerte, und an der Anzahl der Eigenwerte können wir die Diagonalisierbarkeit 
+nicht ablesen. Wenn wir jedoch die Eigenvektoren berechnen, erhalten wir für $\lambda_1 = 6$ die beiden 
+linear unabhängigen Eigenvektoren 
+  	$$ \vektor{u_1} = \left( \begin{matrix}  \frac {2}{3} \\ \frac {1}{3} \\ \frac {2}{3} 
+   	\end{matrix} \right), \qquad 
+   	\vektor{u_2} = \left( \begin{matrix} - \frac {2}{3} \\ \frac {2}{3} \\ \frac {1}{3} 
+   	\end{matrix} \right) $$
+und für $\lambda_2 = -3$ den Eigenvektor
+  	$$ \vektor{u_3} = \left( \begin{matrix} \frac {1}{3} \\ \frac {2}{3} \\ -\frac {2}{3} 
+   	\end{matrix} \right) $$
+die Vektoren $ \vektor{u_1},  \vektor{u_2},  \vektor{u_3}$  bilden eine 
+Orthonormalbasis von $\mathbb R^3$ und für die Matrix
+  	$$ S =  \left( \begin{matrix} \frac {2}{3} & -\frac {2}{3} & \frac {1}{3} \\
+   	\frac {1}{3} & \frac {2}{3} & \frac {2}{3} \\ \frac {2}{3} & \frac {1}{3} & -\frac {2}{3}
+   	\end{matrix} \right) $$ 
+gilt
+  	$$ S^T \cdot A \cdot S = \left( \begin{matrix} 6 & 0 & 0 \\ 0 & 6 & 0 \\ 0 & 0 & -3 \end{matrix} \right) $$ 
+\end{beispiel}
+
+\bigbreak
+
+\begin{notiz}\label{ew_lin_abbild_diag} Um die Diagonalisierbarkeit von Matrizen besser zu verstehen, ist es 
+hilfreich, sich an die Beziehungen zwischen Matrizen und linearen Abbildungen zu erinnern (vergleiche etwa 
+Bemerkung~\ref{matrix_hom_matrix} in Abschnitt~\ref{section_lin_abb}). Zu einer Matrix $A$ gehört eine lineare
+Abbildung $f$, und $A$ ist die darstellende Matrix von $f$ bezüglich der Standardbasis. Die Standardbasis ist 
+aber relativ willkürlich dadurch entstanden, dass wir einen Koordinatenursprung gewählt und dann 
+Koordinatenachsen festgelegt haben. Genauso gut hätten wir aber auch andere Achsen wählen können.  
+%Im Abschnitt~\ref{section_kegel} über Kegelschnitte haben wir schon gesehen, dass eine andere Koordinatenwahl 
+%bei der Beschreibung mathematischer Objekte durchaus von Vorteil sein kann. Ein weiteres Beispiel hierfür 
+%bilden die linearen Abbildungen. 
+Wählen wir nämlich im $\mathbb R^n$ andere Koordinatenachsen, so können 
+wir diese (ausgehend vom ursprünglichen Koordinatensystem) durch $n$ Vektoren $\vektor{v_1}, \ldots , 
+\vektor{v_n}$ beschreiben. Schreiben wir diese Vektoren als Spalten einer Matrix
+  	$$ S = \left( \vektor{v_1} \, \ldots \, \vektor{v_n} \right) $$
+so ist diese Matrix invertierbar (das ist sogar äquivalent dazu, dass $\vektor{v_1}, \ldots , 
+\vektor{v_n}$ eine neues Koordinatensystem von $\mathbb R^n$ definieren), und in diesem neuen 
+Koordinatensystem wird die lineare Abbildung $f$ durch die Matrix
+  	$$ B = S^{-1} \cdot A \cdot S $$
+beschrieben. Sind also $\vektor{v_1}, \ldots , \vektor{v_n}$ speziell $n$ linear 
+unabhängige Eigenvektoren von $A$, so bedeutet das gerade, dass $\vektor{v_1}, \ldots , 
+\vektor{v_n}$ ein neues Koordinatensystem von $\mathbb R^n$ definieren, und in diesem 
+Koordinatensystem wird die lineare Abbildung durch die Diagonalmatrix
+  	$$ D = S^{-1} \cdot A \cdot S $$
+beschrieben. Bezüglich der durch $\vektor{v_1}, \ldots , \vektor{v_n}$ gegebenen Koordinaten 
+gilt also 
+  	$$ f \left( \vektor{v_i} \right) = \lambda_i \cdot \vektor{v_i} \quad \textrm{ für alle } i \in 
+   	\{ 1, \ldots, n \} $$
+\end{notiz}
+
+\bigbreak
+\bigbreak
+
+\begin{aufgabe} Untersuchen Sie die Matrix
+  	$$ A =  \left( \begin{matrix} 2 & 1 \\ 1 & 2 \end{matrix} \right) $$
+auf Diagonalisierbarkeit. Bestimmen Sie gegebenenfalls eine Transformationsmatrix $S$, so dass $S^{-1} \cdot A \cdot S$ 
+Diagonalgestalt hat.
+\end{aufgabe}
+
+\begin{aufgabe} Untersuchen Sie die Matrix
+  	$$ A =  \left( \begin{matrix} 1 & 1 \\ -2 & 4 \end{matrix} \right) $$
+auf Diagonalisierbarkeit. Bestimmen Sie gegebenenfalls eine Transformationsmatrix $S$, so dass $S^{-1} \cdot A \cdot S$ 
+Diagonalgestalt hat.
+\end{aufgabe}
+
+\begin{aufgabe} Untersuchen Sie die Matrix
+  	$$ A =  \left( \begin{matrix} 3 & 1 \\ -1 & 1 \end{matrix} \right) $$
+auf Diagonalisierbarkeit. Bestimmen Sie gegebenenfalls eine Transformationsmatrix $S$, so dass $S^{-1} \cdot A \cdot S$ 
+Diagonalgestalt hat.
+\end{aufgabe}
+
+\begin{aufgabe} Untersuchen Sie die Matrix
+  	$$ A =  \left( \begin{matrix} 3 & -2 \\ 2 & 3 \end{matrix} \right) $$
+auf Diagonalisierbarkeit. Bestimmen Sie gegebenenfalls eine Transformationsmatrix $S$, so dass $S^{-1} \cdot A \cdot S$ 
+Diagonalgestalt hat. (Arbeiten Sie über den komplexen Zahlen, falls erforderlich).
+\end{aufgabe}
+
+\begin{aufgabe} Untersuchen Sie die Matrix
+  	$$ A =  \frac {1}{15} \left( \begin{matrix} 10 & 5 & 10 \\ 5 & -14 & 2 \\ 10 & 2 & -11 \end{matrix} \right) $$
+auf Diagonalisierbarkeit. Bestimmen Sie gegebenenfalls eine Transformationsmatrix $S$, 
+so dass $S^{-1} \cdot A \cdot S$ Diagonalgestalt hat.
+\end{aufgabe}
+
+\begin{aufgabe} Untersuchen Sie die Matrix
+  	$$ A =  \left( \begin{matrix} -1 & 2 & 2 \\ 2 & 2 & 2 \\ -3 & -6 & -6 \end{matrix} \right) $$
+auf Diagonalisierbarkeit. Bestimmen Sie gegebenenfalls eine Transformationsmatrix $S$, 
+so dass $S^{-1} \cdot A \cdot S$ Diagonalgestalt hat.
+\end{aufgabe}
+
+\begin{aufgabe} Untersuchen Sie die Matrix
+  	$$ A =  \left( \begin{matrix} 5 & -6 & -6 \\ -1 & 4 & 2 \\ 3 & -6 & -4 \end{matrix} \right) $$
+auf Diagonalisierbarkeit. Bestimmen Sie gegebenenfalls eine Transformationsmatrix $S$, 
+so dass $S^{-1} \cdot A \cdot S$ Diagonalgestalt hat.
+\end{aufgabe}
+
+\begin{aufgabe} Wir betrachten die symmetrische Matrix 
+  	$$  A =  \left( \begin{matrix} 2 & 3 \\3 & 2 \end{matrix} \right) $$
+Bestimmen Sie eine orthogonale Matrix $S$, so dass $S^T \cdot A \cdot S$ Diagonalgestalt hat. 
+\end{aufgabe}
+
+\begin{aufgabe} Wir betrachten die symmetrische Matrix 
+  	$$  A =  \left( \begin{matrix} 10 & 5 & 10 \\ 5 & -14 & 2 \\ 10 & 2 & -11 \end{matrix} \right) $$
+Bestimmen Sie eine orthogonale Matrix $S$, so dass $S^T \cdot A \cdot S$ Diagonalgestalt hat. 
+\end{aufgabe}
+
+\begin{aufgabe} Bestimmen Sie (in Abhängigkeit von $a$) eine orthogonale Matrix $S$, die die symmetrische 
+Matrix
+  	$$ A =  \left( \begin{matrix} a & 1 \\ 1 & a \end{matrix} \right) $$
+diagonalisiert.
+\end{aufgabe}
+
+\begin{aufgabe} Bestimmen Sie (in Abhängigkeit von $a$) eine orthogonale Matrix $S$, die die symmetrische 
+Matrix
+  	$$ A =  \left( \begin{matrix} 1 & a \\ a & 1 \end{matrix} \right) $$
+diagonalisiert.
+\end{aufgabe}
+
+\begin{aufgabe} Wir betrachten die Matrizen
+  	$$ A_{a,b} = \left( \begin{matrix} a & -b \\ b & a \end{matrix} \right) $$
+mit reellen Zahlen $a,b$ (vergleiche~\ref{linalg_ev_kompl_ew_aufg1}). Bestimmen Sie  
+(in Abhängigkeit von $a,b$) eine Transformationsmatrix $S = S_{a,b}$, so dass 
+$S^{-1} \cdot A \cdot S$ Diagonalgestalt hat.
+\end{aufgabe}
+

@@ -1,0 +1,38 @@
+\documentclass[a4paper]{article}
+\usepackage{ifthen}
+\usepackage{german}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+ \usepackage{amsfonts} 
+\usepackage{amsmath}
+
+\begin{document}
+Übungen zur linearen Algebra - Vektorräume
+\begin{enumerate}
+\item Ist der Polynomring $\mathbb R[X]$ mit der Addition ein $\mathbb R$-Vektorraum ?
+\item Gegeben seien die folgenden Vektoren in $\mathbb C^2 \\
+\vec{v}_1 = \begin{pmatrix} 1 \\ 0 \end{pmatrix}, \quad \vec{v}_2 = \begin{pmatrix} i \\ 0 \end{pmatrix}, \quad \vec{v}_3 = \begin{pmatrix} 0 \\ 1 \end{pmatrix}, \quad \vec{v}_4 = \begin{pmatrix} 0 \\ i \end{pmatrix}$ \\
+Zeigen Sie, daß die Vektoren über $K = \mathbb  C$ linear abhängig sind aber über $K = \mathbb R$ linear unabhängig.
+\item Ist $U$ ein Untervektoraum von $V$ ? Warum oder warum nicht.
+\begin{enumerate}
+\item $ U = \{ \begin{pmatrix} x \\ y \\ z \end{pmatrix} \in \mathbb R^3 | x + 2 y- z = 0 \} , \quad V = \mathbb R^3 $
+\item $ U = \{ \begin{pmatrix} x \\ y \end{pmatrix} \in \mathbb R^2 | x + y^2 = 0 \} , \quad V = \mathbb R^2 $
+\item $  
+        U = \{ (a_n)_{n \in \mathbb N} \in V | a_i \neq 0, \textrm{für höchstens endlich viele}\quad  i \in \mathbb N  \}   \\
+        V =  \{ (a_n)_{n \in \mathbb N} | a_i \in \mathbb R, \forall i \in \mathbb N \} $
+\item $ U = \{ f : \mathbb R \rightarrow \mathbb R | f(x) = f(-x), \quad\forall x \in \mathbb R \} , \quad V = Abb( \mathbb R, \mathbb R)$
+        
+\end{enumerate}
+\item Gegeben sind die Vektoren in $V = \mathbb R^4$ ( Achtung geändert !!!)\\
+$\vec{v}_1 = \begin{pmatrix} 2 \\ 1 \\ 1 \\ 3 \end{pmatrix}, \quad
+\vec{v}_2 = \begin{pmatrix} 0 \\ 1 \\ 2 \\ 3 \end{pmatrix}, \quad
+\vec{v}_3 = \begin{pmatrix} 1 \\ -1 \\ 0 \\ 0 \end{pmatrix}, \quad
+\vec{v}_4 = \begin{pmatrix} 0 \\ -1 \\ 1 \\ 0 \end{pmatrix} $ \\
+Zeigen Sie , daß $\{ \vec{v}_1, \vec{v}_2, \vec{v}_3, \vec{v}_4 \}$ eine Basis von $V$ ist. \\
+Stellen Sie den Vektor $\vec{a} = \begin{pmatrix} 0 \\ 5 \\ 2 \\ 6\end{pmatrix}$ in dieser Basis dar. 
+\end{enumerate}
+
+\end{document}
+
+
+

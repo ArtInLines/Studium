@@ -1,0 +1,452 @@
+\documentclass[hyperref={pdfpagelabels=false}]{beamer}
+\providecommand\thispdfpagelabel[1]{}
+% Die Hyperref Option hyperref={pdfpagelabels=false} verhindert die Warnung:
+% Package hyperref Warning: Option `pdfpagelabels' is turned off
+% (hyperref)                because \thepage is undefined. 
+% Hyperref stopped early 
+%
+
+\usepackage{lmodern}
+% Das Paket lmodern erspart die folgenden Warnungen:
+% LaTeX Font Warning: Font shape `OT1/cmss/m/n' in size <4> not available
+% (Font)              size <5> substituted on input line 22.
+% LaTeX Font Warning: Size substitutions with differences
+% (Font)              up to 1.0pt have occurred.
+%
+\usepackage{epstopdf}
+\usepackage{german}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{latexsym}
+\usepackage{newalg}
+\usepackage{ifthen}
+\usepackage{fancybox}
+\usepackage{fancyhdr}
+%\usepackage[dvips, dvipdfm]{graphicx}
+%\usepackage[pdftex]{color,graphicx}
+\usepackage{eurofont}
+\usepackage{aeguill}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage{wrapfig}
+\usepackage{mathrsfs}
+\usepackage{float}
+\usepackage{color}
+\usepackage{siunitx}
+
+\usepackage[utf8]{inputenc}
+%\usepackage{hyperref}
+
+\theoremstyle{plain}% default
+\newtheorem*{satz}{Satz} 
+\newtheorem*{hilf}{Lemma} 
+\newtheorem*{korollar}{Folgerung}
+\newtheorem*{regel}{Regel} 
+
+\theoremstyle{definition}
+%\newtheorem*{definition}{Definition} 
+\newtheorem*{aufgabe}{Aufgabe} 
+\newtheorem*{uebung}{Übung}
+\newtheorem*{sol}{Lösung:}
+
+\theoremstyle{remark}
+\newtheorem*{beispiel}{Beispiel} 
+\newtheorem*{notiz}{Bemerkung} 
+\newtheorem*{notation}{Notation}
+\newtheorem*{bez}{Bezeichnung} 
+
+\def \ii{{\relax\ifmmode \mathrm{i} \else i \fi}}
+\def \ee{{\relax\ifmmode \mathrm{e} \else e \fi}}
+\def \dd{{\relax\ifmmode \mathrm{d} \else d \fi}}
+\def \g{{\relax\ifmmode \mathrm{g} \else g \fi}}
+\def \R{\mathbb R}
+\def \C{\mathbb C}
+\def \Q{\mathbb Q}
+\def \N{\mathbb N}
+\def \Z{\mathbb Z}
+\def \F{\mathbb F}
+\def \A{\mathbb A}
+
+\newcommand{\vektor}[1]{\overrightarrow{#1}}   
+
+% tikz Anpassungen 
+
+\usepackage{lscape}
+\usepackage{gnuplot-lua-tikz}
+\usepackage{pgf,tikz}
+\usetikzlibrary{arrows,decorations.pathmorphing,backgrounds,positioning,fit,petri}
+
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\pgfplotsset{compat=newest}
+
+\usepackage{environ}
+\makeatletter
+
+\newsavebox{\measure@tikzpicture}
+\NewEnviron{scaletikzpicturetowidth}[1]{%
+  \def\tikz@width{#1}%
+  \def\tikzscale{1}\begin{lrbox}{\measure@tikzpicture}%
+  \BODY
+  \end{lrbox}%
+  \pgfmathparse{#1/\wd\measure@tikzpicture}%
+  \edef\tikzscale{\pgfmathresult}%
+  \BODY
+}
+\makeatother
+
+\setcounter{secnumdepth}{-1}
+
+
+% Wenn \titel{\ldots} \author{\ldots} erst nach \begin{document} kommen,
+% kommt folgende Warnung:
+% Package hyperref Warning: Option `pdfauthor' has already been used,
+% (hyperref) ... 
+% Daher steht es hier vor \begin{document}
+
+\title{Lineare Algebra \\ euklidische Vektorräume}   
+\author{ Reinhold Hübl} 
+\date{Wintersemester 2020/21} 
+
+% Dadurch wird verhindert, dass die Navigationsleiste angezeigt wird.
+%\setbeamertemplate{navigation symbols}{}
+
+% zusaetzlich ist das usepackage{beamerthemeshadow} eingebunden 
+\usepackage{beamerthemeshadow}
+\usetheme{CambridgeUS}
+
+%  \beamersetuncovermixins{\opaqueness<1>{25}}{\opaqueness<2->{15}}
+%  sorgt dafuer das die Elemente die erst noch (zukuenftig) kommen 
+%  nur schwach angedeutet erscheinen 
+\beamersetuncovermixins{\opaqueness<1>{25}}{\opaqueness<2->{12}}
+% klappt auch bei Tabellen, wenn teTeX verwendet wird\ldots
+\begin{document}
+
+
+\begin{frame}
+\titlepage
+\centering 
+    \scalebox{0.40}{\includegraphics{dhbw_ma_logo.eps}}
+ 
+\end{frame} 
+
+
+
+\section{euklidische Vektorräume}
+
+
+\begin{frame}
+\frametitle{Skalarprodukt}
+
+\begin{definition}
+Für zwei $n$--Vektoren $\vektor{v} = \left( \begin{matrix} v_1 \\ \vdots \\  v_n \end{matrix} 
+\right)$ und  $\vektor{w} = \left( \begin{matrix} w_1 \\  \vdots \\ w_n \end{matrix} \right)$ 
+heißt
+  	$$ \langle \vektor{v}, \vektor{w} \rangle := v_1 w_1 + \cdots + v_n w_n $$
+das \textbf{Skalarprodukt} von $\vektor{v}$ und $\vektor{w}$.
+\end{definition}
+
+\pause 
+\begin{beispiel}
+$ \langle  \left( \begin{matrix} 1 \\ 2 \\ 3  \end{matrix} \right), \,
+\left( \begin{matrix} 2 \\ 3 \\ 4   \end{matrix} \right) \rangle 
+= 1 \cdot 2 + 2 \cdot 3 + 3 \cdot 4  = 20$.
+\end{beispiel}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Skalarprodukt}
+
+\begin{regel}\label{uvr_regel_scalar} Für Vektoren $\vektor{v}$, $\vektor{w}$, 
+$\vektor{w_1}$ und $\vektor{w_2}$ und einen Skalar $r \in \mathbb R$ gilt:
+\begin{enumerate}
+\item<2-> $\langle \vektor{v}, \vektor{w} \rangle = \langle \vektor{w}, 
+\vektor{v} \rangle \qquad$ (\textit{Kommutativgesetz}).
+\item<3-> $\langle \vektor{v}, \vektor{w_1} + \vektor{w_2} \rangle = 
+\langle \vektor{v}, \vektor{w_1} \rangle + \langle \vektor{v}, 
+\vektor{w_2} \rangle \qquad$ (\textit{Distributivgesetz}).
+\item<4-> $\langle r \cdot \vektor{v}, \vektor{w} \rangle = r \cdot \langle \vektor{v}, 
+\vektor{w} \rangle \qquad$ (\textit{Skalarmultiplikation}).
+\item<5-> $\langle \vektor{v}, \vektor{v} \rangle = \vert \vektor{v} \vert^2$.
+\end{enumerate}
+\end{regel}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Satz von Cauchy--Schwarz}
+
+Zwei Vektoren $\vektor{v}$ und $\vektor{w}$ heißen \textbf{parallel} wenn einer ein positives 
+Vielfaches des anderen ist, und \textbf{anti--parallel}, wenn einer ein negatives Vielfaches des anderen ist. 
+
+\pause
+\begin{satz}[Satz von Cauchy--Schwarz]\label{uvr_cauchy_schwarz} 
+Für zwei Vektoren $\vektor{v}$ und $\vektor{w}$ gilt:
+\begin{enumerate}
+\item<3-> $ \vert \langle \vektor{v},  \vektor{w} \rangle \vert \leq \vert \vektor{v} 
+        \vert \cdot \vert \vektor{w} \vert $.
+\item<4-> Genau dann sind $\vektor{v}$ und $\vektor{w}$ parallel, wenn $\langle \vektor{v}, 
+\vektor{w} \rangle = \vert \vektor{v} \vert \cdot  \vert \vektor{w} \vert$.
+\item<5-> Genau dann sind $\vektor{v}$ und $\vektor{w}$ anti--parallel, wenn $\langle 
+\vektor{v}, \vektor{w} \rangle = 
+- \vert \vektor{v} \vert \cdot  \vert \vektor{w} \vert$.
+\item<6-> Genau dann sind $\vektor{v}$ und $\vektor{w}$ kollinear, wenn 
+$\vert \langle \vektor{v}, \vektor{w} \rangle \vert \, 
+= \vert \vektor{v} \vert \cdot  \vert \vektor{w} \vert$.
+\end{enumerate}
+\end{satz}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Skalarprodukt}
+
+\begin{satz}[Dreiecksungleichung]\label{uvr_dreiecks_ungleichung} 
+ Für Vektoren $\vektor{v}$, $\vektor{w}$ und einen Skalar $r \in \mathbb R$ gilt:
+
+\begin{enumerate}
+\item<2-> $\vert r \cdot \vektor{v} \vert \, = \, \vert r \vert \cdot \vert \vektor{v} \vert$.
+\item<3-> $\vert \vektor{v} + \vektor{w} \vert \, \leq \, \vert \vektor{v} \vert \, + \, \vert \vektor{w} \vert$.
+\end{enumerate}
+\end{satz}
+
+\pause \pause \pause 
+
+\begin{beispiel}
+Betrachte das Dreieck mit dem Ecken $(0,0)$, $(1,2)$, $(2,1)$. Dieses Dreieck wird beschrieben durch 
+	$$ \vektor{v} = \begin{pmatrix} 1 \\ 2 \end{pmatrix}, \quad \vektor{w} = \begin{pmatrix} 1 \\ -1 \end{pmatrix}, 
+	\quad \vektor{u} = \vektor{v} + \vektor{w} = \begin{pmatrix} 2 \\ 1 \end{pmatrix} $$
+und 
+	$$ \vert \vektor{u} \vert  = \sqrt{5} \leq \sqrt{5} + \sqrt{2} =  \vert \vektor{v} \vert +  \vert \vektor{w} \vert $$
+\end{beispiel}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Skalarprodukt}
+
+Aus dem Satz vo Cauchy--Schwarz folgt: \pause 
+
+Es gibt ein ein $\varphi \in [0, \pi]$ gibt mit 
+  	$$  \cos(\varphi) = \frac {\vert \langle \vektor{v},  \vektor{w} \rangle \vert}{\vert \vektor{v} \vert 
+  	\cdot  \vert \vektor{w} \vert} $$ \pause 
+Dieses $\varphi$ heißt der \textbf{Winkel} zwischen $\vektor{v}$ und 
+$\vektor{w}$. In der Ebene handelt es sich dabei in der Tat um den Winkel zwischen den beiden 
+Vektoren $\vektor{v}$ und $\vektor{w}$. 
+
+\pause 
+
+\begin{beispiel}
+Der Winkel zwischen $\vektor{v} = \begin{pmatrix} 1 \\ 1 \end{pmatrix}$ und $ \vektor{w} = \begin{pmatrix} 
+1 \\ - \sqrt{3} \end{pmatrix}$ ist $\frac {7}{12} \cdot \pi$ bzw. $105^{\circ}$, denn 
+	$$ \cos\left(\frac {7}{12} \cdot \pi\right) = \frac {1-\sqrt{3}}{2 \cdot \sqrt{2}} = 
+	\frac {\vert \langle \vektor{v},  \vektor{w} \rangle \vert}{\vert \vektor{v} \vert 
+  	\cdot  \vert \vektor{w} \vert} $$
+\end{beispiel}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Skalarprodukt}
+
+\begin{definition} Zwei $n$--dimensionale Vektoren $\vektor{v}$ und $\vektor{w}$ heißen 
+\index{Vektoren!orthogonal} \textbf{orthogonal}, wenn gilt
+  	$$ \langle \vektor{v},  \vektor{w} \rangle = 0 $$
+Wir sagen in diesem Fall auch, dass $\vektor{v}$ senkrecht auf $\vektor{w}$ steht und schreiben 
+$\vektor{v} \perp \vektor{w}$.
+\end{definition}
+
+\pause 
+
+\begin{beispiel} Die Vektoren  $\vektor{v} = \left( \begin{matrix} 1 \\ 2 \\ -3 \\ 1
+\end{matrix} \right)$ und  $\vektor{w} = \left( \begin{matrix} 2 \\ 4 \\ 4 \\ 2 
+\end{matrix} \right)$ sind orthogonal. 
+\end{beispiel}
+
+
+\end{frame}
+
+\begin{frame}
+\frametitle{orthogonales Komplement}
+
+\begin{definition} 
+Ist $V \subseteq \mathbb R^n$ ein Untervektorraum, so heißt die Menge
+  	$$ V^{\perp} = \{ \vektor{u} \in \mathbb R^n \vert \, 
+      \langle \vektor{u}, \vektor{v}  \rangle =  0 \, \textrm{ für alle } 
+      \vektor{v} \in V \} $$
+das \textbf{orthogonale Komplement} von $V$.
+\end{definition}
+
+\pause 
+\begin{notiz} Ist $V \subseteq \mathbb R^n$ ein Untervektorraum der 
+Dimension $l$, so ist $V^{\perp} \subseteq \mathbb R^n$ ein Untervektorraum der Dimension $n-l$.
+\end{notiz}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{orthogonales Komplement}
+
+\begin{beispiel}
+Das orthogonale Komplement von 
+ 	$$ V = \left\{ \left( \begin{matrix} t \\ t \end{matrix} \right) \,\, \vert \,\, t \in \R \right\} $$
+ist
+	$$ V^{\perp} = \left\{ \left( \begin{matrix} -t \\ t \end{matrix} \right) \,\, \vert \,\, t \in \R \right\} $$
+
+\end{beispiel}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{orthogonales Komplement}
+
+\begin{uebung}
+Bestimmen Sie das  orthogonale Komplement von 
+ 	$$ V = \left\{ \left( \begin{matrix} r+s \\ r \\ s  \end{matrix} \right) \,\, \vert \,\, t \in \R \right\} $$
+\end{uebung}
+
+\bigbreak
+\pause \pause 
+\begin{sol}
+	$$ V^{\perp} = \left\{ \left( \begin{matrix} -t \\ t \\ t \end{matrix} \right) \,\, \vert \,\, t \in \R \right\} $$
+
+\end{sol}
+\end{frame}
+
+\begin{frame}
+\frametitle{Skalarprodukt}
+numerisch stabile Basis
+
+\begin{figure}[H]
+	\vspace{-0.9cm}
+	\begin{center}
+	\begin{scaletikzpicturetowidth}{0.8\textwidth}
+     		\input{la_03_vr_2000.tex} 
+	\end{scaletikzpicturetowidth}
+	\end{center}
+	\vspace{-1.2cm}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Skalarprodukt}
+numerisch instabile Basis
+
+\begin{figure}[H]
+	\vspace{-0.9cm}
+	\begin{center}
+	\begin{scaletikzpicturetowidth}{0.8\textwidth}
+     		\input{la_03_vr_2010.tex} 
+	\end{scaletikzpicturetowidth}
+	\end{center}
+	\vspace{-1.2cm}
+\end{figure}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Skalarprodukt}
+
+Für numerische Berechnungen sind Basen $\vektor{v_1}, \ldots, \vektor{v_m}$  von Vektorräumen und 
+Untervektorräumen $V$ besonders dann sinnvoll, wenn Sie die folgenden Bedingungen erfüllen: 
+
+\begin{itemize} 
+\item<2-> Alle Vektoren sind normiert, dh. $\vert \vektor{v_i} \vert = 1$ für alle $i$. 
+\item<3-> Alle Vektoren stehen paarweise senkrecht aufeinander, dh. $\langle \vektor{v_i}, \, \vektor{v_j} \rangle = 0$ für 
+$i \neq j$. 
+\end{itemize}
+
+\pause \pause \pause 
+\bigbreak
+\begin{definition} Eine Basis, die diese Bedingungen erfüllt, heißt eine \textbf{Orthonormalbasis} (ONB) von $V$. 
+\end{definition}
+\end{frame}
+
+\begin{frame}
+\frametitle{Orthonormalbasen}
+
+\begin{satz}\label{uvr_gram_schmidt} Jeder Untervektorraum $U$ des $\mathbb R^n$ besitzt eine 
+Orthonormalbasis.
+\end{satz}
+
+\pause
+
+Das Vorgehen ist dabei wie folgt: 
+
+\begin{itemize}
+\item<3-> Der Vektor $ \vektor{v_1}$ wird zunächst unverändert als Vektor $\vektor{u_1}$ übernommen.
+\item<4-> Die Vektoren $\vektor{v_2}, \ldots, \vektor{v_m}$ werden sukkzessive so zu Vektoren $\vektor{u_2}, 
+\ldots, \vektor{u_m}$ abgeändert, dass sie paarweise orthogonal sind. 
+\item<5-> Die Vektoren $\vektor{u_1}, \ldots, \vektor{u_m}$ werden normiert: $\vektor{w_i} = 
+\frac {1}{\vert \vektor{u_i}} \cdot \vektor{u_i}$. 
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Orthonormalbasen}
+
+\begin{beispiel}
+Die Orthonormalbasis zur Basis 
+  	$$ \vektor{u_1} = \left( \begin{matrix} 1 \\ 1 \\ 0 \end{matrix} \right), \quad 
+   	\vektor{u_2} = \left( \begin{matrix} 1 \\ 0 \\ 1 \end{matrix} \right), \quad 
+   	\vektor{u_3} = \left( \begin{matrix} 0 \\ 1\\ 1 \end{matrix} \right)  $$
+des $\R^3$ ist \pause \pause 
+  	$$ \vektor{w_1} = \frac {\sqrt{2}}{2} \cdot \left( \begin{matrix} 1 \\ 1 \\ 0 \end{matrix} \right), \quad 
+   	\vektor{w_2} = \frac {\sqrt{6}}{6} \cdot \left( \begin{matrix} 1 \\ -1 \\ 2 \end{matrix} \right), \quad 
+   	\vektor{w_3} = \frac {\sqrt{3}}{6} \cdot \left( \begin{matrix} -2 \\ 2 \\ 2 \end{matrix} \right)  $$
+ 
+\end{beispiel}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Orthonormalbasen}
+
+\begin{uebung}
+Bestimmen Sie die Orthormalbasis zur Basis 
+  	$$ \vektor{u_1} = \left( \begin{matrix} 1 \\ 2 \\ 2 \end{matrix} \right), \quad 
+   	\vektor{u_2} = \left( \begin{matrix} 2 \\ 0 \\ 1 \end{matrix} \right), \quad 
+   	\vektor{u_3} = \left( \begin{matrix} 2 \\ 1\\ 1 \end{matrix} \right)  $$
+des $\R^3$
+\end{uebung}
+
+\pause \pause 
+
+\begin{sol}
+Die zugehörige ONB ist 
+  	$$ \vektor{w_1} = \frac {1}{3} \cdot \left( \begin{matrix} 1 \\ 2 \\ 2 \end{matrix} \right), \quad 
+   	\vektor{w_2} = \frac {\sqrt{29}}{87} \cdot \left( \begin{matrix} 14 \\ -8 \\ 1 \end{matrix} \right), \quad 
+   	\vektor{w_3} = \frac {\sqrt{29}}{783} \cdot \left( \begin{matrix} 54 \\ 81 \\ -108 \end{matrix} \right)  $$
+
+\end{sol}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Orthonormalbasen}
+
+\begin{uebung}
+Bestimmen Sie die Orthormalbasis zur Basis 
+  	$$ \vektor{u_1} = \left( \begin{matrix} 1 \\ 2 \\ 3 \end{matrix} \right), \quad 
+   	\vektor{u_2} = \left( \begin{matrix} 3 \\ 2 \\ 1 \end{matrix} \right), \quad 
+   	\vektor{u_3} = \left( \begin{matrix} 1 \\ 1\\ 1 \end{matrix} \right)  $$
+des $\R^3$
+\end{uebung}
+
+\pause \pause 
+
+\begin{sol}
+Das Verfahren bricht ab; Sie erhalten
+  	$$ \vektor{v_3} = \vektor{0}  $$
+Das bedeutet, dass die Vektoren $\vektor{u_1}$, $\vektor{u_2}$ und $\vektor{u_3}$ keine 
+Basis von $\R^3$ bilden. 
+\end{sol}
+
+\end{frame}
+
+\end{document}

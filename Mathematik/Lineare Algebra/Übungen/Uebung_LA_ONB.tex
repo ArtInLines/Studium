@@ -1,0 +1,30 @@
+\documentclass[a4paper]{article}
+\usepackage{ifthen}
+\usepackage{german}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+ \usepackage{amsfonts} 
+\usepackage{amsmath}
+
+\begin{document}
+Übungen zur linearen Algebra - Vektorräume
+\begin{enumerate}
+\item $U$ und $V$ seien zwei $\mathbb K$-Vektorräume mit $dim(U) = m$ und $dim(V) = n$. Wir definieren das kartesische Produkt $W = U \times V$ mit den Verknüpfungen \\
+$( u_1, v_1) + ( u_2, v_2 ) := ( u_1 + u_2, v_1 + v_2) \quad r\cdot( u, v ) := ( r\cdot u, r \cdot v ) $ \\
+$W$ ist ebenfalls $\mathbb K$-Vektorraum. Zeigen Sie : $dim( W ) = m + n$
+\item Bestimmen sie zum Untervektoraum $U$ des $\mathbb R^3$ jeweils den orthogonalen Untervektorraum $U^\perp$ durch Angabe einer Basis
+\begin{enumerate}
+\item $ U = \{ \begin{pmatrix} x \\ y \\ z \end{pmatrix} | x +  y - z = 0 \} $
+\item $ U = \{ \begin{pmatrix} 2r + s \\ r - s \\ r  \end{pmatrix}  | r, s \in \mathbb R \}  $
+\end{enumerate}
+\item Benutzen sie das Gram-Schmidtsche Orthogonalisierungsverfahren, um eine ONB aus den Vektoren \\
+$\begin{pmatrix} 3 \\ 4 \\ 12  \end{pmatrix} \quad  \begin{pmatrix} 1 \\ -1 \\ 0  \end{pmatrix}  \quad \begin{pmatrix} 0 \\ 2 \\ 1  \end{pmatrix} $\\
+zu erzeugen.
+\item (für Spezialisten) Im Vekktorraum der Polynome höchstens dritten Grades definieren wir das Sklarprodukt (ohne Beweis)
+$< f, g > := \int_0^1 f(x) g(x) dx$. Geben sie zum Polynom $f(x) = 2x -1$ ein orthogonales an.  
+\end{enumerate}
+
+\end{document}
+
+
+

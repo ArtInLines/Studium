@@ -1,0 +1,155 @@
+% Headerdatei
+
+% Allgemeines
+\usepackage[utf8]{inputenc}	% zur richtigen Darstellung der Schriften/Sonderzeichen
+\usepackage[T1]{fontenc}	% T1-Font auswählen
+\usepackage[ngerman]{babel} % deutsche Rechtschreibung (u.a. Trennregeln)
+\usepackage[dvips, dvipdfm]{graphicx}
+% \usepackage{graphicx}		% Einbinden von Graphiken
+\usepackage[dvipsnames]{xcolor}
+%\usepackage{color}			% Farben
+\usepackage{eurosym}
+
+% Mathematisches
+\usepackage[namelimits,sumlimits,intlimits]{amsmath}	% Matheumgebungen
+\usepackage{amsfonts}		% mathematische Schriften
+\usepackage{amssymb}		% mathematische Symbole
+\usepackage{amsthm}			% Satzumgebungen
+\usepackage{stmaryrd}		% Pfeil-Symbole (z.B.\lightning)
+\usepackage{cancel}			% Formeln durchstreichen
+\usepackage{calc}			% damit man rechnen kann
+\usepackage{siunitx}		% \angle, \num, physikal. Einheiten
+\usepackage{esvect}  		% Erzeugt Vektorpfeile
+\usepackage{extarrows}		% erzeugt Text über/unter Folgepfeilen
+\usepackage{polynom}		% Polynomdivision 
+\usepackage{wasysym}		% Auflistungszeichen
+\usepackage{fancybox}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage{mcode}	
+\usepackage{nicefrac}
+
+\usepackage{mathrsfs}
+\usepackage{makeidx}
+
+
+% Umgebungen für Sätze, Bemerkungen, etc.
+\theoremstyle{plain}% default
+\newtheorem{satz}{Satz}[section]
+\newtheorem{folgerung}[satz]{Folgerung}
+\newtheorem{lemma}[satz]{Hilfssatz} 
+\newtheorem{korollar}[satz]{Folgerung}
+\newtheorem{regel}[satz]{Regel} 
+\newtheorem{bezeichnung}[satz]{Bezeichnung}
+
+\theoremstyle{definition}
+\newtheorem{beispiel}{Beispiel}[section]
+%\newtheorem{bemerkung}{Bemerkung}[section]
+\newtheorem{definition}{Definition}[section]
+\newtheorem{notiz}{Bemerkung}[section]
+\newtheorem{aufgabe}{Aufgabe}[section]
+\newtheorem{sol}{Lösung}
+
+\def \ii{{\relax\ifmmode \mathrm{i} \else i \fi}}
+\def \ee{{\relax\ifmmode \mathrm{e} \else e \fi}}
+\def \dd{{\relax\ifmmode \mathrm{d} \else d \fi}}
+\def \g{{\relax\ifmmode \mathrm{g} \else g \fi}}
+\def \R{\mathbb R}
+\def \C{\mathbb C}
+\def \Q{\mathbb Q}
+\def \N{\mathbb N}
+\def \Z{\mathbb Z}
+\def \F{\mathbb F}
+\def \A{\mathbb A}
+
+\newcommand{\vektor}[1]{\overrightarrow{#1}}             		% Vektoren mit Pfeil
+
+\def \bemerkung#1{\vskip 6pt\relax{\bf #1: \\}}
+\def \beweisvon#1{\medskip\noindent {\sl Beweis von #1:\ }}
+\def \det#1{\medskip\noindent {\mathrm{det}\left(#1\right) }}
+\newcommand{\beweis}[1]
+{\begingroup \textbf{Beweis:} #1 \endgroup}
+
+% Referenzen
+\usepackage{hyperref}		% Referenzen
+
+% Zeilenabstand 1,2 Zeilen
+\linespread{1.2}
+
+% KeinZeileneinzug
+\parindent = 0pt
+
+% Zahlenformatierung
+%\sisetup{output-decimal-marker={,}}
+
+% Stil der Aufgabenstellung
+
+\newcommand{\aufgabenname}[1]{
+		\begingroup
+		\renewcommand{\textsc}[1]{{\rmfamily\scshape##1}}
+		\renewcommand{\emph}[1]{{\normalfont##1}}
+		\sffamily\slshape\color{green}
+		\textbf{\hfill \\Aufgabenname: }#1
+		\endgroup
+}
+
+% Stil der Aufgabenstellung
+\newcommand{\aufgabenstellung}[1]{\begin{aufgabe}#1\end{aufgabe}}
+
+% Stil des Lösungswegs
+	\newcommand{\loesungsweg}[1]{
+		\begingroup
+		\renewcommand{\textsc}[1]{{\rmfamily\scshape##1}}
+		\renewcommand{\emph}[1]{{\normalfont##1}}
+		\addtokomafont{subsection}{\color{red}}
+		\addtokomafont{subsubsection}{\color{red}}
+		\addtokomafont{caption}{\color{red}}
+		\addtokomafont{captionlabel}{\color{red}}
+		\sffamily\slshape\color{red}
+		\textbf{\hfill \\Lösungsweg/Erklärung: }#1
+		\endgroup
+}
+
+% Stil der Lösung
+	\newcommand{\loesung}[1]{
+		\begingroup
+		\renewcommand{\textsc}[1]{{\rmfamily\scshape##1}}
+		\renewcommand{\emph}[1]{{\normalfont##1}}
+		\addtokomafont{subsection}{\color{red}}
+		\addtokomafont{subsubsection}{\color{red}}
+		\addtokomafont{caption}{\color{red}}
+		\addtokomafont{captionlabel}{\color{red}}
+		\sffamily\slshape\color{red}
+		\textbf{\hfill \\Lösung: }#1
+		\endgroup
+}
+
+\DeclareTextCommandDefault{\textperiodcentered}
+	{\rmfamily\UseTextSymbol{OMS}{\textperiodcentered}}
+
+% tikz Anpassungen 
+
+\usepackage{lscape}
+\usepackage{gnuplot-lua-tikz}
+\usepackage{pgf,tikz}
+\usetikzlibrary{arrows,decorations.pathmorphing,backgrounds,positioning,fit,petri}
+
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\pgfplotsset{compat=newest}
+
+\usepackage{environ}
+\makeatletter
+
+\newsavebox{\measure@tikzpicture}
+\NewEnviron{scaletikzpicturetowidth}[1]{%
+  \def\tikz@width{#1}%
+  \def\tikzscale{1}\begin{lrbox}{\measure@tikzpicture}%
+  \BODY
+  \end{lrbox}%
+  \pgfmathparse{#1/\wd\measure@tikzpicture}%
+  \edef\tikzscale{\pgfmathresult}%
+  \BODY
+}
+\makeatother
+

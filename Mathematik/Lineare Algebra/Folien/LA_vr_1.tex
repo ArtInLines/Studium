@@ -1,0 +1,804 @@
+\documentclass[hyperref={pdfpagelabels=false}]{beamer}
+\providecommand\thispdfpagelabel[1]{}
+% Die Hyperref Option hyperref={pdfpagelabels=false} verhindert die Warnung:
+% Package hyperref Warning: Option `pdfpagelabels' is turned off
+% (hyperref)                because \thepage is undefined. 
+% Hyperref stopped early 
+%
+
+\usepackage{lmodern}
+% Das Paket lmodern erspart die folgenden Warnungen:
+% LaTeX Font Warning: Font shape `OT1/cmss/m/n' in size <4> not available
+% (Font)              size <5> substituted on input line 22.
+% LaTeX Font Warning: Size substitutions with differences
+% (Font)              up to 1.0pt have occurred.
+%
+\usepackage{epstopdf}
+\usepackage{german}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{latexsym}
+\usepackage{newalg}
+\usepackage{ifthen}
+\usepackage{fancybox}
+\usepackage{fancyhdr}
+%\usepackage[dvips, dvipdfm]{graphicx}
+%\usepackage[pdftex]{color,graphicx}
+\usepackage{eurofont}
+\usepackage{aeguill}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage{wrapfig}
+\usepackage{mathrsfs}
+\usepackage{float}
+\usepackage{color}
+\usepackage{siunitx}
+
+\usepackage[utf8]{inputenc}
+%\usepackage{hyperref}
+
+\theoremstyle{plain}% default
+\newtheorem*{satz}{Satz} 
+\newtheorem*{hilf}{Lemma} 
+\newtheorem*{korollar}{Folgerung}
+\newtheorem*{regel}{Regel} 
+
+\theoremstyle{definition}
+%\newtheorem*{definition}{Definition} 
+\newtheorem*{aufgabe}{Aufgabe} 
+\newtheorem*{uebung}{Übung}
+\newtheorem*{sol}{Lösung:}
+
+\theoremstyle{remark}
+\newtheorem*{beispiel}{Beispiel} 
+\newtheorem*{notiz}{Bemerkung} 
+\newtheorem*{notation}{Notation}
+\newtheorem*{bez}{Bezeichnung} 
+
+\def \ii{{\relax\ifmmode \mathrm{i} \else i \fi}}
+\def \ee{{\relax\ifmmode \mathrm{e} \else e \fi}}
+\def \dd{{\relax\ifmmode \mathrm{d} \else d \fi}}
+\def \g{{\relax\ifmmode \mathrm{g} \else g \fi}}
+\def \R{\mathbb R}
+\def \C{\mathbb C}
+\def \Q{\mathbb Q}
+\def \N{\mathbb N}
+\def \Z{\mathbb Z}
+\def \F{\mathbb F}
+\def \A{\mathbb A}
+
+\newcommand{\vektor}[1]{\overrightarrow{#1}}   
+
+% tikz Anpassungen 
+
+\usepackage{lscape}
+\usepackage{gnuplot-lua-tikz}
+\usepackage{pgf,tikz}
+\usetikzlibrary{arrows,decorations.pathmorphing,backgrounds,positioning,fit,petri}
+
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\pgfplotsset{compat=newest}
+
+\usepackage{environ}
+\makeatletter
+
+\newsavebox{\measure@tikzpicture}
+\NewEnviron{scaletikzpicturetowidth}[1]{%
+  \def\tikz@width{#1}%
+  \def\tikzscale{1}\begin{lrbox}{\measure@tikzpicture}%
+  \BODY
+  \end{lrbox}%
+  \pgfmathparse{#1/\wd\measure@tikzpicture}%
+  \edef\tikzscale{\pgfmathresult}%
+  \BODY
+}
+\makeatother
+
+\setcounter{secnumdepth}{-1}
+
+
+% Wenn \titel{\ldots} \author{\ldots} erst nach \begin{document} kommen,
+% kommt folgende Warnung:
+% Package hyperref Warning: Option `pdfauthor' has already been used,
+% (hyperref) ... 
+% Daher steht es hier vor \begin{document}
+
+\title{Lineare Algebra \\ Vektorräume}   
+\author{ Reinhold Hübl} 
+\date{Wintersemester 2020/21} 
+
+% Dadurch wird verhindert, dass die Navigationsleiste angezeigt wird.
+%\setbeamertemplate{navigation symbols}{}
+
+% zusaetzlich ist das usepackage{beamerthemeshadow} eingebunden 
+\usepackage{beamerthemeshadow}
+\usetheme{CambridgeUS}
+
+%  \beamersetuncovermixins{\opaqueness<1>{25}}{\opaqueness<2->{15}}
+%  sorgt dafuer das die Elemente die erst noch (zukuenftig) kommen 
+%  nur schwach angedeutet erscheinen 
+\beamersetuncovermixins{\opaqueness<1>{25}}{\opaqueness<2->{15}}
+% klappt auch bei Tabellen, wenn teTeX verwendet wird\ldots
+\begin{document}
+
+
+\begin{frame}
+\titlepage
+\centering 
+    \scalebox{0.40}{\includegraphics{dhbw_ma_logo.eps}}
+ 
+\end{frame} 
+
+
+
+\section{Vektorräume}
+
+
+\begin{frame}
+\frametitle{Vektorraum}
+
+Wir betrachten einen beliebigen Körper $K$.
+
+\pause 
+
+\begin{definition} Ein \textbf{$K$--Vektorraum} ist eine 
+nichtleere Menge $V$ zusammen mit einer Addition 
+  	$$ '+': V \times V \longrightarrow V, \quad (\vektor{v}, \vektor{w}) 
+     	\longmapsto \vektor{v} + \vektor{w} $$
+und einer Skalarmultiplikation 
+  	$$ '\cdot': K \times V \longrightarrow V, \quad (r, \vektor{v}) 
+     	\longmapsto r \cdot \vektor{v} $$
+so dass für $\vektor{u}, \vektor{v}$ und 
+$\vektor{w}$ in $V$ und Skalare $r$ und $s$ in $K$ gilt:
+
+\end{definition}
+\end{frame}
+
+\begin{frame}
+\frametitle{Vektorraum}
+
+\begin{definition}
+\begin{tabular} {l l c l}
+$V1:$ & $\left(\vektor{u} + \vektor{v} \right) + \vektor{w} = 
+\vektor{u} + \left(\vektor{v} + \vektor{w} \right)$ & $\,$ &
+(1. Assoziativgesetz) \\
+$V2:$ & $\vektor{v} + \vektor{w} = \vektor{w} + 
+\vektor{v}$ & & (Kommutativgesetz) \\
+$V3:$ & Es existiert ein Element $\vektor{0} \in V$ & & \\
+& mit  $\vektor{v} + \vektor{0} = \vektor{v}$ & & (neutrales 
+Element \\
+& & & der Addition) \\
+$V4:$ & Zu jedem $\vektor{v} \in V$ existiert ein  
+& & \\
+& $-\vektor{v} \in V$ mit $\vektor{v} + (- \vektor{v}) = \vektor{0}$ & &
+(inverses Element \\
+& & & der Addition) \\
+$V5:$ & $(r \cdot s) \cdot \vektor{v} = r \cdot ( s \cdot \vektor{v})$ 
+& & (2. Assoziativgesetz) \\
+$V6:$ & $r \cdot (\vektor{v} + \vektor{w}) = r \cdot 
+\vektor{v} + r \cdot \vektor{w}$ & & (1. Distributivgesetz) \\
+$V7:$ & $(r + s) \cdot \vektor{v} = r \cdot \vektor{v} + 
+s \cdot \vektor{v}$ & & (2. Distributivgesetz) \\
+$V8:$ & $ 1 \cdot \vektor{v} = \vektor{v}$ & & (neutrales Element \\
+& & & der Multiplikation)
+\end{tabular}
+\end{definition}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Vektorraum}
+
+Die ersten vier Bedingungen besagen, dass $(V,+)$ eine kommutative Gruppe ist. 
+
+\bigbreak
+
+\pause 
+Die letzten vier Bedingungen sind Anforderungen an die Skalarmultiplikation. 
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Vektorraum}
+
+\begin{beispiel}
+Wir betrachten $K = \R$ und $V = \R^n$ zusammen mit der komponentenweisen Addition \pause 
+  	$$ \left( \begin{matrix} v_1 \\ \vdots \\ v_n 
+     	\end{matrix} \right) + \left( \begin{matrix} w_1 \\ \vdots \\ w_n 
+     	\end{matrix} \right) = \left( \begin{matrix} v_1 + w_1 \\ \vdots \\ 
+     	v_n + w_n  \end{matrix} \right) $$ 
+%($v_i, w_i \in \R$) 
+und der komponentenweisen Skalarmultiplikation \pause 
+  	$$ r \cdot \left( \begin{matrix} v_1 \\ \vdots \\ v_n 
+     	\end{matrix} \right) = \left( \begin{matrix} r \cdot v_1 \\ \vdots \\ 
+     	r \cdot v_n \end{matrix} \right) $$
+%($r, v_i \in \R$).
+
+\pause 
+
+\medbreak
+Dann ist $\R^n$ ein $\R$--Vektorraum.  
+
+\end{beispiel}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Vektorraum}
+
+\begin{beispiel}
+Der Nullvektor 
+	$$ \vektor{0} = \begin{pmatrix} 0 \\ \vdots \\ 0 \end{pmatrix} $$
+ist dabei das neutrale Element der Addition. 
+
+\pause
+Der negative Vektor $- \vektor{v}$ zu 
+einem $n$--dimensionalen reellen Vektor ist gegeben durch 
+	$$ - \vektor{v} = \begin{pmatrix} -v_1 \\ \vdots \\ - v_n \end{pmatrix} $$
+\end{beispiel}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Vektorraum}
+
+\begin{beispiel}\label{LA_vr_cn} Das $n$--fache kartesische Produkt von $\mathbb C$, also die Menge
+  	$$ \mathbb C^n := \{ \left( \begin{matrix} z_1 \\ \vdots \\ z_n 
+     	\end{matrix} \right) \vert \, z_i \in \mathbb C \} $$
+zusammen mit der komponentenweisen Addition und der komponentenweisen Skalarmultiplikation
+  	$$ \left( \begin{matrix} y_1 \\ \vdots \\ y_n 
+     	\end{matrix} \right) + \left( \begin{matrix} z_1 \\ \vdots \\ z_n 
+     	\end{matrix} \right) = \left( \begin{matrix} y_1 + z_1 \\ \vdots \\ 
+     	y_n + z_n  \end{matrix} \right), \qquad 
+	 a \cdot \left( \begin{matrix} z_1 \\ \vdots \\ z_n 
+     	\end{matrix} \right) = \left( \begin{matrix} a \cdot z_1 \\ \vdots \\ 
+     	a \cdot z_n \end{matrix} \right) $$
+($a, y_i, z_i \in \mathbb C$) ist ein $\mathbb C$--Vektorraum. 
+\end{beispiel} 
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Vektorraum}
+
+\begin{uebung}
+Bestimmen Sie 
+  	$$ \left( \begin{matrix} 1 \\ 2 \\ 3 \\5  \end{matrix} \right) 
+	+ \left( \begin{matrix} 3 \\  - 3 \\ 4 \\  2 \end{matrix} \right) $$
+\end{uebung}
+
+\pause \pause 
+
+\begin{sol}
+  	$$ \left( \begin{matrix} 1 \\ 2 \\ 3 \\5  \end{matrix} \right) 
+	+ \left( \begin{matrix} 3 \\  - 3 \\ 4 \\  2 \end{matrix} \right) 
+	= \left( \begin{matrix} 4 \\ -1 \\ 7 \\ 7  \end{matrix} \right) $$
+
+\end{sol}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Vektorraum}
+
+\begin{beispiel} Die Zahlenebene $\R^2$ ist ein $\R$--Vektorraum, der Vektorraum der ebenen Vektoren, die 
+durch Pfeile in der Ebenen dargestellt werden. 
+\end{beispiel}
+
+\pause 
+
+\bigbreak
+
+\begin{beispiel}
+Der Raum $\R^3$ ist ein $\R$--Vektorraum, der Vektorraum der räumlichen Vektoren, die 
+durch Pfeile im Raum dargestellt werden.
+\end{beispiel}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Vektorraum}
+
+\begin{beispiel} Das $n$--fache kartesische Produkt von $\mathbb F_2$, also die Menge
+  	$$ \mathbb F_2^n := \{ \left( \begin{matrix} a_1 \\ \vdots \\ a_n 
+     	\end{matrix} \right) \vert \, a_i \in \mathbb C \} $$
+zusammen mit komponentenweiser Addition und Skalarmultiplikation ist ein 
+$\mathbb F_2$--Vektorraum.  \pause
+
+Bei $\mathbb F_2^n$ handelt es sich um die $n$--Tupel binärer Zahlen, die sich 
+komplett auflisten lassen. So gilt etwa 
+  	$$ \mathbb F_2^2 := \{ \left( \begin{matrix} 0 \\ 0 \end{matrix} \right),
+   	\left( \begin{matrix} 0 \\ 1 \end{matrix} \right), 
+   	\left( \begin{matrix} 1 \\ 0 \end{matrix} \right),
+   	\left( \begin{matrix} 1 \\ 1 \end{matrix} \right) \} $$ \pause 
+Insbesondere ist also $\mathbb F_2^n$ eine endliche Menge mit $ \vert \mathbb F_2^n \vert \, = 2^n $.
+
+\end{beispiel}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Vektorraum}
+
+\begin{beispiel} 
+Wir betrachten die Menge 
+	$$ V = \mathrm{Abb}(\N, \R) = \{ f: \N \longrightarrow \R \, \text{ Abbildung }\} $$
+aller Abbildungen von $\N$ nach $\R$. \pause  Für $f, g \in V$ definieren wir $f+g$ durch 
+	$$ (f+g)(n) = f(n) + g(n) \qquad \text{ für alle } n \in N $$ \pause
+Für $f \in V$ und $r \in \R$ definieren wir $r \cdot f$ durch
+	$$ (r \cdot f)(n) = r \cdot f(n) \qquad \text{ für alle } n \in N $$
+Dann ist $V$ ein $\R$--Vektorraum. 
+
+\pause 
+In dieser Situation schreibt man häufig $f_n$ für $f(n)$ und $\left(f_n\right)_{n \in \N}$ für $f$ und nennt 
+ein Element $\left(f_n\right)_{n \in \N}$ eine \textbf{reelle Zahlenfolge}. Der Raum $V$ heißt auch 
+Vektorraum der Folgen.
+\end{beispiel}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Vektorraum}
+
+\begin{beispiel}
+Wir betrachten ein Intervall $ I \subseteq \mathbb R$ und die Menge 
+	$$ V = \mathrm{Abb}(I, \R) = \{ f: I \longrightarrow \R \, \text{ Abbildung }\} $$
+aller Abbildungen von $I$ nach $\R$. \pause  Für $f, g \in V$ definieren wir $f+g$ durch 
+	$$ (f+g)(x) = f(x) + g(x) \qquad \text{ für alle } x \in I $$ \pause
+Für $f \in V$ und $r \in \R$ definieren wir $r \cdot f$ durch
+	$$ (r \cdot f)(x) = r \cdot f(x) \qquad \text{ für alle } x \in I $$
+Dann ist $V$ ein $\R$--Vektorraum, der Vektorraum der reellwertigen Abbildungen auf $I$. 
+
+\pause 
+Fordern wir zusätzlich, dass die Abbildungen stetig, differenzierbar, beliebig oft differenzierbar sind, 
+so erhalten wir ebenfalls Vektorräume. 
+\end{beispiel}
+
+\end{frame}
+
+\section{Untervektorräume}
+
+\begin{frame}
+\frametitle{Untervektorraum}
+
+\begin{definition} Ist $V$ ein $K$--Vektorraum und  ist $U \subseteq V$ eine 
+Teilmenge, so heißt $U$ \textbf{Untervektorraum} von $V$ wenn gilt:
+
+\begin{enumerate}
+\item<2-> $U \neq \emptyset$. 
+\item<3-> Sind $\vektor{v}, \vektor{w} \in U$ so ist auch 
+$\vektor{v} + \vektor{w} \in U$.
+\item<4-> Ist $\vektor{v} \in U$ und ist $\kappa \in K$ ein Skalar, so ist 
+auch $\kappa \cdot \vektor{v} \in U$.
+\end{enumerate}
+\end{definition}
+
+\pause 
+
+\begin{notiz}
+Ist $U \subseteq V$ ein Untervektorraum, so ist der Nullvektor $\vektor{0} \in U$. 
+\end{notiz}
+
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Untervektorraum}
+
+\begin{beispiel}
+Die Menge 
+	$$ U = \left\{ \begin{pmatrix} 2 t \\ 0 \end{pmatrix} \, \, \vert \, t \in \R \right\} 
+	\subseteq \R^2 $$
+ist ein Untervektorraum von $\R^2$. 
+\end{beispiel}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Untervektorraum}
+
+\begin{uebung}
+Überprüfen Sie, ob die Menge 
+	$$ U = \left\{ \begin{pmatrix} -2 t \\ 2 \end{pmatrix} \, \, \vert \, t \in \R \right\} 
+	\subseteq \R^2 $$
+ein Untervektorraum von $\R^2$ ist. 
+\end{uebung}
+
+\pause \pause 
+\bigbreak
+
+\begin{sol}
+ $U$ ist kein Untervektorraum von $\R^2$. 
+\end{sol}
+\end{frame}
+
+\section{Der $n$--dimensionale reelle Raum}
+
+\begin{frame}
+\frametitle{Der $\R^n$}
+
+Der vielleicht wichtigste Vektorraum in der Anwendung ist der $\R^n$, der \textbf{$n$--dimensionale 
+reelle Raum}. \pause Die Vektorraumoperationen sind in diesem Fall sehr einfach zu beschreiben. 
+
+\pause 
+
+\begin{definition}
+Ein Vektor 
+	$$ \vektor{v} = \begin{pmatrix} v_1 \\ \vdots \\ v_n \end{pmatrix} \quad \in \R^n $$
+heißt \textbf{$n$--dimensionaler reeller Vektor}, die Größe
+	$$ \vert \vektor{v} \Vert = \sqrt{v_1^2 + \cdots v_n^2} $$
+heißt \textbf{Länge} des Vektors $\vektor{v}$.
+\end{definition}
+\end{frame}
+
+\begin{frame}
+\frametitle{linear unabhängig}
+
+\begin{definition}\label{uvr_lin_unab} 
+Vektoren  $\vektor{v_1}, \vektor{v_2}, \ldots, \vektor{v_m} \in \R^n$ 
+heißen \textbf{linear abhängig}, wenn es reelle Zahlen $r_1, r_2, \ldots, r_m$ gibt, 
+von denen mindestens eine von Null verschieden ist, mit
+  	$$ r_1 \cdot \vektor{v_1} + r_2 \cdot  \vektor{v_2} + \cdots + r_m 
+     	\cdot \vektor{v_m} = \vektor{0} $$ \pause 
+Andernfalls heißen sie \textbf{linear unabhängig}.
+\end{definition}
+
+\pause 
+\begin{notiz} Die Bedingung für lineare Unabhängigkeit kann auch so formuliert werden: \pause Sind $r_1,  r_2, 
+\ldots, r_m$ reelle Zahlen mit 
+  	$$ r_1 \cdot \vektor{v_1} + r_2 \cdot  \vektor{v_2} + \cdots + r_m \cdot \vektor{v_m} = \vektor{0} $$
+so muss schon gelten: $r_1 = r_2 = \cdots = r_m = 0$.
+\end{notiz}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{linear unabhängig}
+
+\begin{beispiel} 
+Die Vektoren 
+	$$ \vektor{v_1} = \left( \begin{matrix} 1 \\ 2 \\ -3 \\ 2 \end{matrix} \right), \qquad 
+	\vektor{v_2} = \left( \begin{matrix} -2 \\ -4 \\ 6 \\ -4 \end{matrix} \right) $$ 
+sind linear abhängig.
+\end{beispiel}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{linear unabhängig}
+
+\begin{beispiel} 
+Die Vektoren 
+	$$ \vektor{v_1} = \left( \begin{matrix} 1 \\ 2 \\ 3 \\ 4 \end{matrix} \right), \qquad 
+	\vektor{v_2} = \left( \begin{matrix} 1 \\ 1 \\ 1 \\ 1 \end{matrix} \right) $$ 
+sind linear unabhängig
+\end{beispiel}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{linear unabhängig}
+
+\begin{uebung}
+Untersuchen Sie, ob die Vektoren 
+	$$ \vektor{v_1} = \left( \begin{matrix} 1 \\ 2 \\ 3 \\ 4 \end{matrix} \right), \quad 
+	\vektor{v_2} = \left( \begin{matrix} 4 \\ 3 \\ 2 \\ 1 \end{matrix} \right), \quad 
+	\vektor{v_3} = \left( \begin{matrix} 1 \\ 1 \\ 1 \\ 1 \end{matrix} \right) $$ 
+linear unabhängig sind.
+\end{uebung}
+
+\bigbreak
+
+\pause \pause 
+
+\begin{sol} Die Vektoren sind linear abhängig, denn 
+	$$ \vektor{v_1} + \vektor{v_2} - 5 \cdot \vektor{v_3} = \vektor{0} $$
+\end{sol}
+\end{frame}
+
+\begin{frame}
+\frametitle{linear unabhängig}
+
+\begin{regel}
+Vektoren $\vektor{v_1}, \vektor{v_2}, \ldots, \vektor{v_m}$ sind 
+schon dann linear abhängig, wenn eine der foglenden Bedingungen erfüllt ist. 
+\begin{itemize}
+\item<2-> $\vektor{v_k} = \vektor{0}$ für ein $k$.
+\item<3-> $\vektor{v_k} = \vektor{v_l}$ für ein $k \neq l$.
+\end{itemize}
+\end{regel}
+
+\pause \pause \pause 
+
+\bigbreak
+
+Das sind aber nur hinreichende Bedingung. In der Regel kann lineare Abhängigkeit nicht so einfach erkannt werden. 
+
+\end{frame}
+
+\begin{frame}
+\frametitle{linear unabhängig}
+
+\begin{notiz}
+Ein einzelner Vektor $\vektor{v} \in \R^n$ ist genau dann linear abhängig, wenn $\vektor{v} = \vektor{0}$. \pause 
+Entsprechend ist er genau dann linear unabhängig, wenn $\vektor{v} \neq \vektor{0}$.
+\end{notiz}
+
+\pause 
+
+\begin{notiz} Zwei Vektoren $\vektor{v}$ und $\vektor{w}$ sind genau dann linear abhängig, wenn 
+einer von beiden ein Vielfaches des anderen ist.
+\end{notiz}
+
+
+\end{frame}
+
+\begin{frame}
+\frametitle{linear unabhängig}
+
+\begin{beispiel} Die $n$--dimensionalen Vektoren  
+	$$\vektor{e_1} =  \left( \begin{matrix} 1 \\ 0 \\ \vdots \\ 0 \end{matrix} \right), \quad 
+	\vektor{e_2} = \left( \begin{matrix} 0 \\ 1 \\ \vdots \\ 0  \end{matrix} \right), \ldots ,
+	 \vektor{e_n} = \left( \begin{matrix} 0 \\ \vdots \\ 0 \\ 1 \end{matrix} \right) $$ 
+im $\R^n$ sind linear unabhängig.
+\end{beispiel}
+\end{frame}
+
+\section{Untervektorräume von $\R^n$}
+\begin{frame}
+\frametitle{Untervektorraum}
+
+\begin{beispiel}
+Die Menge $V = \{\vektor{0} \} \subseteq \R^4$ ist ein Untervektorraum.
+\end{beispiel}
+
+\pause 
+
+\begin{beispiel}
+Die Menge 
+	$$ V = \left\{ \begin{pmatrix} t \\ 2t  \end{pmatrix} \,\vert \,\, t \in \R \right\} \subseteq \R^2 $$
+ist ein Untervektorraum. 
+\end{beispiel}
+
+\pause 
+
+\begin{beispiel}
+Die Menge 
+	$$ V = \left\{ \begin{pmatrix} x \\ y \\ z \end{pmatrix} \,\vert \,\, x + y + z = 0 \right\} \subseteq \R^3 $$
+ist ein Untervektorraum. 
+\end{beispiel}
+\end{frame}
+
+\begin{frame}
+\frametitle{Untervektorraum}
+
+\begin{uebung}
+Überprüfen Sie, ob die Menge 
+	$$ V = \left\{ \begin{pmatrix} x \\ y \\ z \end{pmatrix} \,\vert \,\, x^2 + y^2 + z^2 = 0 \right\} \subseteq \R^3 $$
+ein Untervektorraum ist. 
+\end{uebung}
+
+\pause \pause 
+
+\begin{sol}
+$V$ ist kein Untervektroraum. 
+\end{sol}
+\end{frame}
+
+\begin{frame}
+\frametitle{Untervektorraum}
+Betrachte eine Untervektorraum $V \subseteq \R^n$. 
+
+\begin{definition} Die Vektoren $\vektor{v_1}, \vektor{v_2}, \ldots, 
+\vektor{v_m}$ heißen \textbf{Erzeugendensystem} von $V$, wenn gilt:
+
+\begin{enumerate}
+\item<3-> $\vektor{v_1}, \vektor{v_2}, \ldots, \vektor{v_m} \in V$.
+\item<4-> Zu jedem $\vektor{w} \in V$ gibt es Skalare $r_1, r_2, \ldots,  r_m$ mit
+  	$$  \vektor{w} = r_1 \cdot \vektor{v_1} + r_2 \cdot \vektor{v_2} + \ldots + 
+      r_m \cdot \vektor{v_m} $$
+\end{enumerate}
+\pause \pause \pause 
+Wir sagen in diesem Fall auch,  $\vektor{v_1}, \vektor{v_2}, \ldots, 
+\vektor{v_m}$ erzeugen $V$.
+\end{definition}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Untervektorraum}
+
+\begin{beispiel} Die Vektoren  
+	$$\vektor{e_1} = \left( \begin{matrix} 1 \\ 0 \\ 0 \end{matrix} \right), \quad 
+	\vektor{e_2} = \left( \begin{matrix} 0 \\ 1 \\  0 \end{matrix} \right), \quad  
+	\vektor{e_3} = \left( \begin{matrix} 0 \\ 0 \\ 1 \end{matrix} \right) $$ 
+erzeugen $V = \mathbb R^3$
+\end{beispiel}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Untervektorraum}
+
+\begin{beispiel} Die Vektoren  
+	$$\vektor{v_1} = \left( \begin{matrix} 1 \\ 1 \\ 0 \end{matrix} \right), \quad 
+	\vektor{v_2} = \left( \begin{matrix} 0 \\ 1 \\  1 \end{matrix} \right), \quad  
+	\vektor{v_3} = \left( \begin{matrix} 1 \\ 0 \\ 1 \end{matrix} \right), , \quad  
+	\vektor{v_4} = \left( \begin{matrix} 1 \\ 1 \\ 1 \end{matrix} \right)  $$ 
+erzeugen $V = \mathbb R^3$. \pause Erzeugendensysteme sind also nicht eindeutig und können aus 
+unterschiedlich vielen Vektoren bestehen. 
+\end{beispiel}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Untervektorraum}
+
+\begin{beispiel} Die Untervektorraum
+	$$ V  = \left\{ \begin{pmatrix} x \\ y \\ z \end{pmatrix} \,\vert \,\, x + y + z = 0 \right\} \subseteq \R^3 $$
+von $\R^3$ wird erzeugt von den Vektoren 
+	$$\vektor{v_1} = \left( \begin{matrix} -1 \\ 1 \\  0 \end{matrix} \right), \quad 
+	\vektor{v_2} = \left( \begin{matrix} -1 \\ 0 \\  1 \end{matrix} \right) $$ 
+\end{beispiel}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Untervektorraum}
+
+\begin{uebung} Untersuchen Sie, ob
+	$$ V = \left\{ \begin{pmatrix} 2r + 3s \\ r-s \\ r+s \end{pmatrix} \,\vert \,\,r, s \in \R \right\} \subseteq \R^3 $$
+ein Untervektorraum ist und bestimmen Sie gegebenenfalls ein Erzeugendensystem von $V$. 
+\end{uebung}
+
+\pause \pause 
+\begin{sol}
+$V$ ist ein Untervektorraum von $\R^3$ und wird erzeugt von 
+	$$\vektor{v_1} = \left( \begin{matrix} 2 \\ 1 \\ 1 \end{matrix} \right), \quad 
+	\vektor{v_2} = \left( \begin{matrix} 3 \\ -1 \\  1 \end{matrix} \right) $$ 
+\end{sol}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Untervektorraum}
+ Für Vektoren $\vektor{v_1}, \vektor{v_2}, \ldots, 
+\vektor{v_m} \in \mathbb R^n$ setze
+  	$$ U = \{ \vektor{v} \in \mathbb R^n \, \vert \, \, \exists r_1, \ldots, r_m \in 
+	\mathbb R \, \textrm{ mit } \,
+   	\vektor{v} = r_1 \cdot \vektor{v_1} + \cdots + r_m \cdot \vektor{v_m} \} $$
+
+\pause 
+\begin{satz} $U$ ist ein Untervektorraum von $\mathbb R^n$.
+\end{satz}
+
+\pause 
+
+$U$ heißt das \textbf{Erzeugnis} von $\vektor{v_1}, \vektor{v_2}, \ldots, \vektor{v_m}$ 
+oder der von $\vektor{v_1}, \vektor{v_2}, \ldots, \vektor{v_m}$
+\textbf{aufgespannte Unterraum} von $\mathbb R^n$
+\end{frame}
+
+\section{Basis}
+
+\begin{frame}
+\frametitle{Basis eines Vektorraums}
+Wir betrachten wieder einen Untervektorraum $V \subseteq \R^n$
+
+\pause
+\begin{definition} Die Vektoren $\vektor{v_1}, \vektor{v_2}, \ldots, 
+\vektor{v_m} \in V$ heißen \textbf{Basis} von $V$, wenn 
+sie ein Erzeugendensystem von $V$ bilden, 
+und wenn sie linear unabhängig sind.
+\end{definition}
+
+\pause 
+
+\begin{beispiel} Die Vektoren  
+	$$\vektor{e_1} = \left( \begin{matrix} 1 \\ 0 \\ 0 \end{matrix} \right), \quad 
+	\vektor{e_2} = \left( \begin{matrix} 0 \\ 1 \\  0 \end{matrix} \right), \quad  
+	\vektor{e_3} = \left( \begin{matrix} 0 \\ 0 \\ 1 \end{matrix} \right) $$ 
+bilden eine Basis von $V = \mathbb R^3$
+\end{beispiel}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Basis eines Vektorraums}
+
+\begin{beispiel}
+Wir betrachten den Untervektorraum 
+	$$ V = \left\{ \begin{pmatrix} 2r + 3s \\ r-s \\ r+s \end{pmatrix} \,\vert \,\,r, s \in \R \right\} \subseteq \R^3 $$ \pause
+Dann bilden 
+	$$\vektor{v_1} = \left( \begin{smallmatrix} 2 \\ 1 \\ 1 \end{smallmatrix} \right), \quad 
+	\vektor{v_2} = \left( \begin{smallmatrix} 3 \\ -1 \\  1 \end{smallmatrix} \right) $$ 
+eine Basis von $V$. \pause 
+	$$\vektor{w_1} = \left( \begin{smallmatrix} 5 \\ 0 \\ 2 \end{smallmatrix} \right), \quad 
+	\vektor{w_2} = \left( \begin{smallmatrix} 1 \\ -2 \\  0 \end{smallmatrix} \right), \quad 
+	\vektor{w_3} = \left( \begin{smallmatrix} 7 \\ 1 \\  3 \end{smallmatrix} \right)  $$ 
+erzeugen $V$, bilden aber keine Basis.  
+\end{beispiel}
+\end{frame}
+
+\begin{frame}
+\frametitle{Basis eines Vektorraums}
+
+\begin{uebung}
+Finden Sie eine Basis des Untervektorraums 
+	$$ V =  \left\{ \begin{pmatrix} x \\ y \\ z \end{pmatrix} \,\vert \,\, x + y + z = 0 \right\} \subseteq \R^3 $$
+\end{uebung}
+
+\pause \pause 
+\begin{sol}
+Die Vektoren 
+	$$\vektor{v_1} = \left( \begin{matrix} -1 \\ 1 \\  0 \end{matrix} \right), \quad 
+	\vektor{v_2} = \left( \begin{matrix} -1 \\ 0 \\  1 \end{matrix} \right) $$ 
+bilden eine Basis von $V$.
+\end{sol}
+\end{frame}
+
+\begin{frame}
+\frametitle{Basis eines Vektorraums}
+
+\begin{satz}
+Für einen Untervektorraume $V$ von $\mathbb R^n$ gilt:
+
+\begin{enumerate}
+\item<2-> Ist $\{\vektor{v_1}, \vektor{v_2}, \ldots, \vektor{v_m} \}$ ein Erzeugendensystem 
+von $V$, so enthält $\{ \vektor{v_1}$, $\vektor{v_2}$, $\ldots$, $\vektor{v_m} \}$ eine 
+Basis von $V$, d.h. es gibt $1 \leq i_1 < i_2 < \cdots < i_t \leq m$ so dass
+$ \vektor{v_{i_1}}, \vektor{v_{i_2}}, \ldots, \vektor{v_{i_t}}$ eine Basis von $V$ ist.
+\item<3-> $V$ hat eine Basis.
+\item<4-> Je zwei Basen von $V$ sind gleich lang, dh. sind $\{\vektor{v_1}, \vektor{v_2}, \ldots, \vektor{v_m} \}$ 
+und $\{\vektor{w_1}, \vektor{w_2}, \ldots, \vektor{w_t} \}$ Basen von $V$, so ist $m = t$.
+\end{enumerate}
+\end{satz}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Basis eines Vektorraums}
+
+\begin{definition} Die Länge einer Basis eines Untervektorraums $V$ heißt \index{Untervektorraum!Dimension}
+die \textbf{Dimension} von $V$ und wird mit $\textrm{dim}(V)$ bezeichnet.
+\end{definition}
+
+\pause 
+
+\begin{beispiel} Der $\mathbb R^3$ hat die Dimension $3$.
+\end{beispiel}
+
+\pause 
+
+\begin{beispiel} Der $\mathbb R^n$ hat die Dimension $n$.
+\end{beispiel}
+
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Basis eines Vektorraums}
+
+\begin{beispiel}
+Der Untervektorraum 
+	$$ V = \left\{ \begin{pmatrix} 2r + 3s \\ r-s \\ r+s \end{pmatrix} \,\vert \,\,r, s \in \R \right\} \subseteq \R^3 $$
+hat die Dimension $2$.
+\end{beispiel}
+
+\pause 
+
+\begin{beispiel}
+Der Untervektorraums 
+	$$ V =  \left\{ \begin{pmatrix} x \\ y \\ z \end{pmatrix} \,\vert \,\, x + y + z = 0 \right\} \subseteq \R^3 $$
+hat die Dimension $2$. 
+\end{beispiel}
+
+\end{frame}
+
+\end{document}

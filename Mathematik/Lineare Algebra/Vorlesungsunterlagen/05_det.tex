@@ -1,0 +1,2449 @@
+
+\chapter{Determinanten}
+
+\section{Definition der Determinanten}
+
+Von besonderem Interesse für uns und für viele Anwendungen sind quadratische Matrizen bzw. Gleichungssysteme 
+mit genausovielen Unbekannten wie Gleichungen. Wie wir bereits in~\ref{gls_rangsatz} gesehen haben, muss eine 
+Matrix $A$ quadratisch sein, damit alle zugehörigen Gleichungssysteme $A \cdot \vektor{x} = 
+\vektor{b}$ eine eindeutige Lösung besitzen. In diesem Abschnitt werden wir jeder quadratischen 
+Matrix in subtiler Weise einen Skalar, ihre Determinanete, zuordnen, der uns erlaubt, die Frage nach der 
+eindeutigen Lösbarkeit allgemein zu entscheiden, und die uns auch hilft, diese Lösung gegebenvalls zu 
+finden.
+
+Determinanten waren wohl schon G. Leibniz (1646 - 1716) bekannt. Wiederentdeckt und weiterentwickelt wurde 
+sie vom Mathematiker G. Cramer (1704 - 1752). Beiträge zur Determinantentheorie stammen auch von 
+dem englischen Mathematiker C. L. Dodgson (1832 - 1898), der allerdings besser als Lewis Carroll und für 
+seine Kinderliteratur (etwa \textit{Alice im Wunderland}) bekannt ist.
+
+
+\subsection{Zweidimensionale Determinanten}\label{section_det_2}
+
+\setcounter{definition}{0}
+\setcounter{beispiel}{0}
+\setcounter{notiz}{0}
+
+
+Der einfachste Fall eines linearen Gleichungssystems ist natürlich der einer einzigen Gleichung in einer 
+Unbekannten, 
+  \begin{equation}\label{det_lin_gls_1} a \cdot x = b \end{equation}
+In dieser Situation ist die Lage offensichtlich: 
+
+\begin{regel}
+Genau dann hat (~\ref{det_lin_gls_1}) für jede Wahl von $b$ eine eindeutige Lösung, wenn $a \neq 0$; 
+in diesem Fall ist $x = \frac {b}{a}$.
+\end{regel}
+
+Unser Ziel ist es, diese Aussage in möglichst großen Umfang auf $n \times n$--Matrizen zu verallgemeinern. 
+
+Wir wollen uns in diesem Abschnitt mit dem Spezialfall $n = 2$ beschäftigen, den 
+nach (~\ref{det_lin_gls_1}) einfachsten Fall. Ein solches Gleichungssystem hat die allgemeine Gestalt
+  	\begin{equation}\label{det_lin_gls_2_1} \begin{array} {l c l c l c l}
+  	a_{1,1} x_1 & + & a_{1,2} x_2 & = & b_1 \\
+  	a_{2,1} x_1 & + & a_{2,2} x_2 & = & b_2
+  	\end{array} \end{equation}
+Wenn wir versuchen, dieses Gleichungssystem nach den Eliminations\-me\-tho\-den von Gauß zu lösen, kommen 
+wir schnell auf Fallunterscheidungen (der Fall $a_{1,1} = 0$ wird anders behandelt als der Fall $a_{1,1} \neq 0$). 
+Wir wollen auf diese Fallunterscheidung verzichten und multiplizieren die erste Gleichung mit $a_{2,2}$ und 
+die zweite mit $a_{1,2}$. Damit erhalten wir 
+  	\begin{equation}\label{det_lin_gls_2_2} \begin{array} {l c l c l c l}
+  	a_{2,2} a_{1,1} x_1 & + & a_{2,2} a_{1,2} x_2 & = & a_{2,2} b_1 \\
+  	a_{1,2} a_{2,1} x_1 & + & a_{1,2} a_{2,2} x_2 & = & a_{1,2} b_2
+  	\end{array} \end{equation}
+wobei wir aber beachten müssen, dass das erhaltene Gleichungssystem nicht mehr äquivalent zum Ausgangssystem 
+ist, wenn $a_{2,2} = 0$ oder $a_{1,2} = 0$. Addieren wir in (~\ref{det_lin_gls_2_2}) die erste Gleichung zum  
+Negativen der zweiten, so erhalten wir 
+  	\begin{equation}\label{det_lin_gls_2_3} \begin{array} {l c l c l c l}
+  	a_{2,2} a_{1,1} x_1 & + & a_{2,2} a_{1,2} x_2 & = & a_{2,2} b_1 \\
+  	\left(a_{1,1} a_{2,2} - a_{1,2} a_{2,1} \right) \cdot x_1 &  &  & = & a_{2,2} b_1 - a_{1,2} b_2
+  	\end{array} \end{equation}
+Falls jetzt $\left(a_{1,2} a_{2,1} - a_{1,1} a_{2,2} \right) \neq 0$, so hat die zweite Zeile, wie wir 
+schon im Spezialfall $n = 1$ gesehen haben, die eindeutige Lösung
+  	$$ x_1 = \frac {a_{2,2} b_1 - a_{1,2} b_2}{a_{1,1} a_{2,2} - a_{1,2} a_{2,1}} $$
+und hieraus ergibt sich aus der ersten Gleichung
+  	$$ x_2 = \frac {a_{1,1} b_2 - a_{2,1} b_1}{a_{1,1} a_{2,2} - a_{1,2} a_{2,1}} $$
+als eindeutiger Wert für $x_2$. Damit haben wir gesehen, dass (~\ref{det_lin_gls_2_3}) für jede Wahl von 
+$b_1$ und $b_2$ genau eine Lösung hat, wenn $a_{1,1} a_{2,2} - a_{1,2} a_{2,1} \neq 0$. Setzen wir diese 
+Lösung in das ursprüngliche Gleichungssystem (~\ref{det_lin_gls_2_1}) ein, so rechnen wir leicht nach, dass
+auch dieses gelöst wird. Damit haben wir also eine Lösung von (~\ref{det_lin_gls_2_1}) gefunden, falls 
+$a_{1,1} a_{2,2} - a_{1,2} a_{2,1} \neq 0$. Wenn aber $a_{2,2} = 0$ oder $a_{1,2} = 0$, so ist das transformierte 
+Gleichungssystem nicht äquivalent zum ursprünglichen. Allerdings kann sich durch unsere Transformationen 
+die Anzahl der Lösungen höchstens vergrö{ss}ern, jede Lösung von (~\ref{det_lin_gls_2_1}) ist auch eine 
+Lösung von (~\ref{det_lin_gls_2_3}). Damit haben wir schon gesehen:
+
+Falls $a_{1,2} a_{2,1} - a_{1,1} a_{2,2} \neq 0$ so hat (~\ref{det_lin_gls_2_1}) für jede Wahl von $b_1$ 
+und $b_2$ eine eindeutig bestimmte Lösung, die gegeben wird durch
+  	$$ \begin{array} {l c l}
+   	x_1 & = & \dfrac {a_{2,2} b_1 - a_{1,2} b_2}{a_{1,1} a_{2,2} - a_{1,2} a_{2,1}} \\[1.0em]
+   	x_2 & = & \dfrac {a_{1,1} b_2 - a_{2,1} b_1}{a_{1,1} a_{2,2} - a_{1,2} a_{2,1}}
+  	\end{array} $$
+
+Es bleibt noch der Fall $a_{1,1} a_{2,2} - a_{1,2} a_{2,1} = 0$ zu betrachten. In diesem Fall hat des 
+Gleichungssystem (\ref{det_lin_gls_2_3}) keine Lösung, falls $a_{1,2} b_2 - a_{2,2} b_1 \neq 0$, oder 
+falls $a_{2,2}a_{1,1} = 0$ und $a_{2,2} a_{1,2} = 0$ und $a_{2,2} b_1 \neq 0$. Andernfalls 
+hat (\ref{det_lin_gls_2_3}) unendlich viele Lösungen. 
+
+Aber was ist aber in diesem Fall mit der ursprünglichen Gleichung (\ref{det_lin_gls_2_1})? 
+Wir betrachten hierzu alle in Frage kommenden Fälle. Klar ist der triviale Fall $a_{1,1} = 
+a_{1,2} = a_{2,1} = a_{2,2} = 0$: In diesem Fall gibt es für $b_1 = b_2 = 0$ unendlich viele Lösungen und
+in allen anderen Fällen keine. Wir können uns daher auf die Situation beschränken, dass mindestens ein 
+Koeffizient $a_{i,j} \neq 0$. Ist aber etwa $a_{1,1} \neq 0$, so muss wegen $a_{1,1} a_{2,2} - 
+a_{1,2} a_{2,1} = 0$ schon $a_{2,2} = \frac {a_{1,2} a_{2,1}}{a_{1,1}}$ gelten, und daher ist $x_1 = a_{1,2}$ 
+und $x_2 = - a_{1,1} $ eine nichttriviale Lösung von 
+  	\begin{equation}\label{det_lin_gls_2_4} \begin{array} {l c l c l c l}
+  	a_{1,1} x_1 & + & a_{1,2} x_2 & = & 0 \\
+  	a_{2,1} x_1 & + & a_{2,2} x_2 & = & 0
+  	\end{array} \end{equation}
+wie wir sofort nachrechnen. Entsprechend finden wir im Fall $a_{2,2} \neq 0$ die nichttriviale Lösung 
+$x_1 = a_{2,2}$ und $x_2 = -a_{2,1}$, ist $a_{2,1} \neq 0$, so löst ebenfalls $x_1 = a_{2,2}$ 
+und $x_2 = -a_{2,1}$ das Gleichungssystem (\ref{det_lin_gls_2_4}) und ist nicht--trivial, und 
+ist $a_{1,2} \neq 0$, so liefert wiederum $x_1 = a_{1,2}$ 
+und $x_2 = -a_{1,1}$ eine nicht--triviale Lösung von (\ref{det_lin_gls_2_4}). 
+Da es in diesem 
+Fall auch noch die triviale Lösung gibt, hat also das homogene System (\ref{det_lin_gls_2_4}) mehrere 
+Lösungen und entsprechend hat das System (\ref{det_lin_gls_2_1}) wegen Regel~\ref{gls_summary} entweder 
+gar keine oder unendlich viele Lösungen. 
+
+\begin{definition} Die \index{Determinante!zweidimensional}\textbf{Determinante} $\det{A}$ einer 
+$2 \times 2$--Matrix $A = \left( \begin{smallmatrix} a_{1,1} & a_{1,2} \\ a_{2,1} & a_{2,2} 
+\end{smallmatrix} \right) $ ist der Ausdruck
+  	$$ \det{A} = a_{1,1} \cdot a_{2,2} - a_{2,1} \cdot a_{1,2} $$
+\end{definition}
+
+\bigbreak
+
+Wir haben in unseren Vorüberlegungen schon das folgende Resultat abgeleitet:
+
+\begin{satz}\label{det_eindeutig_2} Ist $A$ eine $2 \times 2$--Matrix, so hat das Gleichungssystem
+  	$$ A  \cdot \vektor{x} = \vektor{b} $$
+genau dann eine eindeutige Lösung für jedes $\vektor{b} \in \mathbb R^2$, wenn $\det{A} \neq 0$.
+\end{satz}
+
+Darüberhinaus haben wir sogar eine Formel für die eindeutig bestimmte Lösung gefunden, die sogenannte 
+\index{Cramersche Regel!zweidimensional}\textbf{Cramersche Regel} (für $n = 2$).
+
+\begin{satz}\label{cramer_regel_2} Ist $A$ eine $2 \times 2$--Matrix mit $\det{A} \neq 0$, so ist 
+die eindeutige Lösung von 
+  	$$ A  \cdot \vektor{x} = \vektor{b} $$
+für einen beliebigen Vektor $ \vektor{b} = \left( \begin{smallmatrix} b_1 \\ b_2 
+\end{smallmatrix} \right)$ gegeben durch 
+  	$$ \begin{array} {l c l}
+   	x_1 & = & \dfrac {a_{2,2} \cdot b_1 - a_{1,2} \cdot b_2}{\det{A}} \\[1.0em]
+   	x_2 & = & \dfrac {a_{1,1} \cdot b_2 - a_{2,1} \cdot b_1}{\det{A}}
+  	\end{array} $$
+\end{satz}
+
+\bigbreak
+
+\begin{beispiel} Wir betrachten die Matrix
+  	$$ A = \left( \begin{matrix} 1 & 2 \\ 3 & 4  \end{matrix} \right) $$
+Hierfür gilt
+  	$$ \det{A} = 1 \cdot 4 - 2 \cdot 3 = 4 - 6 = -2 $$
+Insbesondere ist also $\det{A} \neq 0$ und damit hat jedes Gleichungssystem 
+  	$$  A  \cdot \vektor{x} = \vektor{b} $$ 
+eine eindeutige Lösung. Betrachten wir etwa
+  	$$ \begin{array} {r c l c l}
+   	x_1 & + & 2 x_2 & = & 2 \\
+   	3 x_1 & + & 4 x_2 & = & 4 
+   	\end{array} $$
+so gilt
+  	$$ \begin{array} {l c l c l}
+   	x_1 & = & \frac {4 \cdot 2 - 2 \cdot 4}{-2} & = & 0 \\
+   	x_2 & = & \frac {1 \cdot 4 - 3 \cdot 2}{-2} & = & 1
+  	\end{array} $$
+Natürlich führt auch der Gaußalgorithmus zu diesem Ergebnis.
+\end{beispiel}
+
+\begin{beispiel} Wir betrachten die Matrix
+  	$$ A = \left( \begin{matrix} 1 & -1 \\ 1 & 1  \end{matrix} \right) $$
+Hierfür gilt
+  	$$ \det{A} = 1 \cdot 1 - 1 \cdot (-1) = 1 - (-1) = 2 $$
+Insbesondere ist also $\det{A} \neq 0$ und damit hat jedes Gleichungssystem 
+  	$$  A  \cdot \vektor{x} = \vektor{b} $$ 
+eine eindeutige Lösung. Betrachten wir etwa
+  	$$ \begin{array} {r c l c l}
+   	x_1 & - &  x_2 & = & 4 \\
+   	x_1 & + &  x_2 & = & 2 
+   	\end{array} $$
+so gilt
+  	$$ \begin{array} {l c l c l}
+   	x_1 & = & \frac {1 \cdot 4 - (-1) \cdot 2}{2} & = & 3 \\
+   	x_2 & = & \frac {1 \cdot 2 - 1 \cdot 4}{2} & = & -1
+  	\end{array} $$
+\end{beispiel}
+
+\begin{beispiel} Wir betrachten die Matrix
+  	$$ A = \left( \begin{matrix} 1 & 2 \\ 2 & 4  \end{matrix} \right) $$
+Hierfür gilt
+  	$$ \det{A} = 1 \cdot 4 - 2 \cdot 2 = 4 - 4 = 0 $$
+Insbesondere ist also $\det{A} = 0$ und damit gibt es kein Gleichungssystem 
+  	$$  A  \cdot \vektor{x} = \vektor{b} $$ 
+mit einer eindeutigen Lösung. Betrachten wir das zugehörige homogene System
+  	$$ \begin{array} {r c l c l}
+   	x_1 & + &  2 x_2 & = & 0 \\
+   	2x_1 & + &  4 x_2 & = & 0 
+   	\end{array} $$
+so hat dieses die Normalform 
+  	$$ \begin{array} {r c l c l}
+   	x_1 & + & 2 x_2 & = & 0 \\
+     	&   &  0 & = & 0 
+   	\end{array} $$
+und wir sehen, dass $x_1 = -2$ und $x_2 = 1$ eine nichttriviale Lösung ist. Aus der Normalform 
+lesen wir auch ab, dass $\mathrm{rg}(A) = 1$, also wegen Satz~\ref{gls_rangsatz} auch $\mathrm{nul}(A) = 1$. 
+Also ist $\mathrm{Ker}(A)$ eine Vektorraum der Dimension 1, und $\left( \begin{smallmatrix} -2 \\ 1 
+\end{smallmatrix} \right)$ ist eine Basis.
+\end{beispiel}
+
+\bigbreak
+
+In Satz~\ref{cramer_regel_2} haben wir eine Formel für die Lösungen eines Gleichungssystems kennengelernt, 
+falls die Determinante der Koeffizientenmatrix von Null verschieden ist. In dieser Formel haben auch die 
+Zähler eine Gestalt, die an eine Determinante erinnert. Dazu betrachten wir wieder ein Gleichungssystem
+  	$$ A  \cdot \vektor{x} = \vektor{b} $$ 
+mit Koeffizientenmatrix $A = \left( \begin{smallmatrix} a_{1,1} & a_{1,2} \\ a_{2,1} & a_{2,2}
+\end{smallmatrix} \right)$ und $\vektor{b} = \left( \begin{smallmatrix} b_1 \\ b_2
+\end{smallmatrix} \right)$ und wir bezeichnen mit $A_1(\vektor{b})$ bzw. $A_2(\vektor{b})$ 
+die $2 \times 2$--Matrix, die wir aus $A$ erhalten indem wir die erste bzw. zweite Spalte von $A$ durch den 
+Vektor $\vektor{b}$ ersetzen, also
+  	$$ A_1(\vektor{b}) =  \left( \begin{matrix} b_1 & a_{1,2} \\ b_2 & a_{2,2} \end{matrix} \right), \qquad 
+	A_2(\vektor{b}) =  \left( \begin{matrix} a_{1,1} & b_1 \\ a_{2,1} & b_2 \end{matrix} \right) $$
+Dann folgt sofort aus Satz~\ref{cramer_regel_2}, dass auch die folgende Form der Cramerschen Regel gilt:
+
+\begin{satz}\label{cramer_regel_2_1} Ist $A$ eine $2 \times 2$--Matrix mit $\det{A} \neq 0$, so ist 
+die eindeutige Lösung von 
+  	$$ A  \cdot \vektor{x} = \vektor{b} $$
+für einen beliebigen Vektor $ \vektor{b}$ gegeben durch 
+  	$$ \begin{array} {l c l}
+   	x_1 & = & \dfrac {\det{A_1(\vektor{b})}}{\det{A}} \\[1.0em]
+   	x_2 & = & \dfrac {\det{A_2(\vektor{b})}}{\det{A}}
+  	\end{array} $$
+\end{satz}
+
+\bigbreak 
+
+Die Determinante einer $2 \times 2$--Matrix ist sehr einfach zu berechnen. Im Hinblick auf spätere 
+Verallgemeinerungen wollen wir trotzdem schon in diesem Fall Regeln für die Berechnung von Determinanten 
+aufstellen, die die Berechnungen weiter vereinfachen.
+
+\begin{regel}\label{det_norm_2} Für die $2 \times 2$--Einheitsmatrix
+$E_2 = \left( \begin{smallmatrix} 1 & 0 \\ 0 & 1 \end{smallmatrix} \right)$ gilt
+  	$$ \det{E_2} = 1 $$
+\end{regel}
+
+\medbreak
+
+\begin{regel}\label{det_transpon_2} Für eine $2 \times 2$--Matrix $A$ gilt $\det{A} = \det{A^T}$.
+\end{regel}
+
+\beweis{ Ist $A = \left( \begin{smallmatrix} a_{1,1} & a_{1,2} \\ a_{2,1} & a_{2,2}
+\end{smallmatrix} \right)$, so ist $A^T = \left( \begin{smallmatrix} a_{1,1} & a_{2,1} \\ a_{1,2} & a_{2,2}
+\end{smallmatrix} \right)$. Jetzt folgt die Aussage aus der Definition.
+}
+
+\begin{beispiel}
+  	$$ \det{ \begin{matrix} 1 & 2 \\ 3 & 0 \end{matrix} } = -6 = 
+   	\det{ \begin{matrix} 1 & 3 \\ 2 & 0 \end{matrix} } $$
+\end{beispiel} 
+
+\medbreak
+
+\begin{regel}\label{det_rule_2_2} Für eine $2 \times 2$--Matrix $A$ gilt $\det{A} = 0$, wenn 
+
+\begin{enumerate}
+\item Eine Zeile von $A$ die Nullzeile ist.
+\item Eine Spalte von $A$ die Nullspalte ist.
+\item Eine Zeile von $A$ ein Vielfaches der anderen Zeile ist.
+\item Eine Spalte von $A$ ein Vielfaches der anderen Spalte ist. 
+\end{enumerate}
+\end{regel}
+
+\begin{beispiel} Ist $A = \left( \begin{smallmatrix} 1 & 0 \\ 0 & 0 \end{smallmatrix} \right)$ so gilt
+  	$$ \det{A} = 0 $$
+\end{beispiel}
+
+\begin{beispiel} Ist $A = \left( \begin{smallmatrix} 1 & 2 \\ 4 & 8 \end{smallmatrix} \right)$ so gilt
+  	$$ \det{A} = 0 $$
+\end{beispiel}
+
+\beweis{ Die ersten beiden Formeln sind klar. Für die dritte betrachten wir den Fall $a_{2,1} = \lambda 
+a_{1,1}, \, a_{2,2} = \lambda a_{1,2}$ und erhalten
+  	$$ \det{A} = a_{1,1} \cdot \lambda \cdot a_{1,2} - a_{1,2} \cdot \lambda \cdot a_{1,1} = 0 $$
+Genause behandeln wir den Fall, dass die erste Zeile ein Vielfaches der zweiten ist. 
+
+Die vierte Regel kann analog bewiesen werden. Sie folgt aber wegen Regel~\ref{det_transpon_2} auch sofort 
+aus der dritten!
+}
+
+\medbreak
+
+\begin{regel}\label{det_rul_2_trig} Ist $A$ eine obere oder untere Dreiecksmatrix (d.h. gilt $a_{1,2} = 0$ 
+oder $a_{2,1} = 0$), so gilt
+  	$$ \det{A} = a_{1,1} \cdot a_{2,2} $$
+\end{regel}
+
+\beweis{ Allgemein gilt
+  	$$ \det{A} = a_{1,1} \cdot a_{2,2} - a_{1,2} \cdot a_{2,1} $$
+Ist $A$ eine Dreiecksmatrix, so ist $a_{1,2} = 0$ oder $a_{2,1} = 0$, und unsere Formel folgt.
+}
+
+\begin{beispiel}
+	$$ \det{ \begin{matrix} 2 & 2 \\ 0 & 3 \end{matrix} } = 2 \cdot 3 = 6 $$
+\end{beispiel}
+
+\begin{regel}\label{det_rule_2_3} Entsteht die $2 \times 2$--Matrix $A'$ aus $A$ durch Vertauschen der 
+beiden Zeilen, so gilt
+  	$$ \det{A'} = - \det{A} $$
+Das Gleiche gilt, wenn $A'$ durch Vertauschung der Spalten aus $A$ entsteht.
+\end{regel}
+
+\beweis{ Ist $A = \left( \begin{smallmatrix} a_{1,1} & a_{1,2} \\ a_{2,1} & a_{2,2}
+\end{smallmatrix} \right)$ so ist $A' = \left( \begin{smallmatrix} a_{2,1} & a_{2,2} \\ a_{1,1} & a_{1,2}
+\end{smallmatrix} \right)$ und damit
+  	$$ \det{A'} = a_{2,1} a_{1,2} - a_{1,1} a_{2,2} = - \det{A} $$
+}
+
+\begin{beispiel} Ist $A = \left( \begin{smallmatrix} 1 & 2 \\ 3 & 0 \end{smallmatrix} \right)$, so ist
+$A' = \left( \begin{smallmatrix} 3 & 0 \\ 1 & 2 \end{smallmatrix} \right)$ und 
+  $$ \det{A'} = 3 \cdot 2 - 0 \cdot 1 = 6 = - \left( 1 \cdot 0 - 2 \cdot 3 \right) = \det{A} $$
+\end{beispiel}
+
+\medbreak
+
+\begin{regel}\label{det_rule_2_4} Entsteht die $2 \times 2$--Matrix $A'$ aus $A$ durch Multiplikation 
+einer Zeile von $A$ mit 
+einer Zahl $r$, so gilt
+  	$$ \det{A'} = r \cdot \det{A} $$
+Das Gleiche gilt, wenn $A'$ aus $A$ durch Multiplikation einer Spalte von $A$ mit 
+einer Zahl $r$ hervorgeht.
+\end{regel}
+
+\beweis{ Ist $A = \left( \begin{smallmatrix} a_{1,1} & a_{1,2} \\ a_{2,1} & a_{2,2}
+\end{smallmatrix} \right)$ und entsteht $A'$ durch Multiplikation der ersten Zeile von $A$ mit $r$ aus $A$, so 
+ist $A' = \left( \begin{smallmatrix} r \cdot a_{1,1} & r \cdot a_{1,2} \\ a_{2,1} & a_{2,2} \end{smallmatrix} 
+\right)$ und damit
+  	$$ \det{A'} = r \cdot a_{1,1} \cdot a_{2,2} - r \cdot a_{1,2} \cdot a_{2,1} 
+	= r \cdot \left( a_{1,1} a_{2,2} - a_{1,2} a_{2,1} \right) 
+	= r \cdot \det{A} $$
+Die anderen Fälle behandelt man genauso.
+} 
+
+\begin{beispiel} Ist $A = \left( \begin{smallmatrix} 1 & 2 \\ 1 & 3 \end{smallmatrix} \right)$, und ist
+$A' = \left( \begin{smallmatrix} 4 & 8 \\ 1 & 3 \end{smallmatrix} \right)$, so ist
+  	$$ \det{A'} = 4 \cdot 3 - 8 \cdot 1 = 4 = 4 \cdot \left( 1 \cdot 3 - 2 \cdot 1 \right) = 
+  	4 \cdot \det{A} $$
+\end{beispiel}
+
+\medbreak
+
+Die erste nichttriviale Regel ist die folgende
+
+\begin{regel}\label{det_rule_2_5} Entsteht die $2 \times 2$--Matrix $A'$ aus $A$ dadurch, dass wir ein 
+Vielfaches einer Zeile von 
+$A$ zur anderen Zeile von $A$ addieren, so gilt
+  	$$ \det{A'} =  \det{A} $$
+Das Gleiche gilt, wenn $A'$ aus $A$ dadurch entsteht, dass wir ein Vielfaches einer Spalte von 
+$A$ zur anderen Spalte von $A$ addieren.
+\end{regel}
+
+\beweis{ Sei $A = \left( \begin{smallmatrix} a_{1,1} & a_{1,2} \\ a_{2,1} & a_{2,2}
+\end{smallmatrix} \right)$.
+Wir betrachten den Fall, dass das $r$--fache der ersten Zeile von $A$ zur zweiten addiert wird, so dass 
+  	$$A' = \left( \begin{matrix} a_{1,1} & a_{1,2} \\ a_{2,1} + r \cdot a_{1,1} & a_{2,2} + r \cdot a_{1,2}
+	\end{matrix} \right). $$ 
+Dann gilt 
+  	$$ \begin{array} {l c l}
+  	\det{A'} & = & a_{1,1} \cdot \left( a_{2,2} + r \cdot a_{1,2} \right) - a_{1,2} \cdot 
+ 	\left( a_{2,1} + r \cdot a_{1,1} \right) \\[0.2em]
+  	& = & a_{1,1} \cdot a_{2,2} - a_{1,2} a_{2,1} + \left( a_{1,1} \cdot r \cdot a_{1,2} - a_{1,2} \cdot r 
+ 	\cdot a_{1,1} \right) \\[0.2em]
+  	& = & a_{1,1} \cdot a_{2,2} - a_{1,2} a_{2,1} \\[0.2em]
+  	& = & \det{A} 
+  	\end{array} $$
+}
+
+\begin{beispiel} Ist $A = \left( \begin{smallmatrix} -1 & 1 \\ 2 & 3 \end{smallmatrix} \right)$, und ist
+$A' = \left( \begin{smallmatrix} -1 & 1 \\ 0 & 1 \end{smallmatrix} \right)$, so entsteht $A'$ aus $A$ durch 
+Addition des doppelten der ersten Zeile zur zweiten, und es gilt
+  	$$ \det{A'} = (-1) \cdot 1 - 0 \cdot 1 = 1 = (-1) \cdot 3 - 1 \cdot 2 = \det{A} $$
+\end{beispiel}
+
+\begin{notiz} Die Regels erlauben es immer, die Berechnung von Determinanten auf Dreiecksmatrizen zu 
+reduzieren. In diesem Fall ist die Determinantenberechnung besonders einfach.
+\end{notiz}
+
+\medbreak
+
+\begin{regel}\label{det_rule_2_6} Sind $A$, $B$ zwei $2 \times 2$--Matrizen, so gilt
+   	$$ \det{A \cdot B} = \det{A} \cdot \det{B} $$
+\end{regel}
+
+\beweis{ Falls $A = \left( \begin{smallmatrix} a_{1,1} & a_{1,2} \\ a_{2,1} & a_{2,2}
+\end{smallmatrix} \right)$ und $B = \left( \begin{smallmatrix} b_{1,1} & b_{1,2} \\ b_{2,1} & b_{2,2}
+\end{smallmatrix} \right)$, so ist
+  	$$ A \cdot B =  \left( \begin{matrix} a_{1,1} b_{1,1} + a_{1,2} b_{2,1}  
+	& a_{1,1} b_{1,2} + a_{1,2} b_{2,2} \\ a_{2,1} b_{1,1} + a_{2,2} b_{2,1} 
+	& a_{2,1} b_{1,2} + a_{2,2} b_{2,2} 
+  	\end{matrix} \right) $$
+und damit
+  	$$ \begin{array} {l c l}
+  	\det{A \cdot B} & = & \left( a_{1,1} b_{1,1} + a_{1,2}b_{2,1} \right) \cdot \left( a_{2,1} b_{1,2} + 
+    	a_{2,2} b_{2,2} \right) \\
+   	& = & - \left( a_{1,1} b_{1,2} + a_{1,2} b_{2,2} \right) \cdot 
+    	\left( a_{2,1} b_{1,1} + a_{2,2} b_{2,1} \right) \\
+    	& = & a_{1,1} b_{1,1} a_{2,1} b_{1,2} + a_{1,1} b_{1,1} a_{2,2} b_{2,2} \\
+    	&  & + a_{1,2} b_{2,1} a_{2,1} b_{1,2} 
+	+ a_{1,2} b_{2,1} a_{2,2} b_{2,2} \\
+    	& & - a_{1,1} b_{1,2} a_{2,1}b_{1,1} - a_{1,1} b_{1,2} a_{2,2} b_{2,1} \\
+    	& & - a_{1,2} b_{2,2} a_{2,1} b_{1,1}  - a_{1,2} b_{2,2} a_{2,2} b_{2,1} \\
+   	& = & a_{1,1} b_{1,1} a_{2,2} b_{2,2} + a_{1,2} b_{2,1} a_{2,1} b_{1,2} \\
+   	& & - a_{1,1} b_{1,2} a_{2,2} b_{2,1} - a_{1,2} b_{2,2} a_{2,1} b_{1,1} \\
+   	& = & \left( a_{1,1} a_{2,2} - a_{1,2} a_{2,1} \right) \cdot \left(b_{1,1} b_{2,2} - b_{1,2} b_{2,1} \right) \\
+   	& = & \det{A} \cdot \det{B}
+   	\end{array} $$
+}
+
+\begin{beispiel} Für $A = \left( \begin{smallmatrix} 1 & 3 \\ 0 & 2 \end{smallmatrix} \right)$ und 
+$B = \left( \begin{smallmatrix} 3 & 0 \\ 4 & 2 \end{smallmatrix} \right)$ gilt
+  	$$ A \cdot B = \left( \begin{matrix} 15 & 6 \\ 8 & 4 \end{matrix} \right) $$
+und 
+  	$$ \det{A \cdot B} = 15 \cdot 4 - 6 \cdot 8 = 12 = 2 \cdot 6 = \det{A} \cdot \det{B} $$
+\end{beispiel}
+
+\bigbreak
+
+Die Determinante kann auch geometrisch interpretiert werden:
+
+%Beziehung zwischen $\vert \vektor{v} \vert \cdot \vert \vektor{w} \vert$, 
+%$\langle \vektor{v}, \vektor{w} \rangle$ und $\det{A}$.
+
+\begin{satz}\label{det_2_geom} Sind 
+  	$$\vektor{v} = \left( \begin{matrix} v_1 \\ v_2 \end{matrix} \right), \qquad 
+     	\vektor{w} = \left( \begin{matrix} w_1 \\ w_2 \end{matrix} \right) $$ 
+zwei nicht kollineare Vektoren, ist $P$ das Parallelogramm, dessen Seiten durch die beiden Vektoren 
+$\vektor{v}$ und $\vektor{w}$ gegeben ist, und ist 
+  	$$ A = \left( \begin{matrix} v_1 & w_1 \\ v_2 & w_2 \end{matrix} \right) $$
+die Matrix mit $\vektor{v}$ und $\vektor{w}$ als Splaten, so ist $\vert \det{A} \vert$ die Fläche 
+des Parallelogramms $P$.
+\end{satz}
+
+%\begin{figure}[h!] 
+%  \centering
+%     \scalebox{0.70}{\input{determinant1.tex}}
+%\end{figure}
+\begin{figure}[h]
+	\vspace{-0.5cm}
+	\begin{center}
+	\begin{scaletikzpicturetowidth}{\hsize}
+     		\input{lin_05_det_1000.tex} 
+	\end{scaletikzpicturetowidth}
+	\vspace{-0.5cm}
+	\caption{Determinante und Parallelogramm}\label{lin:05_det_1000}
+	\end{center}
+	\vspace{-0.6cm}
+\end{figure}
+
+\beweis{ 
+Wir schreiben die Vektoren in ihrer Polarkoordinatendarstellung
+  	$$\vektor{v} = r \cdot \left( \begin{matrix} \cos(\varphi) \\ \sin(\varphi) 
+      \end{matrix} \right), \qquad  \vektor{w} = 
+     	s \cdot \left( \begin{matrix} \cos(\psi) \\ \sin(\psi) \end{matrix} \right) $$ 
+und erhalten damit nach den Additionstheoremen für Sinus und Kosinus (vergleiche Vorkurs \textit{Trigonometrie})
+  	$$ \begin{array} {l c l}
+   	\det{A} & = & r \cdot \cos(\varphi) \cdot s \cdot \sin(\psi) -
+	s \cdot \cos(\psi) \cdot r \cdot \sin(\varphi) \\
+   	& = & r \cdot s \cdot \sin(\psi - \varphi)
+   	\end{array} $$
+Dabei ist entweder $\psi - \varphi$ oder $-\left(\psi - \varphi \right)$ der Winkel zwischen 
+$\vektor{v}$ und $\vektor{w}$. Damit ist $s \cdot \vert \sin(\psi - \varphi) \vert$ 
+die Höhe des Parallelogramms $P$ dessen Grundlinie durch den Vektor $\vektor{v}$ 
+und dessen Seitenlinie durch den Vektor $\vektor{w}$ gegeben ist, 
+wie sofort aus der Definition des Sinus folgt, 
+und dementsprechend ist $r \cdot s \cdot \vert \sin(\psi - \varphi) \vert = \vert \det{A} \vert$ seine 
+Fläche.
+}
+
+\bigbreak
+
+\begin{korollar} In der Situation von Satz~\ref{det_2_geom} gilt:
+  	$$ \det{A}^2 + \langle \vektor{v}, \vektor{w} \rangle^2 = 
+     \vert \vektor{v} \vert^2 \cdot \vert \vektor{w} \vert^2 $$
+\end{korollar}
+
+\beweis{ Das kann man direkt nachrechnen. Wegen Satz~\ref{det_2_geom} gilt aber auch 
+   	$$ \vert \det{A} \vert = \vert \vektor{v} \vert \cdot \vert \vektor{w} \vert
+      \cdot \sin(\alpha) $$
+wobei $\alpha \in [0, \pi]$ den Winkel zwischen $\vektor{v}$ und $\vektor{w}$ bezeichnet.
+Damit folgt % erhalten wir aus Satz~\ref{2d_vec_angle}
+  	$$ \begin{array} {l c l}
+     	\det{A}^2 + \langle \vektor{v}, \vektor{w} \rangle^2 & = &
+	\vert \vektor{v} \vert^2 \cdot \vert \vektor{w} \vert^2 \cdot \sin^2(\alpha)
+	+ \vert \vektor{v} \vert^2 \cdot \vert \vektor{w} \vert^2 \cdot \cos^2(\alpha) \\
+    	& = & \vert \vektor{v} \vert^2 \cdot \vert \vektor{w} \vert^2 \left(
+	\cos^2(\alpha) + \sin^2(\alpha) \right) \\
+    	& = & \vert \vektor{v} \vert^2 \cdot \vert \vektor{w} \vert^2
+  	\end{array} $$
+wie gewünscht.
+}
+
+\bigbreak
+
+\begin{aufgabe} Berechnen Sie $\det{A}$ für $A = \left( \begin{smallmatrix} 2 & 2 \\ 
+-2 & 2 \end{smallmatrix} \right)$. 
+\end{aufgabe}
+
+\begin{aufgabe} Berechnen Sie $\det{A}$ für $A = \left( \begin{smallmatrix} 2 & 2 \\ 
+3 & 3 \end{smallmatrix} \right)$. 
+\end{aufgabe}
+
+
+\begin{aufgabe} Berechnen Sie $\det{A}$ für $A = \left( \begin{smallmatrix} 1 & 3 \\ 
+2 & 2 \end{smallmatrix} \right)$. Benutzen Sie die Cramersche Regel, um die Lösung von 
+  $$ A \cdot \vektor{x} =  \left( \begin{smallmatrix} 4 \\ 
+     6 \end{smallmatrix} \right) $$
+zu bestimmen. 
+\end{aufgabe}
+
+\begin{aufgabe} Berechnen Sie $\det{A}$ für $A = \left( \begin{smallmatrix} 2 & 3 \\ 
+1 & -1 \end{smallmatrix} \right)$. Hat das Gleichungssystem 
+  $$ A \cdot \vektor{x} =  \left( \begin{smallmatrix} 0 \\ 
+     5 \end{smallmatrix} \right) $$
+eine eindeutige Lösung? 
+\end{aufgabe}
+
+\begin{aufgabe} Zeigen Sie: Ist $A = \left( \begin{smallmatrix} a_{1,1} & a_{1,2} \\ a_{2,1} & a_{2,2}
+\end{smallmatrix} \right)$ eine $2 \times 2$--Matrix mit $a_{1,1} = 0$ oder $a_{2,2} = 0$, so gilt
+  $$ \det{A} = - a_{1,2} a_{2,1} $$
+\end{aufgabe}
+
+\begin{aufgabe} Zeigen Sie: Genau dann sind die beiden Zeilen von $A$ kollinear, wenn $\det{A} = 0$. 
+\end{aufgabe}
+
+\bigbreak
+
+\bigbreak
+
+
+\subsection{Dreidimensionale Determinanten}\label{section_det_3}
+
+\setcounter{definition}{0}
+\setcounter{beispiel}{0}
+\setcounter{notiz}{0}
+
+Der Fall von Gleichungssystemen mit zwei Unbekannten und zwei Gleichungen oder - äquivalent - der Fall 
+von $2 \times 2$--Matrizen war also noch recht einfach, und wir wollen uns jetzt dem dreidimensionalen 
+Fall zuwenden.
+
+\medbreak
+
+Ausgangspunkt unserer Überlegungen ist wieder ein Gleichungssystem, diesmal in drei Unbekannten und 
+mit drei Gleichungen:
+  	\begin{equation}\label{lin_gls_3_gen} 
+  	\begin{array} {l c l c l c l}
+  	a_{1,1} x_1 & + & a_{1,2} x_2 & + & a_{1,3} x_3 & = & b_1 \\
+  	a_{2,1} x_1 & + & a_{2,2} x_2 & + & a_{2,3} x_3 & = & b_2 \\
+  	a_{3,1} x_1 & + & a_{3,2} x_2 & + & a_{3,3} x_3 & = & b_3 \\
+  	\end{array} 
+  	\end{equation}
+dessen Koeffizientenmatrix wir wie üblich mit $A$ bezeichnen. 
+
+Unser Ziel ist es wieder, dem Gleichungssystem (~\ref{lin_gls_3_gen}) bzw. seiner Koeffizientenmatrix $A$ 
+eine Zahl $\det{A}$ zuzuordnen, die genau dann von Null verschieden ist, wenn das Gleichungssystem für 
+jede Wahl von $b_1, b_2$ und $b_3$ eine eindeutige Lösung hat. Darüberhinaus sollen auch die Regeln, 
+die wir für zweidimensionale Determinanten abgeleitet haben, in analoger Weise im dreidimensionalen Fall 
+gelten. 
+
+Für die Berechnung der Determinante einer $2 \times 2$--Matrix haben die Diagonale und die Gegendiagonale 
+eine besondere Rolle gespielt. Betrachten wir im dreidimensionalen die speziellen Gleichungssysteme
+  	\begin{equation}\label{lin_gls_3_main_diag} 
+  	\begin{array} {l c l c l c l}
+  	a_{1,1} x_1 &   &   &   &   & = & b_1 \\
+    	&   & a_{2,2} x_2 &  &   & = & b_2 \\
+    	&   &   &   & a_{3,3} x_3 & = & b_3 \\
+  	\end{array} 
+  	\end{equation}
+mit $a_{1,1} \cdot a_{2,2} \cdot a_{3,3} \neq 0$ und 
+  	\begin{equation}\label{lin_gls_3_gegen_diag} 
+  	\begin{array} {l c l c l c l}
+    	&   &   &  & a_{1,3} x_3 & = & b_1 \\
+    	&   & a_{2,2} x_2 &   &   & = & b_2 \\
+	a_{3,1} x_1 &   &  & &  & = & b_3 \\
+  	\end{array} 
+  	\end{equation}
+mit $a_{1,3} \cdot a_{2,2} \cdot a_{3,1} \neq 0$, so haben auch diese stets eine eindeutige Lösung. Damit 
+ist zu erwarten, dass auch bei der Bildung der dreidimensionalen Determinante die Produkte der Diagonalelemente, 
+$a_{1,1} \cdot a_{2,2} \cdot a_{3,3}$ und der Nebendiagonalelemente $a_{1,3} \cdot a_{2,2} \cdot a_{3,1}$ eine 
+besondere Rolle spielen. Eine Bildung der Form
+  	$$ \mathrm{''det''}(A) = a_{1,1} \cdot a_{2,2} \cdot a_{3,3} - a_{1,3} \cdot a_{2,2} \cdot a_{3,1} $$
+die der zweidimensionalen Determinante recht nahe kommt, greift aber leider zu kurz. 
+Sie liefert zwar für die Matrix 
+  	$$ A = \left( \begin{matrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{matrix} \right) $$
+ein Ergebnis wie gewünscht, nämlich den Wert $1$, aber für Matrizen
+  	$$ A' = \left( \begin{matrix} 0 & 1 & 0 \\ 0 & 0 & 1 \\ 1 & 0 & 0 \end{matrix} \right), \quad 
+   	A^{\prime \prime} = \left( \begin{matrix} 0 & 0 & 1 \\ 1 & 0 & 0 \\ 0 & 1 & 0 \end{matrix} \right) 
+  	\, \textrm{ oder } \, 
+  	A^{\prime \prime \prime} = \left( \begin{matrix} 0 & 1 & 0 \\ 1 & 0 & 0 \\ 0 & 0 & 1 \end{matrix} \right) $$
+erhalten wir immer den Wert $0$, obwohl auch hier die zugehörigen Gleichungssysteme eindeutig lösbar sind, 
+und obwohl diese Matrizen aus $A$ durch Vertauschung von Zeilen oder Spalten hervorgegangen sind und wir daher 
+aufgrund der Regel~\ref{det_rule_2_3} im Dreidimensionalen den Wert $1$ oder $-1$ erwarten. Diese Beispiele 
+zeigen bereits, dass die Definition der  dreidimensionalen Determinante nicht nur die Diagonale und die 
+Gegendiagonale berücksichtigen muss, sondern auch die Nebendiagonalen und die Nebengegendiagonalen der Matrix. 
+Es bleibt zu klären, wie diese anzuordnen sind, und ob noch weitere Einflussfaktoren zu berücksichtigen 
+sind. Das ist nicht unmittelbar klar. Darum wollen wir uns noch einen anderen Zugang zuwenden. 
+
+Sind $\vektor{v}$ und $\vektor{w}$ zwei nicht kollineare ebene Vektoren, und ist $A$ die 
+$2 \times 2$--Matrix, die diese Vektoren als Spalten hat, so haben wir in 
+Satz~\ref{det_2_geom} gesehen, dass $\vert \det{A} \vert$ der Flächeninhalt des von 
+$\vektor{v}$ und $\vektor{w}$ aufgespannten Parallelograms ist. Daher ist es naheliegend, 
+im Dreidimensionalen das folgende zu verlangen: Sind $\vektor{u}, \vektor{v}$ und 
+$\vektor{w}$ drei nicht komplanare räumliche Vektoren, und ist $A$ die $3 \times 3$--Matrix, die 
+diese Vektoren als Spalten hat, so ist $\vert \det{A} \vert$ der Inhalt des von $\vektor{u}, 
+\vektor{v}$ und $\vektor{w}$ aufgespannten Parallelotops. Erfreulicherweise haben 
+Sie im Vorkurs \textit{Lineare Algebra} % wir in Satz~\ref{spat_inhalt_quader} 
+schon eine Größe kennengelernt, die diese Bedingung erfüllt, nämlich 
+das Spatprodukt $[\vektor{u}, \vektor{v}, \vektor{w} ]$ der Vektoren 
+$\vektor{u}, \vektor{v}$ und $\vektor{w}$. Wollen wir also diese geometrische 
+Interpretation auch im Dreidimensionalen, so ergibt sich daraus: 
+
+Sind die drei Spaltenvektoren $\vektor{u}, \vektor{v}$ und $\vektor{w}$ der Matrix 
+$A$ linear unabhängig, so muss gelten
+  	$$ \det{A} = \pm [\vektor{u}, \vektor{v}, \vektor{w}] $$
+Wenn wir auch noch die Normierungseigenschaft der Regel~\ref{det_norm_2} im Dreidimensionalen, also 
+$\det{E_3} = 1$, so erhalten wir sogar
+  	$$ \det{A} = [\vektor{u}, \vektor{v}, \vektor{w}] $$
+und das ist tatsächlich der richtige Ansatz, der zu folgender Formel führt:
+
+\begin{definition} Die \index{Determinante!dreidimensional}\textbf{Determinante} $\det{A}$ eine 
+$3 \times 3$--Matrix 
+  	$$A = \left( \begin{matrix} a_{1,1} & a_{1,2} & a_{1,3} \\ 
+	a_{2,1} & a_{2,2} & a_{2,3} \\ a_{3,1} & a_{3,2} & a_{3,3}
+\end{matrix} \right) $$ 
+ist der Ausdruck
+  	$$ \begin{array}{l c l }
+    	 \det{A} & = & a_{1,1} a_{2,2} a_{3,3} + a_{1,2} a_{2,3} a_{3,1} + a_{1,3} a_{2,1} a_{3,2} \\
+     	& &  - a_{1,3} a_{2,2} a_{3,1} - a_{1,2} a_{2,1} a_{3,3} - a_{1,1} a_{2,3} a_{3,2} 
+  	\end{array} $$
+\end{definition}
+
+%\begin{notiz} Das es sich bei dieser Definition tatsächlich um das Spatprodukt der Spaltenvektoren von $A$ 
+%handelt, ergibt sich aus der Koordinatenbeschreibung des Spatprodukts in Regel~\ref{spat_koordinaten}.
+%\end{notiz}
+
+\begin{notiz} Wie wir schon in unseren Vorüberlegungen festgestellt haben, spielen alle Diagonalen und alle
+Nebendiagonalen bei der Bildung der Determinante eine Rolle. 
+\end{notiz}
+
+\begin{beispiel}
+	$$ \begin{array} {l c l}
+  	\det{ \begin{matrix} 1 & 2 & 0 \\ 2 & 3 & 4 \\ 1 & 0 & 3 \end{matrix} } & = &
+   	1 \cdot 3 \cdot 3 + 2 \cdot 4 \cdot 1 + 0 \cdot 2 \cdot 0  - 0 \cdot 3 \cdot 1 - 2 \cdot 2 \cdot 3 
+  	- 1 \cdot 4 \cdot 0 \\
+  	& = & 5
+   	\end{array} $$
+\end{beispiel}
+
+\begin{beispiel}
+	$$ \begin{array} {l c l}
+  	\det{ \begin{matrix} 1 & 2 & 3 \\ 0 & 3 & 4 \\ 0 & 0 & 3 \end{matrix} } & = &
+   	1 \cdot 3 \cdot 3 + 2 \cdot 4 \cdot 0 + 3 \cdot 0 \cdot 0  - 3 \cdot 3 \cdot 0 - 2 \cdot 0 \cdot 3 
+  	- 1 \cdot 4 \cdot 0 \\
+  	& = & 9
+   	\end{array} $$
+\end{beispiel}
+
+Die Determinante lässt sich ganz allgemein nach einem geometrischen Schema, der 
+\index{Determinante!Sarrus}\textbf{Regel von Sarrus} ermitteln
+
+\begin{regel} Zu einer $3 \times 3$--matrix $A = \left( a_{i,j} \right)$ betrachte das Schema
+$$ \setlength{\unitlength}{0.4cm}
+%\left\vert 
+\begin{picture}(22,16)(-4,-4)
+%  \put(-1,0){\line(0,1){13}}
+  \put(0,0){$a_{3,1}$}
+  \put(1,1){\line(1,1){2}}
+  \put(0,4){$a_{2,1}$}
+  \put(9,9){\line(1,1){1}}
+  \put(0,8){$a_{1,1}$}
+  \put(4,0){$a_{3,2}$}
+  \put(5,1){\line(1,1){2}}
+  \put(4,4){$a_{2,2}$}
+  \put(5,5){\line(1,1){2}}
+  \put(4,8){$a_{1,2}$}
+  \put(8,0){$a_{3,3}$}
+  \put(9,1){\line(1,1){2}}
+  \put(8,4){$a_{2,3}$}
+  \put(9,5){\line(1,1){2}}
+  \put(8,8){$a_{1,3}$}
+  \put(12,0){$a_{3,1}$}
+  \put(13,9){\line(1,1){1}}
+  \put(12,4){$a_{2,1}$}
+  \put(17,9){\line(1,1){1}}
+  \put(12,8){$a_{1,1}$}
+  \put(16,0){$a_{3,2}$}
+%  \put(17,1){\line(1,1){2}}
+  \put(16,4){$a_{2,2}$}
+%  \put(17,5){\line(1,1){2}}
+  \put(16,8){$a_{1,2}$}
+  \put(11,11){$-$}
+  \put(15,11){$-$}
+  \put(19,11){$-$}
+  \put(1,7){\line(1,-1){0.9}}
+  \put(2,6){\line(1,-1){0.9}}
+  \put(5,3){\line(1,-1){0.9}}
+  \put(6,2){\line(1,-1){0.9}}
+  \put(9,-1){\line(1,-1){0.9}}
+%  \put(10,-2){\line(1,-1){0.9}}
+  \put(5,7){\line(1,-1){0.9}}
+  \put(6,6){\line(1,-1){0.9}}
+  \put(9,3){\line(1,-1){0.9}}
+  \put(10,2){\line(1,-1){0.9}}
+  \put(13,-1){\line(1,-1){0.9}}
+%  \put(14,-2){\line(1,-1){0.9}}
+  \put(9,7){\line(1,-1){0.9}}
+  \put(10,6){\line(1,-1){0.9}}
+  \put(13,3){\line(1,-1){0.9}}
+  \put(14,2){\line(1,-1){0.9}}
+  \put(17,-1){\line(1,-1){0.9}}
+%  \put(18,-2){\line(1,-1){0.9}}
+  \put(11,-3){$+$}
+  \put(15,-3){$+$}
+  \put(19,-3){$+$}
+%  \put(21,0){\line(0,1){13}} 
+\end{picture} 
+%\right\vert 
+\setlength{\unitlength}{1pt}  $$
+das man erhält indem man die Spalten von $A$ hinschreibt und die ersten beiden Spalten von $A$ nocheinmal 
+anfügt. Die Determinante von $A$ berechnet sich dadurch, dass man jeweils die Elemente entlang der drei 
+Diagonalen dieses $3 \times 5$--Schemas miteinander multipliziert und aufaddiert und jeweils die Elemente 
+entlang der drei Gegendiagonalen miteinander multipliziert und davon abzieht.
+\end{regel}
+
+\begin{beispiel}
+Wir betrachten die Matrix 
+  $$ A = \left( \begin{matrix} 1 & 2 & 3 \\ 2 & 3 & 4 \\ 3 & 4 & 5 \end{matrix} \right) $$
+Dazu gehört das Sarrus--Schema
+$$ \setlength{\unitlength}{0.4cm}
+%\left\vert 
+\begin{picture}(22,16)(-4,-4)
+%  \put(-1,0){\line(0,1){13}}
+  \put(0,0){$3$}
+  \put(1,1){\line(1,1){2}}
+  \put(0,4){$2$}
+  \put(9,9){\line(1,1){1}}
+  \put(0,8){$1$}
+  \put(4,0){$4$}
+  \put(5,1){\line(1,1){2}}
+  \put(4,4){$3$}
+  \put(5,5){\line(1,1){2}}
+  \put(4,8){$2$}
+  \put(8,0){$5$}
+  \put(9,1){\line(1,1){2}}
+  \put(8,4){$4$}
+  \put(9,5){\line(1,1){2}}
+  \put(8,8){$3$}
+  \put(12,0){$3$}
+  \put(13,9){\line(1,1){1}}
+  \put(12,4){$2$}
+  \put(17,9){\line(1,1){1}}
+  \put(12,8){$1$}
+  \put(16,0){$4$}
+%  \put(17,1){\line(1,1){2}}
+  \put(16,4){$3$}
+%  \put(17,5){\line(1,1){2}}
+  \put(16,8){$2$}
+  \put(11,11){$-$}
+  \put(15,11){$-$}
+  \put(19,11){$-$}
+  \put(1,7){\line(1,-1){0.9}}
+  \put(2,6){\line(1,-1){0.9}}
+  \put(5,3){\line(1,-1){0.9}}
+  \put(6,2){\line(1,-1){0.9}}
+  \put(9,-1){\line(1,-1){0.9}}
+%  \put(10,-2){\line(1,-1){0.9}}
+  \put(5,7){\line(1,-1){0.9}}
+  \put(6,6){\line(1,-1){0.9}}
+  \put(9,3){\line(1,-1){0.9}}
+  \put(10,2){\line(1,-1){0.9}}
+  \put(13,-1){\line(1,-1){0.9}}
+%  \put(14,-2){\line(1,-1){0.9}}
+  \put(9,7){\line(1,-1){0.9}}
+  \put(10,6){\line(1,-1){0.9}}
+  \put(13,3){\line(1,-1){0.9}}
+  \put(14,2){\line(1,-1){0.9}}
+  \put(17,-1){\line(1,-1){0.9}}
+%  \put(18,-2){\line(1,-1){0.9}}
+  \put(11,-3){$+$}
+  \put(15,-3){$+$}
+  \put(19,-3){$+$}
+%  \put(21,0){\line(0,1){13}} 
+\end{picture} 
+%\right\vert 
+\setlength{\unitlength}{1pt}  $$
+und damit die Determinante
+  	$$ 1 \cdot 3 \cdot 5 + 2 \cdot 4 \cdot 3 + 3 \cdot 2 \cdot 4 - 3 \cdot 3 \cdot 3 - 1 \cdot 4 \cdot 4
+  	- 2 \cdot 2 \cdot 5 = 0 $$
+\end{beispiel}
+
+\medbreak 
+
+Die Berechnung der Determinante im Dreidimensionalen ist also wesentlich komplizierter als im 
+Zweidimensionalen. Daher ist es in diesem Fall besonders wichtig, Formeln und Regeln zu finden, die 
+die Berechnungen vereinfachen. Eine Beziehung, die folgende \textbf{Entwicklungsformel}, ergibt sich 
+unmittelbar aus der Definition des Spatprodukts, die ja der Determinante zugrunde liegt:
+
+\begin{satz}[Entwicklungssatz von Laplace (Spezialfall)]\label{det_laplace_3_spat} Ist $A = \left(a_{i,j}\right)$ eine 
+$3 \times 3$--Matrix, so gilt
+  	$$ \begin{array} {l c l c l }
+  	\det{A} & = & a_{1,1} \cdot \left( a_{2,2} a_{3,3} - a_{2,3} a_{3,2} \right) & - & 
+    	a_{2,1} \cdot \left( a_{1,2} a_{3,3} - a_{3,2} a_{1,3} \right) \\
+  	& &   & + &
+  	a_{3,1} \cdot \left( a_{1,2} a_{2,3} - a_{2,2} a_{1,3} \right) \\
+  	& = & a_{1,1} \cdot \det{ \begin{matrix} a_{2,2} & a_{2,3} \\ a_{3,2} & a_{3,3} \end{matrix}}  & - &
+  	a_{2,1} \cdot \det{ \begin{matrix} a_{1,2} & a_{1,3} \\ a_{3,2} & a_{3,3} \end{matrix}}  \\
+ 	& &  & + &
+   	a_{3,1} \cdot \det{ \begin{matrix} a_{1,2} & a_{1,3} \\ a_{2,2} & a_{2,3} \end{matrix}}
+  	\end{array} $$
+\end{satz}
+
+Die Berechnung der dreidimensionalen Determinante lässt sich also auf die Berechnung von zweidimensionalen 
+Determinanten zurückführen. Diese Regel gilt sogar noch etwas allgemeiner. Dazu sei wieder
+  	$$ A = \left( \begin{matrix} a_{1,1} & a_{1,2} & a_{1,3} \\ a_{2,1} & a_{2,2} & a_{2,3} \\
+    	a_{3,1} & a_{3,3} & a_{3,3} \end{matrix} \right) $$
+eine beliebige $3 \times 3$--Matrix.
+
+\begin{definition} Für $i, j \in \{1, 2, 3\}$ bezeichnen wir mit $A_{i,j}$ die 
+\index{Matrix!Streichungsmatrix}$i,j$--Strei\-chungs\-matrix, 
+also die $2 \times 2$--Matrix, die wir aus $A$ durch Streichen der $i$--ten Zeile und der $j$--ten Spalte 
+erhalten.
+\end{definition}
+
+\begin{beispiel}\label{det_3_bsp_str_1} Für
+  	$$ A = \left( \begin{matrix} 1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9 \end{matrix} \right) $$
+gilt etwa
+  	$$ \begin{array} {c c c }
+     	A_{1,1} = \left( \begin{matrix} 5 & 6 \\ 8 & 9 \end{matrix} \right) \quad &
+     	A_{2,1} = \left( \begin{matrix} 2 & 3 \\ 8 & 9 \end{matrix} \right) \quad &
+     	A_{2,2} = \left( \begin{matrix} 1 & 3 \\ 7 & 9 \end{matrix} \right) \\
+   	A_{2,3} = \left( \begin{matrix} 1 & 2 \\ 7 & 8 \end{matrix} \right) \quad &
+ 	A_{3,1} = \left( \begin{matrix} 2 & 3 \\ 5 & 6 \end{matrix} \right) \quad &
+	A_{3,3} = \left( \begin{matrix} 1 & 2 \\ 4 & 5 \end{matrix} \right) 
+	\end{array} $$
+\end{beispiel}
+
+\begin{beispiel}\label{det_3_bsp_str_2} Für eine allgemeine Matrix
+  	$$ A = \left( \begin{matrix} a_{1,1} & a_{1,2} & a_{1,3} \\ a_{2,1} & a_{2,2} & a_{2,3} \\
+	a_{3,1} & a_{3,3} & a_{3,3} \end{matrix} \right) $$
+gilt etwa
+  	$$ A_{3,1} = \left( \begin{matrix} a_{1,2} & a_{1,2}\\ a_{2,2} & a_{2,3} \end{matrix} \right) \quad 
+   	A_{2,2} = \left( \begin{matrix} a_{1,1} & a_{1,3} \\ a_{3,1} & a_{3,3} \end{matrix} \right) \quad
+  	A_{2,3} = \left( \begin{matrix} a_{1,1} & a_{1,2} \\ a_{3,1} & a_{3,2} \end{matrix} \right) $$
+\end{beispiel}
+
+\medbreak
+
+Diese Teilmatrizen können nun wie folgt in der Berechnung der 
+\index{Determinante!Laplace Entwicklung}Determinanten verwendet werden:
+
+\begin{satz}[Entwicklungssatz von Laplace]\label{det_laplace_3} \index{Satz!Laplace--Entwicklung}
+Für eine allgemeine $3 \times 3$--Matrix
+  	$$ A = \left( \begin{matrix} a_{1,1} & a_{1,2} & a_{1,3} \\ a_{2,1} & a_{2,2} & a_{2,3} \\
+	a_{3,1} & a_{3,2} & a_{3,3} \end{matrix} \right) $$
+kann $\det{A}$ nach den folgenden Regeln berechnet werden:
+
+\begin{enumerate}
+\item \textbf{Entwicklung nach der $i$--ten Zeile}:
+
+Für jedes $i \in \{1, 2,3 \}$ gilt
+  	$$ \det{A} = (-1)^{i+1} a_{i,1}  \det{A_{i,1}} + (-1)^{i+2} a_{i,2}  \det{A_{i,2}} + 
+	(-1)^{i+3} a_{i,3}  \det{A_{i,3}}  $$
+
+\item \textbf{Entwicklung nach der $j$--ten Spalte}
+
+Für jedes $j \in \{1, 2, 3 \}$ gilt
+  	$$ \det{A} = (-1)^{1+j} a_{1,j} \det{A_{1,j}} + (-1)^{2+j} a_{2,j} \det{A_{2,j}} + 
+	(-1)^{3+j} a_{3,j} \det{A_{3,j}}  $$
+\end{enumerate}
+\end{satz}
+
+\begin{notiz} Die Formel aus Satz~\ref{det_laplace_3_spat} ist der Spezialfall der Entwicklung nach 
+der ersten Spalte.
+
+Zu beachten ist, dass die Unterdeterminanten nicht einfach nur aufaddiert werden, vielmehr sind dabei 
+Vorzeichen zu berücksichtigen.
+\end{notiz}
+
+\beweis Der direkte Nachweis aller Formeln ist mühsam und rechenintensiv aber wenig herausfordernd und 
+bleibt dem Leser überlassen.
+
+\medbreak
+
+\begin{beispiel} Wir betrachten wieder die Matrix
+  	$$ A = \left( \begin{matrix} 1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9 \end{matrix} \right) $$
+Hierfür gilt
+  	$$ A_{2,1} = \left( \begin{matrix} 2 & 3 \\ 8 & 9 \end{matrix} \right) \quad 
+   	A_{2,2} = \left( \begin{matrix} 1 & 3 \\ 7 & 9 \end{matrix} \right) \quad
+   	A_{2,3} = \left( \begin{matrix} 1 & 2 \\ 7 & 8 \end{matrix} \right) $$
+wie wir schon in Beispiel~\ref{det_3_bsp_str_1} gesehen haben. Entwickeln wir die Determinante also 
+nach der zweiten Spalte, so erhalten wir
+  	$$ \begin{array} {l c l} 
+  	\det{A} & = & 2 \cdot (-1)^{2+1} \det{\left( \begin{matrix} 2 & 3 \\ 8 & 9 \end{matrix} \right)}
+	+ 5 \cdot (-1)^{2+2} \det{\left( \begin{matrix} 1 & 3 \\ 7 & 9 \end{matrix} \right)} \\
+  	& & \qquad \qquad + 8 \cdot (-1)^{2+3} \det{\left( \begin{matrix} 1 & 2 \\ 7 & 8 \end{matrix} \right)} \\
+  	& = & - 2 \cdot (-6) + 5 \cdot (-12) - 8 \cdot (-6) \\
+  	& = & 0
+ 	\end{array} $$
+\end{beispiel}
+
+\bigbreak
+
+Trotz der Entwicklungsregel bleibt das Berechnen von Determinanten mühsam und vor allem fehleranfällig. 
+Daher werden weitere Regeln benötigt, die Vereinfachungen erlauben. Es gilt nämlich wie im zweidimensionalen 
+Fall:
+
+\begin{regel}\label{det_3_rule} Es sei $A$ eine $3 \times 3$--Matrix. 
+
+\begin{enumerate}
+\item Für die $3 \times 3$--Einheitsmatrix
+$E_3 = \left( \begin{smallmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{smallmatrix} \right)$ gilt
+  	$$ \det{E_3} = 1 $$
+\item $\det{A^T} = \det{A}$.
+\item Es gilt schon $\det{A} = 0$, wenn 
+
+\begin{itemize}
+\item Eine Zeile von $A$ die Nullzeile ist.
+\item Eine Spalte von $A$ die Nullspalte ist.
+\item Eine Zeile von $A$ ein Vielfaches einer anderen Zeile ist.
+\item Eine Spalte von $A$ ein Vielfaches einer anderen Spalte ist. 
+\end{itemize}
+\item  Ist $A$ eine obere oder untere Dreiecksmatrix (d.h. gilt $a_{1,2} = a_{1,3} = a_{2,3} = 0$ 
+oder $a_{2,1} = a_{3,1} = a_{3,2} = 0$), so gilt
+  	$$ \det{A} = a_{1,1} \cdot a_{2,2} \cdot a_{3,3} $$
+\item Entsteht $A'$ aus $A$ durch Vertauschen von zwei Zeilen, so gilt
+  	$$ \det{A'} = - \det{A} $$
+Das Gleiche gilt, wenn $A'$ durch Vertauschung von zwei Spalten aus $A$ entsteht.
+\item Entsteht $A'$ aus $A$ durch Multiplikation einer Zeile von $A$ mit einer Zahl $r$, so gilt
+  	$$ \det{A'} = r \cdot \det{A} $$
+Das Gleiche gilt, wenn $A'$ aus $A$ durch Multiplikation einer Spalte von $A$ mit 
+einer Zahl $r$ hervorgeht.
+\item Entsteht $A'$ aus $A$ dadurch, dass wir ein 
+Vielfaches einer Zeile von $A$ zu einer anderen Zeile von $A$ addieren, so gilt
+  	$$ \det{A'} =  \det{A} $$
+Das Gleiche gilt, wenn $A'$ aus $A$ dadurch entsteht, dass wir ein Vielfaches einer Spalte von 
+$A$ zu einer anderen Spalte von $A$ addieren.
+\item Ist $B$ eine weitere $3 \times 3$--Matrix, so gilt
+  	$$ \det{ A \cdot B } = \det{A} \cdot \det{B} $$
+\end{enumerate}
+\end{regel}
+
+\beweis{ 
+Der Nachweis dieser Eigenschaften ist ähnlich, wenn auch aufwendiger als im zweidimensionalen Fall.
+}
+
+\bigbreak
+
+\begin{notiz} Die Regeln erlauben es immer, die Berechnung der Determinante einer Matrix auf die Berechnung der 
+Determinante einer Dreiecksmatrix zurückzuführen. Dieser Ansatz ist in der Praxis in der Tat der einfachste 
+und praktibelste Weg zur Berechnung von Determinanten.
+\end{notiz}
+
+\begin{beispiel} Wir betrachten die Matrix 
+  	$$ A = \left( \begin{matrix} 2 & 3 & 4 \\  4 & 6 & 9 \\ 2 & 4 & 5 \end{matrix} \right) $$
+
+\begin{itemize}
+\item[i)] Wir subtrahieren das Doppelte der erste Zeile von der zweiten Zeile und die erste Zeile von der 
+dritten Zeile und erhalten
+  	$$ A' = \left( \begin{matrix} 2 & 3 & 4 \\  0 & 0 & 1 \\ 0 & -2 & -3 \end{matrix} \right) $$
+\item[ii)] Wir vertauschen die Zeilen 2 und 3 der Matrix und beachten dabei, dass sich dadurch das Vorzeichen 
+der Determinante ändert. Wir erhalten
+  	$$ A^{\prime \prime} = \left( \begin{matrix} 2 & 3 & 4 \\ 0 & -2 & -3 \\  0 & 0 & 1 \end{matrix} \right) $$
+\item[iii)] $A^{\prime \prime}$ ist eine Dreiecksmatrix, hat also Determinante
+  	$$ \det{A^{\prime \prime}} = 2 \cdot (-2) \cdot 1 = -4 $$
+\item[iv)] Die Operation in Schritt ii) hat zu einem Vorzeichenwechsel der Determinante geführt. Wir machen 
+diesen rückgängig und erhalten
+  	$$ \det{A} = - \det{A^{\prime \prime}} =  4 $$
+\end{itemize}
+\end{beispiel}
+
+\bigbreak
+
+Unser ursprüngliches Ziel war es, eine Größe zu finden, die uns erlaubt zu entscheiden, ob ein 
+lineares Gleichungssystem 
+  	$$ A \cdot \vektor{x} = \vektor{b} $$
+für alle Wahlen von $\vektor{b}$ eine eindeutige Lösung hat oder nicht. Wir wollen nun 
+überprüfen, ob wir dieses Ziel mit dieser Definition der Determinante erreicht haben. Wir betrachten 
+dazu die augmentierte Matrix $\left( A \,\, \vert \, \vektor{b} \right)$ und führen diese in Normalform 
+$\left( A' \,\, \vert \, \vektor{b'} \right)$ über. Hierzu benötigen wir die Operationen
+
+\begin{itemize}
+\item[-] Addition des Vielfachen einer Zeile von $\left( A \,\, \vert \, \vektor{b} \right)$ zu einer anderen Zeile.
+\item[-] Multiplikation einer Zeile von $\left( A \,\, \vert \, \vektor{b} \right)$ mit einer Zahl $r \neq 0$.
+\item[-] Vertauschung von zwei Zeilen von $\left( A \,\, \vert \, \vektor{b} \right)$.
+\item[-] Vertauschung von zwei Spalten von $\left( A \,\, \vert \, \vektor{b} \right)$, von denen aber keine die 
+letzte sein darf.
+\end{itemize}
+
+Bei all diesen Operationen wissen wir jetzt, wie sich die Determinante ändert, und wir erhalten aus 
+Regel~\ref{det_3_rule}:
+
+\begin{notiz} Genau dann ist $\det{A} \neq 0$ wenn $\det{A'} \neq 0$.
+\end{notiz}
+
+Wir können uns daher bei unseren Überlegungen auf Gleichungssysteme $ A \cdot \vektor{x} = 
+\vektor{b}$ in Normalform beschränken. In diesem Fall ist aber $A$ eine Dreieckmatrix und hat eine 
+der folgenden Gestalten
+  	$$ \left( \begin{matrix} 0 & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \end{matrix} \right), \qquad 
+   	\left( \begin{matrix} 1 & $*$ & $*$ \\ 0 & 0 & 0 \\ 0 & 0 & 0 \end{matrix} \right), \qquad
+  	\left( \begin{matrix} 1 & $*$ & $*$ \\ 0 & 1 & $*$ \\ 0 & 0 & 0 \end{matrix} \right), \qquad
+  	\left( \begin{matrix} 1 & $*$ & $*$ \\ 0 & 1 & $*$ \\ 0 & 0 & 1 \end{matrix} \right) $$
+In den ersten drei Fällen gilt $\det{A} = 0$, nur im vierten Fall  haben wir 
+  	$$ \det{A} = 1 \neq 0 $$
+Dieser Fall ist genau die Situation, in der $\mathrm{rg}(A) = 3$, und in der das Gleichungssystem
+  $$ A \cdot \vektor{x} = \vektor{b} $$
+eine eindeutige Lösung hat. Damit kann also die eindeutige Lösbarkeit tatsächlich mit Hilfe der 
+Determinante entschieden werden und es gilt
+
+\begin{satz}\label{det_3_gls_unique}
+Ist $A$ eine $3 \times 3$--Matrix, so hat das Gleichungssystem 
+  	$$ A \cdot \vektor{x} = \vektor{b} $$
+genau dann eine eindeutige Lösung für jeden Vektor $\vektor{b}$, wenn 
+  $$ \det{A} \neq 0 $$
+\end{satz}
+
+\bigbreak 
+
+\begin{aufgabe} Berechnen Sie die Determinante der folgenden Matrizen
+  	$$ A = \left( \begin{matrix} 1 & 2 & 5 \\ 3 & 1 & 4 \\ 1 & 4 & 1 \end{matrix} \right), \quad 
+     	B = \left( \begin{matrix} 0 & 0 & 5 \\ 2 & 3 & 1 \\ 4 & 0 & 2 \end{matrix} \right), \quad
+     	C = \left( \begin{matrix} 6 & 1 & 3 \\ 3 & 0 & 1 \\ 2 & 3 & -1 \end{matrix} \right) $$
+\end{aufgabe}
+
+\begin{aufgabe} Bestimmen Sie die Streichungsmatrizen $A_{1,1}, A_{1,2}, A_{1,3}$, $A_{2,1}$, $A_{2,2}$ und
+$A_{2,3}$ von 
+  	$$ A = \left( \begin{matrix} 3 & 0 & 1 \\ 1 & 1 & 1 \\ 2 & -1 & 1 \end{matrix} \right), $$
+berechnen Sie die Determinanten dieser Streichungsmatrizen und die Determinante von $A$.
+\end{aufgabe}
+
+\begin{aufgabe} Es sei 
+  	$$  A = \left( \begin{matrix} 0 & 1 & 5 \\ 4 & 1 & 2 \\ 2 & 3 & 1 \end{matrix} \right). $$
+Entscheiden Sie, ob das Gleichungssystem 
+  	$$ A \cdot \vektor{x} = \vektor{b} $$
+für jede Wahl von $\vektor{b}$ eine eindeutige Lösung besitzt.
+\end{aufgabe}
+
+\begin{aufgabe} Es sei $A = \left(a_{i,j}\right)$ eine $3 \times 3$--Matrix mit 
+  	$$ a_{1,1} = a_{1,2} = a_{2,1} = 0 $$
+Zeigen Sie 
+  	$$ \det{A} = - a_{1,3} \cdot a_{2,2} \cdot a_{3,1} $$
+\end{aufgabe}
+
+\begin{aufgabe} Zeigen Sie, dass genau dann $\det{A} = 0$ ist, wenn die Spaltenvektoren von $A$ linear 
+abhängig sind.
+\end{aufgabe}
+
+\bigbreak
+
+\bigbreak
+
+\subsection{Die $n$--dimensionale Determinante}\label{section_det_n}
+
+\setcounter{definition}{0}
+\setcounter{beispiel}{0}
+\setcounter{notiz}{0}
+
+Analog zum Begriff der Vektoren, den wir uns auch zunächst im zwei--und dreidimensionalen Fall studierten 
+ehe wir zur $n$--dimensionalen Sitution übergingen, wollen wir jetzt auch die Determinantentheorie in der 
+allgemeinen Situation betrachten. Der Übergang vom Zwei-- zum Dreidimensionalen legt aber schon nahe, dass 
+hier die Situation etwas komplizierter sein wird. 
+
+Es gibt viele Methoden, Determinanten zu motivieren und einzuführen. Wir wollen hier einen rekursiven 
+Zugang verfolgen, mit dem wir auch schon die Berechnung dreidimensionaler Determinanten auf die Berechnung 
+zweidimensionaler Determinanten zurückgeführt haben. 
+
+Sei dazu $A = \left( a_{i,j} \right)$ eine beliebige $n \times n$--Matrix. Für  $l,k \in \{1, \ldots, n \}$ 
+bezeichnen wir wieder mit $A_{l,k}$ die $l,k$--Streichungsmatrix von $A$, also die $(n-1) \times (n-1)$--Matrix, 
+die aus $A$ durch Streichung der $l$--ten Zeile und der $k$--ten Spalte hervorgeht. Wir definieren rekursiv
+
+\begin{definition}  
+Die \index{Determinante!$n$--dimensional}\textbf{Determinante} $\det{A}$ von $A$ ist definiert wie folgt:
+\begin{itemize}
+\item Ist $n =  1$, also $A = \left( a_{1,1} \right)$, so ist $\det{A} = a_{1,1}$.
+\item Ist $n = 2$ oder $n=3$ so ist $\det{A}$ definiert wie in den 
+Abschnitten~\ref{section_det_2} und~\ref{section_det_3}.
+\item Ist $n > 3$ und die Determinante für $(n-1) \times (n-1)$--Matrizen schon erklärt, so setzen wir
+  	$$ \begin{array} {l c l}
+  	\det{A} & = &  a_{1,1} \cdot \det{A_{1,1}} - a_{1,2} \cdot \det{A_{1,2}} + \cdots \\
+	& &  \quad + (-1)^{n+1} \cdot a_{1,n} \cdot \det{A_{1,n}} \\
+	& = & \sum\limits_{l=1}^n (-1)^{1+l} a_{1,l} \cdot \det{A_{1,l}}
+  	\end{array} $$
+\end{itemize}
+\end{definition}
+
+\begin{notiz}\label{determinant_permut} In diese Rekursionsformel können wir weiter einsetzen. So ist etwa
+  	$$ \begin{array} {l c l}
+	\det{A_{1,1}} & = &  a_{2,2} \cdot \det{\left(A_{1,1}\right)_{1,1}} 
+	- a_{2,3} \cdot \det{\left(A_{1,1}\right)_{1,2}} + \cdots  \\
+	& & \quad + (-1)^{n} \cdot a_{2,n} \cdot \det{\left(A_{1,1}\right)_{1,n-1}} 
+	\end{array} $$
+Diesen Prozess können wir fortsetzen bis wir den Fall von Teilmatrizen der Größe $1 \times 1$ erreicht 
+haben. Führen wir das tatsächlich durch, so erhalten wir
+  	$$ \det{A} = \sum_{\sigma \in S_n} \textrm{sign}(\sigma) a_{1,\sigma(1)} \cdot  a_{2, \sigma(2)} \cdots 
+	a_{n \sigma(n)} $$
+mit einer Summe über alle Permutationen $\sigma \in S_n$ (vergleiche etwa Beispiel~\ref{gruppe_permutation} 
+aus Abschnitt~\ref{section_gruppe}), also einer Summe mit $n!$ vielen Summanden. 
+
+Da $n!\,$ sehr schnell wächst, wenn $n$ groß wird, kann man schon erkennen, dass der Rechenaufwand zur 
+Ermittlung der Determinante sehr groß werden kann.
+\end{notiz}
+
+\begin{beispiel} Wir betrachten die Matrix
+  	$$ A = \left( \begin{matrix} 1 & 2 & -2 & - 1 \\ 0 & 1 & 2 & 0 \\ 1 & 0 & 1 & 0 \\ 1 & -1 & 1 & 0 
+	\end{matrix} \right) $$
+Die Teilmatrizen, die wir benötigen, sind
+  	$$ \begin{array} {l c c}
+   	A_{1,1} = \left( \begin{matrix} 1 & 2 & 0 \\ 0 & 1 & 0 \\ -1 & 1 & 0 \end{matrix} \right), \quad &
+   	A_{1,2} = \left( \begin{matrix} 0 & 2 & 0 \\ 1 & 1 & 0 \\  1 & 1 & 0 \end{matrix} \right), \quad &
+   	A_{1,3} = \left( \begin{matrix} 0 & 1 & 0 \\ 1 & 0 & 0 \\  1 & -1 & 0 \end{matrix} \right), \quad \\
+  	A_{1,4} = \left( \begin{matrix} 0 & 1 & 2 \\ 1 & 0 & 1 \\  1 & -1 & 1 \end{matrix} \right) 
+  	\end{array} $$
+mit 
+  $$ \det{A_{1,1}} = 0, \quad \det{A_{1,2}} = 0, \quad \det{A_{1,3}} = 0, \quad \det{A_{1,4}} = -2. $$
+Also gilt
+  $$ \det{A} = (-1)^{1+4}\cdot (-1) \cdot (-2) = -2 $$
+\end{beispiel}
+
+\medbreak 
+
+Aufgrund des mit $n$ sehr schnell wachsenden Rechenaufwands ist es notwendig, Formeln und Regeln zu finden, 
+die das Berechnen von Determinanten vereinfachen. 
+
+\begin{lemma}\label{det_lemma1} 
+Geht $A'$ aus $A$ durch das Vertauschen von zwei Spalten hervor, so gilt 
+  	$$ \det{A'} = -\det{A} $$
+\end{lemma}
+
+\beweis{ Wir betrachten dazu die Darstellung  
+
+  	$$ \det{A} = \sum_{\sigma \in S_n} \textrm{sign}(\sigma) a_{1,\sigma(1)} a_{2, \sigma(2)} \cdots 
+ 	a_{n \sigma(n)} $$
+Falls $A'$ aus $A$ durch Vertauschen der Spalten $l, k$ mit $l < k$ entsteht, so gilt also 
+  	$$ \det{A'} = \sum_{\sigma \in S_n} \textrm{sign}(\sigma) \cdot a_{1,\sigma(1)} \cdots a_{l, \sigma(k)} \cdots 
+	a_{k, \sigma(l)} \cdots a_{n \sigma(n)} $$
+Bezeichnet nun $\tau = \langle l \, k \rangle$ die Transposition von $l$ und $k$, so schreibt sich dies als
+  	$$ \begin{array} {l c l}
+	\det{A'} & = & \sum\limits_{\sigma \in S_n} \textrm{sign}(\sigma) \cdot a_{1,\sigma(1)} \cdots 
+	a_{l, \sigma(\tau(l))} 	\cdots  a_{k, \sigma(\tau(k))} \cdots a_{n, \sigma(n)} \\
+      & = &  \sum\limits_{\sigma \in S_n} \textrm{sign}(\sigma) \cdot a_{1,\sigma(\tau(1))} \cdots 
+	a_{l, \sigma(\tau(l))}  \cdots  a_{k, \sigma(\tau(k))} \cdots a_{n, \sigma(\tau(n))}
+  	\end{array} $$
+(da ja $\tau$ die Zahlen $\neq l, k$ unberührt lässt). Nun haben wir aber, dass gilt
+  	$$ \textrm{sign}(\sigma) = - \textrm{sign}(\sigma \circ \tau) $$ 
+und mit $\sigma$ durchläuft auch $\sigma \circ \tau$ alle Permutationen. Daher schreibt sich diese 
+Beziehung auch als
+  	$$ \begin{array} {l c l}
+   	\det{A'} & = & \sum\limits_{\sigma \in S_n} - \textrm{sign}(\sigma \circ \tau) \cdot a_{1,\sigma(\tau(1))} 
+  	\cdots a_{l, \sigma(\tau(l))} \cdots  a_{k, \sigma(\tau(k))} \cdots a_{n \sigma(\tau(n))} \\
+  	& = & \sum\limits_{\sigma \in S_n} -\textrm{sign}(\sigma) \cdot a_{1,\sigma(1)} \cdots a_{l, \sigma(l)} 
+  	\cdots  a_{k, \sigma(k)} \cdots a_{n \sigma(n)} \\
+   	& = &  - \det{A}
+  	\end{array} $$
+wie gewünscht.
+}
+
+\medbreak
+
+\begin{lemma}\label{det_lemma2} Ist $A^{T}$ die zu $A$ transponierte Matrix, so gilt 
+	$$ \det{A} = \det{A^T}  $$
+\end{lemma}
+
+\beweis{ Dazu benutzen wir wieder die Darstellung 
+  	$$ \det{A} = \sum_{\sigma \in S_n} \textrm{sign}(\sigma) a_{1,\sigma(1)} a_{2, \sigma(2)} \cdots 
+	a_{n \sigma(n)} $$
+und erhalten daraus
+  	$$ \begin{array} {l c l}
+    	\det{A} & = & \sum\limits_{\sigma \in S_n} \textrm{sign}(\sigma) \cdot 
+	a_{1,\sigma(1)} \cdot a_{2, \sigma(2)} \cdots  a_{n \sigma(n)} \\
+   	& = &  \sum\limits_{\sigma \in S_n} \textrm{sign}(\sigma) \cdot 
+   	a_{(\sigma^{-1} \circ{\sigma})(1), \sigma((\sigma^{-1} \circ{\sigma})(1))} \cdot 
+  	a_{(\sigma^{-1} \circ{\sigma})(2), \sigma((\sigma^{-1} \circ{\sigma})(2))} 
+   	\cdots   \\ & & \phantom{serh viel Platz} \cdots
+   	a_{(\sigma^{-1} \circ{\sigma})(n) \sigma((\sigma^{-1} \circ{\sigma})(n))} \\
+ 	& = & \sum\limits_{\sigma \in S_n} \textrm{sign}(\sigma) \cdot 
+   	a_{\sigma^{-1}(1), \sigma(\sigma^{-1}(1))} \cdot 
+   	a_{\sigma^{-1}(2), \sigma((\sigma^{-1} (2)} \cdots 
+   	a_{\sigma^{-1}(n) \sigma(\sigma^{-1}(n))} \\
+   	& = & \sum\limits_{\sigma \in S_n} \textrm{sign}(\sigma) \cdot 
+    	a_{\sigma(1), 1} \cdot a_{\sigma(2), 2} \cdots a_{\sigma(n), n} \\
+   	& = & \det{A^T} 
+   	\end{array} $$
+Dabei haben wir beim Übergang von Zeile 2 zu Zeile 3 die Terme im Produkt umsortiert, und beim Übergang 
+von Zeile 3 zu Zeile 4 ausgenutzt, dass mit $\sigma$ auch $\sigma^{-1}$ alle Permutationen durchläuft, 
+und dass $\textrm{sign}(\sigma) = \textrm{sign}(\sigma^{-1})$, wie wir schon in Beispiel~\ref{gruppe_permutation} 
+aus Abschnitt~\ref{section_gruppe} gesehen haben.
+
+Damit ist auch dieses Lemma gezeigt.
+}
+
+\bigbreak
+
+\begin{korollar} Entsteht $A'$ aus $A$ durch Vertauschen von zwei Zeilen, so gilt
+  	$$ \det{A'} = - \det{A} $$
+\end{korollar}
+
+\beweis{ Das folgt jetzt sofort aus den beiden Hilfssätzen~\ref{det_lemma1} und~\ref{det_lemma2}, da das 
+Vertauschen von Zeilen von $A$ dem Vertauschen von Spalten von $A^T$ entspricht.
+}
+
+\medbreak
+
+Damit sind wir jetzt in der Lage einige Regeln für Determinanten herzuleiten und zusammenzustellen. 
+
+\begin{regel}\label{det_n_rule} Es sei $A$ eine $n \times n$--Matrix.
+
+\begin{enumerate}
+\item Für die $n \times n$--Einheitsmatrix $E_n$ gilt
+  	$$ \det{E_n} = 1 $$
+\item $\det{A^T} = \det{A}$.
+\item Es gilt schon $\det{A} = 0$, wenn 
+
+\begin{itemize}
+\item Eine Zeile von $A$ die Nullzeile ist.
+\item Eine Spalte von $A$ die Nullspalte ist.
+\item Eine Zeile von $A$ ein Vielfaches der anderen Zeile ist.
+\item Eine Spalte von $A$ ein Vielfaches der anderen Spalte ist. 
+\end{itemize}
+\item  Ist $A$ eine obere oder untere Dreiecksmatrix, so gilt
+  	$$ \det{A} = a_{1,1} \cdot a_{2,2} \cdots a_{n,n} $$
+\item Entsteht $A'$ aus $A$ durch Vertauschen von zwei Zeilen, so gilt
+  	$$ \det{A'} = - \det{A} $$
+Das Gleiche gilt, wenn $A'$ durch Vertauschung von zwei Spalten aus $A$ entsteht.
+\item Entsteht $A'$ aus $A$ durch Multiplikation einer Zeile von $A$ mit einer Zahl $r$, so gilt
+  	$$ \det{A'} = r \cdot \det{A} $$
+Das Gleiche gilt, wenn $A'$ aus $A$ durch Multiplikation einer Spalte von $A$ mit 
+einer Zahl $r$ hervorgeht.
+\item Entsteht $A'$ aus $A$ dadurch, dass wir ein 
+Vielfaches einer Zeile von $A$ zu einer anderen Zeile von $A$ addieren, so gilt
+  	$$ \det{A'} =  \det{A} $$
+Das Gleiche gilt, wenn $A'$ aus $A$ dadurch entsteht, dass wir ein Vielfaches 
+einer Spalte von $A$ zu einer anderen Spalte von $A$ addieren.
+\item Schreiben wir $A$ als $\left(\vektor{a_1} \, \ldots \, \vektor{a_n}
+\right)$ mit Spaltenvektoren $\vektor{a_1}, \ldots , \vektor{a_n}$, so 
+gilt
+  	$$ \begin{array} {l c l}
+   	\det{\vektor{a_1} \, \ldots \, \vektor{a_i} + \vektor{a'_i} 
+  	\, \ldots \, \vektor{a_n}} &  = &  
+  	\det{\vektor{a_1} \, \ldots \, \vektor{a_i} \, \ldots \, 
+   	\vektor{a_n}} \\
+   	& & \quad + \det{\vektor{a_1} \, \ldots \, \vektor{a'_i} 
+  	\, \ldots \, \vektor{a_n}} 
+  	\end{array} $$
+Die analoge Aussage gilt für die Zeilen von $A$.
+\end{enumerate}
+\end{regel}
+
+\beweis{ Einige der Regeln wurden ja schon in den vorangegangenen Lemmata bewiesen. 
+
+Wir zeigen hier beispielshaft (6) und überlassen die Nachweise 
+der anderen Regeln, die nach einem ähnlichen Muster erfolgen, dem Leser. 
+$A'$ entsteht aus $A$ durch Addition eines Vielfachen der 
+$l$--ten Zeile zur $k$--ten Zeile, wobei $l \neq k$. 
+
+Wir führen den Beweis durch vollständige Induktion. 
+
+Die Fälle $n = 2$ und $n= 3$ sind uns schon aus den Regeln~\ref{det_rule_2_5} 
+bzw.~\ref{det_3_rule} bekannt
+Wir können annehmen, dass $n \geq 4$, und dass wir die Aussage für Determinanten 
+kleinerer Dimension schon kennen. 
+
+Wir können auch annehmen, dass $l > 1$ und $k > 1$. Anderfalls vertauschen wir 
+in $A$ und $A'$ geeignete Zeilen und ändern dadurch die Determinanten  
+jeweils um ein Vorzeichen. Dann gilt aber 
+ 	\begin{equation}\label{det_ind_zeilen}
+  	\det{A'}= \sum_{l=1}^n (-1)^{1+l} \cdot a_{1,l} \cdot \det{A^{\prime}_{1,l}} 
+ 	\end{equation}
+wobei $A^{\prime}_{i,l}$ aus $A_{i,l}$ jeweils durch Addition eines Vielfachen 
+der $(k-1)$--ten Zeile zur $(l-1)$--ten Zeile entsteht. Damit gilt also nach 
+Induktionsvoraussetzung
+ 	$$ \det{A^{\prime}_{i,l}} = \det{A_{i,l}} \qquad \textrm{ für } \, i = 1, \ldots n $$
+und daher folgt aus~\ref{det_ind_zeilen}
+  	$$ \det{A'} = \det{A} $$
+}
+
+\bigbreak
+
+\begin{beispiel} Wir betrachten die Matrix 
+  	$$ A = \left( \begin{matrix} 1 & 2 & 3 \\ 3 & 2 & 1 \\ 2 & 4 & 6 \end{matrix} \right) $$
+Ohne jegliche explizite Rechnung erhalten wir, dass $\det{A} = 0$, denn die dritte Zeile ist das doppelte der 
+ersten Zeile, und wir können Punkt (3) der Regel~\ref{det_n_rule} anwenden.
+\end{beispiel}
+
+\medbreak
+
+Eine wiederholte Anwendung der Punkte (3) und (8) dieser Regel liefert sofort folgendes hilfreiche 
+Resultat
+
+\begin{korollar} Ist eine Zeile der Matrix $A$ eine Linearkombination der anderen Zeilen, so gilt
+  	$$ \det{A} = 0$$
+\end{korollar}
+
+\medbreak
+
+\begin{beispiel} Wir betrachten die Matrix 
+  	$$ A = \left( \begin{matrix} 1 & 2 & 3 \\ 3 & 2 & 1 \\ 4 & 4 & 4 
+  	\end{matrix} \right) $$
+Ohne jegliche Rechnung erhalten wir, dass $\det{A} = 0$, denn die dritte Zeile ist die Summer der ersten 
+beiden Zeilen.
+\end{beispiel}
+
+\bigbreak
+
+Hieraus erhalten wir das $n$--dimensionale 
+\index{Determinante!Laplace Entwicklung}Analog von Satz~\ref{det_laplace_3}:
+
+\begin{satz}[Entwicklungssatz von Laplace]\label{det_laplace_n} \index{Satz!Laplace--Entwicklung}
+Für eine allgemeine $n \times n$--Matrix
+	$$ A = \left( \begin{matrix} a_{1,1} & a_{1,2} & \ldots & a_{1,n} \\
+  	a_{2,1} & a_{2,2} & \ldots & a_{2,n} \\
+   	\vdots & & \ddots & \vdots \\
+  	a_{n,1} & a_{n,2} & \ldots & a_{n,n} \end{matrix} \right) $$
+kann $\det{A}$ nach den folgenden Regeln berechnet werden:
+
+\begin{enumerate}
+\item \textbf{Entwicklung nach der $i$--ten Zeile}:
+
+Für jedes $i \in \{1, \ldots,n \}$ gilt
+  	$$ \begin{array} { l c r}
+   	\det{A} & = & (-1)^{i+1} \cdot a_{i,1} \cdot \det{A_{i,1}} + (-1)^{i+2} \cdot  a_{i,2} \cdot \det{A_{i,2}} \\
+      	& & \,\, + \cdots + (-1)^{i+n} \cdot a_{i,n}  \cdot \det{A_{i,n}} 
+  	\end{array} $$
+
+\item \textbf{Entwicklung nach der $j$--ten Spalte}
+
+Für jedes $j \in \{1, \ldots, n \}$ gilt
+  	$$ \begin{array} { l c r}
+ 	\det{A} & = & (-1)^{1+j} \cdot a_{1,j} \cdot \det{A_{1,j}} + (-1)^{2+j} \cdot a_{2,j}\cdot \det{A_{2,j}} \\
+  	& &  \,\,+  \cdots + (-1)^{n+j} \cdot a_{n,j} \cdot \det{A_{n,j}} 
+  \end{array} $$
+\end{enumerate}
+\end{satz}
+
+\beweis{ Durch $(i-1)$-faches Vertauschen können wir die $i$--te Zeile zur ersten 
+machen, ohne dadurch die Reihenfolge der anderen zu verändern. Dadurch ändert 
+sich das Vorzeichen der Determinante um den Faktor $(-1)^{i-1} = (-1)^{i+1}$. Wenden 
+wir jetzt die Definition der Determinante an, so erhalten wir die Formel für 
+die Entwicklung nach der $i$--ten Zeile.
+
+Die Formel für die Entwicklung nach der $j$--ten Spalte ergibt sich wegen 
+Lemma~\ref{det_lemma2} aus der Zeilenentwicklung, angewendet auf $A^T$.
+}
+
+\medbreak
+
+Ferner können wir aus den Regeln folgendes nützliche Resultat ableiten:
+
+\begin{lemma}\label{det_lemma3} 
+Entsteht $A'$ aus $A$ durch eine der elementaren Matrizenoperationen
+aus Satz~\ref{gls_mat_operation}, 
+so gilt
+  	$$ \det{A'} \neq 0 \, \iff \, \det{A} \neq 0 $$
+Ist $A^{\prime \prime}$ eine Normalform von $A$, so gilt
+  	$$ \det{A^{\prime \prime}} \neq 0 \, \iff \, \det{A} \neq 0 $$
+\end{lemma}
+
+\beweis{ Nach den Regeln~\ref{det_n_rule} ändert sich bei Durchführung einer 
+elementaren Matrizenoperation aus Satz~\ref{gls_mat_operation} allenfalls um ein 
+Vorzeichen oder einen von Null verschiedenen Faktor. Hieraus folgt die Aussage 
+für $A'$. Da $A^{\prime \prime}$ aus $A$ durch wiederholte Anwendung dieser 
+Operationen entsteht, folgt auch die Aussage für $A^{\prime \prime}$.
+}
+
+\medbreak
+
+\begin{definition} Eine $n \times n$--Matrix heißt 
+\index{Matrix!regulär}\textbf{regulär}, wenn $\det{A} \neq 0$
+\end{definition}
+
+\begin{satz}\label{det_n_regular} 
+Für eine $n \times n$--Matrix $A$ sind äquivalent:
+
+\begin{enumerate}
+\item $A$ ist regulär.
+\item $\mathrm{rg}(A) = n$.
+\end{enumerate}
+\end{satz}
+
+\beweis{  Wegen Lemma~\ref{det_lemma3} ist $A$ genau dann regulär, wenn das für 
+eine Normalform von $A$ gilt, und auch der Rang einer Matrix ändert sich nicht, 
+wenn wir zur Normalform übergehen. Wir können deshalb annehmen, dass $A$ in Normlaform vorliegt. Dann ist aber $A$ eine obere Dreiecksmatrix der Form 
+  	$$ \left(\begin{matrix} 1 & a_{1,2} & \ldots & a_{1,t} & a_{1,t+1} & \ldots 
+ 	& a_{1,n} \\
+ 	0 & 1 & \ldots & a_{2,t} & a_{2,t+1} & \ldots & a_{2,n} \\
+ 	\vdots & & \ddots & & & & \vdots \\
+	0 & 0 & \ldots & 1 & a_{t, t+1} & \ldots & a_{t, n} \\
+ 	0 & 0 & \ldots & 0 & 0 & \ldots & 0 \\
+ 	\vdots & & \ddots & & & & \vdots \\
+ 	0 & 0 & \ldots & 0 & 0 & \ldots & 0  \end{matrix} \right) \qquad \textrm{ für ein }
+ 	t < n $$
+oder 
+  	$$ \left(\begin{matrix} 1 & a_{1,2} & \ldots & a_{1,n} \\
+  	0 & 1 & \ldots & a_{2, n} \\
+  	\vdots & & \ddots & \vdots \\
+  	0 & 0 & \ldots & 1 \end{matrix} \right) $$
+Im ersten Fall gilt $\mathrm{rg}(A) < n$ und $\det{A} = 0$ (etwa wegen (3) aus 
+Regel~\ref{det_n_rule}) und im zweiten Fall gilt $\mathrm{rg}(A) = n$ und 
+$\det{A} = 1$ nach (4) aus Regel~\ref{det_n_rule}.
+}
+\medbreak
+
+\begin{notiz}
+Die Definition der Determinante lässt sich sehr einfach als Algorithmus umsetzen:
+
+\makebox[\textwidth]{\hrulefill}  
+\lstinputlisting{LA_determinante.m}
+\makebox[\textwidth]{\hrulefill} 
+
+\end{notiz}
+
+\bigbreak
+
+Für große $n$ ist das Berechnen der Determinante sowohl über die 
+Laplace--Entwicklung als auch über die Darstellung mit der Permutationsgruppe 
+sehr arbeitsintensiv. In diesem Fall wird in der Praxis die Determinante dadurch 
+berechnet, dass man die Matrix in Normalform überführt und sich die Operationen, 
+die dabei durchgeführt werden und den Wert der Determinante ändern, merkt. 
+Dieses Verfahren wächst in seiner Komplexität viel langsamer als etwa die 
+Laplace--Entwicklung.
+
+\begin{beispiel}\label{det_n_einfach} Wir betrachten die Matrix 
+  	$$ A = \left( \begin{matrix} 1 & 2 & 3 \\ 2 & 4 & 4 \\ 3 & 4 & 4 
+    	\end{matrix} \right) $$
+Im ersten Schritt subtrahieren wir das Doppelte der ersten Zeile von der zweiten und 
+das Dreifache der ersten Zeile von der Dritten, 
+wodurch sich die Determinante nicht ändert, und erhalten 
+  	$$ A' = \left( \begin{matrix} 1 & 2 & 3 \\ 0 & -2 & -2 \\ 0 & -2 & -5 
+   	\end{matrix} \right) $$
+Im zweiten Schritt multiplizieren wir die zweite Zeile mit $-\frac{1}{2}$ und 
+merken uns, dass dadurch die Determinante mit $-\frac{1}{2}$ multipliziert wird. 
+Wir erhalten 
+  	$$ A^{\prime \prime} = \left( \begin{matrix} 1 & 2 & 3 \\ 0 & 1 & 1 \\ 0 & -2 & -5 
+   	\end{matrix} \right) $$
+Wir addieren jetzt das Doppelte der zweiten Zeile zur Dritten,
+wodurch sich die Determinante nicht ändert, und erhalten 
+  	$$ A^{\prime \prime \prime} = \left( \begin{matrix} 1 & 2 & 3 \\ 0 & 1 & 1 
+   	\\ 0 & 0 & -1  \end{matrix} \right) $$
+Diese Matrix $A^{\prime \prime \prime}$ ist eine obere Dreiecksmatrix, hat also 
+Determinante $1 \cdot 1 \cdot (-1) = -1$. Um die Determinante von $A$ zu bekommen, 
+müssen wir berücksichtigen, dass in Schritt 2 die Determinante mit dem Faktor 
+$-\frac{1}{2}$ multipliziert wurde und dies rückgängig machen. Wir erhalten also
+  	$$ \det{A} = 2 $$
+\end{beispiel}
+ 
+\begin{beispiel} In Beispiel~\ref{det_n_einfach} hätten wir die Determinante auch noch 
+leicht nach dem Entwicklungssatz von Laplace ausrechnen können. Schon etwas komplizierter ist 
+das im Fall
+  	$$   B = \left( \begin{matrix} 5 & 1 & 5 & 4 \\ 4 & -4 & -3 & -2 \\ 1 & 0 & -2 & 5 \\
+  	3 & 1 & 2 & 4  \end{matrix} \right) $$
+Hier empfiehlt es sich bereits, die Regeln aus~\ref{det_n_rule}anzuwenden.
+
+Zunächst vertauschen wir die erste und die dritte Spalte und erhalten 
+  	$$ B_1 =  \left( \begin{matrix} 1 & 0 & -2 & 5 \\  4 & -4 & -3 & -2 \\ 5 & 1 & 5 & 4 \\
+   	3 & 1 & 2 & 4  \end{matrix} \right) $$
+Hierdurch ändert sich das Vorzeichen, $\det{B_1} = - \det{B}$. Wir subtrahieren viermal die 
+erste Zeile von der zweiten, fünfmal die erste von der dritten und dreimal die erste von der vierten und 
+erhalten
+  	$$ B_2 =  \left( \begin{matrix} 1 & 0 & -2 & 5 \\  0 & -4 & 5 & -22 \\ 0 & 1 & 15 & -21 \\
+   	0 & 1 & 8 & -11  \end{matrix} \right) $$
+Hierdurch ändert sich die Determinante nicht,  $\det{B_2} = \det{B_1} = - \det{B}$. 
+Nun können wir $\textrm{det}(B_2)$ schon recht einfach durch Entwicklung nach der ersten Spalte berechnen. Wir 
+können aber auch weiter vereinfachen. Dazu vertauschen wir zunächst die zweite und die vierte Spalte:
+  	$$ B_3 =  \left( \begin{matrix} 1 & 0 & -2 & 5 \\ 0 & 1 & 8 & -11  \\ 0 & 1 & 15 & -21 \\
+   	0 & -4 & 5 & -22  \end{matrix} \right) $$
+Hierdurch ändert sich das Vorzeichen der Determinante, $\det{B_3}= -\det{B_2} = \det{B}$. 
+Jetzt subtrahieren wir die zweite Zeile von der dritten und addieren sie viermal zur vierten:
+  	$$ B_4 = \left( \begin{matrix} 1 & 0 & -2 & 5 \\ 0 & 1 & 8 & -11  \\ 0 & 0 & 7 & -10 \\
+     	0 & 0 & 37 & -66  \end{matrix} \right) $$
+Hierdurch ändert sich die Determinante nicht, $\det{B_4} = \det{B_3} = \det{B}$. Um uns 
+das Leben noch einfacher zu machen, subtrahieren wir fünfmal die dritte Spalte von der Vierten und erhalten
+  	$$ B_5 = \left( \begin{matrix} 1 & 0 & -2 & 5 \\ 0 & 1 & 8 & -11  \\ 0 & 0 & 7 & -10 \\
+    	0 & 0 & 2 & -16  \end{matrix} \right) $$
+Hierdurch ändert sich die Determinante nicht, $\det{B_5}= \det{B_4} = \det{B}$. Nun 
+berechnen wir $\det{B_5}$ indem wir zweimal nach der ersten Spalte entwickeln:
+  	$$ \begin{array} {l c l}
+   	\det{B_5} & = & 1 \cdot \textrm{det} \left( \begin{matrix}  1 & 8 & -11  \\  0 & 7 & -10 \\
+   	0 & 2 & -16  \end{matrix} \right) - 0 + 0 - 0\\[2.0em]
+     	& = & 1 \cdot \textrm{det} \left( \begin{matrix}  7 & -10 \\
+  	2 & -16  \end{matrix} \right) - 0 + 0 \\[1.2em]
+  	& = & 7 \cdot (-16) - (-10) \cdot 2 \\
+ 	& = & -92 
+  	\end{array} $$
+Also gilt $\det{B} = -92$.
+\end{beispiel}
+
+\medbreak
+
+\begin{beispiel} Wir wollen die Determinante der Matrix
+  	$$ A = \left( \begin{matrix} 1 & 2 & 3 & 2 & 1 \\ 2 & 1 & 4 & 2 & 3 \\ 
+    	7 & 6 & 5 & 4 & 3 \\ 1 & -1 & 1 & -1 & 1 \\ 2 & 3 & 1 & 0 & -1 \end{matrix} \right) $$
+berechnen. In diesem Fall ist die Entwicklung nach einer Zeile oder einer Spalte nicht zu empfehlen. 
+Hierzu müssten zunächst fünf Determinanten von $4 \times 4$--Matrizen berechnet werden, und jede dieser 
+Determinanten erfordert wiederum die Ermittlung von vier Determinanten von $3 \times 3$--Matrizen. 
+Neben dem Rechenaufwand ist hier auch die Gefahr, sich zu verrechnen, zu berücksichtigen.
+Die numerische einfachere Methode ist es, die Matrix auf obere Dreiecksform zu bringen.
+
+Dazusubtrahieren wir geeignete Vielfache der ersten Zeile von den Zeilen 2 - 5 und erhalten 
+  	$$ A_1 = \left( \begin{matrix} 1 & 2 & 3 & 2 & 1 \\ 0 & -3 & -2 & - 2 & 1 \\ 
+     	0 & - 8 & -16 & -10 & -4 \\0 & -3 & -2 & -3 & 0  \\ 0 & -1 & -5 & -4 & -3 \end{matrix} \right) $$
+Dadurch ändert sich die  Determinante nicht, also $\det{A_1}= \det{A}$. 
+
+Nun vertauschen wir die zweite und die fünfte Spalte und erhalten
+  	$$ A_2 = \left( \begin{matrix} 1 & 1 & 3 & 2 & 2 \\ 0 & 1 & -2 & - 2 & -3\\ 
+  	0 & -4 & -16 & -10 & -8 \\0 & 0 & -2 & -3 & -3  \\ 0 & -3 & -5 & -4 & -1 \end{matrix} \right) $$
+Dadurch ändert die Determinante das Vorzeichen, $\det{A_2} = -\det{A_1} = -\det{A}$.
+
+Wir addieren viermal die zweite Zeile zur dritten und dreimal die zweite Zeile zur vierten, und erhalten
+  	$$ A_3 = \left( \begin{matrix} 1 & 1 & 3 & 2 & 2 \\ 0 & 1 & -2 & - 2 & -3\\ 
+    	0 & 0 & -24 & -18 & -20 \\0 & 0 & -2 & -3 & -3  \\ 0 & 0 & -11 & -10 & -10 \end{matrix} 
+    	\right) $$
+Dadurch ändert sich die  Determinante nicht, also $\det{A_3} = \det{A_2} = - \det{A}$. 
+
+Nun bietet sich zunächst keine Zeile oder Spalte direkt zur Weiterarbeit an. Wir könnten die dritte Zeile durch $20$ 
+dividieren, uns diesen Faktor für die Determinantenberechnung merken und dann mit der modifizierten dritten Zeile 
+weiterarbeiten. Das wäre die Methode, die ein Computerprogramm benutzen würde, bei manuellen Berechnungen 
+ist das jedoch aufgrund der auftretenden Brüche fehleranfällig. Daher schieben wir einen Zwischenschritt ein und 
+subtrahieren sechsmal die vierte Zeile von der fünften:
+ 	$$ A_4 = \left( \begin{matrix} 1 & 1 & 3 & 2 & 2 \\ 0 & 1 & -2 & - 2 & -3\\ 
+    	0 & 0 & -24 & -18 & -20 \\0 & 0 & -2 & -3 & -3  \\ 0 & 0 & 1 & 8 & 8  \end{matrix} \right) $$
+Dadurch ändert sich die  Determinante nicht, also $\det{A_4} = \det{A_3} = - \det{A} $. 
+
+Nun vertauschen wir die Zeilen 3 und 5:
+ 	$$ A_5 = \left( \begin{matrix} 1 & 1 & 3 & 2 & 2 \\ 0 & 1 & -2 & - 2 & -3\\  0 & 0 & 1 & 8 & 8 \\
+  	0 & 0 & -2 & -3 & -3 \\ 0 & 0 & -24 & -18 & -20 \\   \end{matrix} \right) $$
+Dadurch ändert die Determinante das Vorzeichen, $\det{A_5} = -\det{A_4} =  \det{A} $.
+
+Wir addieren das doppelte der dritten Zeile zur vierten und das vierundzwanzigfache der dritten zur fünften und erhalten
+  	$$ A_6 = \left( \begin{matrix} 1 & 1 & 3 & 2 & 2 \\ 0 & 1 & -2 & - 2 & -3\\  0 & 0 & 1 & 8 & 8 \\
+ 	0 & 0 & 0 & 13 & 13 \\ 0 & 0 & 0 & 174 & 172 \\   \end{matrix}  \right) $$
+Dadurch ändert sich die  Determinante nicht, also $\det{A_6} = \det{A_5} = \det{A}$. 
+
+Nun können wir die Determinante bereits explizit berechnen, indem wir sukkzessive nach der ersten Spalte entwickeln:
+  	$$  \det{A_6} = 1 \cdot 1 \cdot 1 \cdot \left( 13 \cdot 172 - 13 \cdot 174 \right) = -26 $$
+
+Alternativ können wir aber auch noch die fünfte Spalte von der vierten subtrahieren und erhalten
+  	$$ A_7 = \left( \begin{matrix} 1 & 1 & 3 & 0 & 2 \\ 0 & 1 & -2 & 1 & -3\\  0 & 0 & 1 & 0 & 8 \\
+  	0 & 0 & 0 & 0 & 13 \\ 0 & 0 & 0 & 2 & 172 \\   \end{matrix} 
+   	\right) $$
+Dadurch ändert sich die  Determinante nicht, also $\det{A_7} = \det{A_6} = \det{A}$.
+
+Vertauschen wir jetzt die Zeilen 4 und 5, so ergibt sich  
+  	$$ A_8 = \left( \begin{matrix} 1 & 1 & 3 & 0 & 2 \\ 0 & 1 & -2 & 1 & -3\\  0 & 0 & 1 & 0 & 8 \\
+   	0 & 0 & 0 & 2 & 172 \\ 0 & 0 & 0 & 0 & 13 \\   \end{matrix} \right) $$
+und ein Vorzeichenwechsel in der Determinante, $\det{A_8}= -\det{A_7} = -\det{A}$.
+Jetzt haben wir obere Dreicksform erreicht und lesen also ab, dass
+  	$$ \det{A_8} = 1 \cdot 1 \cdot 1 \cdot 2 \cdot 13 = 26 $$
+also auch hier $\det{A}= -26$.
+\end{beispiel}
+
+\bigbreak
+
+Bei der Definition der Determinante haben die $(i,j)$--Steichungsmatrizen $A_{i,j}$ 
+und ihre Determinanten eine wichtige Rolle gespielt. Wir setzen 
+  	$$ \widetilde{a_{i,j}} = (-1)^{i+j} \cdot \det{A_{j,i}} $$
+(beachten Sie dabei die Vertauschung der Indizes).
+
+\begin{definition} Die Matrix $\widetilde{A} := \left( \widetilde{a_{i,j}} \right)$ 
+heißt die zu $A$ \index{Matrix!komplementär}\textbf{komplementäre} Matrix
+\end{definition}
+
+\begin{beispiel}\label{det_kompl_2} Sei 
+  	$$ A = \left( \begin{matrix} 1 & 2 \\ 1 & 3 \end{matrix} \right) $$
+Dann ist 
+  	$$ \widetilde{A} = \left( \begin{matrix} 3 & -2 \\ -1 & 1 \end{matrix} \right) $$
+\end{beispiel}
+
+\begin{beispiel}\label{det_kompl_3} Sei 
+  	$$ A = \left( \begin{matrix} 1 & 0 & -1 \\ 8 & -4 & -1 \\ -2 & 1 & 0 \end{matrix} \right) $$
+Dann ist 
+  	$$ \widetilde{A} = \left( \begin{matrix} 1 & -1 & -4 \\ 2 & -2 & -7 \\ 0 & -1 & -4 \end{matrix} \right) $$
+\end{beispiel}
+
+\medbreak
+
+\begin{satz}\label{det_n_komplement} Es gilt
+ 	$$ \widetilde{A} \cdot A = A \cdot \widetilde{A} = \det{A} \cdot E_n $$
+ist eine Diagonalmatrix mit $\det{A}$ als Eintrag an jeder Stelle der Diagonale.
+\end{satz}
+
+\beweis{ Wir berechnen dazu explizit den Matrixeintrag $\left( \widetilde{A} 
+\cdot A \right)_{k,l}$ an jeder Stelle $k,l$.
+
+Ist $l = k$, so gilt:
+ 	$$ \begin{array} {l c l}
+  	\left( \widetilde{A} \cdot A \right)_{l,l} & = & \sum\limits_{i=1}^n \widetilde{a_{l,i}} \cdot a_{i,l} \\
+  	& = & \sum\limits_{i=1}^n (-1)^{i+l} \det{A_{i,l}} \cdot a_{i,l} \\
+  	& = & \sum\limits_{i=1}^n (-1)^{i+l} a_{i,l} \cdot \det{A_{i,l}} \\
+  	& = & \det{A} 
+  	\end{array} $$
+nach dem Laplace--Entwicklungssatz (Entwicklung nach der $k$--ten Spalte).
+
+Ist $l \neq k$ so betrachten wir die Matrix $B$, die aus $A$ dadurch entsteht, dass 
+wir die $k$--te Spalte von $A$ durch die $l$--te Spalte von $A$ ersetzen. Damit hat 
+$B$ zwei identische Spalten (an der Stelle $k$ und der Stelle $l$), und daher gilt 
+nach Regel~\ref{det_n_rule}
+  	$$ \det{B} = 0 $$
+Andererseits gilt $B_{i,k} = A_{i,k}$, da $B$ und $A$ in allen Spalten ausser der 
+$k$--ten übereinstimmen.
+Entwickeln wir daher $B$ nach der $k$-ten Spalte, so erhalten wir
+  	$$ \begin{array} {l c l}
+  	\det{B} & = & \sum\limits_{i=1}^n (-1)^{i+k} b_{i,k} \cdot \det{B_{i,k}} \\
+   	& = & \sum\limits_{i=1}^n (-1)^{i+k} a_{i,l} \cdot \det{A_{i,k}} \\
+    	& = & \sum\limits_{i=1}^n (-1)^{i+k} \widetilde{a_{k,i}} \cdot a_{i,l} \\
+   	& = & \left( \widetilde{A} \cdot A \right)_{k,l}
+  	\end{array} $$
+Daraus folgt $\widetilde{A} \cdot A = \det{A} \cdot E_n$, und die Gleichheit 
+$A \cdot \widetilde{A} = \det{A} \cdot E_n$ sieht man genauso. 
+}
+
+\medbreak
+
+\begin{beispiel} Für die Matrix $A$ aus Beispiel~\ref{det_kompl_2} gilt
+  	$$ A \cdot \widetilde{A} = \left( \begin{matrix} 1 & 2 \\ 1 & 3 \end{matrix} \right)
+  	\cdot \left( \begin{matrix} 3 & -2 \\ -1 & 1 \end{matrix} \right)
+  	= \left( \begin{matrix} 1 & 0 \\ 0 & 1 \end{matrix} \right) $$
+und $\det{A} = 1$.
+\end{beispiel}
+
+\begin{beispiel} Für die Matrix $A$ aus Beispiel~\ref{det_kompl_3} gilt
+  	$$ A \cdot \widetilde{A} =  \left( \begin{matrix} 1 & 0 & -1 \\ 8 & -4 & 1 \\ 
+   	-2 & 1 & 0 \end{matrix} \right) \cdot 
+   	\left( \begin{matrix} 1 & 0 & -1 \\ 8 & -4 & -1 \\ -2 & 1 & 0 \end{matrix} \right) =
+  	\left( \begin{matrix} 1 & -1 & -4 \\ 2 & -2 & -7 \\ 0 & -1 & -4 \end{matrix} \right) = 1 \cdot E_3  $$ 
+und $\det{A} = 1$.           
+\end{beispiel}
+\bigbreak
+
+Ein wichtiges aber schwieriges \index{Determinante!Produktsatz}Resultat ist 
+
+\begin{satz}\label{det_n_produkt} \textbf{(Produktsatz)} 
+
+Sind $A$ und  $B$ zwei $n \times n$--Matrizen, so gilt
+  	$$ \det{ A \cdot B } = \det{A} \cdot \det{B} $$
+\end{satz}
+
+Wir werden den Beweis dieses Satzes im Abschnitt~\ref{section_det_inverse} 
+skizzieren.
+
+\bigbreak
+
+\begin{aufgabe} Berechnen Sie die Determinanten der Matrizen
+  	$$ A = \left( \begin{smallmatrix} 1 & 2 & 3 & 5 \\ 2 & 5 & 7 & 9\\ -1 & 2 & -3 & 4 \\
+	0 & 1 & 0 & 2  \end{smallmatrix} \right),\quad 
+  	B = \left( \begin{smallmatrix} 7 & 1 & 5 & 2 \\ 4 & -4 & 2 & -2 \\ 1 & 0 & -2 & 5 \\
+	1 & 1 & 2 & 2  \end{smallmatrix} \right),\quad 
+  	C =  \left( \begin{smallmatrix} 6 & -6 & 0 & 2 \\ 4 & 1 & 1 & 4 \\ -1 & -2 & 3 & 4 \\
+  	2 & 1 & 2 & 1  \end{smallmatrix} \right)  $$
+\end{aufgabe}
+
+\begin{aufgabe} Berechnen Sie die Determinante der Matrix
+  	$$ A = \left( \begin{matrix} 2 & 2 & 3 & 1 & 5 \\4  & -3 & 6 & 1 & 3 \\ 
+  	4 & 6 & 3 & 5 & 2 \\ 1 & -1 & 1 & -1 & 1 \\ 2 & -3 & 1 & 4 & 2 \end{matrix} \right) $$
+\end{aufgabe}
+
+\begin{aufgabe} Ist $A$ eine $n \times n$ Matrix, die sich in der Form 
+  	$$ A = \left( \begin{matrix} B & C \\ 0 & D \end{matrix} \right) $$
+mit einer $n_1 \times n_1$--Matrix $B$, einer $n_1 \times (n-n_1)$--Matrix $C$ und 
+einer $(n-n_1) \times (n-n_1)$--Matix $D$ (sowie einer 
+$(n-n_1) \times n_1$--Nullmatrix 0) schreiben lässt, so gilt
+  	$$ \det{A} = \det{B} \cdot \det{C} $$
+\end{aufgabe}
+
+\begin{aufgabe} Berechnen Sie die Komplementärmatrizen zu den Matrizen
+  	$$ A = \left( \begin{matrix} 1 & 2 & 3 \\ 2 & 3 & 4 \\ 4 & 4 & 4 
+	\end{matrix} \right), \quad B = \left( \begin{matrix} 1 & 2 & 3 & 4 \\
+  	0 & 2 & 4 & 6 \\ 0 & 0 & 3 & 6 \\ 0 & 0 & 0 & 4 \end{matrix} \right) $$
+\end{aufgabe}
+
+\begin{aufgabe} Für reelle Zahlen $r_1, \ldots ,r_n$ ($n \geq 2$) definieren wir die $n \times n$--Matrix
+  	$$ V(r_1, \ldots, r_n) = \left( \begin{matrix} 1 & 1 & \ldots & 1 \\r_1 & r_2 & \ldots & r_n \\
+	r_1^2 & r_2^2 & \ldots & r_n^2 \\  \vdots & & \ddots & \vdots \\
+	r_1^{n-1} & r_2^{n-1} & \ldots & r_n^{n-1} \end{matrix} \right) $$
+Zeigen Sie: $\det{V(r_1, \ldots, r_n)} = \prod\limits_{1 \leq i < j \leq n} (r_j-r_i)$.
+\end{aufgabe}
+
+
+\bigbreak
+
+\newpage
+
+\section{Determinanten und invertierbare Matrizen}\label{section_det_inverse}
+
+\setcounter{definition}{0}
+\setcounter{beispiel}{0}
+\setcounter{notiz}{0}
+
+Wir haben in den vorangegangenen Abschnitten gesehen, dass $n \times n$--Matrizen $A$ mit $\det{A} \neq 0$ 
+in der Menge der Matrizen eine ausgezeichnete Rolle spielen und diese Matrizen als reguläre Matrizen 
+bezeichnet. In diesem Abschnitt wollen wir uns einer anderen ausgezeichneten Eigenschaft einiger Matrizen 
+zuwenden.
+
+\begin{definition} Eine $n \times n$--Matrizen $A$ heißt \index{Matrix!invertierbar}\textbf{invertierbar}, 
+wenn es eine $n \times n$--Matrizen $B$ gibt mit
+  	$$ A \cdot B = E_n, \qquad   B \cdot A = E_n $$
+\end{definition}
+
+\bemerkung{Bezeichnung} Ist $A$ invertierbar, so nennen wir die Matrix $B$ aus der Definition die \textit{zu $A$ 
+inverse Matrix} und bezeichnen \index{Matrix!inverse Matrix}sie mit $A^{-1}$.
+
+\begin{notiz} Zunächst stellt sich die Frage, ob vielleicht jede Matrix invertierbar ist. Betrachten wir 
+dazu zunächst $A = \left( \begin{smallmatrix} 0 & 0 \\ 0 & 0 \end{smallmatrix} \right)$, also die Nullmatrix, 
+so gilt für jede Matrix $B$: 
+  	$$A \cdot B = \left( \begin{matrix} 0 & 0 \\ 0 & 0 \end{matrix} \right) $$ 
+und damit kann es sicherlich keine Matrix mit $A \cdot B = E_2$ geben. 
+
+Bei den reellen Zahlen ist jede von Null verschiedene reelle Zahl invertierbar. Ist also vielleicht jede von der
+Nullmatrix verschiedene Matrix invertierbar? Auch das ist nicht der Fall, wie das Beispiel
+$A = \left( \begin{smallmatrix} 1 & 1 \\ 0 & 0 \end{smallmatrix} \right)$ zeigt. Ist nämlich $B$ eine 
+beliebige $2 \times 2$--Matrix, so gilt immer
+  	$$ A \cdot B = \left( \begin{matrix} $*$ & $*$ \\ 0 & 0 \end{matrix} \right) $$
+die zweite Zeile ist also immer die Nullzeile, und damit kann es auch hier keine Matrix $B$ mit $A \cdot B = E_2$
+geben. 
+\end{notiz}
+
+\begin{notiz} Auf dem Vektorraum $\textrm{Matr}(n,n)$ haben wir neben der Matrizenaddition auch noch die 
+Matrizenmulitplikation. Es ist leicht einzusehen, dass $(\textrm{Matr}(n,n), +, \cdot)$ ein (nicht--kommutativer) 
+Ring mit Einselement $E_n$ ist. Wir suchen nun die Elemente in diesem Ring, die ein multiplikatives Inverses 
+haben.
+\end{notiz}
+
+\begin{notiz}\label{det_rechts_links_inv} 
+Es reicht, zu einer $n \times n$--Matrix $A$ ein Linksinverses und ein Rechtsinverses zu finden, 
+also eine Matrix $B$ mit $B \cdot A = E_n$ und eine Matrix $C$ mit $A \cdot C = E_n$. Dann gilt schon 
+  	$$ B =  B \cdot E_n = B \cdot A \cdot C = E_n \cdot C = C$$
+Genauso zeigt man, dass eine inverse Matrix, falls sie existiert, eindeutig ist: Sind $B$ und $C$ 
+zwei inverse Matrizen zu $A$ , so gilt
+  	$$ B = B \cdot E_n = B \cdot A \cdot C = E_n \cdot C = C$$
+\end{notiz}
+
+Inverse Matrizen sind ein hilfreiches Instrument bei der Lösung linearer Gleichungssysteme
+ 
+\begin{notiz} Ist $A$ eine invertierbare Matrix mit Inverser $A^{-1}$ so hat das Gleichungssystem 
+  	$$ A \cdot \vektor{x} = \vektor{b} $$
+die eindeutige Lösung 
+  	$$ \vektor{x} = A^{-1} \cdot \vektor{b} $$
+\end{notiz} 
+
+\beweis{ Ist $\vektor{x}$ eine Lösung des Gleichungssystems, so muss gelten
+  	$$ \vektor{x} = A^{-1} \cdot A \cdot \vektor{x} = A^{-1} \cdot \vektor{b} $$
+Setzen wir umgekehrt $\vektor{x} = A^{-1} \cdot \vektor{b}$, so erhalten wir
+  	$$ A \cdot \vektor{x} = A \cdot A^{-1} \cdot \vektor{b} = \vektor{b} $$
+}
+
+\bigbreak
+
+Wir konzentrieren uns zunächst auf das Finden einer Rechtsinversen, also auf das Finden einer Matrix $B$ 
+mit $A \cdot B = E_n$. Dazu sei $\vektor{e_1}, \ldots , \vektor{e_n}$ die Standardbasis 
+des $\mathbb R^n$. 
+
+\begin{satz}\label{det_rechtsinverse} Genau dann existiert eine rechtsinverse Matrix $B$ von $A$, wenn die 
+Gleichungssysteme 
+  	$$ A \cdot \vektor{x} = \vektor{e_i} $$
+für jedes $i = 1, \ldots, n$ lösbar ist. Ist in diesem Fall $\vektor{v_i}$ eine Lösung von 
+$A \cdot \vektor{x} = \vektor{e_i}$ und ist $B$ die Matrix mit den Spaltenvektoren 
+$\vektor{v_1}, \vektor{v_2}, \ldots, \vektor{v_n}$, so gilt
+  	$$ A \cdot B = E_n $$
+\end{satz}
+
+\beweis{ Ist $B$ eine Rechtsinverse zu $A$ und ist $B_{\bullet, i}$ der $i$--te Spaltenvektor von $B$, so 
+gilt nach Definition der Matrizenmultiplkation gerade $A \cdot B_{\bullet, i} = \vektor{e_i}$, und 
+damit sind alle fraglichen Gleichungssysteme lösbar.
+
+Sind umgekehrt $\vektor{v_1}, \ldots, \vektor{v_n}$ Lösungen von $A \cdot \vektor{x} = \vektor{e_i}$ und 
+ist $B$ die Matrix mit den $\vektor{v_1}, \ldots , \vektor{v_n}$ als Spaltenvektoren, so ist - 
+wiederum nach Definition der Matrizenmultiplikation - $A \cdot B$ die Matrix mit den Spaltenvektoren $A \cdot 
+\vektor{v_1}$, $\ldots$ , $A \cdot \vektor{v_n}$, also 
+  	$$ A \cdot B = \left( \vektor{e_1} \, \vektor{e_2} \, \ldots \, \vektor{e_n} \right) = E_n $$ 
+}
+
+\begin{korollar} Genau dann existiert zu $A$ eine rechtsinverse Matrix, wenn $\mathrm{rg}(A) = n$.
+\end{korollar} 
+
+\beweis{ Nach Satz~\ref{gls_loesung_ker} aus Abschnitt~\ref{section_lin_abb} sind die Gleichungssysteme 
+$A \vektor{x} = \vektor{e_i}$ genau dann für alle $i$ 
+lösbar, wenn $\vektor{e_i} \in \mathrm{Im}(A)$ ist für alle $i$, und das ist äquivalent zu
+  	$$ \mathrm{Im}(A) = \mathbb R^n $$
+also zu $\mathrm{rg}(A) = n$. Aus dem Satz folgt jetzt die Behauptung.
+}
+\bigbreak
+
+Wir haben also die Frage nach einer rechtsinversen Matriz zu $A$ gelöst und können uns jetzt der Suche 
+nach einer linksinversen Matrix zuwenden. Hierfür benötigen wir einen kleinen Hilfssatz
+ 
+\begin{lemma}\label{det_links_transp}
+ Genau dann hat $A$ eine linksinverse Matrix, wenn $A^T$ eine rechtsinverse Matrix hat.
+
+Ist in diesem Fall $C$ eine rechtsinverse Matrix von $A^T$, so ist $C^T$ eine linksinverse Matrix von $A$.
+\end{lemma}
+
+\beweis{ Ist $C$ eine rechtsinverse Matrix zu $A^T$, so gilt nach den Regeln zu Transponieren von Matrizen
+  	$$ C^{T} \cdot A = \left( \left( C^T \cdot A \right)^T\right)^T = \left( A^T \cdot \left(C^T\right)^T 
+	\right)^T = \left(A^T \cdot C\right)^T = E_n^T = E_n $$
+Ist umgekehrt $D$ eine linksinverse Matrix zu $A$ so rechnet man genauso nach, dass $D^T$ eine rechtsinverse 
+Matrix zu $A^T$ ist.
+}
+
+\medbreak
+
+\begin{satz}\label{det_inverse_matrix} Für eine $n \times n$--Matrix $A$ sind 
+äquivalent:
+
+\begin{enumerate}
+\item $A$ ist regulär.
+\item $A$ ist invertierbar.
+\item $\mathrm{rg}(A) = n$.
+\end{enumerate}
+\end{satz}
+
+\beweis{ Wir haben in Satz~\ref{det_n_regular} schon gesehen, dass die 
+Regularität von $A$ äquivalent zu
+$\mathrm{rg}(A) = n$ ist und brauchen also nur noch zeigen, dass $A$ genau dann 
+invertierbar ist, wenn $\mathrm{rg}(A) = n$.
+
+Nach Satz ~\ref{det_rechtsinverse} existiert zu $A$ genau dann eine rechtsinverse 
+Matrix, wenn $\mathrm{rg}(A) = n$. Aus Lemma~\ref{det_links_transp} folgt, 
+dass $A$ genau dann eine linksinverse Matrix hat, wenn 
+$\mathrm{rg}(A^T) = n$. Da nach Satz~\ref{gls_rang_transp} aus Abschnitt~\ref{section_lin_abb} gilt
+  	$$ \mathrm{rg}(A) = \mathrm{rg}(A^T) $$
+folgt hieraus mit Bemerkung~\ref{det_rechts_links_inv} die Behauptung. 
+}
+\bigbreak
+
+Zur Bestimmung einer inversen Matrix reicht es also, eine rechtsinverse Matrix von $A$ zu ermitteln. Dazu liefert 
+Satz~\ref{det_rechtsinverse} ein probates Mittel. Sowohl um zu entscheiden, ob es eine zu $A$ inverse Matrix gibt 
+als auch um diese zu finden müssen wir nur die Gleichungssysteme $A \cdot 
+\vektor{x} = \vektor{e_i}$ für alle $i = 1, \ldots, n$ lösen. Nach 
+Bemerkung~\ref{gls_augmentiert_simultan} aus Abschnitt~\ref{gls_matrix}
+können wir diese Gleichungssysteme alle in einem Durchgang durch 
+Betrachtung der erweiterten augmentierten Matrix  $ \left( A \, \vektor{e_1} \, \vektor{e_2}
+\, \ldots \, \vektor{e_n}\right)$ und Überführen dieser Matrix in Normalform lösen. Ferner 
+können wir diese erweiterte Matrix gemäß Satz~\ref{gls_voller_rang_n} nur durch Zeilenoperationen auf 
+die Normalform
+  	$$ \left( \begin{matrix} 1 & 0 & \ldots & 0 \\ 0 & 1 & \ldots & 0 \\ \vdots & & \ddots & \vdots \\
+	0 & 0 & \ldots & 1 \end{matrix} \quad \, \, \vektor{b_1} \, \vektor{b_2} \, \ldots \, \vektor{b_n}  \right) $$
+bringen, und daraus folgt
+
+\begin{korollar} $A^{-1} = \left( \vektor{b_1} \, \ldots \, \vektor{b_n} \right)$ ist die Matrix 
+mit den $\vektor{b_i}$ als Spaltenvektoren.
+\end{korollar}
+
+\begin{beispiel} Wir betrachten die Matrix
+  	$$ A = \left(\begin{matrix} 1 & 2 \\ 2 & 3 \end{matrix} \right) $$
+und gehen hier vor wie folgt:
+  	$$ \begin{array} {l c l}
+     	\left( A \quad \, \vektor{e_1} \, \vektor{e_2}\right) & \quad = \quad & 
+     	\left( \begin{array} {c c | c c} 1 & 2 \phantom{x} &  \quad 1 & 0 \\ 
+	2 & 3 \phantom{x} &  \quad  0 & 1 \end{array} \right)  \\[2.0em]
+     	II - 2 \cdot I  & & \left( \begin{array} {c c | c c} 1 &  2 \phantom{x} &  \quad  1 & 0 \\ 
+	0 & -1 \phantom{x} &  \quad  -2 & 1 \end{array} \right)  \\[2.0em]
+    	(-1) \cdot II & & \left( \begin{array} {c c | c c} 1 &  2 \phantom{x} &  \quad  1 & 0 \\ 
+	0 &  1 \phantom{x} &  \quad   2 & -1 \end{array} \right)  \\[2.0em]
+     	I - 2 \cdot II & & \left(\begin{array} {c c | c c} 1 &  0 \phantom{x} &  \quad  -3 & 2 \\ 
+	0 &  1 \phantom{x} &  \quad   2 & -1 \end{array} \right) 
+   	\end{array} $$
+wobei wir in der linken Spalte die durchgeführten Zeilenoperationen notieren (''$II - 2 \cdot I$'' bedeutet 
+also: Subtrahiere das Doppelte der ersten Zeile von der zweiten). Wir erhalten, dass $A$ invertierbar ist mit
+  	$$ A^{-1} = \left(\begin{matrix} -3 & 2 \\ 2 & -1 \end{matrix} \right) $$
+und wir überzeugen uns davon, dass in der Tat
+  	$$ A \cdot A^{-1} = E_2 = A^{-1} \cdot A $$
+\end{beispiel}
+
+\begin{beispiel} Wir betrachten die Matrix  
+  	$$ A = \left(\begin{matrix} 0 & 1 & 2 \\ 1 & 2 & 2 \\ 1 & 3 & 3 \end{matrix} \right) $$
+und gehen vor wie folgt:
+  	$$ \begin{array} {l c l}
+     	\left( A \, \, \vert \, \vektor{e_1} \, \vektor{e_2} \, \vektor{e_3} \right) 
+      & \quad = \quad & 
+     	\left(\begin{array} {c c c | c c c} 0 & 1 & 2 \phantom{x} &  \quad 1 & 0 & 0 \\ 
+	1 & 2 & 2 \phantom{x} &  \quad 0 & 1 & 0 \\ 
+	1 & 3 & 3 \phantom{x} &  \quad 0 & 0 & 1  \end{array} \right) \\[2.2em]
+      I \leftrightarrow II & & 
+     	\left(\begin{array} {c c c | c c c} 1 & 2 & 2 \phantom{x} &  \quad 0 & 1 & 0 \\ 
+	0 & 1 & 2 \phantom{x} &  \quad 1 & 0 & 0 \\ 
+	1 & 3 & 3 \phantom{x} &  \quad 0 & 0 & 1 \end{array} \right) \\[2.2em]
+      III - I & & 
+     	\left(\begin{array} {c c c | c c c} 1 & 2 & 2 \phantom{x} &  \quad 0 & 1 & 0 \\ 
+	0 & 1 & 2 \phantom{x} &  \quad 1 & 0 & 0 \\ 
+	0 & 1 & 1 \phantom{x} &  \quad 0 & -1 & 1 \end{array} \right) \\[2.2em]
+   	III - II & & 
+     	\left(\begin{array} {c c c | c c c} 1 & 2 & 2 \phantom{x} &  \quad 0 & 1 & 0 \\ 
+	0 & 1 & 2 \phantom{x} &  \quad 1 & 0 & 0 \\ 
+	0 & 0 & -1 \phantom{x} &  \quad -1 & -1 & 1\end{array} \right) \\[2.2em]
+  	(-1) \cdot III & & 
+ 	\left(\begin{array} {c c c | c c c} 1 & 2 & 2 \phantom{x} &  \quad 0 & 1 & 0 \\ 
+	0 & 1 & 2 \phantom{x} &  \quad 1 & 0 & 0 \\ 
+	0 & 0 &  1 \phantom{x} &  \quad  1 &  1 & -1  \end{array} \right) \\[2.2em]
+   	\begin{matrix} II - 2 \cdot III  \\ I - 2 \cdot III  \end{matrix} & &
+  	\left(\begin{array} {c c c | c c c} 1 & 2 & 0 \phantom{x} &  \quad -2 & -1 & 2 \\ 
+	0 & 1 & 0 \phantom{x} &  \quad -1 & -2 & 2 \\
+	0 & 0 &  1 \phantom{x} &  \quad  1 &  1 & -1  \end{array} \right) \\[2.2em] 
+   	I - 2 \cdot II & & 
+  	\left(\begin{array} {c c c | c c c} 1 & 0 & 0 \phantom{x} &  \quad 0 & 3 & -2 \\ 
+	0 & 1 & 0 \phantom{x} &  \quad -1 & -2 & 2 \\ 
+	0 & 0 &  1 \phantom{x} &  \quad  1 &  1 & -1 \end{array} \right) 
+   	\end{array} $$
+Wir erhalten auch hier, dass $A$ invertierbar ist mit 
+  	$$ A^{-1} = \left(\begin{matrix}  0 & 3 & -2 \\  -1 & -2 & 2 \\  1 &  1 & -1 \end{matrix} \right) $$
+\end{beispiel}
+
+\begin{beispiel} Nun betrachten wir die Matrix
+   	$$ A = \left(\begin{matrix} 0 & 1 & 2 \\ 1 & 2 & 2 \\ 1 & 3 & 4 \end{matrix} \right) $$
+und gehen vor wie folgt:
+ 	 $$ \begin{array} {l c l}
+     	\left( A \quad  \, \, \vert \, \vektor{e_1} \, \vektor{e_2} \, \vektor{e_3} \right) 
+    	& \quad = \quad & 
+     	\left(\begin{array} {c c c | c c c}  0 & 1 & 2 \phantom{x} &  \quad  1 & 0 & 0 \\ 
+	1 & 2 & 2 \phantom{x} &  \quad  0 & 1 & 0 \\ 
+	1 & 3 & 4 \phantom{x} &  \quad  0 & 0 & 1  \end{array} \right) \\[2.2em] 
+  	I \leftrightarrow II & & 
+  	\left(\begin{array} {c c c | c c c}  1 & 2 & 2 \phantom{x} &  \quad  0 & 1 & 0 \\ 
+	0 & 1 & 2 \phantom{x} &  \quad  1 & 0 & 0 \\ 
+	1 & 3 & 4 \phantom{x} &  \quad  0 & 0 & 1   \end{array} \right) \\[2.2em] 
+  	III - II & & 
+  	\left(\begin{array} {c c c | c c c}  1 & 2 & 2 \phantom{x} &  \quad  0 & 1 & 0 \\ 
+	0 & 1 & 2 \phantom{x} &  \quad  1 & 0 & 0 \\ 
+	0 & 0 & 0 \phantom{x} &  \quad  -1 & -1 & 1  \end{array} \right) 
+    	\end{array} $$
+An dieser Stelle bricht der Algorithmus ab. Die letzte Zeile ist zur Nullzeile geworden, und damit hat die 
+Matrix $A$ nicht den vollen Rang 3, ist also auch nicht invertierbar. 
+\end{beispiel}
+
+\bigbreak
+
+Die elementaren Zeilenoperationen, die wir durchführen, um $A$ zu invertieren, 
+lassen sich auch mit Hilfe von Matrizen beschreiben.
+
+Wir betrachten dazu drei Typen von Elementarmatrizen, $M_i(\lambda)$ für ein 
+$\lambda \in \mathbb R \setminus \{ 0 \}$, $P_{i,j}$ für $i \neq j$ und 
+$S_{i,j}(\nu)$ für $i \neq j$ und $\nu \in \mathbb R$, die wie folgt 
+definiert sind:
+
+$M_i(\lambda) = \left(m_{l,k} \right)$ mit
+  	$$ m_{l,k} = \left\{ \begin{array} {l c l} 1 & \quad & \textrm{ falls } l = k \, 
+  	\textrm{ und } l \neq i \\
+  	\lambda & & \textrm{ falls } l = k = i \\
+  	0 & & \textrm{ sonst} \end{array} \right. $$
+
+$P_{i,j} = \left(p_{l,k} \right)$ mit
+  	$$  p_{l,k} = \left\{ \begin{array} {l c l} 1 & \quad & \textrm{ falls } l = k \, 
+  	\textrm{ und } l \neq i, l \neq j \\
+  	1 & & \textrm{ falls } l = i, k = j \\
+  	1 & & \textrm{ falls } l = j, k = i \\
+  	0 & & \textrm{ sonst} \end{array} \right. $$
+
+$S_{i,j}(\nu) = \left(s_{l,k} \right)$ mit 
+  	$$ s_{l,k} = \left\{ \begin{array} {l c l} 1 & \quad & \textrm{ falls } l = k \\
+  	\nu & & \textrm{ falls } l = i, k = j \\
+  	0 & & \textrm{ sonst} \end{array} \right. $$
+
+\begin{beispiel} Es sei $n = 4$. 
+  	$$ M_2\left(3\right) = \left( \begin{smallmatrix} 1 & 0 & 0 & 0 \\ 
+     	0 & 3 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 \end{smallmatrix} \right), 
+  	\quad P_{2,3} = \left( \begin{smallmatrix} 1 & 0 & 0 & 0 \\ 
+     	0 & 0 & 1 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 1 \end{smallmatrix} \right), \quad 
+  	S_{1,4}(7) = \left( \begin{smallmatrix} 1 & 0 & 0 & 7 \\ 
+     	0 & 1 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 \end{smallmatrix} \right) $$ 
+\end{beispiel}
+
+\begin{notiz}\label{det_inverse_elementar} 
+Diese Elementarmatrizen haben die folgende Eigenschaft:
+
+\begin{itemize}
+\item $M_i(\lambda) \cdot A$ ist die Matrix, die aus $A$ durch Mulitplikation der 
+$i$--ten Zeile mit $\lambda$ hervorgeht.
+\item $P_{i,j} \cdot A$ ist die Matrix, die aus $A$ durch Vertauschen der Zeilen $i$ 
+und $j$ hervorgeht.
+\item $S_{i,j}(\nu) \cdot A$ ist die Matrix, die aus $A$ durch Addition des 
+$\nu$--fachen der $j$--ten Zeile zur $i$--ten Zeile hervorgeht. 
+\end{itemize}
+
+Damit können also die Zeilenoperationen, die eine invertierbare Matrix $A$ in die 
+Einheitsmatrix $E_n$ überführen, als Multiplikationen mit diesen 
+Elementarmatrizen beschrieben werden. Es gibt also Elementarmatrizen 
+$\mathcal{E}_1, \ldots, \mathcal{E}_l$ mit 
+  	$$ \mathcal{E}_1 \cdots \mathcal{E}_l \cdot A = E_n $$
+und damit gilt 
+  	$$ A^{-1} = \mathcal{E}_1 \cdots \mathcal{E}_l \quad \textrm{ und } 
+  A = \mathcal{E}_l^{-1} \cdots \mathcal{E}_1^{-1} $$
+Da die Inverse einer Elementarmatrix wieder eine Elementarmatrix ist, 
+	$$ M_i(\lambda)^{-1} = M_i\left(\frac{1}{\lambda}\right), \quad P_{i,j}^{-1}=P_{i,j} \,\, \text{ und } \, 
+	S_{i,j}(\\nu)^{-1} = S{i,j}(-\nu) $$ 
+haben wir gezeigt:  Jede invertierbare Matrix $A$ ist Produkt von Elementarmatrizen, 
+  	$$ A = \mathcal{E}_1 \cdots \mathcal{E}_l $$
+\end{notiz}
+
+\bigbreak
+
+Invertierbare Matrizen $A$  sind dadurch charakterisiert, dass $\det{A} \neq 0$. 
+Determinanten können aber auch dazu benutzt werden, um inverse Matrizen zu berechnen:
+
+\begin{satz}\label{det_inverse_komplement} Ist $A$ invertierbar, so gilt
+  	$$ A^{-1} = \frac {1}{\det{A}} \cdot  \widetilde{A} $$
+mit der zu $A$ komplementären Matrix $\widetilde{A}$ aus 
+Abschnitt~\ref{section_det_n}.
+\end{satz}
+
+\beweis{ Das haben haben wir im Prinzip schon mit Satz~\ref{det_n_komplement} gezeigt.
+}
+
+\begin{beispiel} Für die Matrix 
+  	$ A = \left( \begin{matrix} 1 & 2 \\ 1 & 3 \end{matrix} \right) $
+haben wir schon in Beispiel~\ref{det_kompl_2} gesehen, dass $\det{A} = 1$ und  
+  	$$ \widetilde{A} = \left( \begin{matrix} 3 & -2 \\ -1 & 1 \end{matrix} \right) $$
+Damit ist $A^{-1} = \widetilde{A}$.
+\end{beispiel}
+
+\begin{beispiel} Ist 
+  	$ A = \left( \begin{matrix} a & b \\ c & d \end{matrix} \right) $
+eine beliebige $2 \times 2$--Matrix so ist
+  	$$ \widetilde{A} = \left( \begin{matrix} d & -b \\ -c & a \end{matrix} \right) $$
+Ist also $ad - bc \neq 0$, so ist $A$ invertierbar mit
+  	$$ A^{-1} = \frac {1}{ad - bc} \left( \begin{matrix} d & -b \\ -c & a  \end{matrix} \right) $$
+\end{beispiel} 
+  
+\begin{beispiel} Ist 
+  	$ A = \left( \begin{matrix} 1 & 0 & -1 \\ 8 & -4 & -1 \\ -2 & 1 & 0 \end{matrix} \right) $
+so haben wir in Beispiel~\ref{det_kompl_2} gesehen, dass $\det{A} = 1$ und
+  	$$ \widetilde{A} = \left( \begin{matrix} 1 & -1 & -4 \\ 2 & -2 & -7 \\ 0 & -1 & -4 \end{matrix} \right) $$
+Daher ist $A^{-1} = \widetilde{A}$.
+\end{beispiel}
+
+\medbreak
+
+\begin{notiz} Für große $n$ ist es unpraktikabel, die inverse Matrix über 
+die Komplementärmatrix zu berechnen, da der Rechenaufwand zu hoch ist.
+\end{notiz}
+
+\bigbreak
+
+Im Allgemeinen ist es nicht einfach, zu entscheiden, ob eine $n \times n$--Matrix invertierbar ist 
+(speziell für großes $n$) und gegegebenenfalls ihr Inverses 
+zu berechnen. Einige Regeln helfen dabei manchmal.
+
+\begin{regel} 
+
+\begin{itemize} 
+\item Sind $A$ und $B$ invertierbare $n \times n$--Matrizen, so ist auch $A \cdot B$ invertierbar und 
+  $$ \left( A \cdot B \right)^{-1} = B^{-1} \cdot A^{-1} $$
+\item Ist $A$ eine Diagonalmatrix, 
+  $$ A = \left(\begin{matrix} d_1 & 0 & \ldots & 0 \\ 0 & d_2 & \ldots & 0 \\
+     0 & 0 & \ddots & 0 \\ 0 & 0 & \ldots & d_n \end{matrix} \right),$$ 
+so ist $A$ genau dann invertierbar, wenn $d_i \neq 0$ für 
+alle $i$, und in diesem Fall gilt
+  $$ A^{-1} = \left( \begin{matrix} \frac {1}{d_1} & 0 & \ldots & 0 \\ 0 & \frac {1}{d_2} & \ldots & 0 \\
+     0 & 0 & \ddots & 0 \\ 0 &  & \ldots &  \frac {1}{d_n} \end{matrix} \right) $$
+\item Ist $A$ eine $n \times n$--Matrix mit $A^l = 0$ für ein $l \in \mathbb N$, so ist $E_n - A$ invertierbar 
+und $\left(E_n - A\right)^{-1} = E_n + A + A^2 + \cdots + A^{l-1} $.
+\end{itemize}
+\end{regel}
+
+\beweis{ Die Aussagen (1) und (2) lassen sich unmittelbar nachrechnen. Zum Nachweis von (3) rechnen wir
+  	$$ \begin{array} {l c l } 
+    	\left( E_n - A \right) &\cdot& \left( E_n + A + A^2 + \cdots + A^{l-1} \right) \\
+    	&=& E_n + A + A^2 + \cdots + A^{l-1} - A - A^2 - A^3 - \cdots - A^l \\
+    	&=& E_n -A^l \\
+    	&=& E_n
+  	\end{array} $$
+Also ist $E_n - A$ invertierbar.
+}
+
+\begin{notiz} Eine Matrix $A$ mit $A^l = 0$ für ein $l \in \mathbb N$ heißt \textbf{nilpotent}.
+\end{notiz}
+
+\medbreak
+
+\begin{definition} Eine Matrix $n \times n$--Matrix $A$ heißt \index{Matrix!orthogonal}\textbf{orthogonal}, 
+wenn die Spalten von $A$ eine Orthonormalbasis von $\mathbb R^n$ bilden.
+\end{definition}
+
+\begin{beispiel}\label{det_matrix_orth} Die Matrix 
+  $$A = \left( \begin{matrix} \frac {\sqrt{2}}{2} & \frac {\sqrt{2}}{2} \\
+                              -\frac {\sqrt{2}}{2} & \frac {\sqrt{2}}{2} \end{matrix} \right) $$
+ist orthogonal.
+\end{beispiel}
+
+\begin{satz}\label{det_matrix_orth_inv} Ist $A$ eine orthogonale Matrix, so ist $A$ invertierbar und 
+  	$$ A^{-1} = A^T $$
+ist die Transponierte von $A$.
+\end{satz}
+
+\beweis{ Wir bezeichnen mit $\vektor{u_1}, \ldots , \vektor{u_n}$ die Spaltenvektoren von $A$. 
+Dann gilt nach Definition der Matrizenmultiplikation
+  	$$ \begin{array}{l c l}
+     	A^T \cdot A & = & \left( \begin{matrix} \langle \vektor{u_1}, \vektor{u_1} \rangle & 
+     	\langle \vektor{u_2}, \vektor{u_1} \rangle & \ldots & \langle \vektor{u_n}, 
+    	\vektor{u_1} \rangle  \\
+    	\langle \vektor{u_1}, \vektor{u_2} \rangle & \langle \vektor{u_2}, 
+     	\vektor{u_2} \rangle & \ldots & \langle \vektor{u_n}, \vektor{u_1} \rangle \\
+    	\vdots &  & \ddots & \vdots \\
+    	\langle \vektor{u_1}, \vektor{u_n} \rangle & \langle \vektor{u_2}, 
+     	\vektor{u_n} \rangle & \ldots & \langle \vektor{u_n}, \vektor{u_n} \rangle 
+    	\end{matrix} \right) \\
+   	& = & E_n 
+  	\end{array} $$
+nach Definition einer Orthonormalbasis.
+}
+
+\medbreak
+
+\begin{beispiel} Die Matrix
+  	$$A = \left( \begin{matrix} \frac {\sqrt{2}}{2} & \frac {\sqrt{2}}{2} \\
+	-\frac {\sqrt{2}}{2} & \frac {\sqrt{2}}{2} \end{matrix} \right) $$
+ist invertierbar mit inverser Matrix 
+  	$$A^{-1} = \left( \begin{matrix} \frac {\sqrt{2}}{2} & -\frac {\sqrt{2}}{2} \\
+	\frac {\sqrt{2}}{2} & \frac {\sqrt{2}}{2} \end{matrix} \right) $$
+\end{beispiel}
+
+\begin{korollar}\label{det_matrix_orth_skalar}
+Ist $A$ eine orthogonale $n \times n$--Matrix, so gilt  
+  	$$ \langle A \cdot \vektor{v},\, A \cdot \vektor{w} \rangle = 
+     	\langle \vektor{v},\, \vektor{w} \rangle \qquad \textrm{ für alle }
+     	\vektor{v},\, \vektor{w} \in \mathbb R^n $$
+\end{korollar}
+
+\beweis{ Wir benutzen Regel~\ref{matrix_skalarprod} und Satz~\ref{det_matrix_orth_inv} und erhalten
+  	$$ \begin{array} {l c l}
+  	\langle A \cdot \vektor{v},\, A \cdot \vektor{w} \rangle & = & 
+  	\langle \vektor{v},\, A^T \cdot A \cdot \vektor{w} \rangle \\
+  	& = & \langle \vektor{v},\, A^{-1} \cdot A \cdot \vektor{w} \rangle \\
+  	& = & \langle \vektor{v},\, \vektor{w} \rangle
+  	\end{array} $$
+}
+	
+\bigbreak
+
+\begin{notiz} Orthogonale Matrizen haben folgende interessante Eigenschaft: Ist $A$ eine orthogonale 
+Matrix und $\vektor{v}$ ein beliebiger Vektor, so gilt
+  	$$ \vert A \cdot \vektor{v} \vert = \vert \vektor{v} \vert $$
+Das folgt jetzt sofort aus Korollar~\ref{det_matrix_orth_skalar}, denn damit gilt
+  	$$ \begin{array} {l c l}
+   	\vert A \cdot \vektor{v} \vert^2 
+   	& = & \langle A \cdot \vektor{v}, \, A \cdot \vektor{v} \rangle \\
+   	& = & \langle \vektor{v},\, \vektor{v} \rangle \\
+   	& = & \vert \vektor{v} \vert^2
+  	\end{array} $$
+Durch Wurzelziehen erhalten wir die Behauptung.
+
+Eine Matrix mit $ \vert A \cdot \vektor{v} \vert = \vert \vektor{v} \vert $ für jeden 
+Vektor $\vektor{v} \in \R^n$ nennen wir auch eine \index{Isometria}\textbf{Isometrie}. Jede orthogonale Matrix 
+ist also eine Isometrie. 
+\end{notiz}
+
+\begin{beispiel}\label{lin_alg_ortho_dreh} 
+Ist $A$ eine orthogonale $2 \times 2$--Matrix, so gibt es ein $\alpha \in [0, \, 2 \pi[$ mit
+  	$$ A = \left( \begin{matrix} \cos(\alpha) & -\sin(\alpha) \\ \sin(\alpha) & \cos(\alpha) \end{matrix} \right) 
+  	\quad \textrm{ oder } \, 
+  	A = \left( \begin{matrix} \cos(\alpha) & \sin(\alpha) \\ \sin(\alpha) & -\cos(\alpha) \end{matrix} \right) $$
+Dazu schreiben wir zunächst ganz allgemein 
+  	$$ A = \left( \begin{matrix} a & b  \\ c & d \end{matrix} \right) $$
+mit reellen Zahlen $a, b, c$ und $d$. Da $A$ orthogonal ist, muss gelten $A^T \cdot A = E_2$, also 
+  	$$ \left( \begin{matrix} a & c  \\ b & d \end{matrix} \right) \cdot 
+  	\left( \begin{matrix} a & b  \\ c & d \end{matrix} \right) = 
+  	\left( \begin{matrix} 1 & 0  \\ 0 & 1 \end{matrix} \right) $$
+Multiplizieren wir das aus, so ergeben sich folgende drei Beziehungen
+  	$$ \begin{array} {l c l c l}
+  	a^2 & + & c^2 & = & 1 \\
+  	ab & + & cd & = & 0 \\
+  	b^2 & + & d^2 & = & 1 
+  	\end{array} $$
+Die erste Beziehung besagt, dass $\vektor{v} = \left( \begin{matrix} a  \\ c \end{matrix} \right)$ ein 
+Vektor der Länge $a$ ist. Schreiben wir als $\vektor{v}$ in Polarkoordinaten, so bedeutet das, dass 
+es genau ein $\alpha \in [0, \, 2\pi)$ gibt mit
+  	$$ \vektor{v} = \left( \begin{matrix} \cos(\alpha) \\ \sin(\alpha) \end{matrix} \right) $$
+also $a = \cos(\alpha)$ und $c = \sin(\alpha)$. Genauso finden wir aus der dritten Beziehung ein $\beta$ mit 
+$b = \sin(\beta)$ und $d = \cos(\beta)$.
+
+Setzen wir diese Resultate in die zweite Beziehung ein und nutzen auch noch die Additionstheoreme für Sinus 
+und Kosinus aus, so erhalten wir
+  	$$ \begin{array} {l c l}
+  	0 & = & \cos(\alpha) \sin(\beta) + \sin(\alpha) \cos(\beta) \\
+  	& = & \sin(\alpha + \beta) 
+  	\end{array} $$
+Da $\alpha, \beta \in [0, 2\pi[$ kann das nur dann der Fall sein, wenn 
+  	$$ \alpha + \beta \in \{0, \pi, 2 \pi, 3 \pi \} $$
+Falls nun $\alpha + \beta = 0$ oder $\alpha + \beta = 2\pi$, so gilt
+  	$$ \sin(\beta) = - \sin(\alpha), \quad \cos(\beta) = \cos(\alpha) $$
+und wir erhalten also 
+  	$$  A = \left( \begin{matrix} \cos(\alpha) & -\sin(\alpha) \\ \sin(\alpha) & \cos(\alpha) \end{matrix} \right) $$
+Ist dagegen $\alpha + \beta = \pi$ oder $\alpha + \beta = 3 \pi$, so gilt
+  	$$ \sin(\beta) = \sin(\alpha), \quad \cos(\beta) = -\cos(\alpha) $$
+und wir erhalten also 
+  	$$  A = \left( \begin{matrix} \cos(\alpha) & \sin(\alpha) \\ \sin(\alpha) & -\cos(\alpha) \end{matrix} \right) $$
+ 
+Die orthogonale Matrix 
+  	$$  A = \left( \begin{matrix} \cos(\alpha) & -\sin(\alpha) \\ \sin(\alpha) & \cos(\alpha) \end{matrix} \right) $$
+beschreibt eine \index{Drehung}\textbf{Drehung} 
+um den Winkel $\alpha$, und wir schreiben hierfür auch $D_{\alpha}$. Ist etwa 
+$\alpha = \frac {\pi}{3}$ (also $\alpha = 60^{\circ}$ 
+im Winkelmaß), so ist
+  	$$ D_{60^{\circ}} =  \left( \begin{matrix} \frac {1}{2} & -\frac {\sqrt{3}}{2} \\ 
+	\frac {\sqrt{3}}{2} & \frac {1}{2} \end{matrix} \right) $$
+Das ergibt folgendes Bild
+
+%\begin{figure}[H]
+%  \centering
+%     \scalebox{0.60}{\input{orthogonal_dreh.tex}}
+%\end{figure}
+
+\begin{figure}[H]
+	\vspace{-0.5cm}
+	\begin{center}
+	\begin{scaletikzpicturetowidth}{\hsize}
+     		\input{lin_05_det_3100.tex} 
+	\end{scaletikzpicturetowidth}
+	\vspace{-0.5cm}
+	\caption{Drehung um $60^{\circ}$}\label{lin:05_det_3100}
+	\end{center}
+	\vspace{-0.5cm}
+\end{figure}
+
+ 
+Die orthogonale Matrix 
+  	$$  A = \left( \begin{matrix} \cos(\alpha) & \sin(\alpha) \\ \sin(\alpha) & -\cos(\alpha) \end{matrix} \right) $$
+dagegen beschreibt eine \index{Spiegelung}\textbf{Spiegelung} an der Geraden mit Winkel $\frac {\alpha}{2}$ 
+zur $x$--Achse, und wir schreiben hierfür $S_{\frac {\alpha}{2}}$. Ist wieder 
+$\alpha = \frac {\pi}{3}$ (also $\alpha = 60^{\circ}$ im Winkelmaß), so ist
+  	$$ S_{30^{\circ}} =  \left( \begin{matrix} \frac {1}{2} & \frac {\sqrt{3}}{2} \\ 
+	\frac {\sqrt{3}}{2} & -\frac {1}{2} \end{matrix} \right) $$
+Das ergibt dann Bild inAbbildung~\ref{lin_05_det_3110} (mit Spiegelungsachse $S$)
+
+%\begin{figure}[H]
+%  \centering
+%     \scalebox{0.60}{\input{orthogonal_spiegel.tex}}
+%\end{figure}
+
+\begin{figure}[h]
+	\begin{center}
+	\vspace{-0.5cm}
+	\begin{scaletikzpicturetowidth}{\hsize}
+     		\input{lin_05_det_3110.tex} 
+	\end{scaletikzpicturetowidth}
+	\vspace{-0.5cm}
+	\caption{Spiegelung an einer Achse}\label{lin:05_det_3110}\label{lin_05_det_3110}
+	\end{center}
+	\vspace{-0.5cm}
+\end{figure}
+
+\end{beispiel}
+
+\begin{notiz} 
+%Spezielle orthogonale Matrizen, nämlich die Drehmatrizen aus Beispiel~\ref{lin_alg_ortho_dreh} 
+%sind uns implizit schon im Abschnitt~\ref{section_kegel} über Kegelschnitte begegnet. Dort haben wir, um 
+%die gemischten Produkte $xy$ zu eliminieren, eine Koordinatentransformation der Form
+%  	$$ \begin{array} {l c l c l}
+%  	\widetilde{x} & = & ax & - & by \\ 
+%  	\widetilde{y} & = & bx & + & ay 
+%  	\end{array} $$
+%mit $a^2 + b^2 = 1$ durchgeführt. In Matrizenschreibweise bedeutet das 
+% 	$$ \left( \begin{matrix} \widetilde{x} \\ \widetilde{y} \end{matrix} \right) = 
+%  	\left( \begin{matrix} a & -b  \\ b & a \end{matrix} \right) \cdot \left( \begin{matrix} x \\ 
+%   	y \end{matrix} \right) $$
+%wobei 
+%  	$$ A = \left( \begin{matrix} a & -b  \\ b & a \end{matrix} \right) $$
+%eine Drehmatrix ist, denn wir können wieder ein $\alpha \in [0, \, 2 \pi)$ wählen mit $a = \cos(\alpha)$ 
+%und $b = \sin(\alpha)$. Das sehen wir also, das die Koordinatentransformation, die wir im 
+%Abschnitt~\ref{section_kegel} durchgeführt haben, tatsächlich eine Drehung der Koordinatenachsen um 
+%den Winkel $\alpha$ ist. 
+
+Bei der geometrischen Betrachtung komplexer Zahlen spielen Drehungen (zusammen mit Streckungen) eine 
+wichtige Rolle. Ist eine komplexe Zahl $z$ in Polarkoordinatendarstellung durch die Länge $r$ und den Winkel 
+$\alpha$ gegeben, so ist die Multiplikation mit $z$ eine Drehstreckung mit Winkel $\alpha$ und Streckfaktor $r$, 
+schreibt sich also in Matrizenschreibweise als Multiplikation mit der Matrix
+  	$$ \mu_z = r \cdot D_{\alpha} = r \cdot \left( \begin{matrix} \cos(\alpha) & -\sin(\alpha) \\ 
+      \sin(\alpha) & \cos(\alpha) \end{matrix} \right) $$
+\end{notiz}
+
+\begin{notiz} Für jeden Winkel $\alpha$ gilt:
+  	$$ \det{D_{\alpha}} = 1, \quad \det{S_{\alpha}} = -1 $$
+\end{notiz}
+
+\bigbreak
+
+Im letzten Abschnitt haben wir für diesen Paragraphen eine Beweisskizze des 
+Produktsatzes für Determinanten versprochen:
+
+\begin{satz}[Produktsatz]\label{det_n_produkt_revisit}  
+Sind $A$ und  $B$ zwei $n \times n$--Matrizen, so gilt
+  	$$ \det{ A \cdot B } = \det{A} \cdot \det{B} $$
+\end{satz}
+
+\bemerkung{Beweisskizze \,} 
+
+1. Fall: Wir betrachten zunächst den Fall, dass $\mathrm{rg}(A) < n$ oder $\mathrm{rg}(B) < n$. Dann ist auch
+$\mathrm{rg}(A \cdot B) < n$.
+
+Ist etwa $\mathrm{rg}(B) < n$, so ist nach dem Rangsatz $\textrm{nul}(B) > 0$, also 
+gibt es ein $\vektor{x} \in \mathbb R^n$ mit $\vektor{x} \neq
+\vektor{0}$ und $B \cdot \vektor{x} = \vektor{0}$. Dann gilt 
+aber auch 
+  	$$A \cdot B \cdot \vektor{x} = A \cdot \vektor{0} = 
+   	\vektor{0}, $$ 
+also $\textrm{nul}(A \cdot B) > 0$ und damit 
+$\mathrm{rg}(A \cdot B) < n$. Ist $\mathrm{rg}(B) = n$ und 
+$\mathrm{rg}(A) < n$ so gibt es zunächst ein $\vektor{y}$ mit 
+$\vektor{y} \neq \vektor{0}$ und $A \cdot \vektor{y} = 
+\vektor{0}$. Da $\mathrm{rg}(B) = n$, gibt es ein $\vektor{x}$ mit
+$B \cdot \vektor{x} = \vektor{y}$ und hierfür gilt
+  	$$ A \cdot B \cdot \vektor{x} = A \cdot \vektor{x} = 
+   	\vektor{0}, $$
+also auch in dieser Situation $\textrm{nul}(A \cdot B) > 0$ und damit 
+$\mathrm{rg}(A \cdot B) < n$.
+
+Damit gilt in diesem Fall also wegen Satz~\ref{det_n_regular}:
+  	$$ \det{A \cdot B} = 0 = \det{A} \cdot \det{B} $$
+
+\medbreak
+
+2. Fall: Es gilt $\mathrm{rg}(A) = n$ und $\mathrm{rg}(B) = n$. Damit brauchen wir 
+also nur noch invertierbare Matrizen betrachten. Nach 
+Bemerkung~\ref{det_inverse_elementar} schreibt sich dann $A$ als Produkt von 
+Elementarmatirzen, $ A = \mathcal{E}_1 \cdots \mathcal{E}_l $, und es reicht zu 
+zeigen 
+  	$$\det{\mathcal{E} \cdot B}  = \det{\mathcal{E}} \cdot \det{B} $$
+für jede (invertierbare) Matrix $B$ und jede Elementarmatrix $\mathcal{E}$. 
+Das rechnet man leicht mit den Regeln~\ref{det_n_rule} nach.
+
+\bigbreak
+
+\begin{korollar} Sind $A$ und  $B$ zwei $n \times n$--Matrizen, und ist $A \cdot B$ 
+invertierbar, so sind auch $A$ und $B$ invertierbar. Entsprechend haben in diesem 
+Fall auch $A$ und $B$ den vollen Rang $n$.
+\end{korollar}
+
+\beweis{ 
+Die Invertierbarkeit von $A \cdot B$ ist äquivalent zu $\det{A \cdot B} 
+\neq 0$. Nach dem Produktsatz folgt aber daraus $\det{A} \neq 0$ und $\det{B} 
+\neq 0$.
+}
+
+\bigbreak
+
+Zum Abschluß dieses Abschnitts und dieses Kapitels wollen wir nochmal zum 
+Ausgangspunkt dieses Kapitels zurückkehren, nämlich zu linearen 
+Gleichungssystemen 
+  	$$ A \cdot \vektor{x} = \vektor{b} $$
+mit einer $n \times n$--Koeffizientenmatrix $A$. Wir schreiben $A = \left(
+\vektor{a_1} \,\, \vektor{a_2} \, \ldots \, \vektor{a_n} 
+\right)$ mit Spaltenvektoren $\vektor{a_i}$ und setzen
+  	$$ A_i(\vektor{b}) = \left( \begin{matrix}
+  	\vektor{a_1} & \ldots & \vektor{a_{i-1}} &
+   	\vektor{b} & \vektor{a_{i+1}} & \ldots & \vektor{a_n} 
+  	\end{matrix} \right), $$
+wir ersetzen also die $i$--te Spalte von $A$ durch $\vektor{b}$.
+
+\begin{satz}[Cramersche Regel]\label{det_n_cramer} \index{Cramersche Regel!allgemein}  
+Ist $A$ invertierbar, so ist die eindeutige Lösung $\vektor{x}$ von 
+  	$$ A \cdot \vektor{x} = \vektor{b} $$
+gegeben durch 
+  	$$ x_i = \frac {\det{A_i(\vektor{b})}}{\det{A}}. $$
+\end{satz} 
+
+\beweis{ Da $A$ invertierbar ist, ist die Lösung des Gleichungssystems gegeben durch
+  	$$ \vektor{x} = A^{-1} \vektor{b} $$
+Drücken wir $A^{-1} $ gemäß Satz~\ref{det_inverse_komplement} mit der 
+Komplementärmatrix aus, so bedeutet das 
+  	$$ \begin{array} {l c l}
+     	x_i & = & \left(A^{-1} \cdot \vektor{b}\right)_i \\[0.3em]
+     	& = & \sum\limits_{l = 1}^n \frac {\widetilde{a_{i,l}}}{\det{A}} \cdot b_l \\[0.3em]
+     	& = & \frac {1}{\det{A}} \cdot \sum\limits_{i=1}^n (-1)^{i+l} \cdot \det{A_{l,i}} 
+     	\cdot b_l
+   	\end{array} $$
+Berechnen wir andererseits $\det{A_i(\vektor{b})}$ durch Entwicklung nach 
+der $i$--ten Spalte, so erhalten wir
+  	$$ \det{A_i(\vektor{b})} = \sum_{l=1}^n (-1)^{i+l} \cdot b_l \cdot \det{A_{l,i}} $$
+da $A_i(\vektor{b})_{l,i} = A_{l,i}$, und es folgt die Behauptung.
+}
+   
+\begin{beispiel} Wir betrachten das lineare Gleichungssystem
+ 	 $$ \begin{array} {r c r c r c l}
+  	x_1  & + & x_2 & & & = & 2 \\
+  	3x_1 & + & 2x_2 & + & x_3 & = & 0 \\
+  	& & x_2 & + & x_3 & = & 2 
+  	\end{array} $$
+haben also 
+  	$$ A = \left( \begin{matrix} 1 & 1 & 0 \\ 3 & 2 & 1 \\ 0 & 1 & 1
+   	\end{matrix} \right), \qquad \vektor{b} 
+    	= \left( \begin{matrix} 2 \\ 0 \\ 2 \end{matrix} \right) $$ 
+Da $\det{A} = -2$ kann die Cramersche Regel angewendet werden und wir erhalten
+  	$$ \begin{array}{l c l c l c c l c l c l }
+  	x_1 & = & \dfrac {-1}{2} \cdot \det{ \begin{matrix} 2 & 1 & 0 \\ 0 & 2 & 1 \\ 2 & 1 & 1 
+    	\end{matrix} } & = & - 2 & \quad &
+  	x_2 & = & \dfrac {-1}{2} \cdot \det{ \begin{matrix} 1 & 2 & 0 \\ 3 & 0 & 1 \\ 2 & 2 & 1 
+    	\end{matrix} } & = & 4 \\
+  	x_3 & = &  \dfrac {-1}{2} \cdot \det{ \begin{matrix} 1 & 1 & 2 \\ 3 & 2 & 0 \\ 0 & 1 & 2 
+    	\end{matrix} } & = & -2
+ 	\end{array} $$
+\end{beispiel}
+
+\begin{notiz} Die Cramersche Regel ist keine praktikable Methode, um die Lösung eines 
+Gleichungssystems zu bestimmen (ausser vielleicht im Fall $n = 2$). Der Rechenaufwand, der 
+damit verbunden ist, ist viel höher als der, der sich aus dem Gaußschen 
+Eliminationsverfahren ergibt.
+\end{notiz}
+
+\bigbreak
+
+\begin{notiz} Determinanten können mit den gleichen Berechnungsregeln auch für komplexe Matrizen 
+definiert werden. Betrachten wir etwa die Matrix 
+  	$$ A = \left( \begin{matrix} 1 & \ii \\ \ii & \ii-1 \end{matrix} \right) $$
+so gilt hierfür
+  	$$ \det{A} = 1 \cdot (\ii-1) - \ii \cdot \ii = \ii -1 - (-1) = \ii $$
+Die Aussagen über Determinanten übertragen sich entsprechend. Insbesondere ist eine komplexe Matrix 
+invertierbar, wenn ihre Determinante von Null verschieden ist. Das gilt also für unsere Matrix $A$, und 
+ihre Inverse berechnet sich wie im reellen Fall mit der erweiterten Matrix:
+  	$$ \left( A \, \vert \, E_2 \right) = \left( \begin{array} {c c | c c } 1 & \ii \phantom{x}& \quad  1 & 0 \\ 
+	i & \ii-1 \phantom{x}& \quad 0 & 1 \end{array} \right) $$
+Subtrahieren wir das $i$--fache der ersten Zeile von der zweiten, so erhalten wir
+  	$$ \left(\begin{array} {c c | c c }  1 & \ii \phantom{x}& \quad  1 & 0 \\ 
+	0 & \ii \phantom{x}& \quad  -\ii & 1 \end{array} \right) $$
+Division der zweiten Zeile durch $i$ ergibt
+  	$$ \left(\begin{array} {c c | c c }  1 & \ii \phantom{x}& \quad  1 & 0 \\ 
+	0 & 1 \phantom{x}& \quad  -1 & -\ii \end{array} \right) $$
+Subtrahieren wir das $\ii$--fache der zweiten Zeile von der ersten, so ergibt sich 
+  	$$  \left( E_2 \, \, \vert \, A^{-1} \right) = \left( \begin{array} {c c | c c }  1 & 0 \phantom{x}& \quad  1+\ii & -1 \\ 
+	0 & 1 \phantom{x}& \quad  -1 & -\ii \end{array} \right) $$
+und damit
+  	$$ A^{-1} = \left( \begin{matrix} 1+\ii & -1 \\  -1 & -\ii \end{matrix} \right) $$
+\end{notiz}
+
+\medbreak
+
+\begin{notiz}
+Die Theorie der Determinanten und invertierbaren Matrizen kann genauso auf jeden anderen Körper, etwa 
+$\Q$ oder $\F_p$ für eine Primzahl $p> 0$ übertragen werden. Alle Regeln und Berechnungsformeln 
+gelten entsprechend.
+\end{notiz}
+
+\bigbreak
+
+
+\begin{aufgabe} Bestimmen Sie die Inverse der Matrix
+  	$$ A = \left(\begin{matrix} 1 & -1 \\ -2 & 3 \end{matrix} \right) $$ 
+\end{aufgabe}
+
+\begin{aufgabe} Bestimmen Sie die Inverse der Matrix
+  	$$ A = \left(\begin{matrix} 1 & 3 & 4 \\ 2 & 4 & 6 \\ 1 & 3 & 5 \end{matrix} \right) $$
+\end{aufgabe}
+
+\begin{aufgabe} Überprüfen Sie, ob die Matrix 
+  	$$ A = \left(\begin{matrix} 2 & 0 & 2 & 0 \\ 0 & 1 & -1 & 0 \\ 0 & 0 & 1 & 1 \\
+	1 & 1 & 1 & 1 \end{matrix} \right) $$
+invertierbar ist und bestimmen Sie gegebenenfalls die inverse Matrix.
+\end{aufgabe}
+
+\begin{aufgabe} Zeigen Sie, dass eine $n \times n$--Matrix $A$ genau dann invertierbar ist, wenn ihre 
+Spaltenvektoren eine Basis des $\mathbb R^n$ bilden. 
+\end{aufgabe}
+
+\begin{aufgabe} Ziegen Sie: Ist $A$ eine invertierbare Matrix, so gilt
+  	$$ \det{A^{-1}} = \frac {1}{\det{A}} $$
+\end{aufgabe}
+
+\begin{aufgabe} Zeigen Sie: Ist $A$ eine orthogonale Matrix, so gilt
+  	$$ \det{A} =\pm 1 $$
+\end{aufgabe}
