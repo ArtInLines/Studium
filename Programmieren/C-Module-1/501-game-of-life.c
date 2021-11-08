@@ -1,4 +1,5 @@
 /* Game of life
+@author Valentin, Jakob, Marek, Leo, Yan
 The "game of life" is an old and very simple approach of simulating evolution
 A 2-dimensional field of cells is regarded with a cell being either empty/dead (0) or occupied/alive (1)
 The intial state can be chosen e.g. manually or using some random operations.
@@ -27,39 +28,69 @@ see: http://en.wikipedia.org/wiki/Conway's_Game_of_Life
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
+
+#define HEIGHT 30
+#define LENGTH 30
 
 // Global 2-dim-array which contains the cells
-char cells[30][50];
+char cells[HEIGHT][LENGTH];
 
 // TO DO: initialize cells, set most to 0, some to 1 
 void initialize_cells() {
    int i, j;
-   for (i = 0; i < 30; i++) {
-      for (j = 0; j < 50; j++) {
-         // TO DO ...
+   srand(time(NULL));
+   for (i = 0; i < HEIGHT; i++) {
+      for (j = 0; j < LENGTH; j++) {
+         if (rand() % 5) cells[i][j] = 0;
+         else cells[i][j] = 1;
          }
       }
    }
 
 // TO DO: Write output function to show the cells 
 void display_cells() {
-
+   int i, j;
    system("CLS"); // Clear screen - works (at least) on windows console.
-   // TO DO
+   for (i = 0; i < HEIGHT; i++) {
+      for (j = 0; j < LENGTH; j++) {
+         if (!cells[i][j]) printf(" ");
+         else printf("+");
+         }
+      printf("\n");
+      }
    }
 
 // TO DO: Write a function to calculate the next evolution step
 void evolution_step() {
    // TO DO: Use this array for the calculation of the next step
-   char cells_helper[30][50];
-
+   /*
+   1. Any live cell with fewer than two live neighbours dies, as if by needs caused by underpopulation.
+   2. Any live cell with more than three live neighbours dies, as if by overcrowding.
+   3. Any live cell with two or three live neighbours lives, unchanged, to the next generation.
+   4. Any empty/dead cell with exactly three live neighbours cells will be populated with a living cell.
+   */
+   int i, j;
+   char cells_helper[HEIGHT][LENGTH];
+   for (i = 0; i < HEIGHT; i++) {
+      for (j = 0; j < LENGTH; j++) {
+         // Get neighbour cells
+         // ...
+         char neighbours[4];
+         if (cells[i][j]) {
+            // Rules 1, 2, 3
+            }
+         else if (/* Rule 4 */)
+         }
+      }
 
    }
 
 // TO DO: Write a function that counts the occupied cells
 int count_cells() {
-
-
+   int count = 0, i, j;
+   for (i = 0; i < HEIGHT; i++) for (j = 0; j < LENGTH; j++) count += cells[i][j];
+   return count;
    }
 
 // Main program
