@@ -14,7 +14,7 @@ int main() {
     float price;
 
     while (1) {
-        printf("Which size you want your burger (s=small, m=medium, l=large, x=extra-large)?");
+        printf("Which size you want your burger (s=small, m=medium, l=large, x=extra-large)? - Presss 'q' to exit ");
         scanf(" %c", &size);
         if (size == 'q') break;
         printf("Any specials (r=regular: beef, v=veggie, c=cheese, f=fish)?");
