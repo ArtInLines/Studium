@@ -51,17 +51,19 @@ int main() {
         while (height--) {
             switch (specials)
                 {
-                case 'c':
-                    printf(" ------ \n");
-                    break;
-
+                case 'V':
                 case 'v':
                     printf("(xxxxxx)\n");
                     break;
 
+                case 'F':
                 case 'f':
                     printf("_ffffff_\n");
                     break;
+
+                case 'C':
+                case 'c':
+                    printf(" ------ \n");
 
                 default:
                     printf("(mmmmmm)\n");
