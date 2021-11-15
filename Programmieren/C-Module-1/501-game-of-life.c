@@ -18,12 +18,12 @@ The initial pattern constitutes the 'seed' of the system. The first generation i
 see: http://en.wikipedia.org/wiki/Conway's_Game_of_Life
 */
 
-// TO DO: Complete the programm such that it simulates the game of life. 
+// DONE: Complete the programm such that it simulates the game of life. 
 //        Do this as teamwork (e.g. in teams with 2 or 3) 
 //        and benefit from the fact the functions can developed separately and then integrated into the final program.
 // TODO optional 1: extend the program, such that it detects 'stable states', i.e. the system is oscillating between a few states. 
 // TODO optional 2: let the program find a start state such that the system stays alive and unstable for as long as possible
-// TODO optional 3: Create a flicker-free output: Do not print each character separately, but write the output into a string, which is printed all at once
+// DONE optional 3: Create a flicker-free output: Do not print each character separately, but write the output into a string, which is printed all at once
 // TODO optional 4: extend the program such that the content of the cells can be edited by the user. 
 
 #include <stdio.h>
@@ -39,36 +39,32 @@ char cells[HEIGHT][LENGTH];
 
 
 // TO DO: initialize cells, set most to 0, some to 1 
-void initialize_cells() {
+void initialize_cells(int div) {
    int i, j;
    srand(time(NULL));
-   for (i = 0; i < HEIGHT; i++) {
-      for (j = 0; j < LENGTH; j++) {
-         if (rand() % 8) cells[i][j] = 0;
-         else cells[i][j] = 1;
-         }
-      }
+   for (i = 0; i < HEIGHT; i++) for (j = 0; j < LENGTH; j++) cells[i][j] = rand() % div ? 0 : 1;
    }
 
 
 // TO DO: Write output function to show the cells 
-void display_cells() {
+void display_cells(char cell_char) {
    int i, j;
    char out[HEIGHT * LENGTH + HEIGHT + 1];
-   system("CLS"); // Clear screen - works (at least) on windows console.
    for (i = 0; i < HEIGHT; i++) {
       for (j = 0; j < LENGTH; j++) {
          if (!cells[i][j]) out[LENGTH * i + j] = ' ';
-         else out[LENGTH * i + j] = '+';
+         else out[LENGTH * i + j] = cell_char;
          }
       out[LENGTH * (i + 1) - 1] = '\n';
       }
-   printf("%s", out);
+   out[HEIGHT * LENGTH + HEIGHT + 1] = 0;
+   system("CLS"); // Clear screen - works (at least) on windows console.
+   printf(out);
    }
 
 
 // TO DO: Write a function to calculate the next evolution step
-void evolution_step() {
+void evolution_step(int hard_border) {
    // TO DO: Use this array for the calculation of the next step
    char cells_helper[HEIGHT][LENGTH];
    int i, j, neighbours_count;
@@ -77,11 +73,14 @@ void evolution_step() {
    for (i = 0; i < HEIGHT; i++) {
       for (j = 0; j < LENGTH; j++) {
          // Get neighbour cells
-         // If there is no cells on one side, it will default to 0 (to simulate that there is no cell)
-         neighbours_count = i > 0 ? cells[i - 1][j] : 0;
-         neighbours_count += j < LENGTH - 1 ? cells[i][j + 1] : 0;
-         neighbours_count += i < HEIGHT - 1 ? cells[i + 1][j] : 0;
-         neighbours_count += j > 0 ? cells[i][j - 1] : 0;
+         if (hard_border) {
+            // If there is no cells on one side, it will default to 0 (to simulate that there is no cell)
+            neighbours_count = i > 0 ? cells[i - 1][j] : 0;
+            neighbours_count += j < LENGTH - 1 ? cells[i][j + 1] : 0;
+            neighbours_count += i < HEIGHT - 1 ? cells[i + 1][j] : 0;
+            neighbours_count += j > 0 ? cells[i][j - 1] : 0;
+            }
+         else neighbours_count = cells[(HEIGHT + i - 1) % HEIGHT][j] + cells[(i + 1) % HEIGHT][j] + cells[i][(LENGTH + j - 1) % LENGTH] + cells[i][(j + 1) % LENGTH];
 
          // The usage of cells_helper assumes that every cell is supposed t be evaluated at the same time
          // Otherwise, cells_helper could practically be removed and replaced with cells
@@ -107,11 +106,20 @@ int count_cells() {
 
 
 // Main program
-int main() {
-   initialize_cells();
+int main(int argc, char* argv[]) {
+   // for (int i = 1; i < argc; i++) printf("%s\n", argv[i]);
+   const int hard_border = argc > 1 && argv[1][0] == '-' && argv[1][1] == 'y' ? 1 : 0;
+   const char cell_char = argc > 2 ? argv[2][1] : argc > 1 && !hard_border ? argv[1][1] : '+';
+
+   const int div = 5;
+
+
+   // printf("hard border: %i\n", hard_border);
+
+   initialize_cells(5);
 
    while (1) {
-      display_cells();
+      display_cells(cell_char);
 
       // Leave loop if there are no more occupied cells
       if (count_cells() == 0) break;
@@ -119,6 +127,9 @@ int main() {
       printf("Press enter");
       getchar();
 
-      evolution_step();
+      evolution_step(hard_border);
+
+      // printf("\n\n\n");
+      // display_cells();
       }
    }
