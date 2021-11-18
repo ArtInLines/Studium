@@ -11,39 +11,61 @@
 int rods[3][2] = { 0 };
 
 void display(/* int disk, int start, int goal */) {
-   static char res[24][24] = { 0 };
+   static char res[24][25] = { 0 };
    static int rod_width = 24 / 3;
    int current_rod = 0;
+   int disk_size = 0;
+   int disk_amount = 0;
 
    for (int i = 0; i < 24; i++) {
       for (int j = 0; j < 24; j++) {
-         current_rod = (j - j % rod_width) / rod_width;
+         current_rod = (j - (j % rod_width)) / rod_width;
+         disk_amount = rods[current_rod][1] - rods[current_rod][0];
 
-         // Figure out when and how to display disks
+         disk_size = disk_amount + i - 24;
+         if (disk_size >= 0) disk_size = rods[current_rod][0] + disk_size;
 
-         if (j % 4 == 0 && j % 8 != 0) res[i][j] = '|';
+         printf("i: %i, j: %i, current_rod: %i, disk_size: %i, disk_amount: %i\n\n", i, j, current_rod, disk_size, disk_amount);
+
+         if ((j % 4) * (-1) < disk_size) res[i][j] = '#';
+         else if (j % 4 == 0 && j % 8 != 0) res[i][j] = '|';
          }
+      res[i][25] = '\n';
       }
+   res[24][25] = 0;
+
+   printf("\n\n\n\n\n\n");
+   // printf(res);
    }
 
 void move_disk(int start, int goal) {
+   start--; goal--; // Index starts at 0, but paremeters are entered at index-start at 1
    int current_disk = rods[start][0]; // Store the disk size only for display()
+
+   for (int i = 0; i < 3; i++) printf("%i. Rod: %i - %i\n", i, rods[i][0], rods[i][1]);
+   printf("\n\n");
 
    // Only one disk is on the starting rod -> No disk remains
    if (rods[start][0] == rods[start][1]) rods[start][0] = rods[start][1] = 0;
    // Otherwise -> The top disk on the rod must be one size higher than the last one
    else rods[start][0]++;
 
-   rods[goal][0]--;
+   if (rods[goal][1] == 0) { rods[goal][0]++; rods[goal][1]++; }
+   else rods[goal][0]--;
+
+   // display();
+
+   for (int i = 0; i < 3; i++) printf("%i. Rod: %i - %i\n", i, rods[i][0], rods[i][1]);
+   _sleep(/* 1000 * */ 100);
    }
 
 void hanoi(int n, int start, int goal) {
    int helper = 3 - start - goal;
    if (n > 0) {
+      move_disk(start, helper);
       hanoi(n - 1, start, helper);
-      move_disk(start, goal);
-      display();
       // printf("move disk from %d to %d\n", start, goal);
+      move_disk(helper, goal);
       hanoi(n - 1, helper, goal);
       }
    }
