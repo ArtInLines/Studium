@@ -17,18 +17,32 @@ pali([X|R],[X|T]) :- pali(R,P), conc(P,[X],T).
 
 
 split([],_,[],[]).
-% split([],_,G,K) :- G,K.
-split([E|R],E,K,G) :- split(R,E,K,G).
-split([X|R],E,K,G) :- X<E, conc(K,[X],L), split(R,E,L,G).
-split([X|R],E,K,G) :- X>E, conc(G,[X],L), split(R,E,K,L).
+% split([E|R],E,K,G) :- split(R,E,K,G).
+split([X|R],E,[X|K],G) :- X=<E, split(R,E,K,G).
+split([X|R],E,K,[X|G]) :- X>E, split(R,E,K,G).
 
 
-% split([A|Rest], A, [A|Rest1], Rest2) :-
-%         split(Rest, A, Rest1, Rest2).
-% split([A|Rest], B, Rest1, [A|Rest2]) :-
-%         A =\= B,
-%         split(Rest, B, Rest1, Rest2).
+qSort([],[]).
+qSort([H|T],L) :- split(T,H,K,G), 
+            qSort(K,LS),
+            qSort(G,LR),
+            conc(LS,[H|LR],L).
 
-% split([H|T],E,K,G) :- >(H,E), conc(G,[H],L), split(T,E,K,L).
-% split([H|T],E,K,G) :- <(H,E), conc(K,[H],L), split(T,E,L,G).
-% split([H|T],E,K,G) :- =(H,E), conc(K,[H],L), split(T,E,L,G).
+
+half([],[],[]).
+half([H|[]],[H],[]).
+half([H,I|T],[H|L],[I|R]) :- half(T,L,R).
+
+% Other halfing func:
+% half([],[],[]).
+% half([H|T],[H|K],G) :- half(T,G,K).
+
+merge([],S,S).
+merge(S,[],S).
+merge([H|T],[X|R],[H|L]) :- H=<X, merge(T,[X|R],L).
+merge([H|T],[X|R],[X|L]) :- merge([H|T],R,L).
+
+
+mSort([],[]).
+mSort([X],[X]).
+mSort([H|T],X) :- half([H|T],L,R), mSort(L,LX), mSort(R,RX), merge(LX,RX,X).
