@@ -46,3 +46,8 @@ merge([H|T],[X|R],[X|L]) :- merge([H|T],R,L).
 mSort([],[]).
 mSort([X],[X]).
 mSort([H|T],X) :- half([H|T],L,R), mSort(L,LX), mSort(R,RX), merge(LX,RX,X).
+
+
+oddpossum([],0).
+oddpossum([X],X).
+oddpossum([X,_|R],S) :- oddpossum(R,T), S is X+T.
