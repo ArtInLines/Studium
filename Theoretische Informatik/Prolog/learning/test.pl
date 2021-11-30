@@ -46,3 +46,15 @@ merge([H|T],[X|R],[X|L]) :- merge([H|T],R,L).
 mSort([],[]).
 mSort([X],[X]).
 mSort([H|T],X) :- half([H|T],L,R), mSort(L,LX), mSort(R,RX), merge(LX,RX,X).
+
+
+oddpossum([],0).
+oddpossum([X,_|R],U) :- oddpossum(R,S), U is S+X.
+oddpossum([X|[]],X).
+
+
+% Define  Prolog  clauses  for  a  predicate  onlypos  that  deletes  within  a  list  of  integer  numbers  all  0`s  and  replaces  each negative number by its doubled absolute value. 
+onlypos([],[]).
+onlypos([0|R],T) :- onlypos(R,T).
+onlypos([X|R],[P|T]) :- X<0, P is -2*X, onlypos(R,T).
+onlypos([X|R],[X|T]) :- onlypos(R,T).

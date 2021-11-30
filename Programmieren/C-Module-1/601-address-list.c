@@ -23,34 +23,34 @@ enum gender {
    nonBinary
    };
 
-struct date {
+typedef struct {
    int day;
    int month;
    int year;
-   }
+   } date;
 
-struct address {
+typedef struct {
    char street[30];
    int number;
    int plz;
    char city[30];
-   }
+   } address;
 
-struct person {
+typedef struct {
    char first_name[30];
    char last_name[30];
    enum gender gender;
-   struct date birthdate;
-   struct date enrollmentDate;
-   struct address address;
-   };
+   date birthdate;
+   date enrollmentDate;
+   address address;
+   } person;
 
-struct person students[100];
+person students[100];
 int globalStudentCounter = 0;
 
 
 void printStudent(int i) {
-   printf("%d. \"%s %s\"\n", i, students[i].first_name, students[i].last_name);
+   printf("%d. \"%s %s\" (Geboren: %d.%d.%d). (%s %d, %s %d)\n", i, students[i].first_name, students[i].last_name, students[i].birthdate.day, students[i].birthdate.month, students[i].birthdate.year, students[i].address.street, students[i].address.number, students[i].address.city, students[i].address.plz);
    }
 
 
@@ -60,8 +60,8 @@ void printAllStudents() {
    }
 
 
-struct address getAddress() {
-   struct address address;
+address getAddress() {
+   address address;
 
    printf("Street name? ");
    scanf("%s", &address.street);
@@ -79,23 +79,23 @@ struct address getAddress() {
    }
 
 
-struct date getDate(char* desc) {
-   struct date date;
+date getDate(char* desc) {
+   date date;
    int dateInt = 0;
 
    do {
-      printf("Please enter the day of the %s", desc);
+      printf("Please enter the day of the %s? ", desc);
       scanf("%d", &dateInt);
-      } while (date < 1 || date > 31);
+      } while (dateInt < 1 || dateInt > 31);
       date.day = dateInt;
 
       do {
-         printf("Please enter the month of the %s", desc);
+         printf("Please enter the month of the %s? ", desc);
          scanf("%d", &dateInt);
-         } while (date < 1 || date > 12);
+         } while (dateInt < 1 || dateInt > 12);
          date.month = dateInt;
 
-         printf("Please enter the year of the %s", desc);
+         printf("Please enter the year of the %s? ", desc);
          scanf("%d", &dateInt);
          date.year = dateInt;
 
@@ -110,8 +110,8 @@ void addStudent() {
    printf("What is the student's last name? ");
    scanf("%s", &students[globalStudentCounter].last_name);
 
-GET_GENDER:
-   char c[10] = 0;
+GET_GENDER:;
+   char c[10] = "";
    printf("What is the student's identified gender (m/f/nb)? ");
    scanf("%s", c);
    if (c[0] == 'm') students[globalStudentCounter].gender = male;
@@ -133,13 +133,13 @@ void deleteStudent(int i) {
    if (i >= globalStudentCounter) return;
 
    students[i] = students[--globalStudentCounter];
-   struct person empty;
+   person empty;
    students[globalStudentCounter] = empty;
    }
 
 
 void menu() {
-   char prompt[90] = "Press \"a\" to add a student, \"d\" to delete a student, \"p\" to print all students or \"q\" to quit the pogram: ";
+   char prompt[] = "Press \"a\" to add a student, \"d\" to delete a student, \"p\" to print all students or \"q\" to quit the pogram: ";
    char c = 0;
    while (1) {
       printf(prompt);
