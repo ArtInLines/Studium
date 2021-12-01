@@ -1,5 +1,4 @@
-conc([],L,L).
-conc([X|R], L, [X|RL]) :- conc(R, L, RL).
+
 
 
 zipper([],L,L).
@@ -15,6 +14,9 @@ pali([],[]).
 pali([X],[X]).
 pali([X|R],[X|T]) :- pali(R,P), conc(P,[X],T).
 
+
+conc([],L,L).
+conc([X|R], L, [X|RL]) :- conc(R, L, RL).
 
 split([],_,[],[]).
 % split([E|R],E,K,G) :- split(R,E,K,G).
@@ -58,3 +60,8 @@ onlypos([],[]).
 onlypos([0|R],T) :- onlypos(R,T).
 onlypos([X|R],[P|T]) :- X<0, P is -2*X, onlypos(R,T).
 onlypos([X|R],[X|T]) :- onlypos(R,T).
+
+
+includes([],_,0).
+includes([X|R],X,1).
+includes([X|R],Y,T) :- includes(R,Y,T).
