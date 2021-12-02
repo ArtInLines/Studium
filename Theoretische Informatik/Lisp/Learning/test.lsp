@@ -78,3 +78,28 @@ Multiline Comment
     (cond ((null L) nil)
           ((= E (car L)) T)
           (T (includes (cdr L) E))))
+
+(defun zipper (L1 L2)
+    (cond ((null L1) L2)
+          ((null L2) L1)
+          (T (cons (car L1) (cons (car L2) (zipper (cdr L1) (cdr L2)))))))
+          
+(defun zip (L)
+    (cond ((null (cdr L)) L)
+          (T (cons (zipper (car L) (cadr L)) (cddr L)))))
+          
+(defun rev (L)
+    (cond ((null L) L)
+          (T (conc (rev (cdr L)) (list (car L))))))
+          
+(defun switchRevShit (L)
+    (cond ((null (cddr L)) L)
+          (T (cons (rev (cadr L)) (cons (rev (car L)) (cddr L))))))
+          
+(defun addLen (L)
+    (cond ((null (cdr L)) L)
+          (T (cons (append (car L) (list (length (car L)))) (cons (append (cadr L) (list (length (cadr L)))) (cddr L))))))
+          
+(defun c (L)
+    (cond ((null (cdr L)) L)
+          (T (cons (car L) (cons (cons (+ (car (car L)) (car (rev (cadr L)))) (cadr L)) (cddr L))))))
