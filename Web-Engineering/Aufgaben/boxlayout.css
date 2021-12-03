@@ -1,0 +1,10 @@
+* {
+	box-sizing: border-box;
+}
+div {
+	display: inline-block;
+	width: 25vw;
+	position: relative;
+	top: 10px;
+	margin: 10px;
+}
