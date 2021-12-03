@@ -1,0 +1,29 @@
+@media screen {
+	* {
+		font-size: large;
+	}
+
+	#myDiv {
+		background-color: aqua;
+		position: relative;
+		top: 10px;
+		left: 10px;
+		width: 50vw;
+	}
+
+	.div {
+		border: 2px black solid;
+	}
+
+	.pp {
+		font-weight: bold;
+	}
+
+	span {
+		padding: 2vw;
+	}
+
+	header {
+		margin: 10px;
+	}
+}
