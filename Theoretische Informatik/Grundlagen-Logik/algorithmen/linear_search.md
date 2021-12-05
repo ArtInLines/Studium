@@ -1,7 +1,7 @@
 # Linear Search
 
 ```Py
-{ N of type Integer; A is a list of integers (A[1,length(A]) }
+{ N of type Integer; A is a list of integers (A[1,length(A)] }
 I := 1
 while (A[I] =/= N) and (i <= length(A)) do:
     I := I + 1
@@ -21,4 +21,4 @@ INV = { A[1,I) doesn't include N }
 
 ((A[i] = N) or (i > length(A))) and { A[1,I) doesn't include N } => True
 
-3. Prove that the loop will terminate
+1. Prove that the loop will terminate

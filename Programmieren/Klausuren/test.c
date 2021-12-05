@@ -25,7 +25,7 @@ void main() {
     for (row = 1; row <= 6; row++) {
         j = 0;
         for (i = 0; i < 50; i++) {
-            if (row && i % row) printf("-");
+            if (i % row) printf("-");
             else { printf("%i", j % 10); j++; }
             }
         printf("\n");

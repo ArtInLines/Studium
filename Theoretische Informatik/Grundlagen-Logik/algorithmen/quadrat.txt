@@ -1,0 +1,42 @@
+{N >= 0, N of type integer}
+K := -1
+I := 0
+Q := 0
+while I < N:
+    I := I + 1
+    K := K + 2
+    Q := Q + K
+{Q = N^2, N of type integer}
+
+
+INV: {I <= N, K=2I-1, Q=I^2}
+
+{0 <= N, 0 = 0^2, -1 = 2*0-1}
+K := -1
+{0 <= N, 0 = 0^2,K  = 2*0-1}
+I := 0
+{I <= N, 0 = I^2, K = 2I-1}
+Q := 0
+{I <= N, K = 2I-1, Q = I^2}
+while I < N:
+    {(I+1) <= N, K = 2I-1, Q = I^2}
+    {(I+1) <= N, K = 2I-1, Q = I^2 - (2I-1) + 2I - 1}
+    {(I+1) <= N, K = 2I-1, Q = I^2 - K + 2I - 1}
+    {(I+1) <= N, K+2 = 2I+1, Q+K+2 = I^2 + 2I + 1}
+    {(I+1) <= N, K+2 = 2(I+1)-1, Q+K+2 = (I+1)^2}
+    I := I + 1
+    {I <= N, K+2 = 2I-1, Q+K+2 = I^2}
+    K := K + 2
+    {I <= N, K = 2I-1, Q+K = I^2}
+    Q := Q + K
+    {I <= N, K = 2I-1, Q = I^2}
+
+
+2. INV ^ not(I < N) => Nachbedingung
+not(I < N) => I=N
+INV ^ (I=N) => {Q = N^2, N of type integer}
+{I = N, Q = I^2 = N^2, K = 2N-1, N of type Integer} => {Q = N^2, N of type integer}
+
+
+3. Schleife terminiert
+I startet als I <= N & I wird jeweils um 1 erhöht, dass heißt I wird irgendwann = N sein, und dann terminiert die Schleife.
