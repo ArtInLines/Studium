@@ -29,6 +29,8 @@ int main() {
       ptr = malloc(max * sizeof(int));
       if (!ptr) break;
 
+      printf("%p\n", ptr);
+
       /* Initialize Array */
       for (i = 0; i < max; i++)
          *(ptr + i) = 1;
