@@ -19,30 +19,29 @@ INV: {Y <= I <= X, Z = 2*(I-Y)}
 # 2*(5-3) = 4
 
 
+1.
 INV: {Y <= I <= X, Z = 2*(I-Y)}
 
 
-{Y <= Y <= X, 0 = 2*(Y-Y)}
-I := Y
-{Y <= I <= X, 0 = 2*(I-Y)}
+{Y <= I < X, Z = 2*(I-Y)} = B
 Z := 0
-{Y <= I <= X, Z = 2*(I-Y)}
+{Y <= I < X, 0 = 2*(I-Y)}
+I := Y
+{Y <= Y < X, 0 = 2*(Y-Y)}
+
 repeat
-    {Y <= I < X, Z = 2*I - 2*Y = 2*(I-Y)}
-    {Y <= (I+1) <= X, Z = 2*(I+1-Y)-2}
-    {Y <= (I+1) <= X, Z+2 = 2*(I+1-Y)}
-    Z := Z + 2
-    {Y <= (I+1) <= X, Z = 2*(I+1-Y)}
-    I := I + 1
     {Y <= I <= X, Z = 2*(I-Y)}
+    I := I + 1
+    {Y < (I+1) <= X, Z = 2*(I+1-Y)}
+    Z := Z + 2
+    {Y < (I+1) <= X, Z+2 = 2*(I+1-Y)}
+    {Y < (I+1) <= X, Z = 2*(I+1-Y)-2}
+    {Y <= I < X, Z = 2*I - 2*Y = 2*(I-Y)} = B    
 until I = X
 
 
-2. INV ^ !Bedingung => Nachbedingung
-INV ^ (I = X) => Nachbedingung
-{Y <= I <= X, Z = 2*(I-Y)} ^ (I = X) => {Z = 2*(X-Y); X > Y; Y >= 0; X,Y of type integer}
-{Y <= X, Z = 2*(X-Y)} => {Z = 2*(X-Y); X > Y; Y >= 0; X,Y of type integer}
+2. INV ^ not(I=X) => B
 
 
 3. Schleife terminiert
-I started < X und erhöht sih jede Iteration um 1, d.h. irgendwann ist I=X und dan terminiert die Schleife.
+I started < X und erhöht sih jede Iteration um 1, d.h. irgendwann ist I=X und dann terminiert die Schleife.
