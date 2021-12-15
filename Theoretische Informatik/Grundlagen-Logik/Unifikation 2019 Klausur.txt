@@ -1,0 +1,44 @@
+a)
+X <-> A
+[Y|Y] -> A
+[] -> A  =>  [] -> [Y|Y] 
+
+
+X <-> A <-> Y <- [] -> A
+=> unifizierbar
+
+
+b)
+[Y|Y] -> [A,R]   =>   Y <-> A, 
+
+Y -> [R]
+[R] -> Y <-> R <-> A   occur check!
+
+
+c)
+[[]|[X|YL]] ->  [A,YR]  =>  [] -> A, X <-> YR <-> YL -> []
+YL <-> YR
+
+[[]|[X|YL]] <-> [[],X|YL]
+
+==> unifizierbar
+
+
+
+d)
+Y <- []
+[[X]|[X,Y]] <-> [[X],X,Y] -> [A,[B|C]]  =>  A <- [X], X <- [B|C]  
+=> Drittes Element rechts fehlt
+=> nicht unifizierbar
+
+
+
+
+e)
+X <-> A
+Y <- [A]
+[X|[Y]] <-> [X,Y] -> [A,A]  =>  X <-> A, Y <-> A
+
+=> [A] -> Y <-> A
+
+occur check!!
