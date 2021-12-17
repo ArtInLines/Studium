@@ -1,0 +1,265 @@
+j1)
+
+- nat(square(x)) => nat(square(x) + 1)
+
+- nat(x) ^ even(x) => nat(x / 2)
+
+- nat(square(x)) => pos(square(x)) v !neg(square(x)) v square(x)>0
+- Ax nat(square(x)) => !neg(square(x))
+
+- prime(x) => even((x-1) + (x+1))
+
+
+
+3)
+
+X = {(R v S) -> !Q,    !R -> P ^ !S,    (!Q <-> S) ^ !R}
+  = {(!R ^ !S) v !Q,   R v (P ^ !S),    !R ^ (Q v S) ^ (!Q v !S)}
+
+
+!R  -> Q -> !S -> P 
+!R  -> !Q -> S (!Falsch)
+
+
+
+Y = {((R -> S) v !Q) -> P,   Q <-> !S,    R -> (!P ^ Q)}
+  = {(!R v S v !Q) -> P, (!Q v !S) ^ (Q v S),   !R v (!P ^ Q)}
+  = {(R ^ !S ^ Q) v P,   (!Q ^ S) v (Q ^ !S),   !R v (!P ^ Q)}
+  
+
+!P  - Q - !S - R
+
+P   - !R - !Q - S
+P   - !R - Q - !S
+
+
+
+X = {(!R  -> Q -> !S -> P)}
+Y = {(!P - Q - !S - R), (P - !R - !Q - S), (P - !R - Q - !S)}
+
+
+
+R   - !P - Q - !S
+
+!R  - P - !Q - S
+!R  - P - Q - !S
+
+
+
+
+X |= X
+Y |= Y
+Z |= Z
+Y |= X
+
+
+Z = {Q ^ !R -> P, R v (!S ^ P ^Q), P v !S -> Q}
+  = {!Q v R v P,  R v (!S ^ P ^ Q), (!P ^ S) v Q}
+  
+!Q - R - !P, S
+
+Q - !R - P  - !S
+Q - R  - P  - S
+Q - R  - P  - !S
+Q - R  - !P - S
+Q - R  - !P - !S
+
+
+
+
+
+4)
+
+a)
+R v !(S -> !Q ^ P)
+R v !(!S v (!Q ^ P))
+R v (S ^ (Q v !P))
+(R v S) ^ (R v Q v !P)
+W -> R v S,
+P -> R v Q
+
+
+
+c)
+S v !Q -> (R <-> !P) v Q
+(S v !Q) -> ((R <-> !P) v Q)
+(!S ^ Q) v ((R <-> !P) v Q)
+(!S ^ Q) v (((!R v !P) ^ (R v P)) v Q)
+(!S ^ Q) v ((!R v !P v Q) ^ (R v P v Q))
+(!R v !P v Q v (!S ^ Q)) ^ (R v P v Q v (!S ^ Q))
+(!R v !P v Q v !S) ^ (!R v !P v Q v Q) ^ (R v P v Q v !S) ^ (R v P v Q v Q)
+(!R v !P v Q v !S) ^ (!R v !P v Q) ^ (R v P v Q v !S) ^ (R v P v Q)
+(!R v !P v Q v !S) ^ (R v P v Q v !S)
+R ^ P ^ S -> Q,
+S -> R v P v Q
+
+Shortcut:
+(A ^ B) v ((B v C) ^ (B v D)) <=> (A v B v C) ^ (A v B v D)
+
+
+
+5)
+
+a)
+Ey P(x,y) v !Ex(R(z,y,x) -> Ay Q(z,y,z)) ^ !ExAy R(z,y,x)
+Ey1(P(x,y1)) v !Ex1( R(z,y,x1) -> Ay2(Q(z,y2,x1)) ) ^ !Ex2 Ay3(R(z,y3,x2))
+Ey1(P(x,y1)) v !Ex1( !R(z,y,x1) v Ay2(Q(z,y2,x1)) ) ^ !Ex2 Ay3(R(z,y3,x2))
+Ey1(P(x,y1)) v Ax1 !( !R(z,y,x1) v Ay2(Q(z,y2,x1)) ) ^ Ax2 !(Ay3(R(z,y3,x2)))
+Ey1(P(x,y1)) v Ax1 ( R(z,y,x1) ^ Ey2(!Q(z,y2,x1)) ) ^ Ax2 Ey3 !(R(z,y3,x2))
+ ^              ^                 ^                    ^   ^
+Pränexe Normalform:
+Ey1 Ax1 Ey2 Ax2 Ey3 (P(x,y1) v ( R(z,y,x1) ^ (!Q(z,y2,x1)) ) ^ !(R(z,y3,x2)))
+Ax Ay Az Ey1 Ax1 Ey2 Ax2 Ey3 (P(x,y1) v ( R(z,y,x1) ^ (!Q(z,y2,x1)) ) ^ !(R(z,y3,x2)))
+Skolemisierung:
+P(x,f(x,y,z)) v ( R(z,y,x1) ^ (!Q(z,g(x,y,z,x1),x1)) ) ^ !(R(z,h(x,y,z,x1,x2),x2))
+
+
+!E() => A !()
+!A() => E !()
+
+
+b)
+Ex (Ay P(x,y,z) <-> Ez Q(z,y,x)) ^!Ax R(z,y,x)
+
+
+6)
+{ X>Y ; Y>=0 ; X, Y of type integer }
+  I := Y;
+  Z := 0;
+  {Z = Y-Y = 0}
+  repeat
+    I := I + 1;
+    Z := Z + 1;
+    {Z = I - Y}
+  until I = X
+{ Z=X-Y ; X>Y ; Y>=0 ; X, Y of type integer } = N
+
+0. INV bestimmen
+1. INV überall beweisen
+2. Nach Schleife auf Nachbedingung schließen
+3. Schleife terminiert
+
+0.:
+INV = { Z=I-Y ; X>Y ; X>=I>=Y ; Y>=0 ; X, Y of type integer }
+
+1.:
+until I = X
+  { Z=I-Y ; X>Y ; X>=I>=Y ; Y>=0 ; X, Y of type integer }
+  Z := Z + 1;
+  { Z+1=I-Y ; X>Y ; X>=I>=Y ; Y>=0 ; X, Y of type integer }
+  I := I + 1;
+  { Z+1=I+1-Y ; X>Y ; X>=I+1>Y ; Y>=0 ; X, Y of type integer }
+  { Z=I-Y ; X>Y ; X>=I+1>Y ; Y>=0 ; X, Y of type integer }
+repeat
+{ Z=I-Y ; X>Y ; X>=I>=Y ; Y>=0 ; X, Y of type integer }
+Z:=0;
+{ 0=I-Y ; X>Y ; X>=I>=Y ; Y>=0 ; X, Y of type integer }
+I := Y;
+{ 0=Y-Y ; X>Y ; X>=Y>=Y ; Y>=0 ; X, Y of type integer }
+
+2.:
+INV ^ (I=X) => N
+{ Z=X-Y ; X>Y ; X>=X>Y ; Y>=0 ; X, Y of type integer }
+
+3.: Schleife terminiert
+I wird mit Y initialisiert und Y < X gilt. I erhöht sich in jeder Iteration um 1 und weil Y, X ganze Zahlen sind, wird die Schleife terminieren.
+
+
+
+7)
+if X<Y then begin if X<0 then Y := X – Y end
+  else Y := Y – X;
+Y := X – Y;
+{ Y>X; X, Y of type integer }
+
+
+if (X<Y) { if(X<0) Y=X-Y; }
+if (X>=Y) Y=X-Y;
+
+
+Y := X – Y;
+{ X-Y>X; X, Y of type integer }
+if X<Y then begin if X<0 then Y := X – Y end
+{ (X>=Y ^ X-Y>X) v (X<Y ^ X>=0 ^ X-Y>X) v (X<Y ^ X<0 ^ X-(X-Y)>X) }
+else Y := Y – X;
+{ (X>=Y ^ X-(Y-X)>X) v (X<Y ^ X>=0 ^ X-Y>X) v (X<Y ^ X<0 ^ X-(X-Y)>X) }
+{ (Y<X) v (X<Y ^ X>=0 ^ Y<0) v (X<Y ^ X<0 ^ X-X+Y>X) }
+{ (Y<X) v (X<Y ^ X<0) }
+
+
+
+8)
+
+2016:
+a)
+p1([[X|Y]|[X,Y]],[[Z]|X])   =   p1([A|[B|B]],C)
+p1([[X|Y]|[X,Y]],[[Z]|X]) <=> p1( [[X|Y], X, Y],  [[Z]|X])
+
+p1( [ [X|Y], X |[Y] ],  [[Z]|X])   =   p1([ A | [B|B] ], C)
+[[Z]|X] -> C
+[X|Y] -> A <- [[Y]|Y]
+X <-> B <- [Y]
+[Y] -> B
+
+
+==> unifizierbar
+
+
+[[X|Y]|[X,Y]]  ==  [[X|Y], X, Y]
+
+
+f([],0).
+f([X],1).
+f([X|[Y]],2).  => [X|[Y]] == [X,Y]
+f([X|R],3).
+
+f([A,B,C],L)  =>  [X|R] = [A,B,C]  => X=A, R=[B,C]
+
+
+[A |[B, C] ] => [A, B, C]
+[A |[B] ] => [A, B]
+[A |[] ] => [A]
+
+[A|R],  R = [B,C]  => [A, B, C]
+
+
+2017:
+b)
+p2([[X|R]|Y],R)   =   p2([A|R1],[A])
+[X|R] -> A <- [X, A]   occur check!
+Y <-> R1
+R <- [A]
+
+==> nicht unifizierbar
+
+
+
+p3([X, Y|R])  =  p3([A])
+X <-> A
+R -> []
+Y occur check
+
+
+
+
+
+
+
+x - (y - x) > x
+2x - y > x
+2x > x + y
+x > y
+
+
+-y >= x  |*(-1)
+y >= -x
+
+
+
+0001101 = 13
+~13
+1110010
+
+1 111111 = -128 + 127 = -1
+
+~1 = -2
