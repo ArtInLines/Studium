@@ -1,6 +1,3 @@
-
-
-
 zipper([],L,L).
 zipper(L,[],L).
 zipper([X|R],[Y|S],[X,Y|T]) :- zipper(R,S,T).

@@ -1,0 +1,162 @@
+m([],0).
+m([X],X).
+m([A,B|R],N) :- m(R,M), N is M+A.
+
+
+car L = Erste Element der Liste
+cdr L = Restliste ohne erstes Element
+cons El L = Fügt El an den Anfang der Liste hinzu
+list El = Macht El zu einer Liste
+
+cond ((falls das hier wahr ist) (wird das hier ausgeführt)) () () ....
+
+
+(defun mystery (Liste)
+   (cond  ((null L) 0)
+          ((null (cdr L)) (car L))
+          (T (+ (car L) (mystery (cddr L))))
+    )
+)
+
+
+
+
+(null L) <=> Liste ist leer
+0
+((null L) (0))
+
+
+(null (cdr L)) <=> Restliste ist leer => Liste hat nur 1 Element
+car L
+((null (cdr L)) (car L))
+
+
+T <=> True
+(T (+ (car L) (mystery (cddr L))))
+
+(+ (car L) (mystery (cddr L)))
+R = (cdr (cdr L)) <=> (cddr L)
+
+(1 2 3 4) => (2 3 4) => (3 4)
+
+
+
+; Define a function possum that sums up all positive numbers out of a list of integer-numbers.
+
+(1 -7 0 8 -5 3) => 1 + 8 + 3 = 12
+
+(defun possum (L)
+    (cond ((null L) 0)
+          ((> (car L) 0) (+ (car L) (possum (cdr L))))
+          (T (possum (cdr L)))
+    )
+)
+
+T <=> True
+
+(1 -7 3) = 4
+1 => positiv => 1 + 3 + 0
+
+irgendetwas = possum (-7 3)
+-7 => negativ => 3 + 0
+
+irgendetwas = possum (3)
+3 => positiv => 3 + 0
+
+irgendetwas = possum ()
+() => nix => 0
+
+
+((1 2 3) (4 5 6) (7 8 9))
+
+; replaces within the first sublist the first two numbers by the sum of these two numbers
+((1 2 3 4 5 6) (4 5 6) (7 8 9)) => ((3 3 4 5 6) (4 5 6) (7 8 9))
+
+(cons (cons (+ (caar L) (cadar L)) (cddar L)) (cdr L))
+
+1. Subliste = (cons (+ (caar L) (cadar L)) (cddar L))
+
+(+ (caar L) (cadar L))
+
+cons (1 2 3) (2 3) => ((1 2 3) 2 3)
+
+caar L <=> car (car L)
+cadr L <=> car (cdr L) <=> 2. Element der Liste
+cadar <=> car (cdr (car L)) <=> 2. Element der 1. Subliste
+cddar <=> cdr (cdr (car L)) <=> Die Restliste nach dem 2. Element der 1. Subliste
+
+Addieren 1. El & 2. El
+Summe und alle Elemente nach dem zweiten Element
+Das ist die erste Subliste & die anderen bleiben gleich
+
+
+; Aufgaben für die Pause:
+
+((1 2 3) (4 5 6) (7 8 9))
+; calculates the sum of the first number of the first sublist and the second number of the second sublist and inserts the result to the beginning of the second sublist
+
+(cons (car L) (cons (cons (+ (caar L) (cadadr L)) (cadr L)) (cddr L)))
+
+(cons ErsteSubliste (cons (cons Summe ZweiteSubliste) Restliste))
+
+
+
+(cons Element Liste)
+
+(car (cdr (car (cdr L)))) => cadadr L
+
+
+; possum in Prolog
+(defun possum (L)
+    (cond ((null L) 0)
+          ((> (car L) 0) (+ (car L) (possum (cdr L))))
+          (T (possum (cdr L)))
+    )
+)
+
+possum([],0).
+possum([X|R],Z) :- X<=0, possum(R,Z).
+possum([X|R],N) :- X>0, possum(R,Z), N is X+Z.
+
+
+11) c)
+
+; deletes the first sublist and inserts the reverse of this first sublist to the end of L
+
+((1 2 3) (4 5 6) (7 8 9)) => ((4 5 6) (7 8 9) (3 2 1))
+
+cdr L = ((4 5 6) (7 8 9))
+
+(conc (cdr L) (list (rev (car L)))) => ((4 5 6) (7 8 9) (3 2 1))
+
+
+(conc Liste1 Liste2)
+
+(cons Element Liste)
+
+
+
+9) b)
+mystery([],0).
+mystery([X],X).
+mystery([A,B|R],N) :- mystery(R,M), N is M+A.
+
+[1 2 3 4 5 6] = 1 + 3 + 5 = 9
+
+Determine for the Prolog predicate given in a) the number of  all executed unifications of literals if the predicate is  activated  with  a  list  containing  n  positive  numbers  whereby  n  is  odd.  Start  the  cost  calculation  with  a  recursion equation and solve it finally.
+
+Liste mit n Elementen.
+n ist ungerade.
+Wie viele Unifikationen berechnet Prolog?
+1. Reursionsgleichung 2. Gleichung lösen
+
+K(n=0) = 1
+K(n=1) = 2
+K(n=3) = 4 + 2 = 6
+
+K(1) = 2
+K(n>1) = 4 + K(n-2)
+
+K(n) = 2 + 4*(n-1)/2
+
+mystery([1, 2, 3])
