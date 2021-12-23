@@ -1,26 +1,25 @@
-/* C-Program-generator.c
+// C-Program-generator.c
 
-   This program uses the file-io and string functions to generate text files containing C-programs.
-   As it usually requires some human intelligence to write meaningful C-programs, it it sufficient
-   such that the c-program-generator.c generator 'good-looking nonsense' C-files,
-   i.e. which look like C, can be compiled (and then see what happens...)
+//    This program uses the file-io and string functions to generate text files containing C-programs.
+//    As it usually requires some human intelligence to write meaningful C-programs, it is sufficient
+//    such that the c-program-generator.c generator 'good-looking nonsense' C-files,
+//    i.e. which look like C, can be compiled (and then see what happens...)
 
-   Who of you generates the most realistically-looking C-programs?
+//    Who of you generates the most realistically-looking C-programs?
 
-   Approach:
-   - The C-program-generator uses an input file containing a dictionary of words, which can be used
-   use variable and function names.
-   - It writes its out to the file "great-c-program.c"
+//    Approach:
+//    - The C-program-generator uses an input file containing a dictionary of words, which can be used
+//    as variable and function names.
+//    - It writes its out to the file "great-c-program.c"
 
-   Extend the program-generator such that it writes more interesting C-Programs.
-   TO DO 1: Have a look at the program and understand how it works.
-   TO DO 2: Extend the generator functions such that they generate random C-statements, function calls, control structures etc.
-   TO DO 3: Think about how program complexity can affect the different generator functions
-   TO DO 4: Maintain a list of the defined functions (their names) and use it to generate corresponding function calls
-            and avoid double function definitions.
-   TO DO 5: Can you achieve nice formatting such that in generate_function etc. leading tabs/blanks are correctly inserted?
-            (Use a variable which keeps track of the indentation and pass it to the generator functions)
-*/
+//    Extend the program-generator such that it writes more interesting C-Programs.
+//    TODO 1: Have a look at the program and understand how it works.
+//    TODO 2: Extend the generator functions such that they generate random C-statements, function calls, control structures etc.
+//    TODO 3: Think about how program complexity can affect the different generator functions
+//    TODO 4: Maintain a list of the defined functions (their names) and use it to generate corresponding function calls
+//             and avoid double function definitions.
+//    TODO 5: Can you achieve nice formatting such that in generate_function etc. leading tabs/blanks are correctly inserted?
+//             (Use a variable which keeps track of the indentation and pass it to the generator functions)
 
 #include <stdio.h>
 #include <stdlib.h>

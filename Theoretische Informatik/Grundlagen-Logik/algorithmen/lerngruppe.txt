@@ -46,8 +46,9 @@ R = (cdr (cdr L)) <=> (cddr L)
 (1 -7 0 8 -5 3) => 1 + 8 + 3 = 12
 
 (defun possum (L)
-    (cond ((null L) 0)
-          ((> (car L) 0) (+ (car L) (possum (cdr L))))
+    (cond ((atom L) 0)
+	  ((null L) 0)
+          ((> (car L) 0) (+ (possum (cdr L)) (car L)))
           (T (possum (cdr L)))
     )
 )
