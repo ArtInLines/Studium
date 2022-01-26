@@ -531,7 +531,7 @@ else ...
 ```
 
 ```
-if X<Y then X := Y - X;
+if X<Y then X := Y - X
 if X<0 then Y := X - Y
 else Y := X + Y
 
@@ -540,17 +540,21 @@ else Y := X + Y
 
 { Y>X }
 
-if X<0 ...
-else ...
+if X<0 then Y := X - Y
+else Y := X + Y
      (if)             (else)
 { (X<0 ^ X-Y>X) v (X>=0 ^ X+Y>X) }
 
-if X<Y ...
-{ (X<Y ^ X<0 ^ Y-X-Y > Y-X) v (X>=Y ^ X<0 ^ X-Y>X) v (X<Y ^ X>=0 ^ X+Y>X) v (X>=Y ^ X>=0 ^ X+Y>X) }
+if X<Y then X := Y - X
+{ (X<Y ^ Y-X<0 ^ Y-X-Y > Y-X) v (X>=Y ^ X<0 ^ X-Y>X) v (X<Y ^ Y-X>=0 ^ Y-X+Y>Y-X) v (X>=Y ^ X>=0 ^ X+Y>X) }
 
-{ (X<Y ^ X<0 ^ 0>Y) v (X>=Y ^ X<0 ^ Y<0) v (X<Y ^ X>=0 ^ Y>0) v (X>=Y ^ X>=0 ^ Y>0) }
+    (Widerspruch)
+{ (X<Y ^ Y<X ^ Y<0) v (X>=Y ^ X<0 ^ Y<0) v (X<Y ^ Y>=X ^ Y>0) v (X>=Y ^ X>=0 ^ Y>0) }
 
-{ (X < 0  ^  Y < 0) v (X >= 0  ^  Y > 0) }
+                  (Die beiden lassen sich zusammen nehmen)
+{ (0 > X >= Y)   v    (Y>X ^ Y>0)   v   (X >= Y > 0) }
+
+{ (0 > X >= Y) v (Y > 0) }
 ```
 
 ```
@@ -576,12 +580,12 @@ Y = X-Y
 Y = X-Y;
 { X-Y>X }
 
-if X<Y ...
-else Y = Y-X;
+if X<Y then begin if X<0 then Y := X – Y end
+else Y := Y – X;
 { (X<Y ^ X<0 ^ X-(X-Y)>X) v (X<Y ^ X>=0 ^ X-Y>X) v (X>=Y ^ X-(Y-X)>X) }
 
+                 (Widerspruch)s
 { (X<Y ^ X<0) v (X<Y ^ X>=0 ^ Y<0) v (X>=Y ^ X>Y) }
-                 (Widerspruch)
 
 { (X<Y ^ X<0) v (X>Y) }
 ```
