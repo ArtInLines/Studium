@@ -1,0 +1,1 @@
+Q(f(z, f(g(a, g(a, x)), b, g(b, g(c, x))), g(a, z)), c) v P(g(f(g(c, z), a, y), x), f(g(a, y), b, z))
