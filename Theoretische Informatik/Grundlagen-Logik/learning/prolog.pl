@@ -55,19 +55,58 @@ letzte([], nil).
 letzte([X], X).
 letzte([X|Rest], Z) :- letzte(Rest, Z).
 
+% So wird das ausgeführt
+% letzte([1, 2, 3])
+% X <-> 1
+% Rest <- [2, 3]
+% Z <- ?
+
+% letzte([2, 3])
+% X <-> 2
+% Rest <- [3]
+% Z <- ?
+
+% letzte([3])
+% X <-> 3
+
+
 
 % conc
 % Führt 2 Listen zu einer zusammen
 % [1, 2, 3], [2, 3, 4] -> [1, 2, 3, 2, 3, 4]
 
-conc([], [], []).
-conc([X|Rest], [], [X|Rest]).
-conc([], [X|Rest], [X|Rest]).
-conc([X|R1], [Y|R2], [X|R3]) :- conc(R1, [Y|R2], R3).
+% conc([], [], []).
+% conc([X|Rest], [], [X|Rest]).
+% conc([], [X|Rest], [X|Rest]).
+% conc([X|R1], [Y|R2], [X|R3]) :- conc(R1, [Y|R2], R3).
 
 % Noch bessere Version von conc:
-% conc([],L,L).
-% conc([X|R], L, [X|RL]) :- conc(R, L, RL).
+conc([],L,L).
+conc([X|R], L, [X|RL]) :- conc(R, L, RL).
+
+
+% conc([1, 2, 3], [2, 3, 4], Z).
+% X <- 1
+% R <- [2, 3]
+% RL <- [2, 3, 2, 3, 4]
+% Z <- [1|[2, 3, 2, 3, 4]] = [1, 2, 3, 2, 3, 4]
+
+% conc([2, 3], [2, 3, 4], Z)
+% X <-> 2
+% R <- [3]
+% RL <- [3, 2, 3, 4]
+% Z <- [2|[3, 2, 3, 4]] = [2, 3, 2, 3, 4]
+
+% conc([3], [2, 3, 4], Z)
+% X <- 3
+% R <- []
+% RL <- [2, 3, 4]
+% Z <- [3|[2, 3, 4]] = [3, 2, 3, 4]
+
+% conc([], [2, 3, 4], Z)
+% L <- [2, 3, 4]
+% Z <- [2, 3, 4]
+
 
 
 % rev
@@ -76,6 +115,14 @@ conc([X|R1], [Y|R2], [X|R3]) :- conc(R1, [Y|R2], R3).
 
 rev([], []).
 rev([X|Rest], Ergebnis) :- rev(Rest, Z), conc(Z, [X], Ergebnis).
+
+% rev([1, 2, 3])
+% X <-> 1
+% Rest <- [2, 3]
+% Z <- [3, 2]
+% Ergebis <- [3, 2, 1]
+% conc([3, 2], [1], Ergebnis) = [3, 2, 1]
+
 
 
 % 16 10)
