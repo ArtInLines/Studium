@@ -58,3 +58,24 @@ mystery([H|R], Z) :- H < 0, mystery(R, P), Z is H - P.
 
 null ist zum Abfragen
 nil ist zum Ausgeben
+
+
+L = ( (1 2 3) (4 5 6) (7 8 9) (10 11 12) )
+cdr L = ( (4 5 6) (7 8 9) )
+car (cdr L) = (4 5 6)
+car (car (cdr L)) = 4 = caadr L
+
+
+cons el liste => (el liste[0] liste[1] liste[2] ...)
+list el => (el)
+
+(cond ((> 0 (caadr L)) (cons (cadr L) (cons (car L) (cddr L)))) (t L))
+
+
+
+calculates the sum of the first number of the first and the first number of the second sublist and inserts this into a
+new sublist located in front of the remaining sublists
+
+(cons (list (+ (caar L) (caadr L))) L)
+
+(zipper (msort (car L)) (msort (...)))

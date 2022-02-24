@@ -118,7 +118,7 @@ zipper:
 zipper(L1, L2, Ergebnis).
 zipper([], L2, L2).
 zipper(L1, [], L1).
-zipper([X1|R1], [X2|R2], [X1, X2 | Z]) :- zipper(R1, R2, Z)
+zipper([X1|R1], [X2|R2], [X1, X2 | Z]) :- zipper(R1, R2, Z).
 
 
 L1 = [1, 2, 3], L2 =[4, 5, 6, 7, 8]

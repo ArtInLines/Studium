@@ -1,0 +1,66 @@
+Regeln:
+
+A -> B   <->  !A v B
+A <-> B  <-> (A ^ B) v (!A ^ !B) <-> (!A v B) ^ (!B v A)
+
+A ^ (B v C) <-> (A ^ B) v (A ^ C)
+
+
+(A ^ B) v (!A ^ !B)
+((A ^ B) v !A) ^ ((A ^ B) v !B)
+((A v !A) ^ (B v !A)) ^ ((A v !B) ^ (B v !B))
+(B v !A) ^ (A v !B)
+
+
+CS 17
+
+3)
+
+X = { (R v S) -> !Q,   !R -> P ^ !S,  (!Q <-> S) ^ !R }
+X = { (!R ^ !S) v !Q,   R v (P ^ !S), (!R ^ !Q ^ S) v (!R ^ Q ^ !S) }
+
+ Q - !R - !S - P
+/
+
+
+Y = { ((R -> S) v !Q) -> P, Q <-> !S, R -> (!P ^ Q) }
+Y = { (R ^ !S ^ Q) v P,  (Q ^ !S) v (!Q ^ S),  !R v (!P ^ Q) }
+
+        Q - !S
+       /
+ P - !R 
+/      \
+        !Q - S
+\
+ !P - R - !S - Q
+ 
+ 
+ 
+Z = { Q ^ !R -> P,  R v (!S ^ P ^ Q),  P v !S -> Q }
+Z = { !Q v R v P,  R v (!S ^ P ^ Q),  (!P ^ S) v Q }
+
+        P
+       /
+      S
+     / \
+    Q   !P
+   / \    P
+  R   \  /
+/  \   !S
+    \    \
+     \   !P
+\     !Q - !P - S
+ !R - !S - P - Q
+ 
+ 
+X |= Y
+X |= Z
+X |= X
+Y |= Y
+Z |= Z
+
+
+1. Formeln vereinfachen (Pfeile raus)
+2. Baumdiagramm aller möglichen Belegungen (beliebige Variable anfangen)
+3. Suchen von logischen Folgerungen
+
