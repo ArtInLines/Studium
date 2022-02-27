@@ -134,3 +134,4 @@ f([0|R], Z) :- f(R, Z).
 f([X|R], [X|Z]) :- X>0, f(R, Z).
 f([X|R], [Y|Z]) :- X<0, Y is X*(-1), f(R, Z).
 
+f(Input, Output) :- Bedingungen & Funktionsaufrufe.

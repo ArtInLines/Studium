@@ -86,11 +86,120 @@
 ; Addiere alle Elemente einer Liste, die auf einer ungeraden Position sind, zusammen. (Liste startet mit Position 1)
 ; (oddpossum '(1 2 3 4)) => 4
 
+
+
+
 (defun oddpossum (L)
     (cond ((null L) 0)
           ((null (cdr L)) (car L))
           (T (+ (car L) (oddpossum (cddr L)))))
 
+1. Eingabewert: Liste
+2. Leere Liste => 0
+3. Leere Restliste => Erstes Element
+4. Ansonsten => Erstes Element + oddpossum(Restliste der Restliste)
+
+(-1 2 3 4 5) => -1 + 3 + 5 => 9
+
+Summiert all Zahlen auf ungeraden Positionen
+
+oddpossum([], 0).
+oddpossum([X], X).
+oddpossum([X,Y|R], P) :- oddpossum(R, Z), P is X + Z.
+
+
+1. Rekursiven Aufruf
+2. Base Case / Abbruchfall
+3. Input muss kleiner werden
+
+
+f([], []).
+f([0|R], Z) :- f(R, Z).
+f([X|R], [X|Z]) :- X>0, f(R, Z).
+f([X|R], [Y|Z]) :- X<0, Y is X*(-1), f(R, Z).
+
+1. Leere Liste => Leere Liste
+2. Erstes Element = 0 => Rekursiver Aufruf mit R
+3. Erstes Element > 0 => [X|Rekursiver Aufruf]
+4. Erstes Element < 0 => [X*(-1)|Rekursiver Aufruf]
+
+Wandelt alle negative in positive Zahlen um & löscht 0 aus der Liste
+
+(defun f(L)
+    (cond ((null L) L)
+          ((= 0 (car L)) (f (cdr L)))
+          ((> (car L) 0) (cons (car L) (f (cdr L))))
+          ((< (car L) 0) (cons (* -1 (car L)) (f (cdr L))))))
+          
+          
+          
+mystery([],0).
+mystery([X],X).
+mystery([A,B|R],N) :- mystery(R,M), N is M+A
+
+
+(defun mystery(L)
+    (cond ((atom L) nil)
+          ((null L) 0)
+          ((null (cdr L)) (car L))
+          (T (+ (mystery (cddr L)) (car L)))))
+
+
+[-2, 0, 1, 2, 3, 4] => -2 + (1 + (3 + 0)) = 2  (oddpossum)
+[-2, 0, 1, 2, 3, 4] => mystery([1, 2, 3, 4], 4), N is 4+(-2) => 2
+[1, 2, 3, 4] => mystery([3, 4], 3), N is 3+1 => 4
+[3, 4] => mystery([], 0), N is 0+3 => 3
+
+Prolog
+(Input, Output).
+(Input, Output).
+
+Lisp
+((bedingung) (Output))
+
+
+(defun mystery (L)
+    (cond ((null L) L)
+          ((atom L) nil) ; ignoriere diese Zeile
+          ((null (cdr L)) nil)
+          ((> (car L) (cadr L)) (cons (car L) (cons (cadr L) (mystery (cddr L)))))
+          (T (mystery (cddr L))))
+
+(cadr L) = (car (cdr L)) = Erste Element der Restliste = Zweite Element
+
+mystery([], []).
+mystery([X|[]], []).
+mystery([X,Y|R], [X,Y|Z]) :- X>Y, mystery(R, Z).
+mystery([X,Y|R], Z) :- mystery(R, Z).
+
+[2, 3, 2, 1, 3] => [2, 1]
+
+
+(defun mystery(L)
+    (cond ((listp L)
+            (cond ((null L) 0)
+                  ((< (car L) 0) (- (mystery (cdr L)) (car L)))
+                  ((> (car L) 0) (+ (mystery (cdr L)) (car L)))
+                  (T (mystery (car L)))))
+          (t nil)))
+          
+          
+mystery([], 0).
+mystery([X|R], [Y|R]) :- X<0, mystery(R, Z), Y is Z-X.
+mystery([X|R], [Y|R]) :- X>0, mystery(R, Z), Y is Z+X.
+mystery([X|R], Z) :- mystery(R, Z).
+
+
+
+L = ((1 2 3) (2 3 4) (3 4 5)) 
+((3 4 5)) = cddr L
+
+=> ((1+2 1 2 3) (2 3 4) (3 4 5))
+(cons (cons (+ (caar L) (caadr L)) (car L)) (cdr L))
+
+reverses and exchanges the first two sublists if the list contains more than two sublists
+=> ((4 3 2) (3 2 1) (3 4 5))
+(cond ((null (cddr L)) L) (t (cons (rev (cadr L)) (cons (rev (car L)) (cddr L)))))
 
 ; Wichtige Standard-Funktionen in LISP
 
