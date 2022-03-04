@@ -1,0 +1,80 @@
+1)
+
+- The half of an even natural number is a natural number as well
+nat(x) ^ even(x) => nat(x/2)
+
+- An odd natural number has an even predecessor and an even successor
+nat(x) ^ !even(x) => even(x-1) ^ even(x+1)
+
+- The successor of a natural number is odd or even
+nat(x) => even(x+1) v odd(x+1)
+
+- A square number is a natural number that is the product of a natural number with itself
+istQuadratZahl(x) => nat(x) ^ nat(y) ^ istGleich(x, y*y)
+
+
+3)
+
+X = {R v !S v Q,  (R v P v !S) ^ (!R v (!P ^ S)),  (!Q v S) ^ !R}
+
+    Q - S - P
+   /
+-!R
+   \
+    !Q     P
+      \  /
+       !S
+         \
+          !P
+
+
+Y = { ((R v !S) ^ !Q) v P,  !Q v !S,  !R v !P v Q }
+
+            R
+           /
+ Q - !S - P
+/          \
+            !R
+           S
+          / 
+    P - !R
+\  /      \
+ !Q        !S
+   \    R - S
+    \  / \
+     !P   !S
+       \
+        !R - !S
+
+
+X |= X
+Y |= Y
+
+Alteranatives Bsp.:
+Z |= X |= Y
+Z |= X
+Z |= Y
+X |= Y
+
+A <-> B
+(!A v B) ^ (A v !B)
+(A ^ B) v (!A ^ !B)
+
+
+4)
+
+R <-> ((S v !Q) ^ P)
+(R v !((S v !Q) ^ P)) ^ (!R v ((S v !Q) ^ P))
+(R v (!(S v !Q) v !P)) ^ (!R v ((S v !Q) ^ P))
+(R v (!S ^ !Q) v !P) ^ (!R v ((S v !Q) ^ P))
+(R v !S v !P) ^ (R v !Q v !P) ^ (!R v S v !Q) ^ (!R v P)
+
+S ^ P -> R,
+Q ^ P -> R,
+R ^ Q -> S,
+R -> P
+
+
+Distributivgestz:
+A v (B ^ C) <-> (A v B) ^ (A v C)
+A ^ (B v C) <-> (A ^ B) v (A ^ C)
