@@ -75,10 +75,26 @@ letzte([X|Rest], Z) :- letzte(Rest, Z).
 % Führt 2 Listen zu einer zusammen
 % [1, 2, 3], [2, 3, 4] -> [1, 2, 3, 2, 3, 4]
 
-% conc([], [], []).
-% conc([X|Rest], [], [X|Rest]).
-% conc([], [X|Rest], [X|Rest]).
-% conc([X|R1], [Y|R2], [X|R3]) :- conc(R1, [Y|R2], R3).
+conc([], [], []).
+conc([X|Rest], [], [X|Rest]).
+conc([], [X|Rest], [X|Rest]).
+conc([X|R1], [Y|R2], [X|R3]) :- conc(R1, [Y|R2], R3).
+
+Beispiel-Durchlauf
+[1, 2], [2, 3, 4, 5] = [1, 2, 3, 4, 5] => [1 | [2, 2, 3, 4, 5]]
+X = 1
+R1 = [2]
+Y = 2
+R2 = [3, 4, 5]
+conc([2], [2, 3, 4, 5], R3) => [2 | [2, 3, 4, 5]]
+X = 2
+R1 = []
+Y = 2
+R2 = [3, 4, 5]
+conc([], [2, 3, 4, 5], R3) => [2, 3, 4, 5]
+
+
+
 
 % Noch bessere Version von conc:
 conc([],L,L).

@@ -1,0 +1,80 @@
+Lisp:
+
+Liste = ()
+Atom =  3
+mystery(3) = ()
+
+
+onlypos([X|R], [Y|Z]).
+cons Y (cons X Z) <=> [Y | [X | Z]]
+
+
+cadr = (car (cdr L)) = 2. Element
+caaddr = (car (car (cdr (cdr L)))) = 1. Element der 3. Subliste
+
+
+
+(defun onlypos (L)
+    (cond ((atom L) nil)
+          ((null L) nil)
+          ((< (car L) 0) (cons (* (car L) -2) (onlypos (cdr L)))) ; <=> [Y|Z] in Prolog
+          ((= (car L) 0) (onlypos (cdr L)))
+          (t (cons (car L) (onlypos (cdr L)))) ))
+          
+
+
+P is Z + X  <=>  (+ Z X)
+
+(cons -1 (modify (cdr L)))
+
+(cons (car L) (modify (cdr L)))
+
+
+
+Prolog:
+
+conc([], [], []).
+conc([X|Rest], [], [X|Rest]).
+conc([], [X|Rest], [X|Rest]).
+conc([X|R1], [Y|R2], [X|R3]) :- conc(R1, [Y|R2], R3).
+
+Beispiel-Durchlauf
+[1, 2], [2, 3, 4, 5] = [1, 2, 3, 4, 5] => [1 | [2, 2, 3, 4, 5]]
+X = 1
+R1 = [2]
+Y = 2
+R2 = [3, 4, 5]
+conc([2], [2, 3, 4, 5], R3) => [2 | [2, 3, 4, 5]]
+X = 2
+R1 = []
+Y = 2
+R2 = [3, 4, 5]
+conc([], [2, 3, 4, 5], R3) => [2, 3, 4, 5]
+
+
+mystery([], 0).
+mystery([X|R], Y) :- X<0, mystery(R, Z), Y is Z-X.
+mystery([X|R], Y) :- X>0, mystery(R, Z), Y is Z+X.
+mystery([X|R], Z) :- mystery(R, Z).
+
+
+onlypos([], []).
+only([0|R], Z) :- onlypos(R, Z).
+onlypos([X|R], [Y|Z]) :- X<0, Y is (-2)*X,, onlypos(R, Z).
+onlypos([X|R], [X|Z]) :- X>=0, onlypos(R, Z).
+
+
+oddpossum([], 0).
+oddpossum([X], X).
+oddpossum([X,Y|R], P) :- oddpossum(R, Z), P is X + Z.
+
+[1, 2, 3, 4, 5] => 8 + 1 = 9
+X = 1
+Y = 2
+R = [3, 4, 5]
+oddpossum([3, 4, 5], P) => 5 + 3 = 8
+X = 3
+Y = 4
+R = [5]
+oddpossum([5], 5)
+

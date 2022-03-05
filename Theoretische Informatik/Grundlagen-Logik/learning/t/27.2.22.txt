@@ -94,8 +94,8 @@ mystery([X,Y|R], Z) :- mystery(R, Z).
           
           
 mystery([], 0).
-mystery([X|R], [Y|R]) :- X<0, mystery(R, Z), Y is Z-X.
-mystery([X|R], [Y|R]) :- X>0, mystery(R, Z), Y is Z+X.
+mystery([X|R], Y) :- X<0, mystery(R, Z), Y is Z-X.
+mystery([X|R], Y]) :- X>0, mystery(R, Z), Y is Z+X.
 mystery([X|R], Z) :- mystery(R, Z).
 
 
