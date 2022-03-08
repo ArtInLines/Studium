@@ -1,0 +1,127 @@
+1)
+
+- The half of an even natural number is a natural number as well
+
+Wenn die Hälfte von x eine natürliche Zahl, dann ist eine x auch eine natürliche Zahl
+nat(x/2) => nat(x)
+
+
+- An odd natural number has an even predecessor and an even successor
+
+nat(x) ^ odd(x) => gerade(x-1) ^ gerade(x+1)
+
+
+- The successor of a natural number is odd or even
+
+nat(x) => nat(x+1) ^ (gerade(x+1) v ungerade(x+1))
+
+
+- A square number is a natural number that is the product of a natural number with itself
+
+istQuadratzahl(x) => nat(x) ^ istGleich(x, y*y) ^ nat(y)
+
+
+
+2)
+a 3-ary function f(s1,s2,s1) -> s2
+a 2-ary function g(s2,s1) -> s1
+a 2-ary predicate P(s1,s2)
+a 3-ary predicate Q(s2,s1,s2)
+and the variables x, y, z of sort s1 and a, b, c of sort s2
+
+
+Q(f(z, f(g(a, g(a, x)), b, g(b, g(c, x))), g(a, z)), c) v P(g(f(g(c, z), a, y), x), f(g(a, y), b, z))
+
+
+
+3)
+X = { R v (S -> Q),  !R <-> P v !S,  (!Q v S) ^ !R }
+X = { R v !S v Q,  (!R ^ (P v !S)) v (R ^ !P ^ S),  (!Q v S) ^ !R }
+
+    S - Q - P
+   /
+-!R         P
+   \       /
+    !S - !Q
+           \
+            !P
+            
+
+Y = { ((!R ^ S) v Q) -> P,  !!Q -> !S,  (R -> !P) v Q }
+Y = { ((R v !S) ^ !Q) v P,  !Q v !S,  !R v !P v Q }
+
+            R
+           /
+ Q - P - !S
+/          \
+            !R
+           S
+          /
+    P - !R
+\  /      \
+ !Q        !S
+   \
+    \    R - S
+     \  / \
+      !P   !S
+        \
+         !R - !S
+
+
+Z = { ... }
+
+- !R - !Q - !S - !P
+
+
+
+Z |= Y
+Z |= X
+Z |= Z
+X |= X
+Y |= Y
+
+
+
+
+Generelles)
+
+
+!!A  <=>  A
+
+A v (B v C) <=> (A v B) v C <=> A v B v C
+
+A -> B   <=>   !A v B
+((A v B) ^ C) -> (D v E)   <=>   (!A ^ !B) v !C v D v E
+
+
+A | B | A v B | A ^ B | A -> B | A <-> B
+W | W |   W   |   W   |   W    |    W
+F | W |   W   |   F   |   W    |    F
+W | F |   W   |   F   |   F    |    F
+F | F |   F   |   F   |   W    |    W
+
+!(A v B)  <=>  !A ^ !B
+!(A ^ B)  <=>  !A v !B
+
+
+(A ^ B) v (!A ^ !B)  <=>  A <-> B
+(A -> B) ^ (B -> A)  <=>  (!A v B) ^ (!B v A)  <=>  A <-> B
+
+
+A v (B ^ C) v (D ^ E)
+
+A v Wahr => Wahr
+A v Falsch => A 
+
+A ^ Falsch => Falsch
+A ^ Wahr => A
+
+
+
+! Nicht
+v Oder
+^ Und
+-> Wenn ..., dann
+<-> Genau dann, wenn
+
+
