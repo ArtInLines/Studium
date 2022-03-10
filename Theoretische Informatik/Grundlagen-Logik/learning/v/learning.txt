@@ -125,3 +125,95 @@ v Oder
 <-> Genau dann, wenn
 
 
+
+4)
+Konjunktive Normalform:
+(A v B v C) ^ D ^ E ^ F ^ (G v H v I)
+
+a)
+R <-> ((S v !Q) ^ P)
+(R v !((S v !Q) ^ P)) ^ (!R v ((S v !Q) ^ P))
+(R v ((!S ^ Q) v !P)) ^ (!R v ((S v !Q) ^ P))
+(R v !S v !P) ^ (R v Q v !P) ^ (!R v ((S v !Q) ^ P))
+(R v !S v !P) ^ (R v Q v !P) ^ (!R v ((S v !Q) ^ P))
+(R v !S v !P) ^ (R v Q v !P) ^ (!R v (P ^ S) v (P ^ !Q))
+(R v !S v !P) ^ (R v Q v !P) ^ ((!R v P) ^ (!R v S)) v (P ^ !Q)
+(R v !S v !P) ^ (R v Q v !P) ^ (!R v P v (P ^ !Q)) ^ ((P ^ !Q) v !R v S)
+(R v !S v !P) ^ (R v Q v !P) ^ (!R v P) ^ (!R v P v !Q) ^ (!R v S v P) ^ (!R v S v !Q)
+
+S ^ P -> R,  P -> R v Q,  R -> P,  R ^ Q -> P,  R -> S v P,,  R ^ Q -> S
+
+
+
+17 a)
+R v !(S -> !Q v P)
+R v !(!S v !Q v P)
+R v (S ^ Q ^ !P)
+(R v S) ^ (R v Q) ^ (R v !P)
+
+Wahr -> R v S,  Wahr -> R v Q,  P -> R
+
+
+18 c)
+(S ^ !Q -> R ^ !P) -> Q
+(!S v Q v (R ^ !P)) -> Q
+(S ^ !Q ^ (!R v P)) v Q
+(S ^ !Q ^ !R) v (S ^ !Q ^ P) v Q
+(S ^ (S v !Q) ^ (S v P) ^ (!Q v P) ^ !Q ^ (!R v S) ^ (!R v !Q) ^ (!R v P)) v Q
+(S v Q) ^ (S v !Q  v Q) ^ (S v P v Q) ^ (!Q v P v Q) ^ (!Q v Q) ^ (!R v S v Q) ^ (!R v !Q v Q) ^ (!R v P v Q)
+(S v Q) ^ (S v P v Q) ^ (!R v S v Q) ^ (!R v P v Q)
+
+Wahr -> S v Q,  Wahr -> S v P v Q,  R -> S v Q,  R -> P v Q
+
+
+
+(A ^ B) v (C ^ D)
+(A v (C ^ D)) ^ (B v (C ^ D))
+(A v C) ^ (A v D) ^ (B v C) ^ (B v D)
+
+(A + B) * (C + D)  =  (A + C) * (A + D) * (B + C) * (B + D)
+
+
+
+A <-> B  <=>  (A v !B) ^ (!A v B)  <=>  (A <- !B) ^ (A -> B)
+(A v !B) ^ (!A v B)  <=>  (A ^ B) v (!A ^ !B)
+
+(A ^ B) v (!A ^ !B)
+(A v !A) ^ (A v !B) ^ (B v !A) ^ (B v !B)
+(A v !B) ^ (B v !A)
+
+
+Distributivgesetz:
+A ^ (B v C) => (A ^ B) v (A ^ C)
+A v (B ^ C) v D  =>  ((A v B) ^ (A v C)) v D  =>  (A v B v D) ^ (A v C v D)
+A v B v (C ^ D) => (A v B v C) ^ (A v B v D)
+
+
+
+5)
+
+Ax Ay Az (Ey1(P(x, y1)) ^ Ax1(Q(x1, y)) ^ Ez1(Q(x, z1)))
+Ax Ay Az Ey1 Ax1 Ez1 (P(x, y1) ^ Q(x1, y) ^ Q(x, z1))
+P(x, f(x, y, z)) ^ Q(x1, y) ^ Q(x, g(x, y, z, x1))
+
+
+!Ay Q(y) => Ey !Q(y)
+!Ey Q(y) => Ay !Q(y)
+
+
+16 a)
+Ey P(x,y) v Ax( !R(x, y, z) -> !Az Q(x,y,z) ) ^ Ex Ay R(x, y, z)
+Ey P(x,y) v Ax( R(x, y, z) v Ez !Q(x, y, z) ) ^ Ex Ay R(x, y, z)
+Ey1 P(x,y1) v Ax1( R(x1, y, z) v Ez1 !Q(x1, y, z1) ) ^ Ex2 Ay2 R(x2, y2, z)
+// Ax Ay Az (Ey1 P(x,y1) v Ax1( R(x1, y, z) v Ez1 !Q(x1, y, z1) ) ^ Ex2 Ay2 R(x2, y2, z))
+// Ax Ay Az Ey1 Ax1 Ez1 Ex2 Ay2 (P(x,y1) v ( R(x1, y, z) v !Q(x1, y, z1) ) ^ R(x2, y2, z))
+P(x,f(x,y,z)) v ( R(x1, y, z) v !Q(x1, y, g(x,y,z,x1)) ) ^ R(h(x,y,z,x1), y2, z)
+
+
+b)
+!Ex(Ay P(x,z,y) <-> Ey Q(x,y,z)) ^ Az R(z,y,x)
+!Ex1( (!Ay1 P(x1,z,y1) ^ !Ey2 Q(x1,y2,z)) v (Ay3 P(x1,z,y3) ^ Ey4 Q(x1,y4,z)) ) ^ Az1 R(z1,y,x)
+Ax1( (Ay1 P(x1,z,y1) v Ey2 Q(x1,y2,z)) ^ (Ey3 !P(x1,z,y3) v Ay4 !Q(x1,y4,z)) ) ^ Az1 R(z1,y,x)
+<-'   <-'             <-'                <-'               <-'                  <-'
+(P(x1, z, y1) v Q(x1, f(x1, y1, z, y, x), z)) ^ (!P(x1, z, g(x, y, z, x1, y1)) v !Q(x1, y4, z)) ^ R(z1, y, x)
+
