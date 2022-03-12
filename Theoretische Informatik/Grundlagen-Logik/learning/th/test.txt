@@ -1,0 +1,189 @@
+if X<Y then X = Y-X
+if X<0 then Y = X-Y
+    else Y = X + Y
+{Y>X}
+
+{ Y>X }
+if X<0 ...
+    else ...
+{ (X<0 ^ X-Y>X) v (X>=0 ^ X+Y>X) }
+
+if X<Y ...
+{ (X<Y ^ Y-X<0 ^ Y-X-Y>Y-X) v (X>=Y ^ X<0 ^ X-Y>X) v (X<Y ^ Y-X>=0 ^ Y-X+Y>Y-X) v (X>=Y ^ X>=0 ^ X+Y>X) }
+
+{ ~~(X<Y ^ Y<X ^ Y<0)~~ v (X>=Y ^ X<0 ^ Y<0) v (Y>X ^ Y>=X ^ Y>0) v (X>=Y ^ X>=0 ^ Y>0) }
+
+{                           (0>X>=Y) v          (Y>X ^ Y>0) v       (X>=Y>0) }
+
+
+Y > 3  und  Y >= 3   =>  Y > 3
+Y > 3 oder  Y >= 3   =>  Y >= 3
+
+
+
+X |= Y
+X |= Z
+
+
+
+natürlicheZahl(x) -> gerade(x+1) v ungerade(x+1)
+
+
+Die Wurzel einer natürlichen Quadratzahl ist eine natürliche Zahl
+- Wenn x ist eine natürliche Quadratzahl ist, dann ist die Wurzel von x auch eine natürliche Zahl
+- natürlicheQuadratzahl(x) -> natürlicheZahl(wurzel(x))
+
+
+Eine natürliche Zahl ist eine Zweierpotenz, falls es eine natürliche Zahl gibt, die definiert, wie oft 2 mit sich selbst multipliziert werden muss, um diese Zweierpotenz zu erhalten
+- natürlicheZahl(n) -> istZweierpotenz(x) ^ natürlicheZahl(x) ^ istGleich(x, 2^n)
+
+- istZweierpotenz(x) ^ natürlicheZahl(x) -> En(istGleich(x, 2^n) ^ natürlicheZahl(n))
+x = 2^n
+
+
+Die Summe zweier nachfolgender natürlicher Quadratzahlen ist ungerade
+- Wenn es zwei nachfolgende Quadratzahlen gibt, dann ist deren Summe ungerade
+- Wenn x eine Quadratzahl ist und y die nächste Quadratzahl, dann ist x+y ungerade
+- quadratzahl(x) ^ nächsteQuadratzahl(y, x) ^ natürlicheZahl(x) ^ natürlicheZahl(y) -> ungerade(x+y)
+- natürlicheZahl(x) -> ungerade(quadrat(x) + quadrat(x+1))
+
+(x)^2 + (x+1)^2 = ungerade Zahl
+
+
+
+
+9 b)
+
+mystery([], []).
+mystery([0|R], S) :- mystery(R, S).
+mystery([X|R], [X|S]) :- X>0, mystery(R, S).
+mystery([X|R], [P|S]) :- mystery(R, S), P is -1 * X.
+
+Wie viele Unifikationen führt die Prolog Funktion für eine Liste mit n (n>0) positiven Zahlen aus.
+
+K(0) = 1
+K(1) = 4 + K(0) = 4 + 1 = 4
+K(2) = 4 + K(1) = 4 + 4 + K(0) = 4 + 4 + 1 = 7
+
+K(0) = 1
+K(n) = 4 + K(n-1)
+
+K(n)  =  (Summe i=1 bis n (4)) + 1  =  4n + 1
+
+
+- für alle ausgeführten Unifikationen.
+- für alle erfolgreichen Unifikationen
+
+für alle erfolgreichen Unifikationen:
+K(0) = 1
+K(n) = 2 + K(n-1)
+K(n) = 2n + 1
+
+
+mystery([], []).   (1 Unifikationen)
+mystery([0|R], S) :- mystery(R, S).   (1 Unifikation)
+mystery([X|R], [X|S]) :- X>0, mystery(R, S).   (2 Unifikationen)
+mystery([X|R], [P|S]) :- mystery(R, S), P is -1 * X.   (2 Unifikationen)
+
+Gib mir die Kostenfunktion für alle Unifikationen für eine Liste mit n negativen Zahlen (n>0).
+
+K(0) = 1
+K(n) = 6 + K(n-1)
+
+K(n) = 6n + 1
+
+
+
+
+
+mystery([], 0).
+mystery([X], X) :- X > 0.
+mystery([X|R], E) :- X > 0, mystery(R, S), E is S + X.
+mystery([X|R], E) :- mystery(R, E).
+
+Bestimme die Kostenfunktion für alle erfolgreichen Unifikationen für eine Liste mit n (n>0) positiven Zahlen:
+K(1) = 2
+K(n>1) = 3 + K(n-1)
+
+K(n) = 3(n-1) + 2
+
+
+Bestimme die Kostenfunktion für alle ausgeführten Unifikationen für eine Liste mit n (n>0) negativen Zahlen:
+K(0) = 1
+K(1) = 6 + K(0)
+K(n>1) = 5 + K(n-1)
+
+K(n)  =  5(n-1) + 6 + 1  =  5n + 2
+
+
+
+
+(defun mystery(L)
+    (cond ((listp L)
+                (cond ((null L) 0)
+                      ((null (cdr L)) (car L))
+                      (t (+ (car L) (mystery (cdr L))))))
+          (t 0)))
+
+Bestimme die Kostenfunktion für alle ausgeführten Testfunktionen für eine Liste mit n (n>0) Zahlen:
+K(1) = 3
+K(n) = 3 + K(n-1)
+
+K(n)  =  Summe i=2 bis n (3) + 3  =  3(n-1) + 3  =  3n
+
+
+
+(defun mystery(L)
+    (cond ((null L) L)
+          ((atom L) nil)
+          ((null (cdr L)) nil)
+          ((> (car L) (cadr L)) (cons (car L) (cons (cadr L) (mystery (cddr L)))))
+          (T (mystery (cddr L)))))
+          
+Bestimme die Kostenfunktion für alle ausgeführten Testfunktionen für eine Liste mit n (n>0 & n gerade) Zahlen:
+K(0) = 1
+K(n) = 4 + K(n-2)
+
+K(2) = 1*4 + 1
+K(4) = 2*4 + 1
+K(6) = 3*4 + 1
+
+K(n)  =  4n/2 + 1
+
+
+11)
+L ist eine Liste, deren Elemente Sublisten sind. L hat mindestens 2 Sublisten. Die Sublisten von L haben Zahlen als Elemente.
+L = ( (1 2 3) (3) (4 5) )
+
+
+Die ersten beiden Sublisten werden ausgetauscht:
+(cons (cadr L) (cons (car L) (cddr L)))
+
+
+Addiere die ersten beiden Elemente der ersten Subliste zusammen und füge diese Summe an den Anfang der zweiten Subliste ein:
+(cons (car L) (cons (cons (+ (caar L) (cadar L)) (cadr L)) (cddr L)))
+
+
+Sortiere die erste Subliste und drehe die zweite Subliste um:
+(cons (msort (car L)) (cons (rev (cadr L)) (cddr L)))
+
+
+Füge die ersten beiden Sublisten Reisverschlussmäßig zusammen:
+(cons (zipper (car L) (cadr L)) (cddr L))
+
+
+Wenn die Liste mindestens 3 Sublisten hat, vertausche die erste und dritte Subliste, ansonsten vertausche die erste und zweite Subliste:
+(cond ((null (cddr L)) (rev L))
+      (t (cons (caddr L) (cons (cadr L) (cons (car L) (cdddr L))))))
+
+cdddr L = ( (1 2 3) (3 4) )
+( (caddr L) (cadr L) (car L) (1 2 3) (3 4) )
+
+
+
+(null L): Gibt es kein Element
+(null (cdr L)): Gibt es nur 1 Element
+(null (cddr L)): Gibt es nur 2 Elemente
+
+rev (x y z) => (z y x)
+rev ( (1 2) (3 4) ) => ( (3 4) (1 2) )
