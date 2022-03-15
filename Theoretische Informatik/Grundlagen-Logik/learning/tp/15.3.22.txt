@@ -1,0 +1,92 @@
+4 c)
+S v !Q -> (R <-> !P) v Q
+(!S ^ Q) v (R ^ !P) v (!R ^ P) v Q
+(R ^ !P) v (!R ^ P) v Q
+(R v Q) ^ (Q v !P) ^ (Q v !R) ^ (Q v P)
+W -> R v Q,  P -> Q,  R -> Q,  W -> Q v P
+
+
+(!S ^ Q) v Q  <=>  (!S v Q) ^ Q  <=>  Q
+
+
+
+3)
+
+X = { (!R ^ !S) v !Q,  R v (P ^ !S),  ((!Q ^ S) v (Q ^ !S)) ^ !R }
+
+
+\  
+ !R - P - !S - Q
+ 
+ 
+Z = { !Q v R v P,  R v (!S ^ P ^ Q),  (!P ^ S) v Q}
+
+       P
+      /
+     S
+    / \
+   R   !P
+  / \  
+ Q   !S - !P
+/ \   \_P
+   !R - !S - P
+\
+ !Q - !P - S - R
+
+
+X |= Z
+X |= X
+Z |= Z
+
+
+
+5)
+
+Ey1 P(x,y1) v Ax1( !R(x1,y,x1) -> !Az1 Q(x1,y,z1) ) ^ Ex2 Ay2 R(x2,y2,z)
+Ey1 P(x,y1) v Ax1( R(x1,y,x1) v Ez1 !Q(x1,y,z1) ) ^ Ex2 Ay2 R(x2,y2,z)
+<-|          <-|               <-|                 <-| <-|
+
+(( Ax Ay Az Ey1 Ax1 Ez1 Ex2 Ay2 (P(x,y1) v ( R(x1,y,x1) v !Q(x1,y,z1) ) ^ R(x2,y2,z)) ))
+
+P(x,f(x,y,z)) v ( R(x1,y,x1) v !Q(x1,y,g(x,y,z,x1)) ) ^ R(h(x,y,z,x1),y2,z)
+
+
+!Az Q()  =>  Ey !Q()
+!Ez Q()  =>  Az !Q()
+
+
+6)
+
+{ X>Y ; Y>=0; X, Y of type integer }
+    I := 0;
+    Z := X;
+    
+    while (I<Y) do
+    begin I := I + 1;
+          Z := Z + 1
+    end
+{ Z=X+Y ; X>Y ; Y>=0 ; X, Y of type integer } = Nachbedingung
+
+1. INV in jeder Zeile beweisen
+Invariante INV = { Z = X + I ; X>Y>=I>=0 }
+
+INV
+Z := Z + 1
+{ Z+1 = X+I }
+
+I := I + 1
+{ Z+1 = X+I+1  =  Z = X + I }
+
+Z = X
+{ Z = X }
+
+I := 0;
+{ Z = X + 0 }
+
+
+2. Abbruchbedingung der Schleife ^ INV => Nachbedingung
+!(I<Y) ^ { Z = X+I ; X>Y>=I>=0 } => { Z = X+Y }
+
+3. Schleife bricht irgendwann ab
+I startet als 0 und damt <= Y und erhöht sich jede Iteration um 1 und wird deshalb in endlicher Zeit = Y sein und die Abbruchbedingung erfüllen.
+
