@@ -1,0 +1,97 @@
+{?}
+
+Y = X
+X = X + Y
+
+{X > Y}
+
+{X > Y}
+
+X = X + Y
+{X+Y > Y}
+
+Y = X
+{X+X > X}
+
+{X > 0}
+
+
+
+if X>0 then X = X * Y
+    else Y = X * Y
+
+{ X >= Y }
+
+{ (X*Y >= Y  ^  X > 0)  v  (X <= 0  ^  X >= X*Y) }
+
+{ (X >= 1  ^  X > 0)  v  (X <= 0  ^  1 >= Y) }
+
+
+
+if X>0 then X = X + Y
+if Y>X then Y = X - Y
+
+{ Y>X }
+
+if Y>X then Y = X - Y
+{ (0 > Y > X) v ( Y <= X  ^  Y > X ) }
+
+if X>0 then X = X + Y
+{ (Gehen in beide ifs)  v  (Gehen nur ins untere if)  v  (Gehen nur ins obere if)  v  (Gehen in kein if) }
+
+{ (X>0) }
+
+
+
+16 7)
+
+if X<Y then X := Y - X;
+if X<0 then Y := X - Y
+    else Y := X + Y
+{ Y>X; X, Y of type integer }
+
+{ Y>X }
+
+if X<0 then Y := X - Y
+    else Y := X + Y
+{ (X < 0  ^  X-Y > X)  v  (X >= 0  ^  X+Y > X) }
+{ (X < 0  ^  Y < 0)  v  (X >= 0  ^  Y > 0) }
+
+if X<Y then X := Y - X;
+{ (X < 0  ^  Y < 0)  v  (X >= 0  ^  Y > 0)  ....}
+
+...
+
+
+
+17 7)
+
+if (X<Y) {
+    if (X<0) Y = X - Y;
+} else {
+    Y = Y - X;
+}
+Y := X – Y;
+{Y>X}
+
+{ (äußere if & innere if) v (äußere ohne innere if) v (else) }
+
+Y := X – Y;
+{ X-Y > X }  =  {Y<0}
+
+if ... {if ...} else ...
+{ (X > Y  ^  X>=Y)  v  (X<Y  ^  X<0  ^  X - (X - Y) > X)  v  (X<Y  ^  X>=0  ^  Y<0) }
+
+{ (X > Y)  v  (X<Y  ^  X<0) }
+
+(Falsch) v (...) v (...)
+
+Falsch v A = A
+Wahr ^ A = A
+
+// Nebenrechnung:
+X - (X - Y) > X  =  Y>X
+Y<0  =  X-Y<0  =  Y>X
+
+
+
