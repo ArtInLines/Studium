@@ -1,0 +1,9 @@
+x = [x] = [[[[x]]]]
+
+cons 1 (1 2 3) => (1 1 2 3)
+cons (1 2) (3 4) => ((1 2) 3 4)
+
+L = ((1 2) (3 4) (5 6))
+cons (cdr L) (car L) =>  (((3 4) (5 6)) 1 2)
+(cond ((< (caadr L) 0) (cons (cadr L) (cons (car L) (cddr L))))
+      (t L))

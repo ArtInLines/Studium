@@ -1,0 +1,138 @@
+4)
+
+(A ^ B ^ C) v (D ^ E ^ F)
+(A v D) ^ (A v E) ^ (A v F) ^ (B v D) ^ ...
+
+(A + B) * (C + D)
+(A * C) + (A * D) + (B * C) + (B * D)
+
+(A + B) * (C + D) * (E + F)
+(A * C * E) + (A * C * F) + (A * D * E) + (A * D * F) + (B * C * E) * ...
+
+
+(A ^ B) v (C ^ D) v (E ^ F)
+(A v C v E) ^ (A v C v F) ^ ...
+
+
+
+(!P v S v !R v Q) ^ (!S v !P) ^ (S v P)
+P ^ R => S v Q,  S ^ P => F,  W => S v P
+
+A ^ Wahr => A
+A v Falsch => A
+
+
+1)
+
+ungerade(x) ^ natürlicheZahl(x)
+
+natürlicheZahl( Wurzel(x) )
+
+
+8)
+
+[X, Y] <-> [B | B]
+
+X <-> B
+[Y] -> B
+
+[1, 2, 4] = [X, Y | Z]
+X <-> 1
+Y <-> 2
+Z <-> [4]
+
+
+2 Arten Occur Checks:
+1. [X, Y] = [A]  =>  Unterschiedliche Länge
+2. X = [X] = [[[[[X]]]]]  =>  Ein Element darf sich nicht selbst enthalten
+
+
+Y <-> A
+
+[Y1] = [Y|X]
+Y1 <-> Y
+X <- []
+
+Y1 <- [X|R]
+A <-> Y
+[Y1] = [Y|X]
+Y1 <-> Y
+X <- []
+
+A <-> Y <-> Y1 <- [X|R] = [[] | R]
+
+
+R <- [Y]
+R <- [[Y]]
+R <- [Y] = [[Y]]
+
+
+A <- [X]  =>  [A] = [[X]]
+[A] = [[X]]
+
+
+
+
+
+B <-> Y <-> A <-> X <- [A]
+
+A <- [A]
+
+
+
+A = [ [1, 2], 1, 2 ]  =  [ [1, 2] | [1, 2] ]
+
+
+
+R <- [A]
+A <- [X | R]
+R <- [A] = [ [X | R] ]   =>   occur check!
+R1 <-> Y
+
+
+
+[ [] ]  = []
+
+
+
+[Y, X, X | [Y]]  =  [B, [A] | B]
+
+Y <-> B
+X <-> [A]
+
+Y <-> B <- [X | [Y]] = [X, Y]  =>  occur check
+
+
+[A | B] = [A | B]
+[A | [B]] = [A, B]
+[A | [[B]]] = [A, [B]]
+
+ 
+
+[ [1, 2, 3], 1, 1 | [1, 2, 3] ]
+[ [1, 2, 3], 1, 1, [1, 2, 3] ]
+B = [1, 2, 3]
+X = 1
+B = [1, [1, 2, 3]]
+
+[X | R]  =  [1, 2, 3]
+X = 1
+R = [2, 3]
+
+
+
+[[X]] = [  [A]]
+
+
+
+Y <-> B <-> A <-> X <- [A]  =>  occur check
+
+X <- B    [X] <- A
+
+Y <- B  Y <- A
+
+
+[X | [Y|Y]]  =  [X, Y | Y]  =  [A, A]  =  [A | [A]]
+[Y | Y] = [A]
+[] <-> X <-> A <-> Y <-> []
+
