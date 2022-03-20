@@ -1,0 +1,29 @@
+1. Listen
+2. Rekursion
+
+[ A, B | Restliste ]
+
+( A | Restliste )
+
+2. Element = 1. Element der Restliste
+3. Element = 1. Element der Restlste der Restliste
+
+car = 1. Element
+cdr = Restliste
+
+caddr L = 3. Element von L
+
+
+[ A, B | C ]  =  [ X | Y ]
+A = X
+Y = [B | C]
+
+
+f([], 0).
+f([A], A).
+f([A, B | R], P) :- f(R, Zahl), P is A + B + Zahl.
+
+(defun f(L)
+    (cond ((null L) 0)
+          ((null (cdr L)) (CAR L))
+          (t (+ (car L) (Cadr L) (f (cddr L)))))

@@ -1,0 +1,38 @@
+{ X > Y  ;  X, Y int }
+Z = 0
+I = Y
+while I < X
+    Z = Z + 2
+    I = I + 1
+end
+{ Z = 2 * (X - Y) }
+
+
+0. INV finden
+1. Die INV für jede Zeile Code anpassen (INV beweisen)
+2. INV ^ Abbruchbedingung => Nachbedingung
+3. Begründen, warum es keine Endlosschleife
+
+
+INV = { Z = 2 * (I - Y) ; X >= I >= Y }
+
+I = I + 1
+{ Z = 2 * (I + 1 - Y) }
+
+Z = Z + 2
+{ Z + 2 = 2 + 2 * (I - Y) }
+{ Z = 2 * (I - Y) }
+
+I = Y
+{ Z = 2 * (Y - Y) }
+
+Z = 0
+{ 0 = 2 * (Y - Y) = 2 * 0 }
+
+
+INV ^ Abbruchbedingung => Nachbedingung
+{ Z = 2 * (I - Y) ; X >= I >= Y } ^ (I >= X)  =>  { Z = 2 * (X - Y) }
+
+
+3.
+...

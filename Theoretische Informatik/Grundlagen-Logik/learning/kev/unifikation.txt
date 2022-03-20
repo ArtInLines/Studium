@@ -1,0 +1,6 @@
+Unifikation:
+
+Arten an Occur Checks:
+
+1. X = [X]
+2. [A, B] = [X, Y, Z]
