@@ -1,0 +1,125 @@
+... v ( (!S v (!Q ^ !R)) ^ (P ^ !Q) )
+... v ( (!S v !Q) ^ (!S v !R) ^ P ^ !Q )
+
+
+p1(X, Y)   p1(A, B)
+X = A
+Y = B
+
+
+p2([X, Y, Z], Y)   p2(A, B)
+A = [X, Y, Z]
+B = Y
+
+
+p3([X, Y], [Z])   p3([A, B], [A])
+A = Z
+[A, B] = [X, Y]
+A = X
+B = Y
+
+A = Z = X
+B = Y
+
+
+[A, [B, C], C]  =  [X, Y, Z]
+A = X
+[B, C] = Y
+C = Z
+
+
+[A | [B, C]]  =  [A, B, C]
+A = A
+B = B
+C = C
+
+
+[A | B]  =  [X, Y, Z]
+A = X
+B = [Y, Z]
+
+
+[A | [B]]  =  [X, Y]
+A = X
+B = Y
+
+
+
+
+p1([[X|Y] | [X,Y,Z]],  [[Z]|X])  =   p1([A | [B|B]], C)
+A = [X|Y]
+[B | B] = [X, Y, Z]
+B = X = [Y, Z]
+C = [[Z] | X] = [[Z] | [Y, Z]] = [[Z], Y, Z]
+=> unifizierbar
+
+
+Restliste:
+[1, 2, 3] = [X | R]
+X = 1
+R = [2, 3]
+
+
+X = [X]  occur check  /  nicht unifizierbar
+[A, B]  =  [X, Y, Z]   nicht die gleiche Länge
+
+
+
+
+p4([[X] | [X,Y]], Y)  =  p4([A, [B|C]], [])
+Y = []
+A = [X]
+
+Listen nicht gleich lang
+nicht unifizierbar
+
+
+
+p1([X|[Y|Y]],[])   p1([A,A],A)
+[X|[Y|Y]] = [A,A]
+A = [] = X
+[Y|Y] = [A]
+A = Y = []
+
+=> A = [] = X = Y
+
+
+[A, A, X, Z]  <=>  [A, A | [X | [Z]]]
+
+[A, A] <=> [A | [A]]
+
+
+
+p2([Y|Y],[Y])   p2([A,R],[R])
+[Y|Y] = [A,R]
+[Y] = [R]
+
+[A, R] <=> [A | [R]]
+
+Y = A = R = [R]
+=> occur check
+
+
+
+p5(X,Y,[X|[Y]]) p5(A,[A],[A,A])
+A = X
+Y = [A]
+[X|[Y]] = [A, A] = [A | [A]]
+A = X = Y
+
+A = Y = [A]
+=> occur check
+
+
+
+p3([[]|[X|Y1]],   Y1)   p3([A,Y2],   Y2)
+Y1 = Y2
+A = []
+Y2 = X
+Y1 = []
+
+[A, Y2] <=> [A, Y2 | []]    =   [[] | [X|Y1]]  <=> [[], X | Y1]
+
+Y1 = Y2 = [] = X = A
+=> unifizierbar
+

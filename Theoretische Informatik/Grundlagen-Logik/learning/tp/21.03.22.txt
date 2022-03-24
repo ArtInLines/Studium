@@ -1,0 +1,74 @@
+???
+
+X2 := Y + X1
+
+{ Y > Y + X1 }  =>  { 0 > X1 }
+
+
+Y = Y + X  | -Y
+0 = X
+
+Y > Y + X  | -Y
+0 > X
+
+X - Y > X  | -X
+-Y > 0     | *(-1)
+Y < 0
+
+
+
+???
+
+if (X<0) then X := X * Y
+    else Y := X * Y
+
+{ Y > X }
+
+{ (X<0 ^ Y > X*Y) v (X>=0 ^ X*Y > X) }
+{ (X<0) v (X>=0 ^ Y>1) }
+
+
+
+
+if (X>Y) then Y := X - Y
+if (X>0) then X := X + Y
+    else Y := X + Y
+{ X > Y }
+
+if (X>0) then X := X + Y
+    else Y := X + Y
+{ (if) v (else) }
+{ (X>0) v (X<=0 ^ 0>Y) }
+
+if (X>Y) then Y := X - Y
+{ (if & if) v (nicht if & if) v (if & else) v (nicht if & else) }
+{ (X>Y ^ X>0) v (X<=Y ^ X>0) v (0>Y>=X) }
+
+
+if (...) then begin if (...) ... end
+    else ...
+<=>    
+if (...) {
+    if (...) ...
+}
+else ...
+
+
+
+
+18 7)
+
+if X<Y then X := Y - X;
+if X<0 then Y := X - Y
+    else Y := X + Y
+{Y>X ; X, Y of type integer}
+
+
+if X<0 then Y := X - Y
+    else Y := X + Y
+{ (X<0 ^ X-Y > X) v (X>=0 ^ X+Y > X) }
+
+if X<Y then X := Y - X;
+{ (X<Y ^ Y-X<0 ^ 0>Y) v (X<Y ^ Y-X>=0 ^ Y-X >0) v (X>=Y ^ X<0 ^ X-Y > X) v (X>=Y ^ X>=0 ^ X+Y > X) }
+{ (Y>X) v (X>=Y ^ X<0 ^ Y<0) v (X>=Y>0) }
+
