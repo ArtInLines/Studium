@@ -1,0 +1,19 @@
+(A v B) ^ (C v D)
+(A v C) ^ (A v D) ^ (B v C) ^ (B v D)
+
+Wahr ^ A = A
+
+
+(A + B) * (C + D)
+= (A * C) + (A * D) + (B * C) + (B * D)
+
+
+
+(cons (car L) (cons (cadr L) (cons (cons (+ (caar L) (caadr L)) (caddr L)) (cdddr L))))
+
+((1 2) (3 4) (5 6))
+
+(4 5 6)
+
+
+

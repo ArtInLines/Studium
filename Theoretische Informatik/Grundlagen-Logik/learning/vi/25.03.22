@@ -1,0 +1,143 @@
+6)
+
+0. INV finden
+1. Von unten nach oben immer die INV anpassen  bzw. damit die INV beweisen
+2. INV ^ Abbruchbedingung => Nachbedingung
+3. Schriftlich erklären, warum die Schleife nicht endlos läuft
+
+{ X > Y ; ... }
+I := X
+Z := 0
+while (I > Y) begin
+    INV
+    I := I - 1
+    Z := Z + 1
+    INV
+end
+{ Z = X - Y ; ... }
+
+Abbruchbedingung:  !(I > Y)  <=>  I <= Y  <=>  I = Y
+
+2.
+INV ^ Abbruchbedingung  =>  Nachbedingung
+{ Z = X - I } ^ I = Y => { Z = X - Y }
+
+0.
+INV: { Z = X - I }
+
+1.
+{ Z = X - I 
+
+Z := Z + 1
+{ Z+1 = X - I }
+
+I := I - 1
+{ Z+1 = X - (I-1) }
+{ Z = X - (I-1) - 1 }
+{ Z = X - I + 1 - 1 }
+{ Z = X - I }
+
+Z := 0
+{ 0 = X - I }
+
+I := X
+{ 0 = X - X }
+
+3.
+
+I wird mit jedem Durchgang der Schleife kleiner, während Y gleich bleibt und dementsprechend wird irgendwann I <= Y sein und die Schleife wird damit in endlicher Zeit beendet.
+
+
+
+
+Nebenrechnung:
+
+X - (I + 1)  =?=  X - I + 1
+
+A - B  !==  B - A
+
+4 - (3 + 2)  =/=   4 - 3 + 2
+4 - 5        =/=   3
+-1           =/=   3
+
+
+
+
+7)
+
+X := Y * X
+if (X < Y) then Y := X - Y;
+    else X := X - Y;
+{ Y<=X }
+
+if ... else ...
+{ (X<Y ^ X-Y<=X) v (X>=Y ^ Y<=X-Y) }
+
+X := Y * X
+{ (Y*X<Y ^ Y*X-Y<=Y*X) v (Y*X>=Y ^ Y<=Y*X-Y) }
+{ (X<1 ^ -1<=Y) v (X>=1 ^ 2<=X) }
+{ (X<1 ^ -1<=Y) v (2<=X) }
+
+
+(2 * 3) / 3  = 2
+a * b / b  = a
+(a * b) / b  =  a * (b / b)  =  a * 1  =  a
+
+
+
+
+8)
+
+[X, Y | R]  =  [1, 2, 3, 4]
+X = 1
+Y = 2
+R = [3, 4]
+
+
+[X | R]  =  [A, B | A]
+X = A
+R = [B | A]
+
+
+p1([X | R], [Z])  =  p1([A, B | A], A)
+X = A
+R = [B | A]
+[Z] = A
+
+
+Bsp.:
+X = A = R = [X]
+X = [X]
+=> nicht unifizierbar / occur check
+
+
+p2([[Z],[X|Z]], [X, Y])  =  p2([B|A], [A, B])
+[Z] = B = Y
+[[X|Z]] = A = X
+
+X = [[X|Z]]    => occur check
+
+
+Arten an occur checks:
+- X = [X]
+- [X] = [A, B]  unterschiedliche Länge!!
+
+
+
+p3([Y|[Y|[]]], X)  =  p3([[A], B], [B, A])
+
+[Y | [Y | []] ]  <=>  [Y | [Y]]  <=>  [Y, Y]
+
+Y = [A] = B
+X = [B, A]
+
+=> unifizierbar
+
+
+
+p4(Y, X)  =  p4(A, Y)
+p4(Y, X)  =  p4(A, Y1)
+Y = A
+X = Y1
+
+
