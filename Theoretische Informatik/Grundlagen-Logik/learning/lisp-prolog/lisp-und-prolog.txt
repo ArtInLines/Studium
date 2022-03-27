@@ -1,0 +1,158 @@
+[1, 2, 3]  =  [A, B | R]
+A = 1
+B = 2
+R = [3]
+
+
+[1, [1, 2], 2]  =  [A, A | R]
+R = [2]
+A = 1 
+A = [1, 2]
+
+occur check
+1 = [1, 2]
+
+
+
+Arten an occur checks:
+- X = [X]
+- [A, B] = [X, Y, Z]  unterschiedliche Länge
+
+
+
+
+p1(X, [X | [Y, X]])   =    p1([A], [B, A | A])
+X = [A] = B
+Y = A = [X]
+
+A = [X] = [[A]] = [[[X]]]
+=> occur check
+
+[X | [Y, X]]  =  [X, Y, X]
+[B, A | A]
+
+
+[1, [1, 2, 3] | [1, 2, 3]]  =  [1, [1, 2, 3], 1, 2, 3]
+
+
+
+
+[car | cdr]
+L = (1 2 3)
+(cdr L) = (2 3)
+(car (cdr L)) = 2
+
+(+ A B C D)
+(> A B)   = A > B
+(conc (1 2) (2 3 4))  => (1 2 2 3 4)
+(car Liste)
+(cdr Liste)
+(car (cdr L))
+
+(cons Element Liste)
+(cons 1 (1 2 3))  => (1 1 2 3)
+(cons (1 2) (1 2 3))  => ((1 2) 1 2 3)
+
+(cons (car (1 2)) (cons (car (cdr (1 2))) (1 2 3)))  => (1 2 1 2 3)
+
+
+
+11)
+L = ((1 2 ...) (3 4 ...) ...)
+
+a) Füge die Summe des ersten Elements der ersten und des ersten Elements der zweiten Subliste an den Anfang von L
+=> (4 (1 2 ...) (3 4 ...) ...)
+
+(cons (+ (caar L) (caadr L)) L)
+
+(car (cdr L)) = 2. Subliste
+(caar L) = 1. Element der 1. Subliste
+(cadar L) = 2. Element der 1. Subliste
+(caadr L) = 1. Element der 2. Subliste
+
+
+(car (cdr (cdr L)))  =  (caddr L)
+(cdr (cdr (car (car (cdr L)))))  =  (cddaadr L)
+
+
+b) Füge die Differenz des ersten und zweiten Elementes der ersten Subliste an den Anfang der zweiten Subliste
+(cons (car L) (cons (2. Subliste) (Resliste nach 2. Subliste)))
+(cons (car L) (cons (cons (- (caar L) (cadar L)) (cadr L)) (cddr L)))
+
+(cons (- (caar L) (cadar L)) (cadr L))  =>  Die neue 2. Subliste
+
+
+c) Wenn wir eine dritte Subliste haben, dann soll die erste und dritte Subliste reisverschlussmäßig zusammengefügt werden und die neue erste Subliste sein. (Die dritte Subliste soll dann nicht mehr existieren)
+L = ((1 2) (3 4) (5 6) ...)
+=> ((1 5 2 6) (3 4) ...)
+
+Bedingung: Wenn wir eine dritte Subliste haben
+Reisverschlussmäßig zusammenfügen: (zipper L1 L2)
+
+(cond ((null (cddr L)) L)
+      (T (cons (zipper (car L) (caddr L)) (cons (cadr L) (cdddr L)))))
+
+      
+(zipper (car L) (caddr L))  => zusammengefügte Liste
+
+
+Syntax für "cond"
+(cond ((Bedingung 1) (Return Value 1))
+      ((Bedingung 2) (Return Value 2))
+      ((Bedingung 3) (Return Value 3)))
+
+Funktionen in Lisp
+(cons 1 (2 3 4))  => (1 2 3 4)
+(append (2 3 4) 1) => (2 3 4 1)
+(list 1) => (1)
+(list (1 2)) => ((1 2))
+(cond ((Bedingung) (Return))
+      ((Bedingung) (Return)))
+(car L)
+(cdr L)
+
+Funktionen für Bedingungen
+(<= A B)
+(null L)  => Gibt wahr heraus, falls L eine leere Liste ist
+(atom L)  => Gibt wahr heraus, falls L keine Liste ist
+(listp L) => Gibt wahr heraus, falls L eine Liste ist
+
+Atome sind Zahlen, Buchstaben, ...
+Atome =/= Listen
+
+nil  => Ist die leere Liste
+Bsp.:
+(cond ((atom L) nil)
+      ((null L) nil))
+
+
+
+
+
+
+Schiebe 1 an den Anfang der dritten Subliste
+NICHT: (cons (3. Subliste) ...)
+Stattdessen: (cons (1. Element) (cons (2. Element) (cons (3. Element) (Restliche Liste))))
+
+
+
+
+
+
+Syntax in Prolog:
+
+max(A, B, A) :- A >= B.
+max(A, B, X) :- B >= A, X is B.
+
+max(2, 3, X).
+X = 3
+
+
+summe([], 0).
+summe([A], A).
+summe([A, B | R], X) :- summe(R, P), X is A + B + P.
+
+summe([1, 2, 3], X).
+X = 6
+
+
