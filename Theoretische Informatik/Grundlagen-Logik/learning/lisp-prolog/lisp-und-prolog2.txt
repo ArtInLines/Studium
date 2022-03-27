@@ -1,0 +1,157 @@
+(cond ((Bedingung) (Return Value))
+      (Bedingung 2) (Return Value)
+      (...) (...))
+(cons Element Liste) = (cons (1 2 3) (2 3 4)) => ((1 2 3) 2 3 4)
+(append Liste Element) = (append (1 2 3) (2 3 4)) => (1 2 3 (2 3 4))
+(car (1 2 3)) => 1
+(cdr (1 2 3)) => (2 3)
+(list (1) 2 3) => ((1) 2 3)
+(null L) => Gibt Wahr zurück, wenn L die leere Liste ist
+(listp L) => Gibt Wahr zurück, wenn L eine Liste ist
+(atom L) => Gibt Wahr zurück, wenn L keine Liste ist
+
+nil = leere Liste
+
+
+9)
+
+Funkion in Lisp / Prolog
+
+
+
+11)
+L = ((1 2) (3 4 ...) ...)
+
+a) Bilde eine Summe und füge die in ihre eigene Subliste an den Anfang der Liste
+(cons (list (+ ... ...)) L)
+
+
+CS19
+11)
+
+c) inserts the length of the two first sublists to the end of the according sublist
+
+(cons (append (car L) (len (car L))) (cons (append (cadr L) (len (cadr L))) (cddr L)))
+
+
+
+d) inserts the sum of the first element of the first sublist and the first element of the second sublist to the beginning of the third sublist (if no third sublist exists then a new 3rd sublist with the sum is generated)
+((1 2) (3 4))  =>  ((1 2) (3 4) (4))
+((1 2) (3 4) (5 6))  =>  ((1 2) (3 4) (4 5 6))
+
+(cond ((> (len L) 2) (cons (car L) (cons (cadr L) (cons (append (caddr L) (+ (caar L) (caadr L))) (cdddr L)))))
+      (t (append L (list (+ (caar L) (caadr L)))))
+      
+(+ (caar L) (caadr L))
+
+
+
+Meine Aufgaben
+11)
+
+- Die Differenz des letzten Elements der ersten Subliste und des ersten Elements der zweiten Sublisten sollen an den Anfang der zweiten Subliste geschoben werden
+
+(cons (car L) (cons (cons (- (car (rev (car L))) (caadr L)) (cadr L)) (cddr L)))
+
+(- (car (rev (car L))) (caadr L)) = Die gesuchte Differenz
+
+
+(cdr L) = Resliste
+(cadr L) = 2. Subliste
+(caadr L) = 1. Element der 2. Subliste
+
+
+
+- Die erste und dritte Subliste sollen reisverschlussmäßig zusammengefügt werden und mit der zweiten Subliste ausgetauscht werden. (1. & 3. Subliste sollen bleiben). Falls es keine dritte Subliste gibt, verändere nichts.
+
+(cond ((null (cddr L)) L)
+      (t (cons (car L) (cons (zipper (car L) (caddr L)) (cddr L)))))
+
+
+(rev)
+(conc)
+(zipper)
+(msort)
+
+
+
+CS17
+9)
+
+mystery([],0).                                  => 1 Unifikation
+mystery([X],X).                                 => 2 Unifikationen
+mystery([A,B|R],N) :- mystery(R,M), N is M+A.   => 4 Unifikationen + etwas
+
+
+
+
+b) n ist ungerade, alle Elemente sind positiv. Wie viele Unifikationen werden ausgeführt.
+
+K(1) = 2
+K(n) = 4 + K(n-2)
+
+K(n)  =  ((n-1) / 2) * 4 + 2  =  (n-1) * 2 + 2
+
+
+
+9)
+
+(defun mystery (L)
+    (cond ((atom L) 0)
+          ((null L) 0)
+          ((null (cdr L)) (car L))
+          (t (+ (car L) (mystery (cddr L))))))
+
+b) n ist ungerade, alle Elemente sind positiv. Wie viele Tests werden ausgeführt.
+
+K(1) = 3
+K(3) = 3 + K(1)
+K(n) = 3 + K(n-2)
+
+K(n)  =  3 * (n-1) * 1/2 + 3  =  1.5 * (n-1) + 3  =  1.5 * (n+1)
+
+
+
+CS19
+9)
+
+(defun mystery (L)
+    (cond ((listp L) (cond ((null L) 0)
+                           ((< (car L) 0) (- (mystery (cdr L)) (car L)))
+                           ((> (car L) 0) (+ (mystery (cdr L)) (car L)))
+                           (T (mystery (cdr L))))
+          (T nil)))
+          
+a)
+mystery([], 0).
+mystery([X|R], N) :- X<0, mystery(R, M), N is M-X.
+mystery([X|R], N) :- X>0, mystery(R, M), N is M+X.
+mystery([X|R], M) :- mystery(R, M).
+
+          
+b) Wie viele Tests werden ausgeführt, wenn L n positive Zahlen hat (n>0).
+
+K(0) = 2
+K(n) = 4 + K(n-1)
+
+K(n) = 4n + 2
+
+
+
+
+10 & 12)
+Von einer Liste die Summe der Beträge aller Zahlen auf geraden Positionen, namens evenpossum.
+
+evenpossum([], 0).
+evenpossum([X], 0).
+evenpossum([A,B|R], N) :- B>0, evenpossum(R, M), N is M+B.
+evenpossum([A,B|R], N) :- evenpossum(R, M), N is M-B.
+
+(defun evenpossum(L)
+    (cond ((atom L) nil)
+          ((null L) 0)
+          ((null (cdr L)) 0)
+          ((> (cadr L) 0) (+ (cadr L) (evenpossum (cddr L))))
+          (t (- (evenpossum (cddr L)) (cadr L)))))
+
+
