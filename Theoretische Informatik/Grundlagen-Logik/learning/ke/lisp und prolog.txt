@@ -20,10 +20,63 @@ Y = [B | C]
 
 
 f([], 0).
-f([A], A).
-f([A, B | R], P) :- f(R, Zahl), P is A + B + Zahl.
+f([A | R], P) :- f(R, Zahl), P is A + Zahl.
 
 (defun f(L)
     (cond ((null L) 0)
           ((null (cdr L)) (CAR L))
           (t (+ (car L) (Cadr L) (f (cddr L)))))
+
+(defun f(L)
+    (cond ((null L) 0)
+          (t (+ (car L) (f (cdr L))))))
+
+K(0) = 1
+K(n) = 1 + K(n-1)
+K(n) = 1*n + 1 = n+1
+
+
+oddpossum: Alle Zahlen auf ungeraden Positionen zusammen addieren
+
+onlyneg: Alle positiven Zahlen mal -1 nehmen und alle negativen Zahlen so lassen wie sie sind. Nulle sollen aus der Liste entfernt werden.
+
+conc: Du hast zwei Listen und sollst die zu einer Liste verbinden.
+
+
+
+Aufgabe 8) & 11) & 9b)
+
+L = ((1 2 ...) (3 4 ...) ...)
+
+a) Erste & Zweite Subliste getauscht werden
+(cons (cadr L) (cons (car L) (cddr L)))
+
+
+b) Die Summe des ersten Elements der ersten Subliste und des zweiten Elements der zweiten an den Anfang der ersten Subliste schieben
+
+(cons (cons (+ (caar L) (cadadr L)) (car L)) (cdr L))
+
+
+c) Die Differenz zwischen dem letzten Element der ersten Subliste und dem ersten Element der zweiten Subliste soll ans Ende der zweiten Subliste
+
+(- (car (rev (car L))) (caadr L)) = Differenz
+(cons (Differenz) (rev (cadr L))) = 2. Subliste
+(cons (car L) (cons (rev (cons ((- (car (rev (car L))) (caadr L))) (rev (cadr L)))) (cddr L))) = Lösung
+
+
+d) Falls es min. 3 Sublisten gibt, dann soll die Summe des ersten & zweiten Elements der ersten Subliste an den Anfang der dritten Subliste. Ansonsten soll diese Summe die dritte Subliste werden.
+
+(+ (caar L) (cadar L))
+
+(cond ((null (cddr L)) (append L (list (+ (caar L) (cadar L)))))
+      (t (cons (car L) (cons (cadr L) (cons (+ (caar L) (cadar L)) (caddr L))))))
+      
+      
+(cons (1 2 3) (4 5 6)) => ((1 2 3) 4 5 6)
+(append (1 2 3) (4 5 6)) => (1 2 3 (4 5 6))
+(list 1) => (1)
+
+Alternativlösung für 1. Zeile von d):
+(list (car L) (cadr L) (list (Summe)))
+
+
