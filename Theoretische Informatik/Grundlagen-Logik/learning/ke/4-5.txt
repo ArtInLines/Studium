@@ -1,0 +1,116 @@
+4)
+
+R v S -> Q ^ P
+(!R ^ !S) v (Q ^ P)
+(!R v Q) ^ (!R v P) ^ (!S v Q) ^ (!S v P)
+R -> Q
+R -> P
+S -> Q
+S -> P
+
+
+Analoge Regel:
+(A + B) * (C + D)
+((A + B) * C) + ((A + B) * D)
+(A * C) + (A * D) + (B * C) + (B * D)
+
+
+==> A ^ B ^ (C v D)
+Von Konjunktiver Normalform zur Gentzen-Form
+(!S v !Q v P v R) ^ (!S v !R) ^ (Q v S)
+
+S ^ Q => P v R,
+S ^ R => Falsch,
+Wahr => Q v S
+
+
+
+CS 16
+4)
+b) S v !(P <-> R ^ !Q)
+S v !((!P v (R ^ !Q)) ^ (P v (!R v Q)))
+S v ((P ^ (!R v Q)) v (!P ^ (R ^ !Q)))
+S v (P ^ (!R v Q)) v (!P ^ R ^ !Q)
+S v (P ^ !R) v (P ^ Q) v (!P ^ R ^ !Q)
+
+(S v P v R) ^ (S v P v !Q) ^ (S v P v Q v R) ^ (S v !R v P v !Q) ^ (S v !R v Q v !P)
+
+Wahr => S v P v R,
+Q => S v P,
+Wahr => S v P v Q v R,
+R ^ Q => P v S, 
+R ^ P => S v Q
+
+
+
+5)
+Ax (!P(x,y) v Ey R(x,y,y)) -> !(Ez Ax Q(x,y,z) ^ Ay R(x,y,x))
+Ax1 (!P(x1,y) v Ey1 R(x1,y1,y1)) -> !(Ez1 Ax2 Q(x2,y,z1) ^ Ay2 R(x,y2,x))
+Ex1 (P(x1,y) ^ Ay1 !R(x1,y1,y1)) v (Az1 Ex2 !Q(x2,y,z1) v Ey2 !R(x,y2,x))
+<-|           <-|                  <-| <-|               <-|
+
+Ax Ay Ex1 Ay1 Az1 Ex2 Ey2 ((P(x1,y) ^ !R(x1,y1,y1)) v (!Q(x2,y,z1) v !R(x,y2,x)))
+
+(P(f(x,y),y) ^ !R(f(x,y),y1,y1)) v (!Q(g(x,y,y1,z1),y,z1) v !R(x,h(x,y,y1,z1),x))
+
+
+Achtung vor Doppelpfeilen
+Ax R(x,y) <-> Ey P(x,y)
+(!Ax1 R(x1,y) v Ey1 (x,y1)) ^ (Ax2 R(x2,y) v !Ey2 P(x,y2))
+
+
+
+Ey P(x,y) v Ax(!R(x,y,x) -> !Az Q(x,y,z)) ^ Ex Ay R(x,y,z)
+Ey P(x,y) v Ax(R(x,y,x) v Ez !Q(x,y,z)) ^ Ex Ay R(x,y,z)
+Ey1 P(x,y1) v Ax1 (R(x1,y,x1) v Ez1 !Q(x1,y,z1)) ^ Ex2 Ay2 R(x2,y2,z)
+(Pfeile)
+
+==> P(x,f(x,y,z)) v (R(x1,y,x1) v !Q(x1,y,g(x,y,z,x1))) ^ R(h(x,y,z,x1),y2,z)
+
+
+
+
+7)
+
+X = Y * X
+Y = X - Y
+X = Y + Y
+
+{X > Y}
+
+{X > Y}
+X = Y + Y
+{Y + Y > Y}
+{Y > 0}
+Y = X - Y
+{X-Y > 0}
+{X > Y}
+X = Y * X
+{Y*X > Y}
+{X > 1}
+(Kleiner Fehler, warum auch immer)
+
+
+
+if (X < Y) then X := Y + X
+Y := X - Y
+if (X > 0) then Y = X + Y
+    else X = X + Y
+
+{ Y > X }
+
+if ... else ...
+{ (X > 0  ^  X+Y > X)  v  (X <= 0  ^  Y > X+Y) }
+
+Y := X - Y
+{ (X > 0  ^  X+(X-Y) > X)  v  (X <= 0  ^  X-Y > X+(X-Y)) }
+
+if (X < Y) then X := Y + X
+{ (X < Y  ^  X+Y > 0  ^  X+Y+X+Y-Y > X+Y)  v  (X >= Y  ^  X > 0  ^  X+(X-Y) > X)  v  (X < Y  ^  X+Y <= 0  ^  X+Y-Y > X+Y+X+Y-Y)  v  (X >= Y  ^ X <= 0  ^  X-Y > X+(X-Y)) }
+{ (X<Y ^ -Y<X  ^  X>0)  v  (X>=Y ^ X>0 ^ X>Y)  v  (X<Y ^ X<=-Y ^ -X>Y)  v  (X>=Y ^ X<=0 ^ 0>X) }
+{ (X>0 ^ X>Y)  v  (X<Y ^ X < -Y)  v  (X>=Y ^ 0>X) }
+
+
+-X>Y  |*(-1)
+X < -Y
+

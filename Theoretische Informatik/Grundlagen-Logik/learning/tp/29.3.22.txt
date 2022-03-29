@@ -1,0 +1,143 @@
+5)
+!Ex (Ez P(x,y,z) <-> Ay Q(x,y,z)) ^ !Ax R(z,y,x)
+Ax (Az !P(x,y,z) <-> Ay Q(x,y,z)) ^ Ex !R(z,y,x)
+Ax ((Az !P(x,y,z) v Ey !Q(x,y,z)) ^ (Ez P(x,y,z) v Ay Q(x,y,z))) ^ Ex !R(z,y,x)
+Ax1 ((Az1 !P(x1,y,z1) v Ey1 !Q(x1,y1,z)) ^ (Ez2 P(x1,y,z2) v Ay2 Q(x1,y2,z))) ^ Ex2 !R(z,y,x2)
+<-|
+((!P(x1,y,z1) v !Q(x1,f(x,y,z,x1,z1),z)) ^ (P(x1,y,g(x,y,z,x1,z1)) v Q(x1,y2,z))) ^ !R(z,y,t(x,y,z,x1,z1,y2))
+
+Als Regel:
+!(A <-> B)  <=>  !A <-> B
+
+
+6)
+{ X>Y ; Y>=0; X, Y of type integer }
+I := X;
+Z := 0;
+repeat
+    Z := Z + 2;
+    I := I - 1
+until I = Y
+{ Z=2*(X-Y) ; X>Y ; Y>=0 ; X, Y of type integer }
+
+0. INV finden
+1. Zeile für Zeile durchgehen (von hinten)
+2. Abbruchbedingung ^ INV => Nachbedingung
+3. In Worten beschreiben, warum die Schleife nicht endlos läuft
+
+0.
+INV = { Z = 2*(X-I) }
+
+1.
+I := I - 1
+{ Z = 2*(X-(I-1)) }
+Z := Z + 2
+{ (Z + 2) = 2 * (X - (I-1)) }
+{ Z = 2X - 2I }
+{ Z = 2 * (X-I) }
+
+Z := 0
+{ 0 = 2 * (X-I) }
+I := X
+{ 0 = 2 * (X-X) = 2*0 }
+
+2.
+(I = Y) ^ { Z = 2 * (X-I) } => { Z=2*(X-Y) ; X>Y ; Y>=0 ; X, Y of type integer }
+
+3.
+I startet als X und X>Y. In jeder Iteration der Schleife wird I um 1 kleiner. X, y sind ganze Zahlen
+
+
+
+7)
+if X<Y then X := Y - X;
+if X<0 then Y := X - Y
+    else Y := X + Y
+{ Y>X ; X,Y of type integer }
+
+if X<0 then Y := X - Y   else Y := X + Y
+{ (X<0 ^ Y<0)  v  (X>=0 ^ Y>0) }
+
+if X<Y then X := Y - X;
+{ (X<Y ^ Y<X ^ Y<0) v (Y<=X ^ X<0 ^ Y<0) v (Y<=X ^ X>=0 ^ Y>0) v (X<Y ^ Y>=X ^ Y>0) }
+{ (Y<=X ^ X<0 ^ Y<0) v (0<Y<=X) v (X<Y ^ Y>0) }
+
+
+
+
+Y := Y - X;
+if X<0 then
+    if Y<0 then Y := X * Y
+        else Y := Y - X
+{ Y>0 }
+
+
+if X<0 && Y<0 ; else if X<0 && Y>=0 ; else X>=0
+{ (X<0 ^ Y<0 ^ X*Y>0) v (X<0 ^ Y>=0 ^ Y>X) v (X>=0 ^ Y>0) }
+
+Y := Y - X;
+{ (X<0 ^ Y-X<0 ^ X*(Y-X)>0) v (X<0 ^ Y-X>=0 ^ Y-X>X) v (X>=0 ^ Y-X>0) }
+{ (X<0 ^ Y>2X) v (X>=0 ^ Y>X) }
+
+
+
+
+
+
+8)
+a)
+p1([X|[Y|Y]],[])  =  p1([A,A],A)
+A = [] = X = Y = []
+
+
+b)
+p2([Y|Y],[Y])  =  p2([A,R],[R])
+Y = R = A = [R]
+
+=> Falsch / Nicht unifizierbar / occur check
+
+
+c)
+p3([[]|[X|Y]],Y)  =  p3([A,Y1],Y1)
+Y = Y1 = X
+Y = []
+A = []
+
+
+d)
+p4([[X]|[X,Y]],Y)  =  p4([A,[B|C]],[])
+Y = []
+[X] = A
+X = [B|C]
+Y = ?  ==> occur check (unterschiedlich Lnage Listen)
+[[X]|[X,Y]] <=> [[X], X, Y]  =  [A,[B|C]]
+
+
+
+e)
+p5(X,Y,[X|[Y]])  =  p5(A,[A],[A,A])
+X = A
+Y = [A]
+X = A
+Y = A
+
+==> Fehler Y = A = [A]
+
+
+
+
+2 Arten an occur checks:
+- X = [X]              (Element enthält sich selbst)
+- [A, B] = [X, Y, Z]   (unterschiedliche Längen)
+
+
+
+[A,R]  <=>  [A | [R]]
+
+[X|[Y|Y]]  <=>  [X, Y | Y]
+
+[1, [1, 2, 3] | [1, 2, 3]]  <=>  [1, [1, 2, 3], 1, 2, 3]
+
+
+[A, B, C]  <=> [A, B | [C]]  <=>  [A | [B, C]]  <=>  [A | [B | [C]]]  <=>  [A | [B | [C | []]]]
+
