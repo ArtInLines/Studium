@@ -52,10 +52,7 @@ def subsets(M, k):
 # print(subsets({1, 2, 3}, 2))
 
 def power(M):
-	res = set()
-	for k in range(len(M) + 1):
-		res = res | subsets(M, k)
-	return res
+	return { m for k in range(len(M) + 1) for m in subsets(M, k) }
 
 # print(power({1, 2, 3}))
 
@@ -82,10 +79,16 @@ def aufgabe6B():
 
 def anagram(s: str):
 	if s == "":
-		return {""}
+		return {s}
 	return { s1[:i] + s[0] + s1[i:] for i in range(len(s)) for s1 in anagram(s[1:]) }
 
-# print(anagram("abc"))
+# Initial idea before Stroetmann told us of the other one	
+# def anagram2(s: str):
+# 	if s == '':
+# 		return {s}
+# 	return { s[i] + s1 for i in range(len(s)) for s1 in anagram(s[:i] + s[i+1:]) }
+
+print(anagram("abc"))
 
 def numberDiceRolls(n: int, s: int):
 	if n == 0 or s == 0:
@@ -98,3 +101,12 @@ def numberDiceRolls(n: int, s: int):
 	return res
 
 # print(numberDiceRolls(3, 5))
+
+def diceRolls(n: int, s: int):
+	if n == 0 or s == 0:
+		return {}
+	if n == 1 and 1 <= s <= 6:
+		return {(s,)}
+	return { t + (i,) for i in range(1, 6+1) for t in diceRolls(n-1, s-i) if len(t) > 0 }
+
+# print(diceRolls(3, 5))
