@@ -77,7 +77,8 @@ def aufgabe6A():
 def aufgabe6B():
 	return (11 / 50) * (10 / 49) * (9 / 48)
 
-# print(str(round(aufgabe6B() * 100, 2)) + "%")
+# print(str(round(aufgabe6A() * 100, 4)) + "%")
+# print(str(round(aufgabe6B() * 100, 4)) + "%")
 
 def anagram(s: str):
 	if s == "":
