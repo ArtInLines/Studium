@@ -1,0 +1,14 @@
+
+Sorting:  Sorting algorithms that are embedded into a test environment.
+
+SortingAlgorithm: Naked sorting algorithms working on lists and arrays.
+
+SortingAnimation: Animation of various sorting algorithms.
+
+    In order to start the animation, open a terminal in the directory 'SortingAnimation' and
+    type the following commands:
+    
+        Javac *.java
+        java AnimationFrame
+
+    The last command should start the Animation.

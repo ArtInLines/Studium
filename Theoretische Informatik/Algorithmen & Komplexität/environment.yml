@@ -1,0 +1,11 @@
+name: algorithms-environment
+channels:
+  - conda-forge
+dependencies:
+  - python
+  - numpy
+  - sympy
+  - matplotlib
+  - seaborn
+  - pip:
+    - graphviz
