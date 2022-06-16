@@ -14,10 +14,10 @@ def divMod2(m, n):
 	if m < n:
 		return (0, m)
 	q1, r1 = divMod2(m >> 1, n)
-	if (r1 >> 1) + (m & 1) < n:
-		return ((q1 >> 1), (r1 >> 1) + (m & 1))
+	if (r1 << 1) + (m & 1) < n:
+		return ((q1 << 1), (r1 << 1) + (m & 1))
 	else:
-		return ((q1 >> 1) + 1, (r1 >> 1) + (m & 1) - n)
+		return ((q1 << 1) + 1, (r1 << 1) + (m & 1) - n)
 
 
 	
