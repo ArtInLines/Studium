@@ -1,1 +1,0 @@
-nasm %1.asm -o %1.exe -l %1.lst
