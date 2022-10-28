@@ -1,0 +1,17 @@
+     1                                  org 0x100	; Beginne Program bei Adresse 100H
+     2                                  bits 16		; 32-Bit Program
+     3                                  		; SMALL beinhaltet hier nur Code-Segment
+     4                                  SECTION  .CODE
+     5                                  				; Wichtig: Bei Assembler muss ein H ans Ende von Zahlen, um hex-Zahlen zu verwenden
+     6                                                             	; M1:	; Anfangs-Label
+     7 00000000 B408                    M1:		MOV AH,08H	; liest Zeichen von Tastatur ohne Bildschirmecho
+     8 00000002 CD21                    		INT 21H		; allgemeiner Interrupt
+     9 00000004 3C1B                                    CMP AL,1BH	; vergleiche Inhalt von AL mit ESC-Taste
+    10 00000006 7408                                    JE ENDE		; wenn gleich, dann springe zu ENDE-LABEL
+    11 00000008 88C2                    		MOV DL,AL       ; bringe Eingabe-Zeichen ins rechte Daten-Byte
+    12 0000000A B402                    		MOV AH,2        ; Funktionsnummer für Bildschirmausgabe
+    13 0000000C CD21                    		INT 21H		; allg. Interrupt
+    14 0000000E EBF0                    		JMP short M1 	; unbedingter Sprung zum M1-Label
+    15                                  ENDE:				; ENDE-Label
+    16 00000010 B44C                                    MOV AH,4CH	; Funktionsnummer „zurück zu DOS“
+    17 00000012 CD21                                    INT 21H		; allg. Interrupt
