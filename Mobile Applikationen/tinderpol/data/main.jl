@@ -59,9 +59,9 @@ i = 1
 while (i + 1 < length(notices))
 	if notices[i]["entity_id"] == notices[i+1]["entity_id"]
 		deleteat!(notices, i+1)
-	else
-		i += 1
+		i -= 1
 	end
+	i += 1
 end
 
 open("data.json", "w") do f
