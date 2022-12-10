@@ -1,0 +1,141 @@
+{
+  "main": {
+    "id": "320896f0cd66f8ad",
+    "type": "split",
+    "children": [
+      {
+        "id": "dd9b49d4957bc545",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "ea089da056932a0d",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Automatentheorie.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "3c4c22cdfb2f7ef8",
+    "type": "split",
+    "children": [
+      {
+        "id": "d5643cc09e4f1d0b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "ccfaf154e50118ab",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "dcdb9a8035195b2f",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "dd52b5b642f4f5cf",
+            "type": "leaf",
+            "state": {
+              "type": "starred",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "e571fc65aa080627",
+    "type": "split",
+    "children": [
+      {
+        "id": "07dbc5dff7d81635",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "de509b296845e947",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Automatentheorie.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "2be71d0d96b2b78a",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Automatentheorie.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "cecd20d095a3520e",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "0be7b30747564500",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Automatentheorie.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "active": "ea089da056932a0d",
+  "lastOpenFiles": []
+}
