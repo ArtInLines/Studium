@@ -1,0 +1,71 @@
+# 1
+
+## a
+
+nCr(32, 10)
+
+## b
+
+1320
+
+## c
+
+> nCr(10, 2) bzw sum(k=1, 9, k)
+
+45
+
+## d
+
+Es gibt 676 mögliche Initialien (26**2) also nein
+
+## e
+
+bei gerade: 10! = 3628800
+bei rund: 10!/10
+
+
+# 2
+
+## a
+
+5! = 120
+
+## b
+
+125
+
+## c
+
+60
+
+## d
+
+35
+
+## e
+
+10
+
+
+# 3
+
+## a
+
+55440
+
+## b
+
+sum(k=0, 7, nCr(7, k)) = 2**n = 2**7 = 128
+
+
+# 4
+
+ges.: untere Grenze für p(A ^ B)
+
+bei stochastischer Unabhängigkeit: p(A) * p(B) = 0.56
+
+bei negativer Abhängigkeit? Idee: 0.8 = 8 von 10 und 0.7 = 7 von 10. In 10 Tagen müsste es also 5 Tage geben, bei denen beide Nachbarn angetroffen werden -> 0.5
+
+Lsg.:
+
+p(A ^ B) = p(A) + p(B) - p(A v B) = 1.5 - p(A v B) >= 1.5 - p(Omega) = 1.5 - 1 = 0.5
