@@ -52,6 +52,9 @@
     -   Zugriff auf Adresse
 -   Indirect Adressing
     -   (siehe Folien)
+-   Indexed Adressing
+-   Based Indexed Adressing
+-   Based Indexed Adressing with Scaling
 
 ## Stack
 
