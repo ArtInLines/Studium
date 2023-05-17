@@ -1,0 +1,21 @@
+﻿Abgeschlossen,Id,Arbeitspaket,Ph Geplant,Ph Gebucht,Ressourcen,Startzeit,Endzeit,Abhängig von,Notwendig für,Risiken
+No,ap-pm,Projektmanagement / Controlling / Risikomanagement,50,27,"Malte Richert, Lars Lehmann, Liz Wellhausen, Jakob Kautz, Val Richter, Benjamin Frahm",2023-04-03,2023-06-12,-,-,Man-2
+No,ap-proto,Prototyping /& Recherche,-,-,-,2023-04-17,2023-05-19,-,ap-dev,-
+Yes,ap-proto-1,Prototyping & Recherche Audio,10,11.25,"Lars Lehmann, Benjamin Frahm",2023-04-17,2023-05-19,-,ap-arch-2,-
+Yes,ap-proto-2,Prototyping & Recherche Daten,10,16.25,"Jakob Kautz, Val Richter",2023-04-17,2023-05-19,-,ap-arch-3,-
+Yes,ap-proto-3,Prototyping & Recherche UI,5,2,"Liz Wellhausen",2023-04-17,2023-05-19,-,ap-arch-3,-
+Yes,ap-ph,Pflichtenheft & Proposal,50,44.5,"Malte Richert, Lars Lehmann, Liz Wellhausen, Jakob Kautz, Val Richter, Benjamin Frahm",2023-04-10,2023-05-12,-,ap-arch,-
+No,ap-arch,Architektur,-,-,-,2023-05-05,2023-05-19,-,ap-dev,-
+No,ap-arch-1,Architektur: Schnittstellen,30,20.65,"Malte Richert, Lars Lehmann, Liz Wellhausen, Jakob Kautz, Val Richter, Benjamin Frahm",2023-05-05,2023-05-19,-,"ap-dev, ap-dev-1, ap-dev-3, ap-dev-6",Tec-audio-1
+No,ap-arch-2,Architektur: Audio,20,6,"Malte Richert, Lars Lehmann, Benjamin Frahm",2023-05-05,2023-05-19,ap-proto-1,"ap-dev-1, ap-dev-2",-
+No,ap-arch-3,Architektur: UI & Daten,10,7,"Liz Wellhausen, Jakob Kautz, Val Richter",2023-05-05,2023-05-19,"ap-proto-2, ap-proto-3","ap-dev-3, ap-dev-4, ap-dev-5, ap-dev-6",-
+No,ap-dev,Implementierung,-,-,-,2023-05-15,2023-06-04,"ap-proto, ap-arch, ap-arch-1","ap-test, ap-dok","Man-1, Tec-ui-3, Tec-ui-4"
+No,ap-dev-1,Implementierung: Synthesizer,40,4,"Benjamin Frahm, Lars Lehmann, Malte Richert",2023-05-15,2023-06-04,"ap-arch-1, ap-arch-2",-,"Tec-audio-3, Tec-audio-4"
+No,ap-dev-2,Implementierung: Sonifizierung,50,0,"Malte Richert, Lars Lehmann, Benjamin Frahm",2023-05-15,2023-06-04,ap-arch-2,-,"Tec-audio-2, Tec-ui-6"
+No,ap-dev-3,Implementierung: UI-Funktionalität,20,13,"Liz Wellhausen, Val Richter",2023-05-15,2023-06-04,"ap-arch-1, ap-arch-3",-,Tec-ui-5
+No,ap-dev-4,Implementierung: UI-Design,20,12,"Liz Wellhausen",2023-05-15,2023-06-04,ap-arch-3,-,"Tec-ui-5, Tec-ui-6"
+No,ap-dev-5,Implementierung: API-Anbindung,5,5.5,"Val Richter, Jakob Kautz",2023-05-15,2023-06-04,ap-arch-3,-,-
+No,ap-dev-6,Implementierung: Datenanalyse,40,4,"Jakob Kautz, Val Richter, Liz Wellhausen",2023-05-15,2023-06-04,"ap-arch-1, ap-arch-3",-,"Tec-data-1, Tec-data-2"
+No,ap-test,Testing,20,0,"Malte Richert, Lars Lehmann, Liz Wellhausen, Jakob Kautz, Val Richter, Benjamin Frahm",2023-05-29,2023-06-11,ap-dev,ap-pkg,-
+No,ap-dok,User Doku & Technische Doku,5,0,"Lars Lehmann",2023-05-29,2023-06-11,ap-dev,ap-pkg,-
+No,ap-pkg,Deliverable vorbereiten & übergeben,5,0,"Val Richter",2023-06-05,2023-06-12,"ap-test, ap-dok",-,Tec-ui-1
