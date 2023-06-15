@@ -15,10 +15,10 @@ Verständnis Aufgaben:
 -   [Architekturen - Von Neumann & Harvard](#architekturen)
 -   [Instruction Sets von CPUs](#instruction-sets)
 -   [Interrupts & Interrupt-Handling](#interrupt)
--   DRAM vs SRAM
--   DDR
--   Arten des persistenten Speichers
--
+-   [DRAM vs SRAM](#dram-vs-sram)
+-   [DDR](#ddr)
+-   [Persistenter Speicher](#arten-des-persistenten-speichers)
+-   [Bus-Interfaces](#bus)
 
 ## Architekturen
 
@@ -167,9 +167,9 @@ Verdrängungsverfahren
 
 ### Alignment
 
--   Data-Structure Alignment heißt, dass Datenstrukturen mit Padding auf bestimmte Byte-Größen erweitert werden
--   Nachteil: Mehr Speicherplatz wird verbraucht
--   Vorteil: Datensätze füllen Cache-Lines aus -> ein Datensatz muss nicht über zwei Cache-Lines verteilt werden
+Compiler legt Variablen zu Beginn des Programms, damit Variablen möglichst in unterschiedliche Cache-Lines fallen (und sich nicht gegenseitig rauswerfen).
+
+Datenstrukturen können mit Padding auf bestimmte Byte-Größen erweitert werden. Der Vorteil davon ist, ass Datensätze Cache-Lines ausfüllen -> ein Datensatz muss nicht über zwei Cache-Lines verteilt werden
 
 <!-- @Incomplete: There's many more reasons for wy alignment is beneficial, that aren't important to know for the exam, though -->
 
@@ -232,7 +232,7 @@ Speicher-Hierachie:
 1. [Register](#register)
 2. [Caches](#cache)
 3. [Arbeitsspeicher / RAM](#ram-flüchtiger-speicher)
-4. Festplatte
+4. [Festplatte](#arten-des-persistenten-speichers)
 
 ### RAM (Flüchtiger Speicher)
 
