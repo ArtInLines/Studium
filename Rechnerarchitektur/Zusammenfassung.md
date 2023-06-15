@@ -268,7 +268,9 @@ Speicher-Hierachie:
 
 -   ROM = Read-Only-Memory
     -   früher z.B. fürs BIOS verwendet
+    -   kann nur einmal in der Fabrik programmiert werden
 -   PROM = Programmable ROM
+    -   kann nur einmal programmiert werden
 -   EPROM = Erasable PROM
     -   Daten können mit starkem UV-Licht gelöscht werden
 -   EEPROM = Electrically EPROM
@@ -276,6 +278,7 @@ Speicher-Hierachie:
 -   Flash-Speicher
     -   lässt sich schnell in Blöcken auslesen
     -   modernere Alternative zu EEPROM
+    -   wird heute für fast alles verwendet (ROM, PROM, EPROM, EEPROM sind ausgestorben) -> SSD, USB-Sticks, SD-Karten, BIOS Chips, Firmwarespeicher etc.
     -   begrenzte Lebensdauer
     -   NAND-Flash-Speicher -> nicht linear adressierbarer Speicher
     -   NOR-Flash-Speicher -> linear addressierbarer Speicher
@@ -286,28 +289,46 @@ Speicher-Hierachie:
     -   können nur einmal programmiert werden
 -   GAL = Generaic Arrays Logic
     -   kann umbeschrieben werden
--   PLA
+-   PLA = Programmable Logic Array
     -   AND- & OR-Matrix sing bide beschreibbar
 -   CPLD = Complex Programmable Logic Device
     -   hat zusätzlich I/O Block, komplexere Hardware, Flip-Flops
 -   FPGA = Field Programmable Gate Array
     -   komplexe Schaltung als Hardware, die programmiert werden kann
--   ASIC
+    -   wird für Kleinstserien und Prototypen verwendet
+        -   entweder für ASICs Prototypen oder sogar für general purpose CPUs Entwicklung (RISC-V Development Boards)
+-   ASIC = Application Specific Integrated Circuit
     -   Masken-programmierte Logik-Schaltungen
-    -   ermöglicht die Implementierung komplexer Algorithmen in Hardware
+    -   ermöglicht die Implementierung komplexer Algorithmen in Hardware -> sehr schnelle Ausführung und geringerer Stromverbrauch
+    -   Einsatz z.B. im Bitcoin Mining oder als Network Accelerator in Netzwerkkomponenten (Router, Firewall, etc.)
+    -   GPUs sind auch ASICs (für Grafikberechnungen bzw. heute auch für Machine Learning (Matrix-Multiplikationen))
 -   Disketten
 -   Tape-Drives
--   MFM Festplatten (heute ausgestorben)
+-   HDD = Hard-Disk-Drive
+    -   magnetische Speicherung auf rotierenden Platten
+    -   Zugriff über Schreib-/Lesekopf
+    -   Zugriffszeit abhängig von Umdrehungsgeschwindigkeit
+    -   heute meistens 5400 oder 7200rpm (im Serverbereich auch 10k oder 15k rpm)
+    -   Schnittstellen:
+        -   IDE / (P)ATA: Consumer / Desktop - alt
+        -   SATA: Consumer / Deslt - aktuell
+        -   SCSI: Enterprise / Server - alt
+        -   SAS: Enterprise / Server - aktuell
+    -   erste HDDs: MFM Festplatten (heute ausgestorben)
 -   SSD = Solid-State-Drive
     -   in Blöcken organisiert -> bei Änderung eines Bits, muss der ganze Block muss neu geschrieben werden
--
+    -   Flash-Speicher in Multi-Level-Cell (MLC / TLC / QLC / (PLC)) oder Single-Level-Cell (SLC)
+    -   viel schneller als HDDs
+    -   keine beweglichen Teile -> praktisch keine Zugriffszeit und geringer Stromverbrauch
+
+
 
 Wichtige Kennzahl: IOPS
 
 -   Wie viele I/O Operationen kann das Medium durchführen
 -   wird sequenziell oder random zugegriffen?
 -   Read oder Write?
--   besonders viele kleine Dateien können schnell IOPS verbrauchen
+-   besonders viele kleine Dateien können schnell IOPS verbrauchen (Windows 10+ Boot von SSD vs. HDD)
 
 <!-- @Question: Is it correct what I wrote here - especially with FPGAs, ASICs I'm quite unsure -->
 
@@ -327,17 +348,36 @@ Arten an Hardware-Bussen:
 
 Bus-Interfaces
 
--   ATA
+-   (P)ATA = Parallel ATA
+    -   Protokoll zur parallelen Datenübertragung von Festplattten die über IDE angeschlossen sind
+    -   IDE = Integrated Drive Electronics (elektronische Busschnittstelle für Festplattenlaufwerke)
+    -   ATA = Advanced Technology Attachment (an Anlehnung an IBM PC AT (Advanced Technology))
+    -   Consumer / Desktop Bereich, heute ausgestorben
 -   SATA = Serial ATA
-    -   in Kombination mit PCI-Express ist es leichter zu benutzen & schneller als ATA
--   Parallel SCSI (heute ausgestorben)
+    -   Nachfolger von (P)ATA
+    -   Consumer / Desktop Bereich, aktuell (wird langsam von NVMe (SSDs über PCIe) abgelöst)
+-   (Parallel) SCSI = Small Computer System Interface
+    -   Protokoll zur parallelen Datenübertragung von Festplattten
+    -   Enterprise / Server Bereich, heute ausgestorben
+    -   lebt noch als iSCSI weiter (SCSI über TCP/IP über Ethernet)
 -   SAS = Serial Attached SCSI
+    -   Nachfolger von (Parallel) SCSI
+    -   Enterprise / Server Bereich, aktuell (wird langsam von NVMe (SSDs über PCIe) abgelöst)
 -   PCI = Peripheral Component Interface
--   SPI = Serial Peripheral Interface
--   Thunderbolt
-    -   zur Anbindung performanter Hardware wie GPUs
+    -   PCI Express (PCIe) ist der Nachfolger von PCI
+    -   reines PCI ist heute ausgestorben
 -   USB = Universal Serial Bus
+-   Thunderbolt
+    -   zur Anbindung performanter externer Hardware wie GPUs
+    -   Protokoll ähnlich bzw. enthält Teile von PCIe
+    -   benutzt heute USB-C Verbindung
+    -   mit Thunderbolt 4 bzw. USB 4 ist Thunderbolt 4 optionaler Teil von USB 4
 -   RS-232
     -   sehr alter Standard für serielle Schnittstellen
+    -   wird heute noch für serielle Konsolen verwendet (Router, Switches, Industriemaschinen, etc.)
+-   SPI = Serial Peripheral Interface
+    -   synchroner serieller Bus
+    -   wird von SD Karten verwendet
 -   I2C = Inter-Integrated Circuit
-    -   noch immer verbreiteter Standard zur Kommunikation
+    -   noch immer verbreiteter Standard zur Kommunikation zwischen ICs (on-board)
+    -   synchroner serieller Bus
