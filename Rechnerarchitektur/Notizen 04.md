@@ -1,12 +1,14 @@
 ## Adressbefehle
 
--   0-Adressbefehle
-    -   Stack-based
--   1-Adressbefehle
-    -   Accumulator-based
+-   0-Adressbefehle / Stack
+-   1-Adressbefehle / Accumulator
     -   Ergebnisse werden in Zwischenregister gespeichert
--   2-Adressbefehle
--   3-Adressbefehle
+-   2-Adressbefehle / CISC
+    -   viele spezifische Register
+    -   unterschiedlich lange Register
+-   3-Adressbefehle / RISC
+    -   v.a. generelle Register
+    -   alle Register haben gleiche Länge
 
 ## Instruction Sets
 
@@ -37,12 +39,12 @@
 ## Registers
 
 -   Data Register
--   Flag Register
-    -   z.b. Carry-Flag
--   Instruction Pointer
--   Program Pointer
--   Stack Pointer
--   Index Register
+-   Flag Register (z.B. Carry-/Zero-Flag)
+-   Pointer/Adress Register
+
+    -   Program/Instruction Pointer
+    -   Stack Pointer
+    -   Index Register
 
 -   Immediate Adressing
     -   lädt compile-time-known Wert
