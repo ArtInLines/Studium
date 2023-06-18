@@ -516,18 +516,6 @@ Mischung aus RAID 1 & 5. Daten werden gespiegelt (RAID 1) und jede Spiegelung wi
 
 ![Hypervisor Type 1](imgs/Hypervisor-Type-1.png)
 
-### VM vs Container
-
--   VMs beinhalten Applikationen & vollständiges OS
-    -   Container beinhalten nur notwendige Betriebssystem-Komponenten
--   auf physischem Server laufen i.d.R. mehrere VMs gleichzeitig isoliert von einander
-    -   auf einem OS laufen mehrere Container isoliert von einander
--   Hypervisor für VM leben oft in Ring 0 (Kernel-Space)
-    -   Container leben im User-Space
--   Container haben höhere Portabilität
--   Container haben weniger Overhead (weil kein VMM benötigt wird)
--   Persistente Datenspeicherung bei Containern ist kompliziert
-
 ## Cloud
 
 ### Service Modelle
