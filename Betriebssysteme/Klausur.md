@@ -63,7 +63,6 @@ Bei Antworten jede Abkürzung vorher ausschreiben. In Fragen wird nicht abgekür
 -   Definitionen
     -   Paging, Swapping
     -   MMU, TLB
-    -   PCB, PSW
     -   ...
 -   Adressräume, Basis, Limit
 -   Seitenersetzungsalgorithmen
