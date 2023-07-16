@@ -12,7 +12,7 @@
     -   Geöffnete Dateien, Arbeitsverzeichnis
     -   Elternprozess-ID, Kindprozesse
     -   Signale, verbrauchte CPU-Zeit
-    -   Program-Status-Word (PSW)
+    -   Programm-Status-Word (PSW)
         -   enthält Status-Bits, CPU-Priorität, Modus (Kernel/User), etc.
     -   Zustand (Running, Blocked, Ready)
 -   Scheduler schaltet zwischen Prozessen für Quasi-Parallelität
@@ -21,7 +21,7 @@
 ## Threads
 
 -   "Mini-Prozess": mehrere Threads können (quasi-)parallel auf einem Prozess ausgeführt werden
--   Threads teilen sich den Adressraums des Mutter-Prozesses
+-   alle Threads eines Prozesses teilen sich den selben Adressraum des Mutter-Prozesses
 -   Einheit der Prozessorzuteilung
 -   Elemente pro Thread:
     -   Befehlszähler
@@ -67,7 +67,15 @@
 
 -   Synchronisationskonstrukt
 -   Zählt Anzahl freier Ressourcen
--   Mutex = binärer Semaphor
+    -   \>= 0: Anzahl freier Ressourcen
+    -   < 0: Anzahl der wartenden Prozesse
+-   Steuerung via 2 Operationen:
+    -   down(): 
+        -   falls Semaphor > 0 --> verringere um 1
+    -   up(): 
+        -   falls Semaphor > 0 --> erhöhe um 1
+        -   falls Semaphor <= 0 --> einen blockierten Prozess wecken
+-   Mutex = binärer Semaphor (eine Art der Implementierung des Semaphors)
 
 ## Scheduler
 
@@ -194,7 +202,7 @@ Um einen Deadlock zu erkennen, vergleicht man jede Zeile von $R$ mit $A$. Wenn e
     -   jeder Prozess hat seinen eigenen Adressraum
     -   CPU hat Basis- & Limit-Register
         -   Basis-Register hält die untere Grenze des physischen Speichers des Prozesses
-        -   Limi-Register hält die obere Grenze des physischen Speichers des Prozesses
+        -   Limit-Register hält die obere Grenze des physischen Speichers des Prozesses
         -   ermöglicht dynamische Relokation
 -   Fragmentierung durch Swapping
     -   Relokation eines Prozesses auf die Festplatte fragmentiert den Speicher
@@ -204,7 +212,7 @@ Um einen Deadlock zu erkennen, vergleicht man jede Zeile von $R$ mit $A$. Wenn e
 ## Speicherverwaltung
 
 -   mit Bitmaps
-    -   Unterteilung des Speichers in Belegungseinheite
+    -   Unterteilung des Speichers in Belegungseinheiten
     -   jede Einheit ist nur einige KB groß
     -   für jede Einheit gibt es ein Bit in der Bitmap mit 0=frei & 1=belegt
 -   mit verketteten Listen
@@ -253,7 +261,7 @@ Adressraums eines Prozesses wird in Pages aufgeteilt. Pages sind aneinander angr
 2. MMU löst Systemaufruf aus
 3. OS ermittelt Grund der Ausnahme
     - Bei Schutzverletzung wird Prozess abgebrochen
-4. OS tauscht ausgelagerte Seite mit eine anderen im Arbeitsspeicher
+4. OS tauscht ausgelagerte Seite mit einer Anderen im Arbeitsspeicher
 5. OS ändert Seitentabelle (+ TLB-Flush)
 6. OS führt unterbrochenen Befehl erneut aus
 
@@ -298,7 +306,7 @@ Adressraums eines Prozesses wird in Pages aufgeteilt. Pages sind aneinander angr
         -   nur Seiten des selben Prozesses werden ausgelagert
         -   führt bei wachsendem Speicher zu mehr Seitenfehlern (Trashing)
     -   Global
-        -   auch Seiten anderer Prozesse werde ausgelagert
+        -   auch Seiten anderer Prozesse werden ausgelagert
         -   dynamische Speicherbereiche
 -   Lokalitätseigenschaft
     -   Demand Paging
@@ -327,7 +335,7 @@ Adressraums eines Prozesses wird in Pages aufgeteilt. Pages sind aneinander angr
     -   wird beim Systemstart vom BIOS gelesen & ausgeführt
 -   Partition
     -   beginnt mit einem Boot-Block
-        -   Boot-Block enthält Program zum Laden des Betriebssystems
+        -   Boot-Block enthält Programm zum Laden des Betriebssystems
     -   enthält Dateien & Ordner
     -   enthält Verwaltungsdaten (I-Nodes, Wurzelverzeichnis, etc.)
 -   Verwaltung freier Blöcke
@@ -336,7 +344,7 @@ Adressraums eines Prozesses wird in Pages aufgeteilt. Pages sind aneinander angr
 
 ## Dateien
 
--   Dateien werden in Blöcken fixer Größen gespeichert - verhindertt Fragmentierung
+-   Dateien werden in Blöcken fixer Größen gespeichert - verhindert Fragmentierung
 -   File Allocation Table (FAT)
     -   Blöcke einer Datei werden als verkettete Liste gespeichert
     -   Reservierter Speicher für FAT hängt von der Plattengröße ab
@@ -351,7 +359,7 @@ Adressraums eines Prozesses wird in Pages aufgeteilt. Pages sind aneinander angr
 -   Log-Structured File Systems (LFS)
     -   Platte als Log strukturiert
     -   Gesammelt & Gebündelte Schreibaufträge
-    -   schnell bei Screibzugriffen mit kleinen Blöcken
+    -   schnell bei Schreibzugriffen mit kleinen Blöcken
     -   inkompatibel mit existierenden Dateisystemen -> wenig verbreitet
 -   Journaling File System (FJS)
     -   Geplante Operationen werden erst geloggt und dann durchgeführt
@@ -385,15 +393,17 @@ Adressraums eines Prozesses wird in Pages aufgeteilt. Pages sind aneinander angr
     -   v.a. sinnvoll bei langsamerer I/O
 -   DMA-basierte I/O
     -   DMA-Controller koordiniert Datenübertragung direkt
-    -   Keine CPU-Belastung
+    -   wesentlich geringere CPU-Belastung
     -   v.a. sinnvoll bei Übertragung großer Datenblöcke
-    -
 
 ## RAID
 
--   Raid = Redundant Array of Inexpensive Disks
--   Idee: Parallelverarbeitung bei Festplatten für bessere Performanz
--   in Praxis nur RAID-Level 0, 1 und 5 verwendet
+-   RAID = Redundant Array of Independent (Inexpensive) Disks
+-   Idee: Festplatten zu einem logischen Laufwerk zusammenfassen, um
+    -   Datensicherheit zu erhöhen (Redundanz, nicht von einer einzelnen Festplatte abhängig (Ausnahme RAID 0))
+    -   Speicherkapazität zu erhöhen (durch Zusammenfassen mehrerer Festplatten, würde auch mit JBOD etc. gehen)
+    -   Datentransferrate zu erhöhen (Parallelverarbeitung bei Festplatten für bessere Performanz, spielt bei SSDs (kaum) (k)eine Rolle)
+-   in Praxis nur RAID-Level 0, 1 und 5 (+ 6) verwendet
 
 | Betrieb                 | RAID 0                 | RAID 1                            | RAID 5                  |
 | ----------------------- | ---------------------- | --------------------------------- | ----------------------- |
@@ -488,7 +498,7 @@ Mischung aus RAID 1 & 5. Daten werden gespiegelt (RAID 1) und jede Spiegelung wi
 -   Vereinfachte Administration
 -   Vereinfachte Bereitstellung
 -   Erhöhung der Verfügbarkeit
--   Erhähte Sicherheit
+-   Erhöhte Sicherheit
 
 ### Virtualisierung via Emulation
 

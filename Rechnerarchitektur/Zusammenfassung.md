@@ -99,7 +99,7 @@ Notiz: Instruction Sets bieten meistens nur einige dieser Adressierungsarten als
     <!-- @Question is this description accurate? -->
     -   lädt den über ein Register dereferenzierten Wert in ein weiteres Register
 
-Weitere Adressierungsarten sind auf (Wikipedia)[https://en.wikipedia.org/wiki/Addressing_mode] gut erklärt.
+Weitere Adressierungsarten sind auf [Wikipedia](https://en.wikipedia.org/wiki/Addressing_mode) gut erklärt.
 
 ### Ablauf
 
