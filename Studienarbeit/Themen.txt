@@ -1,5 +1,0 @@
-- 14 [39785] GPU-Computing (Eckhard Kruse) [2-3]
-- 32/33 [40115] Tiny ML-Based Quality Control in Manufacturing (Bozena Lamek-Creutz, Shobhit Agarwal) [1-2]
-	- Tiny ML = Eigenentwicklung des Machine Learnings?
-- 63 [40155] Vergleich von unterschiedlichen Abstandsmethoden zur Auswahl einer besten Objektsuche (Joachim Brock) [1-2]
--
