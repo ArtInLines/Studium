@@ -6,6 +6,8 @@
 
 ## Regeln nach Codd
 
+(nicht komplett auswendig zu lernen)
+
 -   Multidimensionale Sicht auf Daten
 -   Trennung von UI & Architektur
 -   Generische Dimensionalität & einheitlicher Dimensionierung
@@ -17,6 +19,8 @@
 -   Flexibles Berichtswesen
 
 ## FASMI-Regeln
+
+(wäre gut die auswendig zu können)
 
 -   Fast
 -   Analysis (einfache Analyse möglich)

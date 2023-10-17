@@ -1,0 +1,43 @@
+<mxfile host="Electron" modified="2023-10-09T16:58:10.653Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.8.2 Chrome/114.0.5735.289 Electron/25.8.1 Safari/537.36" etag="sdVlWMi4ZR2aBHglaGNJ" version="21.8.2" type="device">
+  <diagram name="Page-1" id="bS5SVlGqzaaXHEVSMu9b">
+    <mxGraphModel dx="1418" dy="828" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="kuMl-loZws6XlfUbZ010-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Helvetica;fontSize=12;fontColor=default;strokeWidth=3;" edge="1" parent="1" source="kuMl-loZws6XlfUbZ010-2" target="kuMl-loZws6XlfUbZ010-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="kuMl-loZws6XlfUbZ010-2" value="&lt;font style=&quot;font-size: 24px;&quot;&gt;&lt;b&gt;UI&lt;/b&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="122.00999999999999" y="340" width="117.99" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="kuMl-loZws6XlfUbZ010-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontFamily=Helvetica;fontSize=12;fontColor=default;strokeWidth=3;" edge="1" parent="1" source="kuMl-loZws6XlfUbZ010-4" target="kuMl-loZws6XlfUbZ010-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="kuMl-loZws6XlfUbZ010-4" value="&lt;font style=&quot;font-size: 24px;&quot;&gt;&lt;b&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; User&lt;/b&gt;&lt;/font&gt;" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;strokeWidth=4;" vertex="1" parent="1">
+          <mxGeometry x="141" y="30" width="80" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="kuMl-loZws6XlfUbZ010-3" value="" style="image;points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image=img/lib/allied_telesis/computer_and_terminals/Personal_Computer.svg;" vertex="1" parent="1">
+          <mxGeometry x="70" y="360" width="112.01" height="151.8" as="geometry" />
+        </mxCell>
+        <mxCell id="kuMl-loZws6XlfUbZ010-10" value="&lt;span style=&quot;border-color: var(--border-color); font-size: 24px; background-color: rgb(255, 255, 255);&quot;&gt;&lt;i&gt;Input Music&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;(format is to be&lt;br&gt;determined still)&lt;/i&gt;&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontFamily=Helvetica;fontColor=default;" vertex="1" parent="1">
+          <mxGeometry x="190" y="230" width="222.01" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="kuMl-loZws6XlfUbZ010-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;fontFamily=Helvetica;fontSize=12;fontColor=default;strokeWidth=3;" edge="1" parent="1" source="kuMl-loZws6XlfUbZ010-12" target="kuMl-loZws6XlfUbZ010-15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="kuMl-loZws6XlfUbZ010-12" value="&lt;font style=&quot;font-size: 24px;&quot;&gt;&lt;b&gt;Arduino&lt;/b&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="480" y="340" width="120" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="kuMl-loZws6XlfUbZ010-14" value="&lt;span style=&quot;font-size: 24px; background-color: rgb(255, 255, 255);&quot;&gt;&lt;i&gt;Send Prepocessed&lt;br&gt;Music Data&lt;/i&gt;&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontFamily=Helvetica;fontColor=default;" vertex="1" parent="1">
+          <mxGeometry x="240" y="380" width="230" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="kuMl-loZws6XlfUbZ010-15" value="&lt;font style=&quot;font-size: 24px;&quot;&gt;&lt;b&gt;Motors&lt;/b&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="480" y="100" width="120" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="kuMl-loZws6XlfUbZ010-17" value="&lt;span style=&quot;font-size: 24px; background-color: rgb(255, 255, 255);&quot;&gt;&lt;i&gt;Control&lt;br&gt;Movement&lt;/i&gt;&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontFamily=Helvetica;fontColor=default;" vertex="1" parent="1">
+          <mxGeometry x="550" y="230" width="130" height="50" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
