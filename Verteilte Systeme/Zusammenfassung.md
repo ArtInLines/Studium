@@ -72,7 +72,7 @@
   - stark = Code/Prozess wird während Ausführung migriert
     - Anhalten -> Verschieben des Prozesses -> Fortsetzen
     - Register, Stack, Heap, etc. müssen alle migriert werden
-- Initierung
+- Initiierung
   - Senderinitiiert
     - Client sendet Code an Server
     - hohes Sicherheitsrisiko
