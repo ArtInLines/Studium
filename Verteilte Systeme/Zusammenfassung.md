@@ -167,15 +167,15 @@
   - Bits im Nachrichten-Header um anzugeben, ob es Original-Übertragung ist
 - Clientabsturz nach Senden der Anforderung
   - Waisen exterminieren
-   - Logging wenn RPCs ausgeführt werden
-   - austehende Antworten ggf. Beenden
+    - Logging wenn RPCs ausgeführt werden
+    - austehende Antworten ggf. Beenden
   - Reinkarnation
-   - Multicast Nachricht des Clients nach Reboot an alle
-   - Server hört auf diese Nachricht und löscht ausstehende Antworten
+    - Multicast Nachricht des Clients nach Reboot an alle
+    - Server hört auf diese Nachricht und löscht ausstehende Antworten
   - Verfall
-   - Antworten werden nur für eine gewisse Zeitspanne gehalten, bevor sie gelöscht werden
+    - Antworten werden nur für eine gewisse Zeitspanne gehalten, bevor sie gelöscht werden
   - Freundliche Reinkarnation
-   - Wie Reinkarnation, aber es wird geprüft ob weitere Berechnungen ohne Eigentümer ausstehen
+    - Wie Reinkarnation, aber es wird geprüft ob weitere Berechnungen ohne Eigentümer ausstehen
 
 ## Benennung
 
