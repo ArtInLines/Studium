@@ -86,17 +86,16 @@
     - Prozess darf nicht in kritischer Phase sein (z.B. bei Dateizugriff)
 - Mobilität
   - schwach = Code/Prozess wird vor Ausführungsstart migriert (einfacher)
-   - nahe an Code-Migration
   - stark = Code/Prozess wird während Ausführung migriert
     - Anhalten -> Verschieben des Prozesses -> Fortsetzen
     - Register, Stack, Heap, etc. müssen alle migriert werden
 - Initiierung
   - Senderinitiiert
-   - Client sendet Code an Server
-   - hohes Sicherheitsrisiko
+    - Client sendet Code an Server
+    - hohes Sicherheitsrisiko
   - Empfängerinitiiert
-   - Initiatve durch Zielcomputer
-   - z.B. im Kontext eines Webbrowser
+    - Initiatve durch Zielcomputer
+    - z.B. im Kontext eines Webbrowser
 
 - Problem: Ressourcenmanagement
 - Heterogene Systeme erfordern hohe Portabilität des Codes
@@ -108,7 +107,6 @@
 - Erhöht Portabilität (über Reduktion von Unterschiedlichkeit)
 - kann Sicherheit erhöhen (über Isolation)
 - Containervirtualisierung zur Isolierung von Prozessen
-- macht SysAdmins das Leben leichter (z.B. durch einfache Installation / Tests von Software)
 
 ## Kommunikation
 
