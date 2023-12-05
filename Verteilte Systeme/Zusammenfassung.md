@@ -1,7 +1,7 @@
 ## Verteilte Syteme
 
 - Definition:
-  > Viele unabhängige Computer, die wie ein einzelnes (kohärentes) System erscheinen
+> Viele unabhängige Computer, die wie ein einzelnes (kohärentes) System erscheinen
 
 - Erhöhte Skalierbarkeit (vertikale Skalierung)
 - Bessere Ausfallsicherheit
@@ -186,20 +186,20 @@
   - Weiterleitung bei mobilen Entitäten nötig
   - Verteilte Hash-Tabellen in P2P Netzwerken möglich
   - Heimatgestützte Benennung
-   - Einführung des Heimatstandortes einer mobilen Entität
-   - care of address (CoA) = aktuelle Adresse der mobilen Entität wird beim Heimatstandort hinterlegt
+    - Einführung des Heimatstandortes einer mobilen Entität
+    - care of address (CoA) = aktuelle Adresse der mobilen Entität wird beim Heimatstandort hinterlegt
 - Hierarchisch
   - Name gibt Pfad in beschrifteten Baum an
   - Bsp.: URL, Dateisystem
   - Mounting von Dateisystemen
   - Nameserver um Namen aufzulösen
-   - iterativ
-     - Pro Knotenpunkt in Namen, macht Client eine Anfrage an jeweiligen Name-Server
-     - Nachteil: Höhere Kommunikationskosten
-   - rekursiv
-     - Nameserver gibt restlichen Namen an nächsten Nameserver, bis Name komplett aufgelöst wurde
-     - Nachteil: Nameserver stärker ausgelastet
-     - Vorteil: Leistungssteigerung durch Caching
+    - iterativ
+      - Pro Knotenpunkt in Namen, macht Client eine Anfrage an jeweiligen Name-Server
+      - Nachteil: Höhere Kommunikationskosten
+    - rekursiv
+      - Nameserver gibt restlichen Namen an nächsten Nameserver, bis Name komplett aufgelöst wurde
+      - Nachteil: Nameserver stärker ausgelastet
+      - Vorteil: Leistungssteigerung durch Caching
 - Attributbasiert
 
 ## Uhrensynchronisierung
@@ -207,18 +207,14 @@
 - TAI = International Atomic Time
   - beachtet keine Schaltsekunden
 - UTC = Universal Standard Time
-
   - beachtet Schaltsekunden
-
 - NTP = Network Time Protocol
-
   - Synchronisiert Uhren in Netzwerken
   - Server sendet Zeitstempel an Client
   - Client berechnet Zeitdifferenz
   - Client sendet Zeitdifferenz an Server
   - Server korrigiert Zeitstempel
   - Problem: Zeitdifferenz kann sich ändern
-
 - Berkeley Algorithmus
   - Master-Slave-Prinzip
   - Master sendet Zeitstempel an Slaves
@@ -309,18 +305,17 @@
   - Erzeugung temporärer Replikate zur Leistungsverbesserung
   - Master Node weißt Replikate an anderen Server zu
 - Clientinitiierte Replikate
-
   - Lokales Caching für kürzere Latenzen
   - Sollte temporär sein & Cache-Hit-Statistik sollte beachtet werden
   - z.B. Webbrowser-Cache, lokaler Cloud Dateisync
 
 - Weiterleitung über Aktualisierung
   - Push-basiert = serverbasiert
-   - hohe Konsistenz
-   - Server sendet alle Clients mit Replikaten die Aktualisierung
+    - hohe Konsistenz
+    - Server sendet alle Clients mit Replikaten die Aktualisierung
   - Pull-basiert = clientbasiert
-   - sinnvoll, wenn mehr gelesen als geschrieben wird
-   - z.B. bei Webcaches
+    - sinnvoll, wenn mehr gelesen als geschrieben wird
+    - z.B. bei Webcaches
 - Leases (Hybrid)
   - Push-Methode vom Server, wenn Lease vorhanden, ansonsten Pull-Methode vom Client
   - IP Leases: ausgeliehene IPs in öffentlichen Netzwerken
@@ -333,8 +328,8 @@
   - Locks, um mehrere Operationen zu einer atomaren Einheit zusammenfassen zu können
 - Clientzentrierte Konsistenz
   - Eventual Consistency
-   - Nach gewisser Zeit sind alle Replikate konsistent
-   - bei mobilen Clients schwierig
+    - Nach gewisser Zeit sind alle Replikate konsistent
+    - bei mobilen Clients schwierig
   - "Read-Your-Writes" Consistency
   - "Writes-Follows-Read" Consistency
 - Konsistenzeinheit = Conit
@@ -361,32 +356,32 @@
   - Fehlervorhersage (Fault Forecasting)
 - Arten an Fehlern
   - Systemausfall (Failure)
-   - Absturzausfall = ständiger Dienstausfall
-   - Dienstausfall = Empfängt & Sendet nicht
-   - Zeitbedingter Ausfall = Überschreitet Timeouts
-   - Antwortfehler = Falsche Antwort
-   - Byzantischer/Zufälliger Ausfall = Server erstellt zufällige Antworten zu zufälligen Zeiten
+    - Absturzausfall = ständiger Dienstausfall
+    - Dienstausfall = Empfängt & Sendet nicht
+    - Zeitbedingter Ausfall = Überschreitet Timeouts
+    - Antwortfehler = Falsche Antwort
+    - Byzantischer/Zufälliger Ausfall = Server erstellt zufällige Antworten zu zufälligen Zeiten
   - Fehler (Error) = Systemzustand, der zum Ausfall geführt hat
   - Störung (Fault) = Ursache des Ausfalls
-   - Vorübergehende vs. Permanente Störung
+    - Vorübergehende vs. Permanente Störung
 - Strategien für Fehlertoleranz
   - Maskierung des Fehlers durch Redundanz
-   - Informationsredundanz (z.B.: Hamming Codes)
-   - Zeitliche Redudanz (z.B.: Aktion wiederholen)
-   - Technische Redundanz (z.B.: zusätzlicher Prozess)
+    - Informationsredundanz (z.B.: Hamming Codes)
+    - Zeitliche Redudanz (z.B.: Aktion wiederholen)
+    - Technische Redundanz (z.B.: zusätzlicher Prozess)
 
 ### Prozess-Resilienz
 
 - Replikation von Prozessen
   - Lineare Gruppe (kein zentraler Koordinator)
-   - Replikation via nicht-urbildbasierten Protokollen (z.B.: Quorumbasierte Schreibvorgänge)
+    - Replikation via nicht-urbildbasierten Protokollen (z.B.: Quorumbasierte Schreibvorgänge)
   - Hierarchisch Gruppe (schneller, aber hat Single-Point-of-Failure)
-   - Replikation via Urbildbasierten Protokollen
+    - Replikation via Urbildbasierten Protokollen
 
 ### Failure Detection
 
 - Zustandsanfragen an Prozesse ("Lebst du noch?")
-  - False positives möglich (Last der Node ist hoch -> Antwort kommt zu spät)
+   - False positives möglich (Last der Node ist hoch -> Antwort kommt zu spät)
 - Regelmäßiges Senden von Heartbeats
 
 ### Client-Server Kommunikation
