@@ -88,10 +88,9 @@
   - schwach = Code/Prozess wird vor Ausführungsstart migriert (einfacher)
    - nahe an Code-Migration
   - stark = Code/Prozess wird während Ausführung migriert
-   - Anhalten -> Verschieben des Prozesses -> Fortsetzen
-   - Register, Stack, Heap, etc. müssen alle migriert werden
-- Initierung
-
+    - Anhalten -> Verschieben des Prozesses -> Fortsetzen
+    - Register, Stack, Heap, etc. müssen alle migriert werden
+- Initiierung
   - Senderinitiiert
    - Client sendet Code an Server
    - hohes Sicherheitsrisiko
