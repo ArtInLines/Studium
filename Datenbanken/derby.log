@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Tue Dec 05 14:55:31 CET 2023:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-018c-3a43-0af4-0000070888e8 
+on database directory memory:C:\Users\Administrator\Documents\Studium\Datenbanken\derbyDB with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@33909752 
+Loaded from file:/C:/Users/Administrator/Documents/Studium/Datenbanken/lockdemo.jar
+java.vendor=Oracle Corporation
+java.runtime.version=20.0.1+9-29
+user.dir=C:\Users\Administrator\Documents\Studium\Datenbanken
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
