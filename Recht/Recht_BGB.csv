@@ -1,0 +1,122 @@
+﻿"﻿Paragraph",Name,Hinweise,VL
+1,Beginn der Rechtsfähigkeit,,1
+2,Eintritt der Volljährigkeit,,1
+7,Wohnsitz,,1
+12,Namensrecht,z.B. Domain-Namen -> Beseitigung & Unterlassung,1
+13,Verbraucher,,1
+14,Unternehmer,,1
+104-108,(beschränkte) Geschäftsfähigkeit,Ab 18. Geburtstag tritt die eigene Genehmigung an die Stelle des Vertreters,1
+109,Widerrufsrecht des anderen Teils,Anderer Teil ist bei Minderjährigen zum Widerruf berechtigt.,5
+110,Bewirken der Leistung mit eigenen Mitteln,"""Taschengeld” steht Minderjährigen zur freien Verfügung",5
+112,Selbstständiger Betrieb eines Erwerbsgeschäfts,"Minderjähriger ist unbeschränkt geschäftsfähig, wenn gesetzlicher Vertreter ihn dazu ermächtigt.",5
+113,Dienst- oder Arbeitsverhältnis,"Minderjähriger ist unbeschränkt geschäftsfähig beim Arbeiten, wenn der gesetzliche Vertreter ihn dazu ermächtigt.",5
+119-120,"Anfechtbarkeit wegen Irrtums, falscher Übermittlung","Anfechtung möglich, wenn Irrtum über Sache oder Person vorliegt, oder falsche Erklärung durch Dritte (z.B. Computer-Programm) abgegeben wurde ",2
+122,Schadensersatzpflicht des Anfechtenden,"Anfechtender muss Schaden ersetzen, wenn Anderer auf Gültigkeit vertraut",4
+123,Anfechtbarkeit wegene Täuschung oder Drohung,"Wer zur Abgabe einer Willenserklärung wegen arglistiger Täuschung oder Drohung bewegt wird, kann diese anfechten",4
+125,Nichtigkeit wegen Formmangels,"Rechtsgeschäft ist nichtig, wenn die richtige gesetzliche Form nicht eingehalten wurde.",5
+126,Schriftform,,5
+127,Vereinbarte Form,Die vereinbarte Form gilt bei Rechtsgeschäften ohne vorgeschriebene Form,5
+127a,Gerichtlicher Vergleich,Richterliches Protokoll ersetzt notarielle Beurkundung,5
+130,Wirksamwerden der Willenserklärung gegenüber Abwesenden,"Willenserklärung wird wirksam, ab dem Zeitpunkt, in dem sie ihm zugeht",2
+133,Auslegung einer Willenserklärung,"Auslegung muss Sinn folgen, nicht Wortlaut",1
+134-138,Veräußerungsverbote,"Rechtsgeschäfte sind nichtig, wenn sie gegen ein anderes Gesetz verstoßen (z.B. Leihmutterschaft)",2
+139,Teilnichtigkeit,"Wenn ein Teil eines Rechtsgeschäfts nichtig ist, dann ist das gesamte Rechtsgeschäft nichtig, wenn es nicht ohne den nichtigen Teil vorgenommen werden kann.",3
+142-143,"Anfechtungserklärung, Anfechtung","Wird ein Rechtsgeschäft angefochten, wird es von Anfang an als nichtig angesehen",2
+145,Bindung an den Antrag,"Antrag = Angebot; IA0 (Invitatio at offerendo) = Kaufeinladung (Supermarkt, Tankstelle machen unverbindliche Werbung -> Kunde macht Angebot an Verkäufer)",1
+153,Tod oder Geschäftsunfähigkeit des Antragenden,"Zustandekommen des Vertrags wird nicht verhindert, wenn Antragender vor Annahme stirbt",2
+157,Auslegung von Verträgen,Auslegung nach Treu und Glauben der Verkehrssitte,1
+241,Pflichten aus dem Schuldverhältnis,,2
+241a,Unbestellte Leistungen,"Kein Anspruch gegen Verbraucher, wenn Waren nicht bestellt wurden",2
+243,Gattungsschuld,"Wer eine nur der Gattung nach bestimmte Sache schuldet, hat eine Sache von mittlerer Art und Güte zu leisten;
+Hat der Schuldner das zur Leistung einer solchen Sache seinerseits Erforderliche getan, so beschränkt sich das Schuldverhältnis auf diese Sache",2
+254,Mitverschulden,Bei Mitverschulden des Beschädigten (auch unterlassener Verweis auf Gefahr) hängt Verpflichtung zum Schadensersatz vom Anteil der Schuld ab,5
+269,Leistungsort,"Bei keinem vereinbarten Leistungsort, ist die Leistung am Wohnsitz/Geschäftssitz des Schuldners zu tätigen",4
+271,Leistungszeit,"Ist keine Zeit für die Leistung bestimmt, kann der Gläubiger sie sofort verlangen",4
+275,Ausschluss der Leistungspflicht,"Der Anspruch auf Leistung ist ausgeschlossen, soweit diese für den Schuldner oder für jedermann unmöglich ist.",4
+276,Verantwortlichkeit des Schuldners,"""Fahrlässig handelt, wer die im Verkehr erforderliche Sorgfalt außer Acht lässt"" (grobe, mittlere, normale, leichte); 
+Verkehr = Rechtsverkehr;
+Vorsatz = bewusstes Handeln;
+bedingter Vorsatz = in Kauf genommenes Handeln;
+Absicht = bewusstes, gewolltest, geplantes Handeln",1
+278,Verantwortlichkeit des Schuldners für Dritte,Schuldner hat ein Verschulden seines Vertreters in gleichem Maß zu verantworten wie eigenes Verschulden,6
+280,Schadensersatz wegen Pflichtverletzung,"Schuldner schuldet nicht, wenn er die Pflichtverletzung nicht verantwortet",1
+281-282,Schadensersatz statt Leistung,"Schadensersatz kann statt der Leistung gefordert werden, wenn der Schulder die Leistung nicht erbracht hat oder dem Schuldner die Leistung nicht mehr zuzutrauen ist.",5
+284,Ersatz vergeblicher Aufwendungen,"Anstelle von Schadensersatz statt Leistungen kann der Gläubiger Ersatz der Aufwendungen verlangen, die er im Vertrauen auf den Erhalt der Leistungen gemacht hat.",6
+286,Verzug des Schuldners,Durch eine Mahnung gerät der Schuldner in Verzug; 5 Bedingungen für Verzug,4
+287,Verantwortlichkeit während des Verzugs,Schuldner hat während Verzug jede Fahrlässigkeit zu vertreten.,6
+288,Verzugszinsen und sonstiger Verzugsschaden,Pauschalzahlung von 40€ für Gläubiger zusätzlich zu Schadensersatz,6
+293,Annahmeverzug,"Der Gläubiger kommt in Verzug, wenn er die ihm angebotene Leistung nicht annimmt.",6
+300,Gläubigerverzug,"Schuldner vertritt während des Gläubigerverzugs nur Vorsatz und grobe Fahrlässigkeit; Gefahr geht in dem Moment auf Gläubiger über, in welchem er die Sache nicht annimmt und dadurch in Annahmeverzug gerät.",6
+305,AGB,Für eine Vielzahl von Verträgen vorformulierte Vertragsbedingungen. Verwender muss darauf hingewiesen werden und er muss zustimmen. 305b: Individualabreden haben Vorrang vor AGB,3
+307,Inhaltskontrolle AGB,"AGB sind verboten, wenn sie den Verwender gegen Treu und Glauben benachteiligen",3
+308-309,Klauselverbote AGB,309.2: Keine pauschalen Schadensersätze,3
+311,Rechtgeschäftliche und rechtsgeschäftsähnliche Schuldverhältnisse,Schuldverhältnisse erfordern (anbahnenden) Vertrag zw. Beteiligten,2
+311a,Leistungshindernis bei Vertragsschluss,"Vertrag ist wirksam, auch wenn Leistungshindernis schon bei Vertragsschluss vorliegt. Wenn der Schuldner das Hindernis bei Vertragsschluss kannte, kann der Gläubiger Schadensersatz verlangen.",6
+312b,Außerhalb von Geschäftsräumen geschlossene Verträge,Körperliche Anwesenheit der Vertragsparteien,1
+312c,Fernabsatzverträge,Online-Verträge,1
+312g,Widerrufsrecht,Widerrufsrecht auch bei Fernabsatzverträgen,1
+320,Einrede des nicht erfüllten Vertrags,Obliegende Leistung kann bis zur Bewirkung der Gegenleistung verweigert werden,7
+323,Rücktritt wegen nicht oder nicht vertragsgemäß erbrachter Leistung,"Erbringt der Schuldner eine fällige Leistung nicht (vertragsgemäß), so kann der Gläubiger vom Vertrag zurücktreten, wenn er dem Schuldner erfolglos eine angemessene Frist (2 Wochen i.d.R.) zur Leistung oder Nacherfüllung bestimmt hat.",6
+326,Befreiung von der Gegenleistung und Rücktritt beim Ausschluss der Leistungspflicht,"Braucht der Schuldner nach 275 nicht zu leisten, entfällt der Anspruch auf Gegenleistung",5
+363,Beweislast bei Annahme als Erfüllung,"Wenn Gläubiger eine erfüllte Leistung als Erfüllung annimmt, gilt für ihn die Beweislast, wenn er sie nicht als erfüllt ansehen will.",7
+433,Vertragstypische Pflichten beim Kaufvertrag,"Käufer bekommt Sache, Verkäufer erhält Kaufpreis; Kein Bezahlen des Preises ohne Vereinbarung des Kaufpreises",1
+434,Sachmangel,“Sache ist so wie sie nicht sein soll”,4
+435,Rechtsmangel,"Die Sache ist frei von Rechtsmängel, wenn Dritte in Bezug auf die Sache keine oder nur die im Kaufvertrag übernommenen Rechte gegen den Käufer geltend machen können; BSP: Vertrieb unlizensierter Software",7
+437,Rechte des Käufers bei Mangel,Nacherfüllung verlangen; Rücktritt oder Minderung UND Schadensersatz,7
+438,Verjährung der Mängelansprüche,Im Normalfall nach 2 Jahren,4
+439,Nacherfüllung,"Verkäufer muss Mängel beseitigen oder Lieferung einer mangelfreien Sache tätigen; Wenn Käufer Mängeln annimmt, kann er Preisminderung fordern",4
+440,Besondere Bestimmungen für den Rücktritt und Schadensersatz,Eine Nachbesserung gilt nach dem erfolglosen zweiten Versuch als fehlgeschlagen,7
+442,Kenntnis des Käufers,Käufer ist verantwortlich Ware beim Kauf zu prüfen,3
+443,Garantie,"Verkäufer muss Preis erstatten oder Sache ausbessern, wenn Beschaffenheit nicht der Vereinbarung entspricht.",3
+444,Haftungsausschluss,"Vereinbarung, durch welche die Rechte des Käufers wegen eines Mangels ausgeschlossen oder beschränkt werden, wenn er Mängel nicht verschwiegen hat; Mängelansprüche nach 438",7
+446-448,Gefahrenübergang; Gefahrenübergang beim Versendungskauf; Kosten der Übergabe,"Mit der Übergabe geht die Gefahr dem Käufer zu;
+Wird Sache auf Verlangen vom Käufer an anderen Ort als Erfüllungsort versandt, so geht die Gefahr auf den Käufer über, in dem Moment als der Verkäufer dem Spediteur die Sache übergibt;
+Verkäufer trägt Kosten der Übergabe, Käufer trägt Kosten der Abnahme und Versendung der Sache nach anderem Ort als Erfüllungsort",4
+449,Eigentumsvorbehalt,Eigentum wird vorbehalten bis Zahlung vollständig.,6
+453,Rechtskauf; Vebrauchervertrag über den Kauf digitaler Inhalte,,7
+474,Verbrauchsgüterkäufe,Verbrauchsgüterkäufe sind Verträge durch die eine Verbraucher von einem Unternehmer eine Ware/Dienstleistung kauft.,7
+475b-e,Sachmangel einer Ware mit digitalen Elementen,,7
+476,Abweichende Vereinbarungen (bei Mängeln),,7
+477,Beweislastumkehr,"Zeigt sich innerhalb von einem Jahr nach Gefahrenübergang ein Sachmangel, so kann davon ausgegangen, dass der Sachmangel bereits vorher vorlag",4
+479,Sonderbestimmungen für Garantien,,7
+516,Begriff der Schenkung,Ein Schenkungsvertrag ist unentgeltlich,2
+521,Haftung des Schenkers,Schenker hat nur Vorsatz und grobe Fahrlässigkeit zu vertreten.,6
+518,Form des Schenkungsversprechens,"Das Versprechen einer Schenkung muss notariell beurkundet werden, nicht die Schenkung selbst → Notar ist unnötig wenn Leistung erfüllt wird",2
+535,Inhalt und Hauptpflichten des Mietvertrages,"Vermieter muss Mieter Gebrauch der Sache erlauben, die Mietsache in ordentlichem Zustand überlassen. Vermieter muss für Pflege der Mietsache sorgen. (Bei Leasing: Mieter muss für Pflege sorgen)",3
+536,Schadens- und Aufwendungsersatzanspruch des Mieters wegen eines Mangels,"Mieter kann Schadensersatz verlangen, wenn Vermieter Mängel nicht beseitigt; Bei Wohnungen z.B. auch Ersatzunterbringung (Hotel) inkl. Essen",8
+543,Außerordentliche fristlose Kündigung aus wichtigem Grund,,8
+549,Auf Wohnraummietverhältnisse anwendbare Vorschriften,,8
+550,Form des Mietvertrags,"Schriftliche Form, sonst unbefristet aber mindestens ein Jahr bis zur Kündigung",8
+598,Vertragstypische Pflichten bei der Leihe,,2
+599,Haftung des Verleihers,Verleiher hat nur Vorsatz und grobe Fahrlässigkeit zu verantworten,2
+618,Pflicht zu Schutzmaßnahmen (Dienst- und Werkvertrag),"Räume, Vorrichtungen und Gerätschaften müssen bereitgestellt werden; Notwendige Sorgfalt bei Arbeits- und Erholungszeiten; Schadensersatz bei Verletzung möglich",8
+631,Werkvertrag,"Durch den Werkvertrag wird der Unternehmer zur Herstellung des versprochenen Werkes, der Besteller zur Entrichtung der vereinbarten Vergütung verpflichtet. (z.B. Feuerwehr oder Norarzt); ) Gegenstand des Werkvertrags kann sowohl die Herstellung oder Veränderung einer Sache als auch ein anderer durch Arbeit oder Dienstleistung herbeizuführender ERFOLG sein.",8
+632,Vergütung (Werkvertrag),"Vergütung durch Vereinbarung, Stillschweigen oder vereinbarte Taxe.",8
+633,Sach- und Rechtsmängel (Werkvertrag),Werk ist Sach- und Rechtsmängel frei zu verschaffen.; Ähnlich Kaufvertrag §434,8
+634,Rechte des Bestellers bei Mängeln,Ähnlich zu Kaufvertrag; Selbstvornahme nach §637 auch möglich; Mängelbeseitigung UND Schadenersatz,8
+641,Fälligkeit der Vergütung,"Vergütung bei Abnahme, such in Teilen möglich",8
+642,Mitwirkung des Bestellers,"Wenn Mitwirkung des Bestellers unterlassen wird, kann Unternehmer Entschädigung verlangen.",8
+644,Gefahrtragung,"Unternehmer trägt die Gefahr bis zur Abnahme des Werkes, außer Käufer besteht auf anderen Ort als Erfüllungsort",4
+645,Verantwortlichkeit des Bestellers,"Wenn das Werk durch Mängel ausgehend vom Besteller nicht vollständig erfüllbar ist, kann der Unternehmer Auslagen zurück verlangen. Vertrag ist nicht erfüllbar für Unternehmer.",6
+648,Kündigungsrecht des Bestellers,"Der Besteller kann bis zur Vollendung des Werkes jederzeit den Vertrag kündigen. Kündigt der Besteller, so ist der Unternehmer berechtigt, die vereinbarte Vergütung zu verlangen.",8
+648a,Kündigung aus wichtigem Grund,"Beide Vertragsparteien können den Vertrag aus wichtigem Grudn ohen Einhaltung einer Kündigungsfrist kündigen. Ein wichtiger Grund liegt vor, wenn dem kündigenden Teil unter Berücksichtigung aller Umstände des Einzelfalls und unter Abwägung der beiderseitigen Interessen die Fortsetzung des Vertragsverhältnisses bis zur Fertigstellung des Werks nicht zugemutet werden kann.; Kündigt eine Vertragspartei aus wichtigem Grund, ist der Unternehmer nur berechtigt, die Vergütung zu verlangen, die auf den bis zur Kündigung erbrachten Teil des Werks entfällt.",8
+649,Kostenanschlag,"Wird der Anschlag überschritten, muss das sofort verkündet werden.",8
+650,Werklieferungsvertrag,Vertrag über die Lieferung herzustellender oder zu erzeugender beweglicher Sachen.,8
+662,Vertragstypische Pflichten beim Auftrag,Beauftragte erfüllt Auftrag unentgeltlich,2
+670,Ersatz von Aufwendungen,"Wenn der Beauftragte gesonderte Aufwendungen für die Erbringung der Leistung ausführen muss, kann er sie sich bezahlen lassen.",5
+675,Entgeltliche Geschäftsbesorgung,Kein Schadensersatz bei gegebenem Rat,1
+677,Pflichten des Geschäftsführers,Geschäftsführer = Beauftragter bei Beauftragung,2
+678,Geschäftsführung gegen den Willen des Geschäftsherrn,"Beauftragter haftet, wenn er den (mutmaßlichen) Willen des Geschäftsherrn nicht umsetzt",2
+679,Unbeachtlichkeit des entgegenstehendes Willens des Geschäftsherrn,"Ein Wille des Geschäftsherrn kommt nicht in Betracht, wenn er nicht im öffentlichen Interesse liegt",2
+680,Geschäftsführung zur Gefahrabwehr,"Bezweckt die Geschäftsführung die Abwendung einer dem Geschäftsherrn drohenden dringenden Gefahr, so hat der Geschäftsführer nur Vorsatz und grobe Fahrlässigkeit zu vertreten.",6
+688,Vertragstypische Pflichten bei der Verwahrung,"Verwahrer verpflichtet sich, Sache aufzubewahren",2
+690,Haftung bei unentgelticher Verwahrung,"Verwahrer steht nur für die Sorgfalt ein, die er in eigenen Angelegenheiten anwendet",2
+781,Schuldanerkenntnis,"Bei Verträgen, die das Bestehen eines Schuldverhältnisses voraussetzen, dann ist die schriftliche Ereteilung der Anerkennungserklärung erforderlich.",5
+812,Herausgabeanspruch,"Herausgabe einer Sache ist verpflichtend, wenn Erlangen ohne rechtlichen Grund oder Wegfallen des rechtlichen Grunds",3
+818,Umfang des Bereicherungsanspruchs,Herausgabe der Sache → Nicht mehr möglich ? Wert muss ersetzt werden,3
+823,Schadensersatzpflicht,"Wer anderen vorsätzlich oder fahrlässig schadet, muss Schaden ersetzen",1
+827,Ausschluss und Minderung der Verantwortlichkeit,Zustand der Bewusstlosigkeit oder krankhafte geistige Störung,6
+828,Minderjährige,,1
+831,Haftung für den Verrichtungsgehilfen,"Wer einen anderen zu einer Verrichtung bestellt, ist zum Ersatz des Schadens everpflcihtet, den der andere in Ausführung zufügt, außer er hat bei der Auswahl des anderen die nötige Sorgfalt ausgeübt.",6
+832,Haftung des Aufsichtspflichtigen,,1
+1923,Erbfähigkeit,,1
