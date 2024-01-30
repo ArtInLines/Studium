@@ -1,0 +1,10 @@
+{
+	"files.associations": {
+		"*.pl": "prolog",
+		"*.rb": "ruby",
+		"ail_gui.h": "c",
+		"raylib.h": "c",
+		"common.h": "c",
+		"ail_buf.h": "c"
+	}
+}
