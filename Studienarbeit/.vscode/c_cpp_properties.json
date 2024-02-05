@@ -3,8 +3,10 @@
         {
             "name": "Win32",
             "includePath": [
+                "${workspaceFolder}/arduino/**",
+                "${workspaceFolder}/common/**",
+                "${workspaceFolder}/ui/**",
                 "${workspaceFolder}/**",
-                "${vcpkgRoot}/installed/x64-windows/include"
             ],
             "defines": [
                 "_DEBUG",
@@ -20,8 +22,10 @@
         {
             "name": "MinGW",
             "includePath": [
+                "${workspaceFolder}/arduino/**",
+                "${workspaceFolder}/common/**",
+                "${workspaceFolder}/ui/**",
                 "${workspaceFolder}/**",
-                "${vcpkgRoot}/installed/x64-windows/include"
             ],
             "defines": [
                 "_DEBUG",
@@ -36,8 +40,10 @@
         {
             "name": "Win (clang)",
             "includePath": [
+                "${workspaceFolder}/arduino/**",
+                "${workspaceFolder}/common/**",
+                "${workspaceFolder}/ui/**",
                 "${workspaceFolder}/**",
-                "${vcpkgRoot}/installed/x64-windows/include"
             ],
             "defines": [
                 "_DEBUG",
@@ -52,6 +58,9 @@
         {
             "name": "GNU/Linux",
             "includePath": [
+                "${workspaceFolder}/arduino/**",
+                "${workspaceFolder}/common/**",
+                "${workspaceFolder}/ui/**",
                 "${workspaceFolder}/**"
             ],
             "defines": [
@@ -67,6 +76,9 @@
         {
             "name": "Linux (clang)",
             "includePath": [
+                "${workspaceFolder}/arduino/**",
+                "${workspaceFolder}/common/**",
+                "${workspaceFolder}/ui/**",
                 "${workspaceFolder}/**"
             ],
             "defines": [
@@ -82,6 +94,9 @@
         {
             "name": "Mac",
             "includePath": [
+                "${workspaceFolder}/arduino/**",
+                "${workspaceFolder}/common/**",
+                "${workspaceFolder}/ui/**",
                 "${workspaceFolder}/**"
             ],
             "defines": [

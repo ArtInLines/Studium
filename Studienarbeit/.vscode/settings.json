@@ -5,6 +5,8 @@
 		"ail_gui.h": "c",
 		"raylib.h": "c",
 		"common.h": "c",
-		"ail_buf.h": "c"
+		"ail_buf.h": "c",
+		"ail_alloc.h": "c",
+		"ail.h": "c"
 	}
 }

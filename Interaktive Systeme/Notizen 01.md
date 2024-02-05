@@ -71,5 +71,4 @@ Mensch-orientiert
 - Aufmerksamkeit lenken
 - Unterscheidung von Elementen
 - Blickführung
-
-@TODO
+-
