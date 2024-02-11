@@ -1,0 +1,3 @@
+Code taken from https://github.com/raysan5/raylib
+
+No changes were made to the contents of any files. Some files and folders, that were not needed, however, were removed.
