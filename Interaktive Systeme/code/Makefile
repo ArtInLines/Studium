@@ -14,10 +14,13 @@ INCLUDES  = -I./raylib/src
 LIBS      = -L./raylib/src -lraylib -lopengl32 -lgdi32 -lwinmm -lpthread
 CFLAGS   += $(INCLUDES) $(LIBS)
 
-all: main
+all: depth physics
 
-main: t.c raylib
-	$(CC) -o t t.c $(CFLAGS)
+physics: physics.c raylib
+	$(CC) -o physics physics.c $(CFLAGS)
+
+depth: depth.c raylib
+	$(CC) -o depth depth.c $(CFLAGS)
 
 export PLATFORM=PLATFORM_DESKTOP
 export RAYLIB_LIBTYPE=STATIC
