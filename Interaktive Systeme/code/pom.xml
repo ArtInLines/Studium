@@ -13,7 +13,7 @@
     </properties>
 
     <groupId>tasks</groupId>
-    <artifactId>IS05_Physikobjekte</artifactId>
+    <artifactId>IS07_MouseTuning</artifactId>
     <version>1.0-SNAPSHOT</version>
     <build>
         <plugins>
@@ -27,7 +27,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>${javafx.maven.plugin.version}</version>
                 <configuration>
-                    <mainClass>tasks.IS05_Physikobjekte</mainClass>
+                    <mainClass>tasks.IS07_MouseTuning</mainClass>
                 </configuration>
             </plugin>
 			<plugin>
@@ -46,7 +46,7 @@
 					<archive>
 					<manifest>
 						<addClasspath>true</addClasspath>
-						<mainClass>tasks.IS05_Physikobjekte</mainClass>
+						<mainClass>tasks.IS07_MouseTuning</mainClass>
 					</manifest>
 					</archive>
 					<descriptorRefs>

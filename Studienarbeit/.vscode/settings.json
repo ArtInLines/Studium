@@ -7,6 +7,7 @@
 		"common.h": "c",
 		"ail_buf.h": "c",
 		"ail_alloc.h": "c",
-		"ail.h": "c"
+		"ail.h": "c",
+		"ail_ring.h": "c"
 	}
 }
