@@ -102,3 +102,46 @@ Mensch-orientiert
 - Prinzipien: Informativ, Ehrlich, Reassuring
 - "earcon" als akkustisches Gegenstück für Icons
 
+## Aufgabe 6.3 e)
+
+- schnelle, einfache Wechsel der Modi (z.B. über Keyboard Shortcuts)
+  - nicht bei Sicherheitsgefährden (z.B. in Admin-Modus wechseln)
+- Modi sollten nur wenn notwendig bzw. wirklich sinnvoll eingesetzt werden
+- Unterschiedliche Darstellung der Modi
+- Möglichst geringe Anzahl von Modi
+- Standard-Eingaben sollten über alle Modi gleich bleiben
+- Funktionen sind logisch in Modi aufgeteilt (um notwendige Moduswechsel zu verringern)
+
+## Aufgabe 7.0 (S. 3)
+
+- Hierarchische Kategorisierung der Einstellungen in Unterpunkte (um UI nicht zu überlasten)
+- Allgemeine Erklärung der Einstellungen in Text
+- Visualisierung potenzieller Einstellungen
+- Beispielhafte Nutzung erklärt
+- Verlinkung zu Zusatzinformationen (UI nich überlastet und trotzdem alle Infos angeboten)
+- Direkte Preview der geänderten Einstellungen
+- "Restore Defaults" Option
+- Automatische Wahl der Software
+- User-spezifische Einstellungsmöglichkeiten (Experte, Amateur, etc.)
+- Einstellungen mit Verben beschreiben (Bsp.: "Adjust image settings" statt "Image settings")
+- Ausgrauen der Elemente, die zum Moment nicht relevant sind (Infos nicht verbergen, aber Handlungsspielraum einschränken)
+- Kontext-/Zusatzinformationen (Bsp.: "System Informations")
+
+## Aufgabe 7.2
+
+- Grid Snapping (x' = (int)(x/dx + 0.5)*dx)
+- Verschieben auf einer einzelnen Achse, wenn auf einer Kante angefasst wird (Reduktion auf einer Dimension)
+- Live-Verschiebung
+- Undo/Redo
+- Koordinaten-Anzeige
+- Anpassung der Bewegungsgranularität
+  - Intelligente Anpassung der Granularität (bei langsamer Bewegung in kurzer Distanz z.B. Granularität erhöhen)
+- Gruppierung der Elemente (Grid-Locking relativ zu anderen Elementen)
+- Auto-Layout/Template
+
+## Extras on Demand (Hick's Law)
+
+'Länge der Entscheidung wächst logarithmisch zur Anzahl der Wahl-Elemente'
+
+trifft bei UIs nur zu, wenn die Elemente auch sortiert geordnet ist, da sonst keine Binärsuche möglich ist.
+
