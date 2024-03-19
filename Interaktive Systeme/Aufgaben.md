@@ -145,3 +145,10 @@ Mensch-orientiert
 
 trifft bei UIs nur zu, wenn die Elemente auch sortiert geordnet ist, da sonst keine Binärsuche möglich ist.
 
+## Aufgabe 7.6 a)
+
+1. Nutzer-Rollen definieren (z.B. Designer, BWLer, Profis, Amateuere, etc.)
+2. Anwendungsfall/Userflow pro Nutzer-Rolle erstellen
+3. Endgeräte definieren
+4. Modi definieren
+5. Mock-Ups, Konzeption (Layout pro Modus z.B.)
