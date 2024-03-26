@@ -62,6 +62,7 @@
 { key:  A, octave: -1, dt: 0ms, len: 480ms, velocity: 10 }
 { key:  C, octave:  1, dt: 480ms, len: 480ms, velocity: 10 }
 { key:  B, octave: -2, dt: 0ms, len: 480ms, velocity: 10 }
+
 { key:  E, octave:  1, dt: 480ms, len: 480ms, velocity: 10 }
 { key:  E, octave: -1, dt: 0ms, len: 480ms, velocity: 10 }
 { key:  E, octave: -1, dt: 480ms, len: 480ms, velocity: 10 }
@@ -70,6 +71,7 @@
 { key:  C, octave: -1, dt: 480ms, len: 480ms, velocity: 10 }
 { key:  D, octave:  1, dt: 480ms, len: 30ms, velocity: 10 }
 { key:  B, octave: -1, dt: 0ms, len: 480ms, velocity: 10 }
+
 { key:  F, octave:  0, dt: 30ms, len: 480ms, velocity: 10 }
 { key:  B, octave:  0, dt: 0ms, len: 480ms, velocity: 10 }
 { key:  E, octave:  1, dt: 0ms, len: 480ms, velocity: 10 }
@@ -78,6 +80,7 @@
 { key:  A, octave:  0, dt: 30ms, len: 60ms, velocity: 10 }
 { key:  A, octave:  0, dt: 60ms, len: 120ms, velocity: 10 }
 { key:  A, octave:  0, dt: 120ms, len: 240ms, velocity: 10 }
+
 { key:  A, octave:  0, dt: 240ms, len: 960ms, velocity: 10 }
 { key:  D, octave: -1, dt: 0ms, len: 480ms, velocity: 10 }
 { key:  G, octave: -1, dt: 480ms, len: 480ms, velocity: 10 }
