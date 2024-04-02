@@ -8,6 +8,10 @@
 		"ail_buf.h": "c",
 		"ail_alloc.h": "c",
 		"ail.h": "c",
-		"ail_ring.h": "c"
+		"ail_ring.h": "c",
+		"array": "c",
+		"string_view": "c",
+		"initializer_list": "c",
+		"utility": "c"
 	}
 }
