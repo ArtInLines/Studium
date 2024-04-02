@@ -1,0 +1,53 @@
+# Wissensbasierte Systeme
+
+- Suchprobleme
+    - Def. Suchproblem (inkl. Def. von Lösung)
+    - BFS in Python
+    - DFS in Python
+    - A*  in Python
+- Constraint-Satisfaction-Problem
+    - Def. CSP (inkl. Def. von Lösung)
+    - Def. Augmentiertes CSP
+    - Constraint-Propagation (Python-Fkt. propagate)
+    - Def. Konsistenz
+    - Ein Problem als CSP definieren können
+- Automatisches Beweisen
+    - Def. Gruppe (aus der Gruppentheorie)
+    - Def. Signatur
+    - Def. Sigma-Terme
+    - Def. Sigma-Gleichung
+    - Def. Sigma-Algebra
+    - Def. Variablen-Belegung
+    - Def. logische Konsequenz
+    - Def. Sigma-Substitution
+    - Induktive Def. der Relation |-
+    - Induktive Def. der Menge Pos(t)
+    - Def. Termersetzung
+    - Def. Termersetzungs-Ordnung
+    - Def. Syntaktische Gleichung
+    - Regeln von Martelli & Montanari zur Lsg. von syntaktischen Gleichungssystemen
+    - Def. Knuth-Bendix-Algorithmus
+    - Manuelles Anwenden des Knuth-Bendix-Algorithmus (um eine einzelne neue Regel zu finden)
+
+# Data Mining
+
+- Lineare Regression
+    - Def. Mean-Squared-Error (MSE)
+        - Ableitung & Nullstellen von MSE bilden
+    - Def. Pearson-Korrelation
+    - Ableitungen von 'x^T * C + x' und 'b^T * A * x' herleiten
+- Klassifikation
+    - Def. Klassifikationsproblem
+    - Gradient Descent
+        - Formale Definition
+        - Def. der Folge als Lsg.
+    - Logistische Regression
+        - Def. Sigmoid-Fkt & dessen Ableitung
+        - Log-Likelihood ableiteiten & Nullsetzen
+- Neuronale Netze
+    - Def. Fully-Connected Feed-Forward NN
+- Automatisches Differenzieren
+    - Def. Berechnungs-Knoten
+    - Def. Elternknoten
+    - Def. Adjungierte
+    - Adjungierte manuell berechnen
