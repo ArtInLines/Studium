@@ -12,6 +12,8 @@
 		"array": "c",
 		"string_view": "c",
 		"initializer_list": "c",
-		"utility": "c"
+		"utility": "c",
+		"header.h": "c",
+		"ail_time.h": "c"
 	}
 }
