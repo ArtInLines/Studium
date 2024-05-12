@@ -1,0 +1,161 @@
+{
+  "main": {
+    "id": "f93bdf2b5ac7f5ef",
+    "type": "split",
+    "children": [
+      {
+        "id": "79c6a6db3ecfa5a8",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "b4918a5861110ecd",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "lineare-regression.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "26c99cc2386530d9",
+    "type": "split",
+    "children": [
+      {
+        "id": "ba13835cd63ab74c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "c3ee405b9c0dc135",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "21b31a36f5b0fb64",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "da4421d26a8fbe1d",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "d5001d0586732f4b",
+    "type": "split",
+    "children": [
+      {
+        "id": "57e05cabb1e45cbf",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "344ffe0b7e9a9dd4",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "lineare-regression.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "4a3618472e3a32f0",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "lineare-regression.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "d2f83112a44e83a0",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "23c080f929748129",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "lineare-regression.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "b4918a5861110ecd",
+  "lastOpenFiles": [
+    "lineare-regression.pdf",
+    "theorem-proving.md",
+    "theorem-proving.pdf",
+    "suchprobleme.md",
+    "suchprobleme.pdf",
+    "overview.md",
+    "overview.pdf",
+    "csp.md",
+    "csp.pdf"
+  ]
+}
