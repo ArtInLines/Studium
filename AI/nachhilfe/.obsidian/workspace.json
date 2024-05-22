@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "classification.md",
+                "file": "theorem-proving.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "classification.md",
+                "file": "theorem-proving.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "classification.md",
+                "file": "theorem-proving.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "classification.md"
+                "file": "theorem-proving.md"
               }
             }
           }
@@ -150,15 +150,19 @@
   "lastOpenFiles": [
     "suchprobleme.md",
     "overview.md",
+    "neural-networks.md",
+    "neural-networks.pdf",
     "lineare-regression.md",
+    "csp.md",
     "classification.md",
+    "automatic-diff.md",
+    "automatic-diff.pdf",
     "classification.pdf",
     "csp.pdf",
     "lineare-regression.pdf",
     "theorem-proving.md",
     "theorem-proving.pdf",
     "suchprobleme.pdf",
-    "overview.pdf",
-    "csp.md"
+    "overview.pdf"
   ]
 }
