@@ -126,7 +126,7 @@ def next_states(state):
 
 Heuristik, um zu berechnen, welcher Zustand näher am Endzustand ist
 
-$h: Q \rightarrow \R$
+$h: Q \rightarrow \mathbb R$
 
 Eine Heuristik $h$ ist zulässig g.d.w. $h(s)$  niemals größer ist als die wirkliche Entfernung von $s$ zum $goal$
 

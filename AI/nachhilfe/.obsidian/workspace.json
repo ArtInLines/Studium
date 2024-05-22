@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "79c6a6db3ecfa5a8",
+        "id": "be787faa431644d0",
         "type": "tabs",
         "children": [
           {
-            "id": "b4918a5861110ecd",
+            "id": "24c81bfb24a31840",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "lineare-regression.md",
+                "file": "classification.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "lineare-regression.md",
+                "file": "classification.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "lineare-regression.md",
+                "file": "classification.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "lineare-regression.md"
+                "file": "classification.md"
               }
             }
           }
@@ -146,16 +146,19 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "b4918a5861110ecd",
+  "active": "24c81bfb24a31840",
   "lastOpenFiles": [
+    "suchprobleme.md",
+    "overview.md",
+    "lineare-regression.md",
+    "classification.md",
+    "classification.pdf",
+    "csp.pdf",
     "lineare-regression.pdf",
     "theorem-proving.md",
     "theorem-proving.pdf",
-    "suchprobleme.md",
     "suchprobleme.pdf",
-    "overview.md",
     "overview.pdf",
-    "csp.md",
-    "csp.pdf"
+    "csp.md"
   ]
 }
